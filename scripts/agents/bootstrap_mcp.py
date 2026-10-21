@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -11,7 +13,10 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def generate() -> dict:
     server = (ROOT / "tools/mcp/unitesis_server.py").resolve()
-    return {"mcpServers": {"unitesis-project": {"command": "python", "args": [str(server)]}}}
+    local = ROOT / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+    # Keep the venv path: resolving POSIX's python symlink selects the base interpreter.
+    command = str(local.absolute()) if local.is_file() else sys.executable
+    return {"mcpServers": {"unitesis-project": {"command": command, "args": [str(server)]}}}
 
 
 if __name__ == "__main__":

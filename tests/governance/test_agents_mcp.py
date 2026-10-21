@@ -21,6 +21,36 @@ from validate_agent_setup import validate
 
 
 class AgentScaffoldTests(unittest.TestCase):
+    def test_generator_selects_project_interpreter(self):
+        import os
+
+        local = ROOT / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+        expected = str(local.absolute()) if local.is_file() else sys.executable
+        self.assertEqual(generate()["mcpServers"]["unitesis-project"]["command"], expected)
+
+    def test_generator_preserves_venv_path_when_python_resolves_to_base(self):
+        import os
+        from unittest.mock import patch
+
+        import bootstrap_mcp
+
+        # Windows cannot create symlinks without privileges. Emulate only the OS
+        # resolution of that one executable, as occurs for POSIX virtualenvs.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            local = root / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+            local.parent.mkdir(parents=True)
+            local.touch()
+            original_resolve = Path.resolve
+
+            def resolve(path, *args, **kwargs):
+                return (Path(sys.executable) if path == local
+                        else original_resolve(path, *args, **kwargs))
+
+            with patch.object(bootstrap_mcp, "ROOT", root), patch.object(Path, "resolve", resolve):
+                self.assertEqual(generate()["mcpServers"]["unitesis-project"]["command"],
+                                 str(local.absolute()))
+
     def test_registry_valid(self):
         self.assertEqual(validate(), [])
         self.assertGreaterEqual(len(list_skills()), 18)

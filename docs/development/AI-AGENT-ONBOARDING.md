@@ -4,7 +4,7 @@
 2. Leer `AGENTS.md`, `.specify/memory/constitution.md`, `docs/architecture/ARCHITECTURE-INTEGRAL.md` y `docs/agents/AGENT-ROLES.md`.
 3. Elegir el rol y las skills en `connectors/registry.json`; abrir la spec y los ADR de la tarea.
 4. Usar `.venv` con `requirements/dev.txt`; no instalar dependencias sin autorización.
-5. MCP local opcional: `python -m pip install -r tools/mcp/requirements-mcp.txt` solo con autorización. En Cursor, `.cursor/mcp.json`; en VS Code, `python scripts/agents/bootstrap_mcp.py --target vscode --write`.
+5. MCP local opcional: `python -m pip install -r tools/mcp/requirements-mcp.txt` solo con autorización. En Cursor, `.cursor/mcp.json`; en VS Code, `python scripts/agents/bootstrap_mcp.py --target vscode --write`. El generador elige `.venv/Scripts/python.exe` (Windows), `.venv/bin/python` (POSIX) o `sys.executable` si no existe el entorno. La configuración generada no acredita instalación del SDK ni handshake.
 6. Sincronizar skills: `python scripts/agents/sync_skills.py --target claude` (o `--target copilot`).
 7. Un worktree por spec: `python scripts/dev/worktree.py new <id-spec>` (ver `SDD-WORKTREE-GUIDE.md`).
 8. Antes de entregar: `python scripts/verify_structure.py`, `python scripts/agents/validate_agent_setup.py`, `python -m pytest -q` y `ruff check .`.

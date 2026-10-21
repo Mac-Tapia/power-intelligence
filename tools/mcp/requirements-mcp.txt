@@ -1,2 +1,2 @@
-# Optional development-only SDK: deliberately not installed by scaffold.
-mcp>=2.0,<3.0
+# Installed after explicit user authorization; transport acceptance is in tests/integration.
+mcp==2.3.0
