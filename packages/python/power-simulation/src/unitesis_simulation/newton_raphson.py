@@ -92,7 +92,7 @@ class NewtonRaphsonEngine:
         slack = snapshot.slacks[0]
         n = len(model.index)
         pq = np.arange(1, n)
-        vm = np.full(n, slack.vm_pu)
+        vm = np.full(n, float(slack.vm_pu), dtype=float)
         va = _initial_angles(model, math.radians(slack.angle_deg))
         v = vm * np.exp(1j * va)
         settings = request.settings

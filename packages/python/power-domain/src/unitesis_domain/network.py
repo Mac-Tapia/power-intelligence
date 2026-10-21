@@ -33,6 +33,14 @@ def _require_id(value: object, name: str) -> str:
     return value
 
 
+def _as_floats(obj: object, *names: str) -> None:
+    """Store numeric fields as float so 1 and 1.0 give the same identity (JSON round trips)."""
+    for name in names:
+        value = getattr(obj, name)
+        if value is not None:
+            object.__setattr__(obj, name, float(value))
+
+
 @dataclass(frozen=True, slots=True)
 class Bus:
     bus_id: str
@@ -43,6 +51,7 @@ class Bus:
         kv = require_positive(self.nominal_kv, f"{self.bus_id}.nominal_kv")
         if kv >= 2000:
             raise SnapshotError(f"{self.bus_id}: nominal_kv {kv} outside physical range")
+        _as_floats(self, "nominal_kv")
 
 
 @dataclass(frozen=True, slots=True)
@@ -70,6 +79,7 @@ class Line:
         if self.max_current_ka is not None:
             require_positive(self.max_current_ka, f"{self.line_id}.max_current_ka")
         require_bool(self.in_service, f"{self.line_id}.in_service")
+        _as_floats(self, "length_km", "r_ohm_per_km", "x_ohm_per_km", "max_current_ka")
 
     @property
     def z_ohm(self) -> complex:
@@ -106,6 +116,7 @@ class Load:
         require_finite(self.p_mw, f"{self.load_id}.p_mw")
         require_finite(self.q_mvar, f"{self.load_id}.q_mvar")
         require_bool(self.in_service, f"{self.load_id}.in_service")
+        _as_floats(self, "p_mw", "q_mvar")
 
 
 @dataclass(frozen=True, slots=True)
@@ -120,6 +131,7 @@ class Slack:
         if not 0.5 <= vm <= 1.5:
             raise SnapshotError(f"slack vm_pu {vm} outside [0.5, 1.5]")
         require_finite(self.angle_deg, "slack.angle_deg")
+        _as_floats(self, "vm_pu", "angle_deg")
 
 
 @dataclass(frozen=True, slots=True)
@@ -168,6 +180,8 @@ class Transformer:
             raise SnapshotError(f"{tid}: tap ratio outside [0.5, 1.5]")
         require_finite(self.shift_degree, f"{tid}.shift_degree")
         require_bool(self.in_service, f"{tid}.in_service")
+        _as_floats(self, "sn_mva", "vn_hv_kv", "vn_lv_kv", "vk_percent", "vkr_percent",
+                   "tap_step_percent", "shift_degree")
 
 
 @dataclass(frozen=True, slots=True)
@@ -187,6 +201,7 @@ class ElectricalSnapshot:
         freq = require_positive(self.frequency_hz, "frequency_hz")
         if freq not in (50.0, 60.0):
             raise SnapshotError(f"frequency_hz must be 50 or 60, got {freq}")
+        _as_floats(self, "frequency_hz")
         if not self.buses:
             raise SnapshotError("at least one bus is required")
         if not self.slacks:

@@ -141,6 +141,19 @@ class ScopeTests(unittest.TestCase):
         self.assertIn("bus:B4", res.excluded_elements)
         self.assertNotIn("B4", {b.bus_id for b in res.buses})
 
+    def test_integer_json_values_keep_identity_and_solve(self):
+        payload = json.loads(FEEDER.read_text(encoding="utf-8"))
+        as_float = build_snapshot(payload, "f").require_snapshot()
+        payload["network"]["slacks"][0]["vm_pu"] = 1          # JSON.stringify(1.0) -> 1
+        payload["network"]["buses"][0]["nominal_kv"] = float(payload["network"]["buses"][0]
+                                                             ["nominal_kv"])
+        payload["network"]["loads"][0]["p_mw"] = 1 if payload["network"]["loads"][0][
+            "p_mw"] == 1.0 else payload["network"]["loads"][0]["p_mw"]
+        as_int = build_snapshot(payload, "i").require_snapshot()
+        self.assertEqual(as_int.content_sha256, as_float.content_sha256)
+        self.assertIsInstance(as_int.slacks[0].vm_pu, float)
+        self.assertEqual(solve(as_int).status, "computed")
+
     def test_deterministic_identity(self):
         snap = ieee33()
         self.assertEqual(solve(snap).result_sha256, solve(snap).result_sha256)
