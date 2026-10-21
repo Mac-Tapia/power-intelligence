@@ -38,6 +38,8 @@ class EconomicBasis:
     source: str
     conductor_cost_per_km: tuple[tuple[str, float], ...] = ()
     sha256: str = ""
+    emission_factor_tco2_per_mwh: float | None = None
+    emission_factor_source: str = ""
 
     def __post_init__(self) -> None:
         if not self.currency.strip() or not self.source.strip():
@@ -64,6 +66,18 @@ class EconomicBasis:
         for cid, cost in self.conductor_cost_per_km:
             if _finite(cost, f"{cid}.cost_per_km") <= 0:
                 raise ValueError(f"{cid}.cost_per_km must be positive")
+        if self.emission_factor_tco2_per_mwh is not None:
+            if not 0 <= _finite(self.emission_factor_tco2_per_mwh, "emission_factor") <= 2:
+                raise ValueError("emission_factor_tco2_per_mwh must be within [0, 2]")
+            if not self.emission_factor_source.strip():
+                raise ValueError("an emission factor requires its documentary source")
+
+    def loss_co2_t_per_year(self, loss_p_mw: float) -> float | None:
+        """Annual CO2 of the losses, only when an emission factor is declared."""
+        if self.emission_factor_tco2_per_mwh is None:
+            return None
+        return (_finite(loss_p_mw, "loss_p_mw") * HOURS_PER_YEAR * self.loss_load_factor
+                * self.emission_factor_tco2_per_mwh)
 
     def cost_per_km(self, conductor_id: str) -> float | None:
         return dict(self.conductor_cost_per_km).get(conductor_id)
@@ -93,6 +107,8 @@ class EconomicBasis:
                 "loss_load_factor": self.loss_load_factor,
                 "annual_om_fraction": self.annual_om_fraction, "source": self.source,
                 "conductor_cost_per_km": dict(self.conductor_cost_per_km),
+                "emission_factor_tco2_per_mwh": self.emission_factor_tco2_per_mwh,
+                "emission_factor_source": self.emission_factor_source or None,
                 "basis_sha256": self.sha256}
 
 
@@ -129,4 +145,6 @@ def parse_basis(data: dict[str, Any], digest: str | None = None) -> EconomicBasi
         energy_price_per_mwh=data["energy_price_per_mwh"],
         loss_load_factor=data["loss_load_factor"],
         annual_om_fraction=data["annual_om_fraction"], source=data["source"],
-        conductor_cost_per_km=tuple(costs), sha256=digest)
+        conductor_cost_per_km=tuple(costs), sha256=digest,
+        emission_factor_tco2_per_mwh=data.get("emission_factor_tco2_per_mwh"),
+        emission_factor_source=str(data.get("emission_factor_source", "")))

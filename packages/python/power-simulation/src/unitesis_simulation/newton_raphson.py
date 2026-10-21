@@ -149,7 +149,7 @@ class NewtonRaphsonEngine:
             s_loss = abs(current) ** 2 / y * model.base_mva if v[i] != v[j] else 0j
             loss += s_loss
             i_ka = abs(current) * model.base_mva / (SQRT3 * model.base_kv[i])
-            loading = 100.0 * i_ka / ln.max_current_ka if ln.max_current_ka else None
+            loading = float(100.0 * i_ka / ln.max_current_ka) if ln.max_current_ka else None
             branches.append(BranchResult(ln.line_id, ln.from_bus, ln.to_bus, float(i_ka),
                                          float(s_from.real), float(s_from.imag),
                                          float(s_loss.real), float(s_loss.imag), loading))

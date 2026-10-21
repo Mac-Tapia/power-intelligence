@@ -31,8 +31,9 @@ from unitesis_optimization import (
     screen_line_conductors,
     swap_conductor,
 )
+from unitesis_optimization.pareto import pareto_front
 from unitesis_ports import PowerFlowEngine
-from unitesis_simulation import RadialBFSEngine
+from unitesis_simulation import NewtonRaphsonEngine
 
 from .study import LIMITATIONS, solve_and_compare
 
@@ -42,7 +43,7 @@ def evaluate_conductor_alternatives(snapshot: ElectricalSnapshot, line_id: str,
                                     basis: EconomicBasis, *,
                                     engine: PowerFlowEngine | None = None,
                                     reference: PowerFlowEngine | None = None) -> dict[str, Any]:
-    engine = engine or RadialBFSEngine()
+    engine = engine or NewtonRaphsonEngine()
     costs = {cid: ConductorCost(cid, cost, basis.currency, basis.base_year, basis.source)
              for cid, cost in basis.conductor_cost_per_km}
     screen = screen_line_conductors(snapshot, line_id, catalog, criteria, engine, costs)
@@ -73,6 +74,26 @@ def evaluate_conductor_alternatives(snapshot: ElectricalSnapshot, line_id: str,
         alternatives.append(alt)
     priced = [a for a in alternatives if "annual_costs" in a]
     ranking = rank_feasible_alternatives(priced, basis.discount_rate)
+    npv = {r["alternative_id"]: r["npv_total_cost"] for r in ranking}
+    objectives_rows = []
+    for alt in alternatives:
+        if not alt["technical_feasible"] or alt["id"] not in npv:
+            continue
+        cand = alt["screen"]
+        row = {"id": alt["id"], "npv_total_cost": npv[alt["id"]],
+               "loss_p_mw": cand.get("loss_p_mw"),
+               "line_loading_percent": cand.get("line_loading_percent"),
+               "min_vm_pu": cand.get("min_vm_pu")}
+        co2 = basis.loss_co2_t_per_year(cand["loss_p_mw"]) if "loss_p_mw" in cand else None
+        if co2 is not None:
+            row["loss_co2_t_per_year"] = co2
+        alt["objectives"] = row
+        objectives_rows.append(row)
+    objectives = {"npv_total_cost": "min", "loss_p_mw": "min",
+                  "line_loading_percent": "min", "min_vm_pu": "max"}
+    if basis.emission_factor_tco2_per_mwh is not None:
+        objectives["loss_co2_t_per_year"] = "min"
+    pareto = pareto_front(objectives_rows, objectives)
     return {
         "line_id": line_id,
         "snapshot_sha256": snapshot.content_sha256,
@@ -84,6 +105,8 @@ def evaluate_conductor_alternatives(snapshot: ElectricalSnapshot, line_id: str,
         "alternatives": alternatives,
         "ranking": ranking,
         "recommended": ranking[0]["alternative_id"] if ranking else None,
+        "recommended_basis": "minimum NPV among feasible, independently checked alternatives",
+        "pareto": pareto,
         "smallest_feasible_section": screen["proposal_smallest_feasible_section"],
         "status": "proposal_requires_human_review",
         "technical_acceptance": False,
