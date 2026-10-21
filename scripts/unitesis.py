@@ -174,6 +174,7 @@ def cmd_distill_pf(a: argparse.Namespace) -> int:
     from unitesis_application.distillation_study import run_pf_distillation
 
     result = run_pf_distillation(a.dataset_dir, a.output, a.models_dir, select=a.select,
+                                 cv_folds=a.cv_folds,
                                  epochs=a.epochs, seed=a.seed,
                                  student_hidden=a.student_hidden,
                                  student_layers=a.student_layers)
@@ -443,6 +444,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--seed", type=int, default=7)
     s.add_argument("--student-hidden", type=int, default=32)
     s.add_argument("--student-layers", type=int, default=3)
+    s.add_argument("--cv-folds", type=int,
+                   help="group K-fold cross-validation over non-test feeders")
     s.add_argument("--select", action="store_true",
                    help="choose the architecture on the validation split (declared grid)")
     s.set_defaults(func=cmd_distill_pf)

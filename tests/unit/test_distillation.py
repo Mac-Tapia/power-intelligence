@@ -146,6 +146,46 @@ class DistillationTest(unittest.TestCase):
         self.assertEqual([r["valid_p95_pu"] for r in table_a],
                          [r["valid_p95_pu"] for r in table_b])
 
+    def test_group_folds_are_disjoint_and_never_hold_test(self):
+        from unitesis_sciml.distillation import group_folds
+        graphs = [self.train_g, self.valid_g, self.test_g]
+        folds = group_folds(graphs, 2, 7)
+        flat = [f for fold in folds for f in fold]
+        self.assertEqual(sorted(flat), ["six-bus-train", "six-bus-valid"])
+        self.assertEqual(len(flat), len(set(flat)))
+        with self.assertRaises(ValueError):
+            group_folds(graphs, 3, 7)
+
+    def test_early_stopping_restores_the_best_monitored_weights(self):
+        from unitesis_sciml.distillation import (
+            DistillationSpec,
+            make_model,
+            train,
+            voltage_p95,
+        )
+        spec = DistillationSpec(epochs=12, teacher_hidden=8, teacher_layers=2,
+                                alpha_teacher=0.0)
+        model = make_model("graphsage", 5, 8, 2)
+        stats = {}
+        train(model, [self.train_g], spec, monitor=[self.valid_g], patience=3, stats=stats)
+        self.assertTrue(1 <= stats["best_epoch"] <= stats["epochs_run"] <= 12)
+        self.assertAlmostEqual(voltage_p95(model, [self.valid_g]), stats["best_monitor_p95"],
+                               places=6)
+
+    def test_cross_validation_ignores_the_test_split(self):
+        from dataclasses import replace as dc_replace
+
+        from unitesis_sciml.distillation import DistillationSpec, cross_validate
+        poisoned = dc_replace(self.test_g, vm=self.test_g.vm * 0 + 5.0)
+        cands = [DistillationSpec(epochs=4, teacher_hidden=8, teacher_layers=2)]
+        spec_a, table_a = cross_validate([self.train_g, self.valid_g, self.test_g], cands, k=2,
+                                         patience=2)
+        spec_b, table_b = cross_validate([self.train_g, self.valid_g, poisoned], cands, k=2,
+                                         patience=2)
+        self.assertEqual(table_a[0]["fold_p95_pu"], table_b[0]["fold_p95_pu"])
+        self.assertEqual(spec_a.epochs, spec_b.epochs)
+        self.assertLessEqual(spec_a.epochs, 4)
+
     def test_loss_terms(self):
         from unitesis_sciml.distillation import DistillationSpec, distillation_loss
         s = torch.ones(2, 3, 2)

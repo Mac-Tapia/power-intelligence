@@ -28,11 +28,12 @@ are not distillation targets. A surrogate prioritises; the solver confirms (ADR-
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import io
 import json
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -225,15 +226,31 @@ def _labels(g: FeederGraph) -> torch.Tensor:
     return torch.stack([g.vm, g.va_rad], dim=-1)
 
 
+def voltage_p95(model: torch.nn.Module, graphs: list[FeederGraph]) -> float:
+    """p95 |V| error (p.u.) over the given feeders, whatever their split label."""
+    errs = []
+    with torch.no_grad():
+        for g in graphs:
+            errs.append((predict(model, g.features, g)[..., 0] - g.vm).abs().numpy().ravel())
+    return float(np.percentile(np.concatenate(errs), 95)) if errs else float("nan")
+
+
 def train(model: torch.nn.Module, graphs: list[FeederGraph], spec: DistillationSpec, *,
-          teacher: torch.nn.Module | None = None) -> list[float]:
-    """Fit on the ``train`` split; with a teacher, add its soft targets and unlabelled scenarios."""
+          teacher: torch.nn.Module | None = None, monitor: list[FeederGraph] | None = None,
+          patience: int | None = None, stats: dict[str, Any] | None = None) -> list[float]:
+    """Fit on the ``train`` split; with a teacher, add its soft targets and unlabelled scenarios.
+
+    With ``monitor`` feeders the validation p95 is tracked every epoch and the best weights
+    are restored (early stopping after the physics warm-up, ``patience`` epochs without
+    improvement). ``stats`` receives ``best_epoch`` (1-based) and ``best_monitor_p95``.
+    """
     torch.manual_seed(spec.seed)
     gen = torch.Generator().manual_seed(spec.seed)
     opt = torch.optim.Adam(model.parameters(), lr=spec.learning_rate)
     history = []
     train_set = [g for g in graphs if g.split == "train"]
     warmup = int(spec.epochs * spec.physics_warmup_fraction)
+    best_score, best_epoch, best_state = float("inf"), 0, None
     for epoch_i in range(spec.epochs):
         phase = spec if epoch_i >= warmup else DistillationSpec(
             **{**asdict(spec), "gamma_physics": 0.0,
@@ -261,6 +278,20 @@ def train(model: torch.nn.Module, graphs: list[FeederGraph], spec: DistillationS
                 opt.step()
                 epoch += float(loss)
         history.append(epoch)
+        if monitor:
+            score = voltage_p95(model, monitor)
+            if score < best_score:
+                best_score, best_epoch = score, epoch_i + 1
+                best_state = copy.deepcopy(model.state_dict())
+            elif (patience is not None and epoch_i >= warmup
+                  and epoch_i + 1 - best_epoch >= patience):
+                break
+    if monitor and best_state is not None:
+        model.load_state_dict(best_state)
+    if stats is not None:
+        stats.update(best_epoch=best_epoch if monitor else len(history),
+                     best_monitor_p95=best_score if monitor else None,
+                     epochs_run=len(history))
     return history
 
 
@@ -368,3 +399,51 @@ def select_by_validation(graphs: list[FeederGraph], candidates: list[Distillatio
                       "valid_recall": valid.get("violation_recall")})
     best = min(range(len(table)), key=lambda i: (table[i]["valid_p95_pu"] or float("inf"), i))
     return candidates[best], table
+
+
+def group_folds(graphs: list[FeederGraph], k: int, seed: int) -> list[list[str]]:
+    """Deterministic K groups of feeder ids from the non-test splits (a feeder in one fold)."""
+    ids = sorted({g.network_id for g in graphs if g.split in ("train", "valid")},
+                 key=lambda f: hashlib.sha256(f"{seed}:{f}".encode()).hexdigest())
+    if not 2 <= k <= len(ids):
+        raise ValueError(f"need 2 <= k <= {len(ids)} feeders for group cross-validation")
+    return [ids[i::k] for i in range(k)]
+
+
+def cross_validate(graphs: list[FeederGraph], candidates: list[DistillationSpec], *, k: int = 6,
+                   patience: int = 10) -> tuple[DistillationSpec, list[dict[str, Any]]]:
+    """Group K-fold over feeders (test split untouched); choose the lowest mean fold p95.
+
+    Each fold trains a teacher on K-1 groups with early stopping on the held-out group. The
+    chosen spec carries ``epochs`` = median best epoch across its folds, so the final model
+    (trained on every non-test feeder) needs no further look at held-out data.
+    """
+    pool = [g for g in graphs if g.split in ("train", "valid")]
+    features = graphs[0].features.shape[-1]
+    table = []
+    for spec in candidates:
+        scores, epochs = [], []
+        for held in group_folds(graphs, k, spec.seed):
+            held_set = set(held)
+            fold = [replace(g, split="valid" if g.network_id in held_set else "train")
+                    for g in pool]
+            torch.manual_seed(spec.seed)
+            model = make_model(spec.architecture, features, spec.teacher_hidden,
+                               spec.teacher_layers)
+            info: dict[str, Any] = {}
+            train(model, fold, DistillationSpec(**{**asdict(spec), "alpha_teacher": 0.0}),
+                  monitor=[g for g in fold if g.split == "valid"], patience=patience,
+                  stats=info)
+            scores.append(info["best_monitor_p95"])
+            epochs.append(info["best_epoch"])
+        table.append({"spec": asdict(spec), "folds": k, "fold_p95_pu": scores,
+                      "mean_p95_pu": float(np.mean(scores)), "std_p95_pu": float(np.std(scores)),
+                      "best_epochs": epochs})
+    best = min(range(len(table)), key=lambda i: (table[i]["mean_p95_pu"], i))
+    chosen = replace(candidates[best], epochs=max(1, int(np.median(table[best]["best_epochs"]))))
+    return chosen, table
+
+
+def merge_validation_into_training(graphs: list[FeederGraph]) -> list[FeederGraph]:
+    """Final fit after cross-validation: every non-test feeder trains, test stays held out."""
+    return [replace(g, split="train") if g.split == "valid" else g for g in graphs]

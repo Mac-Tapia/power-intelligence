@@ -23,12 +23,15 @@ SELECTION_GRID: tuple[dict[str, Any], ...] = (
 
 
 def run_pf_distillation(dataset_dir: str | Path, output: str | Path, models_dir: str | Path,
-                        *, select: bool = False, **spec_overrides: Any) -> dict[str, Any]:
+                        *, select: bool = False, cv_folds: int | None = None,
+                        **spec_overrides: Any) -> dict[str, Any]:
     import torch  # optional dependency: imported only when distillation is requested
     from unitesis_sciml.distillation import (
         DistillationSpec,
         TeacherProvenance,
+        cross_validate,
         load_feeder_graphs,
+        merge_validation_into_training,
         run_distillation,
         select_by_validation,
     )
@@ -47,11 +50,19 @@ def run_pf_distillation(dataset_dir: str | Path, output: str | Path, models_dir:
         raise ValueError("dataset has no training feeders")
     spec = DistillationSpec(**spec_overrides)
     selection = None
-    if select:
+    criterion = "lowest validation p95; test never consulted"
+    if cv_folds:
+        candidates = [DistillationSpec(**{**spec_overrides, **c}) for c in SELECTION_GRID]
+        spec, selection = cross_validate(graphs, candidates, k=cv_folds)
+        graphs = merge_validation_into_training(graphs)
+        criterion = (f"group {cv_folds}-fold cross-validation over non-test feeders, lowest "
+                     "mean p95; epochs = median early-stopping epoch; final fit on all "
+                     "non-test feeders; test evaluated once")
+    elif select:
         candidates = [DistillationSpec(**{**spec_overrides, **c}) for c in SELECTION_GRID]
         spec, selection = select_by_validation(graphs, candidates)
     report, models = run_distillation(graphs, spec, physics)
-    report["selection"] = {"criterion": "lowest validation p95; test never consulted",
+    report["selection"] = {"criterion": criterion,
                            "candidates": selection} if selection else None
     out_models = Path(models_dir)
     out_models.mkdir(parents=True, exist_ok=True)
