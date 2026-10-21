@@ -19,7 +19,9 @@ _PROXY_MARKERS = ("proxy", "surrogate", "mock", "fake", "stub")
 
 def expected_coverage(snapshot: ElectricalSnapshot) -> tuple[set[str], set[str]]:
     network = build_energized_network(snapshot)  # meshes allowed; scope errors propagate
-    return set(network.energized_buses), {ln.line_id for ln in network.lines}
+    return (set(network.energized_buses),
+            {ln.line_id for ln in network.lines}
+            | {tr.transformer_id for tr in network.transformers})
 
 
 def _angle_diff(a: float, b: float) -> float:

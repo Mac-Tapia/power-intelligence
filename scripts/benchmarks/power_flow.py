@@ -40,6 +40,7 @@ CASES = {
     "synthetic-6bus": lambda: load("fixtures/networks/radial_feeder_6bus.json"),
     "ieee33-radial": lambda: load("fixtures/networks/ieee33_baran_wu.json"),
     "ieee33-meshed": lambda: load("fixtures/networks/ieee33_baran_wu.json", close_ties=True),
+    "mv-lv-transformers": lambda: load("fixtures/networks/mv_lv_transformers.json"),
 }
 
 
@@ -55,7 +56,7 @@ def main() -> int:
             run = solve_and_compare(snap, case, candidate=engine, reference=reference)
             elapsed = time.perf_counter() - t0
             cand, comp = run["candidate"], run["comparison"]
-            applicable = not (meshed and engine.name == RadialBFSEngine.name)
+            applicable = not ((meshed or snap.transformers) and engine.name == RadialBFSEngine.name)
             row = {"case": case, "meshed": meshed, "engine": engine.name,
                    "engine_version": engine.version(), "status": cand.status,
                    "comparison": comp["status"], "applicable": applicable,
@@ -76,7 +77,8 @@ def main() -> int:
                "python": platform.python_version(), "platform": platform.platform(),
                "all_applicable_passed": ok, "results": rows,
                "note": "Balanced positive-sequence scope; series lines without shunt "
-                       "susceptance. Not an unbalanced three-phase benchmark (004-C)."}
+                       "susceptance; transformers without magnetising branch. Not an "
+                       "unbalanced three-phase benchmark (004-C)."}
     publish_evidence(OUT, payload)
     for r in rows:
         md = r["max_differences"] or {}

@@ -1,12 +1,12 @@
 # 004 — Motores de simulación propios
 
-**Estado:** 004-A y 004-B1 operativos; 004-B2 a 004-D pendientes. Paquete dueño: `power-simulation`. Motores propietarios excluidos (ADR-0010).
+**Estado:** 004-A, 004-B1 y 004-B2 operativos; 004-C y 004-D pendientes. Paquete dueño: `power-simulation`. Motores propietarios excluidos (ADR-0010).
 
 ## Alcances
 
 - **004-A (operativo):** flujo AC radial equilibrado por barrido atrás/adelante; una slack; cargas PQ; líneas serie; interruptores ideales; contraste con pandapower bajo las tolerancias de `docs/architecture/CONTRACTS-AND-EVIDENCE.md`.
 - **004-B1 (operativo):** Newton-Raphson propio sobre la Y-bus compartida, para redes radiales y malladas, con interruptores ideales fusionados.
-- **004-B2:** transformadores MT/BT con impedancia y tap. Es requisito de la spec 006 con alimentadores reales.
+- **004-B2 (operativo):** transformadores MT/BT de dos devanados con impedancia, relación, tap y desfase de grupo (sin rama magnetizante).
 - **004-C:** trifásico desbalanceado por fase (A/B/C/N), cargas monofásicas.
 - **004-D:** cortocircuito IEC 60909 simplificado.
 

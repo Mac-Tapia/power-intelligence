@@ -19,6 +19,8 @@ from typing import Any
 from .units import require_bool, require_finite, require_non_negative, require_positive
 
 SNAPSHOT_SCHEMA = "unitesis.electrical-snapshot/v2"
+SNAPSHOT_SCHEMA_V3 = "unitesis.electrical-snapshot/v3"   # v2 + transformers (superset)
+SUPPORTED_SCHEMAS = (SNAPSHOT_SCHEMA, SNAPSHOT_SCHEMA_V3)
 
 
 class SnapshotError(ValueError):
@@ -121,6 +123,54 @@ class Slack:
 
 
 @dataclass(frozen=True, slots=True)
+class Transformer:
+    """Two-winding transformer, balanced positive sequence (spec 004-B2).
+
+    Series impedance from the short-circuit test (``vk_percent``, ``vkr_percent`` on
+    ``sn_mva``); rated voltages may differ from the bus nominal voltages (off-nominal
+    ratio). Tap on the HV side: ratio factor ``1 + tap_pos * tap_step_percent / 100``.
+    ``shift_degree`` is the vector-group phase shift (LV lags HV by this angle).
+    The magnetising branch is outside the current scope and is not modelled.
+    """
+
+    transformer_id: str
+    hv_bus: str
+    lv_bus: str
+    sn_mva: float
+    vn_hv_kv: float
+    vn_lv_kv: float
+    vk_percent: float
+    vkr_percent: float
+    tap_pos: int = 0
+    tap_step_percent: float = 0.0
+    shift_degree: float = 0.0
+    in_service: bool = True
+
+    def __post_init__(self) -> None:
+        tid = _require_id(self.transformer_id, "transformer_id")
+        _require_id(self.hv_bus, f"{tid}.hv_bus")
+        _require_id(self.lv_bus, f"{tid}.lv_bus")
+        if self.hv_bus == self.lv_bus:
+            raise SnapshotError(f"{tid}: self-loop")
+        require_positive(self.sn_mva, f"{tid}.sn_mva")
+        hv = require_positive(self.vn_hv_kv, f"{tid}.vn_hv_kv")
+        lv = require_positive(self.vn_lv_kv, f"{tid}.vn_lv_kv")
+        if hv < lv:
+            raise SnapshotError(f"{tid}: vn_hv_kv must be >= vn_lv_kv")
+        vk = require_positive(self.vk_percent, f"{tid}.vk_percent")
+        vkr = require_non_negative(self.vkr_percent, f"{tid}.vkr_percent")
+        if vkr > vk or vk > 50:
+            raise SnapshotError(f"{tid}: need 0 <= vkr_percent <= vk_percent <= 50")
+        if isinstance(self.tap_pos, bool) or not isinstance(self.tap_pos, int):
+            raise SnapshotError(f"{tid}: tap_pos must be an integer")
+        step = require_finite(self.tap_step_percent, f"{tid}.tap_step_percent")
+        if not 0.5 <= 1 + self.tap_pos * step / 100 <= 1.5:
+            raise SnapshotError(f"{tid}: tap ratio outside [0.5, 1.5]")
+        require_finite(self.shift_degree, f"{tid}.shift_degree")
+        require_bool(self.in_service, f"{tid}.in_service")
+
+
+@dataclass(frozen=True, slots=True)
 class ElectricalSnapshot:
     """Immutable, validated network content. Construction fails closed."""
 
@@ -131,6 +181,7 @@ class ElectricalSnapshot:
     loads: tuple[Load, ...] = ()
     slacks: tuple[Slack, ...] = ()
     name: str = field(default="", compare=False)
+    transformers: tuple[Transformer, ...] = ()
 
     def __post_init__(self) -> None:
         freq = require_positive(self.frequency_hz, "frequency_hz")
@@ -142,14 +193,16 @@ class ElectricalSnapshot:
             raise SnapshotError("at least one slack (external grid) is required")
         bus_ids = [b.bus_id for b in self.buses]
         self._unique(bus_ids, "bus")
-        self._unique([ln.line_id for ln in self.lines] + [s.switch_id for s in self.switches],
-                     "branch")
+        self._unique([ln.line_id for ln in self.lines] + [s.switch_id for s in self.switches]
+                     + [t.transformer_id for t in self.transformers], "branch")
         self._unique([ld.load_id for ld in self.loads], "load")
         self._unique([s.bus for s in self.slacks], "slack bus")
         known = set(bus_ids)
         refs = [s.bus for s in self.slacks] + [ld.bus for ld in self.loads]
         for br in (*self.lines, *self.switches):
             refs += [br.from_bus, br.to_bus]
+        for tr in self.transformers:
+            refs += [tr.hv_bus, tr.lv_bus]
         missing = sorted(set(refs) - known)
         if missing:
             raise SnapshotError(f"unknown bus references: {', '.join(missing)}")
@@ -167,13 +220,17 @@ class ElectricalSnapshot:
         raise KeyError(bus_id)
 
     def canonical(self) -> dict[str, Any]:
-        """Order-independent canonical form; the basis of the v2 identity hash."""
+        """Order-independent canonical form; the basis of the identity hash.
+
+        Snapshots without transformers keep the exact v2 form (unchanged hashes); with
+        transformers the form is v3 = v2 + ``transformers``.
+        """
         def rows(items: tuple[Any, ...], key: str) -> list[dict[str, Any]]:
             out = [{f: getattr(it, f) for f in it.__slots__} for it in items]
             return sorted(out, key=lambda r: r[key])
 
-        return {
-            "schema": SNAPSHOT_SCHEMA,
+        canon = {
+            "schema": SNAPSHOT_SCHEMA_V3 if self.transformers else SNAPSHOT_SCHEMA,
             "frequency_hz": float(self.frequency_hz),
             "buses": rows(self.buses, "bus_id"),
             "lines": rows(self.lines, "line_id"),
@@ -181,6 +238,9 @@ class ElectricalSnapshot:
             "loads": rows(self.loads, "load_id"),
             "slacks": rows(self.slacks, "bus"),
         }
+        if self.transformers:
+            canon["transformers"] = rows(self.transformers, "transformer_id")
+        return canon
 
     @property
     def content_sha256(self) -> str:
@@ -189,7 +249,7 @@ class ElectricalSnapshot:
 
     @classmethod
     def from_canonical(cls, data: dict[str, Any], name: str = "") -> ElectricalSnapshot:
-        if data.get("schema") != SNAPSHOT_SCHEMA:
+        if data.get("schema") not in SUPPORTED_SCHEMAS:
             raise SnapshotError(f"unsupported snapshot schema {data.get('schema')!r}")
         return cls(
             frequency_hz=data["frequency_hz"],
@@ -198,6 +258,7 @@ class ElectricalSnapshot:
             switches=tuple(Switch(**r) for r in data.get("switches", [])),
             loads=tuple(Load(**r) for r in data.get("loads", [])),
             slacks=tuple(Slack(**r) for r in data["slacks"]),
+            transformers=tuple(Transformer(**r) for r in data.get("transformers", [])),
             name=name,
         )
 

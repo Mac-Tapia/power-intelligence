@@ -30,6 +30,33 @@ ENGINE_VERSION = "0.2.0"
 ROUNDING_FACTOR = 64.0
 
 
+def _initial_angles(model, slack_angle_rad: float) -> np.ndarray:
+    """Flat start that propagates transformer phase shifts from the slack (BFS).
+
+    A plain flat start places LV buses at the HV angle; with vector-group shifts (e.g. 150 deg)
+    Newton then starts far from the solution. Magnitudes stay flat.
+    """
+    n = len(model.index)
+    adj: list[list[tuple[int, float]]] = [[] for _ in range(n)]
+    for _, i, j, _ in model.line_terms:
+        adj[i].append((j, 0.0))
+        adj[j].append((i, 0.0))
+    for _, h, lo, _, t in model.trafo_terms:
+        shift = float(np.angle(t))
+        adj[h].append((lo, -shift))
+        adj[lo].append((h, shift))
+    va = np.full(n, np.nan)
+    va[0] = slack_angle_rad
+    queue = [0]
+    while queue:
+        k = queue.pop()
+        for m, delta in adj[k]:
+            if np.isnan(va[m]):
+                va[m] = va[k] + delta
+                queue.append(m)
+    return np.where(np.isnan(va), slack_angle_rad, va)
+
+
 def _jacobian(ybus: sparse.csr_matrix, v: np.ndarray, pq: np.ndarray) -> sparse.csr_matrix:
     ibus = ybus @ v
     diag_v = sparse.diags(v)
@@ -66,7 +93,7 @@ class NewtonRaphsonEngine:
         n = len(model.index)
         pq = np.arange(1, n)
         vm = np.full(n, slack.vm_pu)
-        va = np.full(n, math.radians(slack.angle_deg))
+        va = _initial_angles(model, math.radians(slack.angle_deg))
         v = vm * np.exp(1j * va)
         settings = request.settings
         row_sum = float(abs(model.ybus).sum(axis=1).max()) if n > 1 else 0.0
@@ -126,6 +153,20 @@ class NewtonRaphsonEngine:
             branches.append(BranchResult(ln.line_id, ln.from_bus, ln.to_bus, float(i_ka),
                                          float(s_from.real), float(s_from.imag),
                                          float(s_loss.real), float(s_loss.imag), loading))
+        for tr, h, lo, y, t in model.trafo_terms:
+            i_hv = (y / abs(t) ** 2) * v[h] - (y / np.conj(t)) * v[lo]     # per unit, into HV
+            i_lv = -(y / t) * v[h] + y * v[lo]                              # per unit, into LV
+            s_hv = v[h] * np.conj(i_hv) * model.base_mva
+            s_lv = v[lo] * np.conj(i_lv) * model.base_mva
+            s_loss = s_hv + s_lv
+            loss += s_loss
+            i_hv_ka = abs(i_hv) * model.base_mva / (SQRT3 * model.base_kv[h])
+            i_lv_ka = abs(i_lv) * model.base_mva / (SQRT3 * model.base_kv[lo])
+            loading = 100.0 * max(i_hv_ka * SQRT3 * tr.vn_hv_kv,
+                                  i_lv_ka * SQRT3 * tr.vn_lv_kv) / tr.sn_mva
+            branches.append(BranchResult(tr.transformer_id, tr.hv_bus, tr.lv_bus, float(i_hv_ka),
+                                         float(s_hv.real), float(s_hv.imag),
+                                         float(s_loss.real), float(s_loss.imag), float(loading)))
         calc0 = v[0] * np.conj((model.ybus @ v)[0])
         s_slack = (calc0 - s_spec[0]) * model.base_mva
         total_load = -s_spec.sum() * model.base_mva
@@ -140,4 +181,5 @@ class NewtonRaphsonEngine:
             excluded_elements=network.excluded
             + tuple(f"bus:{b}" for b in network.deenergized_buses),
             messages=(f"balanced positive-sequence Newton-Raphson ({scope}); series lines "
-                      "without shunt susceptance; not an unbalanced 3-phase study",))
+                      "without shunt susceptance; transformers without magnetising branch; "
+                      "not an unbalanced 3-phase study",))

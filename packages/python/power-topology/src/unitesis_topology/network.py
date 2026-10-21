@@ -12,7 +12,7 @@ from __future__ import annotations
 from collections import deque
 from dataclasses import dataclass
 
-from unitesis_domain import ElectricalSnapshot, Line
+from unitesis_domain import ElectricalSnapshot, Line, Transformer
 
 from .radial import TopologyError, _active_branches
 
@@ -24,9 +24,10 @@ class EnergizedNetwork:
     node_of: dict[str, str]                   # energized bus -> representative node bus
     nodes: tuple[str, ...]                    # representative buses, slack node first
     lines: tuple[Line, ...]                   # in-service lines inside the energized part
-    excluded: tuple[str, ...]                 # open switches / out-of-service lines
+    excluded: tuple[str, ...]                 # open switches / out-of-service elements
     deenergized_buses: tuple[str, ...]
     meshed: bool
+    transformers: tuple[Transformer, ...] = ()   # in-service, energized (004-B2)
 
 
 def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
@@ -42,10 +43,22 @@ def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
             raise TopologyError(f"{bid}: joins {kv_a} kV and {kv_b} kV; transformers are "
                                 "required (004-B2)")
 
+    trafos = [t for t in snapshot.transformers if t.in_service]
+    excluded = sorted([*excluded, *(t.transformer_id for t in snapshot.transformers
+                                    if not t.in_service)])
+    for tr in trafos:
+        for bus, vn in ((tr.hv_bus, tr.vn_hv_kv), (tr.lv_bus, tr.vn_lv_kv)):
+            ratio = vn / snapshot.bus(bus).nominal_kv
+            if not 0.8 <= ratio <= 1.2:
+                raise TopologyError(f"{tr.transformer_id}: rated {vn} kV incompatible with bus "
+                                    f"{bus} ({snapshot.bus(bus).nominal_kv} kV)")
     adj: dict[str, set[str]] = {b.bus_id: set() for b in snapshot.buses}
     for br in active:
         adj[br.from_bus].add(br.to_bus)
         adj[br.to_bus].add(br.from_bus)
+    for tr in trafos:
+        adj[tr.hv_bus].add(tr.lv_bus)
+        adj[tr.lv_bus].add(tr.hv_bus)
     energized = {slack}
     queue = deque([slack])
     while queue:
@@ -80,8 +93,10 @@ def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
     lines = tuple(sorted(
         (ln for ln in snapshot.lines if ln.in_service and ln.from_bus in energized),
         key=lambda ln: ln.line_id))
-    edges = {frozenset((node_of[ln.from_bus], node_of[ln.to_bus])) for ln in lines
-             if node_of[ln.from_bus] != node_of[ln.to_bus]}
-    meshed = len(lines) > len(edges) or len(edges) > len(nodes) - 1
+    tr_in = tuple(sorted((t for t in trafos if t.hv_bus in energized),
+                         key=lambda t: t.transformer_id))
+    pairs = [(ln.from_bus, ln.to_bus) for ln in lines] + [(t.hv_bus, t.lv_bus) for t in tr_in]
+    edges = {frozenset((node_of[a], node_of[b])) for a, b in pairs if node_of[a] != node_of[b]}
+    meshed = len(pairs) > len(edges) or len(edges) > len(nodes) - 1
     return EnergizedNetwork(slack, tuple(sorted(energized)), node_of, nodes, lines,
-                            tuple(excluded), tuple(deenergized), meshed)
+                            tuple(excluded), tuple(deenergized), meshed, tr_in)

@@ -12,7 +12,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from scipy import sparse
-from unitesis_domain import ElectricalSnapshot, Line
+from unitesis_domain import ElectricalSnapshot, Line, Transformer
 from unitesis_topology import EnergizedNetwork
 
 BASE_MVA = 1.0
@@ -26,6 +26,8 @@ class YBusModel:
     base_kv: np.ndarray                      # per node
     ybus: sparse.csr_matrix                  # per unit
     line_terms: tuple[tuple[Line, int, int, complex], ...]   # line, i, j, series y (pu)
+    trafo_terms: tuple[tuple[Transformer, int, int, complex, complex], ...] = ()
+    # transformer, hv index, lv index, series y (pu, LV side), complex ratio t (HV side)
 
     def node_index(self, bus_id: str) -> int:
         return self.index[self.network.node_of[bus_id]]
@@ -49,8 +51,24 @@ def build_ybus(snapshot: ElectricalSnapshot, network: EnergizedNetwork,
         rows += [i, j, i, j]
         cols += [i, j, j, i]
         vals += [y, y, -y, -y]
+    tterms: list[tuple[Transformer, int, int, complex, complex]] = []
+    for tr in network.transformers:
+        h = index[network.node_of[tr.hv_bus]]
+        lo = index[network.node_of[tr.lv_bus]]
+        kv_h, kv_l = base_kv[h], base_kv[lo]
+        scale = (tr.vn_lv_kv / kv_l) ** 2 * base_mva / tr.sn_mva     # to system pu, LV side
+        r = tr.vkr_percent / 100.0
+        x = (tr.vk_percent ** 2 - tr.vkr_percent ** 2) ** 0.5 / 100.0
+        y = 1.0 / (complex(r, x) * scale)
+        mag = (tr.vn_hv_kv / kv_h) / (tr.vn_lv_kv / kv_l) * (1 + tr.tap_pos
+                                                              * tr.tap_step_percent / 100)
+        t = mag * np.exp(1j * np.radians(tr.shift_degree))
+        tterms.append((tr, h, lo, y, t))
+        rows += [h, h, lo, lo]
+        cols += [h, lo, h, lo]
+        vals += [y / abs(t) ** 2, -y / np.conj(t), -y / t, y]
     ybus = sparse.csr_matrix((np.array(vals, dtype=complex), (rows, cols)), shape=(n, n))
-    return YBusModel(network, base_mva, index, base_kv, ybus, tuple(terms))
+    return YBusModel(network, base_mva, index, base_kv, ybus, tuple(terms), tuple(tterms))
 
 
 def specified_injections(snapshot: ElectricalSnapshot, model: YBusModel) -> np.ndarray:

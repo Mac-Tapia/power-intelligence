@@ -2,6 +2,7 @@
 
 from .network import (
     SNAPSHOT_SCHEMA,
+    SNAPSHOT_SCHEMA_V3,
     Bus,
     ElectricalSnapshot,
     Line,
@@ -10,6 +11,7 @@ from .network import (
     Slack,
     SnapshotError,
     Switch,
+    Transformer,
 )
 from .study import (
     BranchResult,
@@ -23,6 +25,7 @@ from .study import (
 
 __all__ = [
     "SNAPSHOT_SCHEMA",
+    "SNAPSHOT_SCHEMA_V3",
     "BranchResult",
     "Bus",
     "BusResult",
@@ -38,4 +41,5 @@ __all__ = [
     "StudyResult",
     "StudyStatus",
     "Switch",
+    "Transformer",
 ]

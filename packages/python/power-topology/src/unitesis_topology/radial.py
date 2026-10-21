@@ -72,6 +72,9 @@ def energized_components(snapshot: ElectricalSnapshot) -> list[set[str]]:
 def build_radial_tree(snapshot: ElectricalSnapshot) -> RadialTree:
     if len(snapshot.slacks) != 1:
         raise TopologyError("exactly one slack is supported in the radial scope")
+    if any(t.in_service for t in snapshot.transformers):
+        raise TopologyError("transformers are outside the radial sweep scope; use the "
+                            "Newton-Raphson engine (004-B2)")
     slack = snapshot.slacks[0].bus
     active, excluded = _active_branches(snapshot)
     adj: dict[str, list[tuple[str, Branch]]] = {b.bus_id: [] for b in snapshot.buses}

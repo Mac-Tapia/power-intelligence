@@ -45,7 +45,10 @@
       ],
       "properties": {
         "schema": {
-          "const": "unitesis.electrical-snapshot/v2"
+          "enum": [
+            "unitesis.electrical-snapshot/v2",
+            "unitesis.electrical-snapshot/v3"
+          ]
         }
       }
     },
