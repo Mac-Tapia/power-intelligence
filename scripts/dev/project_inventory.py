@@ -15,7 +15,8 @@ from pathlib import Path
 from typing import Any
 
 SKIP = {".git", ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache",
-        ".ruff_cache", ".mypy_cache", ".worktrees", ".playwright-mcp"}
+        ".ruff_cache", ".mypy_cache", ".worktrees", ".playwright-mcp",
+        ".claude"}   # generated agent copies of .agents/skills (gitignored)
 PACKAGES = {
     "domain": ["004"], "ports": ["000", "004"], "adapters": ["001", "009"],
     "application": ["002", "005", "009"], "config": ["029"],
