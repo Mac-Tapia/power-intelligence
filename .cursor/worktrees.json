@@ -1,0 +1,10 @@
+{
+  "setup-worktree-windows": [
+    "python scripts/verify_structure.py",
+    "python scripts/agents/validate_agent_setup.py"
+  ],
+  "setup-worktree-unix": [
+    "python3 scripts/verify_structure.py",
+    "python3 scripts/agents/validate_agent_setup.py"
+  ]
+}

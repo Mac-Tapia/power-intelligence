@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "unitesis-power-graph"
+version = "0.0.0"
+description = "Proyecciones derivadas de grafo: consultas de conectividad, rutas, subgrafos, graph APIs; el maestro topológico permanece en power-topology."
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/unitesis_graph"]

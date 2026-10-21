@@ -1,0 +1,34 @@
+[
+  {
+    "original": "D:\\Proyectos\\PowerIntelligence\\Agentaudio",
+    "archive": "D:\\Proyectos\\PowerIntelligence_archivo_2026-10-20\\Agentaudio",
+    "files": 28187,
+    "bytes": 957785783,
+    "status": "archived",
+    "restore": "Move the directory back to original path; never overwrite existing paths"
+  },
+  {
+    "original": "D:\\Proyectos\\PowerIntelligence\\madrl_lima",
+    "archive": "",
+    "files": 0,
+    "bytes": 0,
+    "status": "preserved",
+    "restore": "Windows denied native directory rename even after temporarily clearing the root read-only attribute. Partial provider move was rolled back, original directory attributes restored, and original tracked Git status verified unchanged."
+  },
+  {
+    "original": "D:\\Proyectos\\PowerIntelligence\\MADRL_Lima_Proyecto_v2",
+    "archive": "D:\\Proyectos\\PowerIntelligence_archivo_2026-10-20\\MADRL_Lima_Proyecto_v2",
+    "files": 51,
+    "bytes": 3044983,
+    "status": "archived",
+    "restore": "Move the directory back to original path; never overwrite existing paths"
+  },
+  {
+    "original": "D:\\Proyectos\\PowerIntelligence\\PROJECIA\\Agentaudio",
+    "archive": "D:\\Proyectos\\PowerIntelligence_archivo_2026-10-20\\PROJECIA\\Agentaudio",
+    "files": 39128,
+    "bytes": 5282135435,
+    "status": "archived",
+    "restore": "Move the directory back to original path; never overwrite existing paths"
+  }
+]

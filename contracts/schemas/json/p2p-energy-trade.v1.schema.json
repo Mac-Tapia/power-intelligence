@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.unitesis.local/v1/p2p-energy-trade.v1.schema.json",
+  "title": "p2p-energy-trade.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "proposal_id",
+    "seller_id",
+    "buyer_id",
+    "interval_start",
+    "interval_end",
+    "energy_kwh",
+    "price_per_kwh_pen",
+    "mode",
+    "network_snapshot_id"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "proposal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seller_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "buyer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "interval_start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "interval_end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "energy_kwh": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "price_per_kwh_pen": {
+      "type": "number",
+      "minimum": 0
+    },
+    "mode": {
+      "enum": [
+        "simulation",
+        "authorized-pilot"
+      ]
+    },
+    "network_snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "power_flow_evidence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "legal_approval_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "regulator_or_operator_approval_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metering_evidence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "human_approval_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "network_feasible": {
+      "type": "boolean"
+    }
+  }
+}

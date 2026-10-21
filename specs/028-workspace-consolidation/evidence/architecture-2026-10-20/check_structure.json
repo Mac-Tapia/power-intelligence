@@ -1,0 +1,11 @@
+{
+  "command": [
+    "py",
+    "-3.12",
+    "-B",
+    "scripts/verify_structure.py"
+  ],
+  "returncode": 0,
+  "stdout": "PASS: structural invariants (13 required files)\nPASS: V5 SDD feature artifacts and schemas\nPASS: V6 AI agents / MCP artifacts (10 required files)\n",
+  "stderr": ""
+}

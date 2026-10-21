@@ -1,0 +1,9 @@
+{
+  "name": "unitesis-power-intelligence",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "check:structure": "python scripts/verify_structure.py"
+  }
+}

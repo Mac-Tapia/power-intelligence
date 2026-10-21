@@ -1,0 +1,61 @@
+{
+  "methodology": "PMBOK_6_tailored",
+  "disclaimer": "Plantilla UNITESIS no reproduce ni sustituye estándar PMI ni garantiza certificado PMI",
+  "project_id": "SAMPLE-0001",
+  "name": "Estudio demostrativo (NO estudio real)",
+  "study_id": "new_load",
+  "regulatory_profile": "PIT_2025_2029",
+  "planning_basis": {
+    "area_de_demanda": null,
+    "owner": null,
+    "facility": null,
+    "approved_source_snapshot": null,
+    "start_date": null,
+    "target_cod": null
+  },
+  "lifecycle": [
+    "iniciacion",
+    "planificacion",
+    "ejecucion",
+    "monitoreo_control",
+    "cierre"
+  ],
+  "artefacts": {
+    "charter": "project_charter.md",
+    "stakeholder_register": "stakeholders.csv",
+    "wbs": "wbs.csv",
+    "schedule": "schedule.csv",
+    "cost_baseline": "cost_baseline.csv",
+    "risk_register": "risks.csv",
+    "change_log": "change_log.csv",
+    "quality_plan": "quality_plan.md",
+    "communication_plan": "communications.md",
+    "procurement_plan": "procurement.md",
+    "lessons_learned": "lessons_learned.md",
+    "closure": "closure.md"
+  },
+  "knowledge_areas": [
+    "Integración",
+    "Alcance",
+    "Cronograma",
+    "Costos",
+    "Calidad",
+    "Recursos",
+    "Comunicaciones",
+    "Riesgos",
+    "Adquisiciones",
+    "Interesados"
+  ],
+  "approvals": {
+    "sponsor": null,
+    "electrical_reviewer": null,
+    "regulatory_reviewer": null,
+    "project_manager": null
+  },
+  "statuses": {
+    "technical": "pending",
+    "economic": "pending",
+    "regulatory": "pending",
+    "pmbok": "pending"
+  }
+}

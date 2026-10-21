@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "unitesis-power-graphrag"
+version = "0.0.0"
+description = "GraphRAG de documentos, activos y evidencias; no reemplaza motor AC ni modelo eléctrico canónico."
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/unitesis_graphrag"]

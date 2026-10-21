@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitesis.example.invalid/contracts/study-run/0.1.0",
+  "title": "UNITESIS StudyRun manifest draft",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scenario_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "git_commit": {
+      "type": "string",
+      "minLength": 7
+    },
+    "engine_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "engine_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "requested",
+        "running",
+        "completed",
+        "failed",
+        "rejected"
+      ]
+    },
+    "converged": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "units": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "seed": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "run_id",
+    "snapshot_sha256",
+    "scenario_sha256",
+    "config_sha256",
+    "git_commit",
+    "engine_name",
+    "engine_version",
+    "state",
+    "converged",
+    "units",
+    "seed",
+    "evidence_ids"
+  ]
+}

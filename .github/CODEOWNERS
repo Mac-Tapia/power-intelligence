@@ -1,0 +1,6 @@
+# Configure this with REAL valid GitHub usernames/team slugs before enabling CODEOWNER review.
+# Example only (not active):
+# * @your-organization/maintainers
+# /packages/python/power-domain/ @your-organization/power-engineering
+# /packages/python/power-sciml/ @your-organization/ml-research
+# /.github/ @your-organization/repository-admins

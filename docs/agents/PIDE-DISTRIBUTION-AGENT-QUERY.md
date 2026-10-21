@@ -1,0 +1,3 @@
+# Pregunta maestra para cualquier agente — PIDE V8.2
+
+> Consulta `docs/regulatory/pide_2017/INDEX.md` y la matriz de trazabilidad. Necesito el estudio técnico-económico de distribución especificando entidad, horizonte, año base, GIS, cargas nuevas, precio y tasa con fuentes verificadas. Distíngueme tres niveles: (A) norma vigente consolidada; (B) RM 428-2017-MEM/DM de prepublicación; (C) TDR Electro Puno 2018. Sin el texto del anexo MINEM, NO afirmes que posees los formatos originales 01–15. Identifica entradas, estudio sin proyecto, mínimo de alternativas solo si TDR-case, pruebas AC y economía CI/COyM/CP, y PMBOK6. Devuelve evidencia con enlace/numeral/página, faltantes y decisión humana.

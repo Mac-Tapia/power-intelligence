@@ -1,0 +1,8 @@
+---
+description: Spec-Driven Development workflow for UNITESIS
+alwaysApply: true
+---
+
+Before coding a feature, locate its `specs/NNN-kebab-case/spec.md`, `plan.md` and `tasks.md`.
+Use Spec Kit commands from the installed Cursor integration, not improvised prompt text claiming to be the official command.
+For parallel features, use a separate Git worktree and avoid creating the same feature branch both manually and automatically in Spec Kit.

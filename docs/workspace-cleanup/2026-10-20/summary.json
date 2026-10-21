@@ -1,0 +1,15 @@
+{
+  "cache_files_deleted": 286146,
+  "cache_logical_bytes_deleted": 5673368604,
+  "exact_duplicate_reports_deleted": 27,
+  "duplicate_logical_bytes_deleted": 9072314,
+  "archived_projects": 3,
+  "skipped_actions": 26,
+  "archive_root": "D:\\Proyectos\\PowerIntelligence_archivo_2026-10-20",
+  "note": "Archive moves do not free disk space. Logical deleted bytes are not measured physical disk space. No distinct electrical source variants, Git history, VNR inputs or private model data were permanently deleted.",
+  "partial_move_recovered": true,
+  "blocked_archive_project": "madrl_lima",
+  "blocked_archive_reason": "Windows Access Denied; original restored and verified; no ACL changes or process termination",
+  "source_code_changes": false,
+  "all_post_cleanup_checks_passed": true
+}

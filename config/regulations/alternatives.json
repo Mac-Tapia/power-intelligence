@@ -1,0 +1,35 @@
+{
+  "notes": "Conjunto de hipótesis UNITESIS: solo A1,A2 y categorías afines aparecen explícitamente en 217-2013 original; no todas las alternativas son mandatos. Validar con norma y datos.",
+  "families": {
+    "PIT_SST_SCT": [
+      "A0_sin_proyecto",
+      "A1_transferencia_cargas",
+      "A2_rotacion_transformador",
+      "A3_repotenciar_transformador",
+      "A4_nueva_SET",
+      "A5_linea_nueva",
+      "A6_conductor_optimo",
+      "A7_compensacion_reactiva_si_difiere_expansion",
+      "A8_nueva_configuracion_justificada"
+    ],
+    "PIDE_INTERNAL": [
+      "D0_sin_proyecto",
+      "D1_reconfiguracion",
+      "D2_reconductorizacion",
+      "D3_nuevo_alimentador",
+      "D4_nueva_SED",
+      "D5_regulador",
+      "D6_bess_der",
+      "D7_extension_BT_MT",
+      "D8_modernizacion_medicion"
+    ],
+    "CROSS_CUTTING": [
+      "demand_low_base_high",
+      "N1_if_required",
+      "multiple_prices",
+      "OPEX_CAPEX",
+      "scenario_ev_der_bess",
+      "monte_carlo_if_authorized"
+    ]
+  }
+}

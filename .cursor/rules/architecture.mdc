@@ -1,0 +1,8 @@
+---
+description: UNITESIS architectural boundaries
+alwaysApply: true
+---
+
+Follow `AGENTS.md`, `.specify/memory/constitution.md` and `docs/architecture/MODULE-BOUNDARIES.md`.
+
+No changes to power-system code without accompanying tests, physical units, versioned evidence and documented assumptions. Domain code must not import frameworks, drivers or ML engines.

@@ -1,0 +1,1 @@
+# Registro de lecciones aprendidas

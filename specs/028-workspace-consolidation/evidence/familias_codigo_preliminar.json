@@ -1,0 +1,40 @@
+[
+  {
+    "left": "GridSyncNet_Iquitos/src/gridsyncnet",
+    "right": "smartgridiq2/src/gridsyncnet",
+    "identical_python": 28,
+    "different_python": [
+      "agents\\mappo.py",
+      "agents\\networks.py",
+      "agents\\replay.py",
+      "envs\\microgrid_env.py"
+    ],
+    "left_only": [],
+    "right_only": []
+  },
+  {
+    "left": "smartgridiq/src/p2p_llm_marl",
+    "right": "p2p-iquitos-v6-real-feeder/p2p-iquitos-v6-real-feeder/src/p2p_llm_marl",
+    "identical_python": 44,
+    "different_python": [
+      "algorithms\\proposed.py",
+      "experts\\iquitos_heuristic.py",
+      "gridlabd\\feeder_topology.py",
+      "knowledge\\__init__.py",
+      "training\\metrics.py",
+      "training\\runner_v2.py"
+    ],
+    "left_only": [
+      "knowledge\\knowledge_manager.py"
+    ],
+    "right_only": []
+  },
+  {
+    "left": "iquitos_madrl_gridlabd_v16/src",
+    "right": "iquitos_madrl/src",
+    "identical_python": 18,
+    "different_python": [],
+    "left_only": [],
+    "right_only": []
+  }
+]

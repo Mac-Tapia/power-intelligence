@@ -1,0 +1,555 @@
+{
+  "version": "8.0.0",
+  "study_families": {
+    "demand": [
+      {
+        "id": "historical_profiles_15min",
+        "title": "Demanda histórica 15 minutos",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "forecast_statistical",
+        "title": "Pronóstico estadístico/econométrico",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "forecast_ml",
+        "title": "Pronóstico ML e incertidumbre",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "large_users",
+        "title": "Usuarios libres y grandes cargas",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "load_density_gis",
+        "title": "Densidad espacial de carga y cartografía",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      }
+    ],
+    "network": [
+      {
+        "id": "power_flow_ac",
+        "title": "Flujo de potencia AC equilibrado",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "power_flow_3ph",
+        "title": "Flujo de potencia trifásico desequilibrado",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "voltage_quality",
+        "title": "Perfil de tensiones y NTCSE",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "thermal_loading",
+        "title": "Ampacidad y cargabilidad",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "losses",
+        "title": "Pérdidas técnicas potencia/energía",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "short_circuit",
+        "title": "Cortocircuitos IEC/ANSI",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "protection",
+        "title": "Coordinación de protecciones",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "harmonics",
+        "title": "Armónicos y calidad",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "contingency",
+        "title": "Contingencias N-1 según perfil aplicable",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "reliability",
+        "title": "Confiabilidad SAIDI/SAIFI/ENS",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "dynamic",
+        "title": "Estabilidad/dinámica, motor específico",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "earthing",
+        "title": "Puesta a tierra y seguridad",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "arc_flash",
+        "title": "Arco eléctrico y seguridad, norma específica",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      }
+    ],
+    "expansion": [
+      {
+        "id": "new_load",
+        "title": "Impacto de nuevas cargas y punto de conexión",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "line_conductor",
+        "title": "Selección/calibre conductor",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "transformer_sizing",
+        "title": "Capacidad y rotación de transformadores",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "new_substation",
+        "title": "Ubicación y dimensionamiento SET/SED",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "new_feeder",
+        "title": "Trazado y expansión de alimentadores",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "network_reconfiguration",
+        "title": "Transferencia y reconfiguración",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "reactive_power",
+        "title": "Compensación reactiva",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "voltage_regulator",
+        "title": "Regulación de tensión",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "solar_wind",
+        "title": "GD renovable solar/eólica",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "ev",
+        "title": "Vehículos eléctricos",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "bess",
+        "title": "Almacenamiento y degradación",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "smart_grid",
+        "title": "Medición inteligente y automatización",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      }
+    ],
+    "economic": [
+      {
+        "id": "capex_catalog",
+        "title": "CAPEX por módulos estándar/costos autorizados",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "opex",
+        "title": "OPEX mantenimiento y operación",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "loss_monetization",
+        "title": "Valorización de pérdidas incremental",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "npv_lcc",
+        "title": "VPN costo de ciclo de vida",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "cma_tariffs",
+        "title": "CMA, peajes, compensaciones — SST/SCT",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "reliability_cost",
+        "title": "Costo ENS y calidad",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "scenario_risk",
+        "title": "Riesgo, Monte Carlo, sensibilidad",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "investment_portfolio",
+        "title": "Priorización cartera multiobjetivo",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "delay_cost",
+        "title": "Costo por demora puesta en operación comercial",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      }
+    ],
+    "compliance": [
+      {
+        "id": "pit_study",
+        "title": "Expediente PIT y formatos F",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "pit_change",
+        "title": "Modificación PIT",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "pide_study",
+        "title": "Estudio PIDE con separación de norma/proyecto",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "vad",
+        "title": "Interfaz de evidencias VAD",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "legal_traceability",
+        "title": "Matriz norma→cláusula→modelo→resultado",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      },
+      {
+        "id": "project_delivery",
+        "title": "Gestión PMBOK 6 e informes regulatorios",
+        "implementation_status": "specified_not_implemented",
+        "required_evidence": [
+          "input_snapshot",
+          "solver_or_method_version",
+          "test_result",
+          "norm_version",
+          "reviewer"
+        ]
+      }
+    ]
+  }
+}

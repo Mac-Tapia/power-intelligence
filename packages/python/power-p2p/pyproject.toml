@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "unitesis-power-p2p"
+version = "0.0.0"
+description = "Red de colaboración entre peers autorizados; identidad, deduplicación, mensajes firmados, relojes, retry y replicación. No es SCADA."
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/unitesis_p2p"]

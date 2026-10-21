@@ -1,0 +1,154 @@
+{
+  "reference_type": "electro_puno_terms_of_reference_2018",
+  "not_original_minem_annex": true,
+  "history_source_id": "ELECTRO_PUNO_TDR_2018",
+  "illustrative_case": {
+    "long_horizon": 20,
+    "time_markers": [
+      4,
+      8,
+      12,
+      16,
+      20
+    ],
+    "portfolio_years": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "minimum_alternatives_per_system": 3,
+    "economic_life_years": 30,
+    "discount_rate": null
+  },
+  "requirements": [
+    {
+      "id": "PL-01",
+      "area": "historial",
+      "source_locator": "9.1.1, p4",
+      "scope": "10 años históricos desagregados por sector/mercado/tensión",
+      "module": "demand-historical",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-02",
+      "area": "proyeccion",
+      "source_locator": "9.1.1–9.1.2, pp4–6",
+      "scope": "pronóstico vegetativo econométrico, nuevas cargas, escenarios exógenos, FC/FCP/FS",
+      "module": "demand-forecast",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-03",
+      "area": "geo",
+      "source_locator": "9.1.3, p6",
+      "scope": "espacialización de demanda y mapas de densidad por cuadrículas; tamaños pendiente Anexo",
+      "module": "spatial-forecast",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-04",
+      "area": "diagnostico",
+      "source_locator": "9.2.1–9.2.3, pp7–8",
+      "scope": "características, estado/seguridad, tensión, cargabilidad, pérdidas y calidad SAIDI/SAIFI",
+      "module": "baseline-diagnostic",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-05",
+      "area": "horizonte",
+      "source_locator": "9.3.1, p8",
+      "scope": "20 años, hitos 04/08/12/16/20: exclusivos TDR 2018",
+      "module": "long-term-plan",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-06",
+      "area": "alternativas",
+      "source_locator": "9.3.1–9.3.2, pp8–9",
+      "scope": "tres alternativas por sistema, factibilidad técnica; parámetro histórico",
+      "module": "candidate-alternatives",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-07",
+      "area": "rubros",
+      "source_locator": "9.3.2, pp8–9",
+      "scope": "ampliación/reforzamiento, mejoramiento, remodelación, innovación/eficiencia, seguridad",
+      "module": "investment-category",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-08",
+      "area": "pre-economia",
+      "source_locator": "9.3.3, p9",
+      "scope": "costos unitarios por kW, kWh, usuario, km; comprobación respecto proyectos comparables",
+      "module": "screening-costs",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-09",
+      "area": "cartera",
+      "source_locator": "10.1–10.2, pp11–12",
+      "scope": "cartera cuatro años, años 04/05/06/07 referidos al ejemplo 2019–2023",
+      "module": "portfolio-schedule",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-10",
+      "area": "tecnico",
+      "source_locator": "10.3, p13",
+      "scope": "simular caída tensión, confiabilidad, cargabilidad por alternativa; descartar no factibles",
+      "module": "ac-study",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-11",
+      "area": "economia",
+      "source_locator": "10.4, pp13–14",
+      "scope": "CI: materiales, armados, directos/indirectos; COyM; costos pérdidas de potencia y energía",
+      "module": "economic-model",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-12",
+      "area": "rubros-costos",
+      "source_locator": "10.4, p14",
+      "scope": "LP/RP/refuerzo/protección/SED/BT-SP/BT-AP/luminarias/conexiones SER/total",
+      "module": "cost-breakdown",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-13",
+      "area": "rentabilidad",
+      "source_locator": "10.4, p14",
+      "scope": "VAN, anualidad (CI+COyM+CP), TIR; 30 años vida útil en caso TDR; tasa LCE art 79 sin valor copiado",
+      "module": "npv-annuity-irr",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-14",
+      "area": "seleccion",
+      "source_locator": "10.5, p14",
+      "scope": "priorizar alternativas factibles por recursos, restricciones y costos unitarios",
+      "module": "portfolio-optimization",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-15",
+      "area": "entregables",
+      "source_locator": "10.6–10.7, pp15–16",
+      "scope": "fichas técnicas/económicas, unifilar A3 GIS, Gantt, formatos referidos 08–15",
+      "module": "technical-dossier",
+      "origin": "historic_TDR_not_binding"
+    },
+    {
+      "id": "PL-16",
+      "area": "formatos",
+      "source_locator": "9 y 10, pp11 y16",
+      "scope": "referencias a formatos 01–07 y 08–15; campos precisos no disponibles",
+      "module": "format-registry",
+      "origin": "historic_TDR_not_binding"
+    }
+  ]
+}

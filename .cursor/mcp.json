@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "unitesis-project": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/tools/mcp/unitesis_server.py"
+      ]
+    }
+  }
+}

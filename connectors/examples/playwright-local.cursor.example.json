@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "playwright-local": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@<REVIEWED_PINNED_VERSION>",
+        "--headless"
+      ]
+    }
+  }
+}

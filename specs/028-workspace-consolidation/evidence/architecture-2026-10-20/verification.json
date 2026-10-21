@@ -1,0 +1,96 @@
+{
+  "all_checks_passed": true,
+  "checks": {
+    "cleanup": {
+      "ok": true,
+      "files": 946,
+      "logical_bytes": 16671353
+    },
+    "priority_sources": {
+      "ok": true,
+      "checked": 38
+    },
+    "all_analyzed_python_unchanged": {
+      "ok": true,
+      "checked": 3441,
+      "changed": []
+    },
+    "git_tracked_status": {
+      "ok": true,
+      "repositories": [
+        {
+          "project": "demandaiq",
+          "ok": true
+        },
+        {
+          "project": "EVATE",
+          "ok": true
+        },
+        {
+          "project": "flujos",
+          "ok": true
+        },
+        {
+          "project": "geoai",
+          "ok": true
+        },
+        {
+          "project": "madrl_lima",
+          "ok": true
+        },
+        {
+          "project": "MADRLCitytleranflexresdr - copia",
+          "ok": true
+        },
+        {
+          "project": "PGE-PIT-PIDE",
+          "ok": true
+        },
+        {
+          "project": "PITELD",
+          "ok": true
+        },
+        {
+          "project": "Prodma",
+          "ok": true
+        },
+        {
+          "project": "RECYM",
+          "ok": true
+        }
+      ]
+    },
+    "structure": {
+      "ok": true,
+      "output_tail": [
+        "PASS: structural invariants (13 required files)",
+        "PASS: V5 SDD feature artifacts and schemas",
+        "PASS: V6 AI agents / MCP artifacts (10 required files)"
+      ]
+    },
+    "agent_setup": {
+      "ok": true,
+      "output_tail": [
+        "PASS: 24 Agent Skills and MCP registry validated"
+      ]
+    },
+    "bootstrap": {
+      "ok": true,
+      "output_tail": [
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 52 tests in 0.029s",
+        "",
+        "OK (skipped=1)"
+      ]
+    },
+    "spec_traceability": {
+      "ok": true,
+      "broken_links": []
+    },
+    "native_scope": {
+      "ok": true,
+      "note": "No native solver, database write or product-code correction executed by this review"
+    }
+  }
+}

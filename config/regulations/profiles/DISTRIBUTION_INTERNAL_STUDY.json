@@ -1,0 +1,15 @@
+{
+  "profile_id": "DISTRIBUTION_INTERNAL_STUDY",
+  "status": "internal_method_not_regulatory_certification",
+  "jurisdiction": "PE",
+  "applicability": "distribution_all_utilities_internal",
+  "source_ids": [
+    "IL628",
+    "VAD2026"
+  ],
+  "forecast_years": null,
+  "evaluation_years": null,
+  "implementation_years": null,
+  "rules": [],
+  "approved_for_automatic_certification": false
+}

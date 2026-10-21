@@ -1,0 +1,18 @@
+{
+  "profile_id": "PIDE_2017_METHODOLOGICAL_REFERENCE",
+  "status": "historical_prepublication_methodological_reference_not_binding",
+  "regulatory_approval_verified": false,
+  "jurisdiction": "PE",
+  "applicability": "distribution_internal_reference_all_operators",
+  "primary_source_id": "PIDE_EL_PERUANO_2017",
+  "illustrative_source_id": "PIDE_ELECTROPUNO_TDR_2018",
+  "historic_case_horizon_years": {
+    "long_term": 20,
+    "portfolio": 4,
+    "origin": "Electro Puno TDR 2018; not default legal parameters"
+  },
+  "planning_horizon_years": null,
+  "portfolio_horizon_years": null,
+  "approved_for_automatic_certification": false,
+  "label": "METODOLOGÍA DE REFERENCIA (PROYECTO PREPUBLICADO 2017) — NO APROBACIÓN NORMATIVA"
+}

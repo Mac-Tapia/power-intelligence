@@ -1,0 +1,7 @@
+---
+description: Agent Skills and MCP security gates for UNITESIS
+globs: ["**/*"]
+alwaysApply: true
+---
+# UNITESIS agent development
+Read `AGENTS.md`, `.specify/memory/constitution.md`, `docs/agents/AGENT-ROLES.md` and the matching `.agents/skills/<name>/SKILL.md` before code modifications. Work under a numbered SDD spec and isolated Git worktree. Use only MCPs explicitly enabled for the task in `connectors/registry.json`; the registry itself grants no access. Never paste credentials in prompts, code or logs. Do not use data/production SCADA/ledger write endpoints. Execute relevant tests and report what was actually run.

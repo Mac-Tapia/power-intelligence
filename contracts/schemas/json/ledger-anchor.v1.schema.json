@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.unitesis.local/v1/ledger-anchor.v1.schema.json",
+  "title": "ledger-anchor.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "anchor_id",
+    "network_snapshot_id",
+    "evidence_digest_sha256",
+    "artifact_uri",
+    "state"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "anchor_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "network_snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_digest_sha256": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "artifact_uri": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "PENDING",
+        "CONFIRMED",
+        "REJECTED"
+      ]
+    },
+    "ledger_backend": {
+      "enum": [
+        "none",
+        "fabric",
+        "besu"
+      ]
+    },
+    "tx_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

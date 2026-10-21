@@ -1,0 +1,42 @@
+﻿LIMPIEZA EJECUTADA — POWERINTELLIGENCE — 20/10/2026
+Proyecto principal protegido: power-intelligence.
+Autorizacion: el usuario pidio limpieza y eliminacion de duplicados y archivos que no aportan, tras revisar el inventario.
+
+Eliminados: 286,146 archivos de cache, 5,673,368,604 bytes logicos.
+Eliminadas: 27 copias exactas de informes/figuras en canvases o backups, 9,072,314 bytes logicos.
+Total borrado verificado: 286,173 archivos; 5.292 GiB logicos. No es medicion fisica de disco liberado.
+Los hashes completos de las 27 copias coincidieron con la referencia retenida antes de borrar; sus referencias se releen y verifican despues. duplicate_restore_map.csv permite reconstruir las rutas borradas copiando la referencia conservada.
+
+CARPETAS RETIRADAS DEL WORKSPACE Y CONSERVADAS EN ARCHIVO EXTERNO (NO BORRADAS DEL DISCO)
+D:\Proyectos\PowerIntelligence\Agentaudio -> D:\Proyectos\PowerIntelligence_archivo_2026-10-20\Agentaudio | 28,187 archivos, 957,785,783 bytes preservados.
+D:\Proyectos\PowerIntelligence\MADRL_Lima_Proyecto_v2 -> D:\Proyectos\PowerIntelligence_archivo_2026-10-20\MADRL_Lima_Proyecto_v2 | 51 archivos, 3,044,983 bytes preservados.
+D:\Proyectos\PowerIntelligence\PROJECIA\Agentaudio -> D:\Proyectos\PowerIntelligence_archivo_2026-10-20\PROJECIA\Agentaudio | 39,128 archivos, 5,282,135,435 bytes preservados.
+Archivo externo: D:\Proyectos\PowerIntelligence_archivo_2026-10-20
+Los movimientos al archivo externo no liberan espacio de disco. Para revertir, devolver cada carpeta a su ruta original sin sobrescribir carpetas existentes.
+
+PENDIENTE / LIMITES
+madrl_lima permanece en su ubicacion original: Windows rechazo renombrar la carpeta. Un intento con el proveedor PowerShell movio parcialmente archivos de la raiz; se recuperaron, se elimino el destino parcial vacio y se verifico que Git volvio al estado previo. El intento posterior de rename nativo fallo sin movimiento parcial. Se restauro el atributo ReadOnly original. No se cambiaron ACL ni se detuvieron procesos.
+Se preservaron 26 rutas de cache con contenido fuera de la lista estricta .pyc/.pyo, como compilaciones Numba y archivos temporales de compilacion. Algunas pertenecen a carpetas posteriormente archivadas. Ver preserved_cache_paths.csv.
+Se conservaron locks de Office, temporales no confirmados, versiones electricas distintas, datos originales, manuales y respaldos VNR-GIS, Git/worktrees, dependencias, licencias y copias necesarias por ruta. No se borraron indiscriminadamente los 84.791 miembros de grupos de duplicados del inventario: muchos pertenecen a distintos paquetes, datasets o escenarios que requieren su propia ruta.
+Esta es una limpieza conservadora ejecutada; queda pendiente retirar madrl_lima y consolidar duplicados cuyo uso funcional no permite retirarlos directamente.
+
+VERIFICACION POSTERIOR
+- 38 aportes prioritarios: existen y SHA-256 coincide con el inventario previo.
+- Todas las acciones declaradas exitosas: la ruta retirada esta ausente.
+- Las 27 referencias de duplicados: presentes y con SHA-256 original.
+- Las tres carpetas archivadas: conteos y tamanos releidos coinciden con los medidos antes del traslado; no se afirma hashing completo de todo su contenido.
+- Diez repositorios: estado tracked de Git igual al previo, incluidos cambios preexistentes; madrl_lima restaurado.
+- Nucleo en Python 3.12: 52 casos, 51 correctos y 1 omitido por derechos de symlink. No es prueba de operacion CYME/PowerFactory.
+- Carpetas raiz originales restantes: 31.
+No se modifico codigo de producto ni se operaron estudios/modelos electricos.
+
+TRAZABILIDAD DE INCIDENCIAS
+El primer intento no realizo borrados debido a un error en Split del validador de rutas; se conservo en attempt_01_path_guard_error. La version corregida probo rutas validas y rechazo traversal/rutas absolutas externas antes de borrar. El incidente de traslado parcial de madrl_lima y su recuperacion constan en partial_move_recovery.csv, complete_archive.ps1 y verification.json.
+
+FUNDAMENTO CONSULTADO EN LA WEB
+Gamvrinos (2020), tesis de maestria TU Delft sobre deteccion de clones exactos: https://repository.tudelft.nl/record/uuid:399edf65-69c6-4d20-a3d7-9658ccb9bc17
+Ragkhitwetsagul (2018), tesis doctoral UCL sobre similitud, procedencia y reutilizacion de clones: https://discovery.ucl.ac.uk/id/eprint/10057538/
+Thwe et al. (2025), IEEE Access, articulo revisado por pares e indexado en Scopus segun TU Delft, sobre fidelidad/interoperabilidad de gemelos de sistemas electricos: https://doi.org/10.1109/ACCESS.2025.3580055
+Registros y resumenes consultados, no lectura integral. Las fuentes respaldan distinguir identidad de contenido, contexto y procedencia; no certifican que cualquier duplicado pueda borrarse. Seleccionar caches y copias de exportacion con referencia conservada es una decision de ingenieria dentro de la autorizacion del usuario.
+
+EVIDENCIA: actions.csv, duplicate_restore_map.csv, archived_projects.json, summary.json, verification.json, core_tests.json, preserved_cache_paths.csv, partial_move_recovery.csv, manifest_sha256.json.

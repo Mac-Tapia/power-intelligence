@@ -1,0 +1,4777 @@
+[
+  {
+    "title": "MapReduce: Simplified Data Processing on Large Clusters",
+    "url": "https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-001",
+    "file": "sources/REF-001-mapreduce-simplified-data-processing-on-large-clusters.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "The Google File System",
+    "url": "https://research.google/pubs/the-google-file-system/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-002",
+    "file": "sources/REF-002-the-google-file-system.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Bigtable: A Distributed Storage System for Structured Data",
+    "url": "https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "bk",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-003",
+    "file": "sources/REF-003-bigtable-a-distributed-storage-system-for-structured-data.md",
+    "modules": [
+      "bk",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "bk",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Spanner: Google's Globally-Distributed Database",
+    "url": "https://research.google/pubs/spanner-googles-globally-distributed-database-2/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "bk",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-004",
+    "file": "sources/REF-004-spanner-google-s-globally-distributed-database.md",
+    "modules": [
+      "bk",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "bk",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Dremel: Interactive Analysis of Web-Scale Datasets",
+    "url": "https://research.google/pubs/dremel-interactive-analysis-of-web-scale-datasets-2/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-005",
+    "file": "sources/REF-005-dremel-interactive-analysis-of-web-scale-datasets.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Dremel: A Decade of Interactive SQL Analysis at Web Scale",
+    "url": "https://research.google/pubs/dremel-a-decade-of-interactive-sql-analysis-at-web-scale/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-006",
+    "file": "sources/REF-006-dremel-a-decade-of-interactive-sql-analysis-at-web-scale.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Dapper, a Large-Scale Distributed Systems Tracing Infrastructure",
+    "url": "https://research.google/pubs/dapper-a-large-scale-distributed-systems-tracing-infrastructure/",
+    "kind": "articulo_tecnico",
+    "lang": "EN",
+    "domain": "ops",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-007",
+    "file": "sources/REF-007-dapper-a-large-scale-distributed-systems-tracing-infrastructure.md",
+    "modules": [
+      "ops",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "ops",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Borg, Omega, and Kubernetes",
+    "url": "https://research.google/pubs/borg-omega-and-kubernetes/",
+    "kind": "articulo_tecnico",
+    "lang": "EN",
+    "domain": "ops",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-008",
+    "file": "sources/REF-008-borg-omega-and-kubernetes.md",
+    "modules": [
+      "ops",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "ops",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Attention Is All You Need",
+    "url": "https://research.google/pubs/attention-is-all-you-need/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "llm",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-009",
+    "file": "sources/REF-009-attention-is-all-you-need.md",
+    "modules": [
+      "llm",
+      "graphrag",
+      "security"
+    ],
+    "doi": null,
+    "keywords": [
+      "llm",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "GraphCast: Learned Global Weather Forecasting",
+    "url": "https://deepmind.google/research/publications/22598/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-010",
+    "file": "sources/REF-010-graphcast-learned-global-weather-forecasting.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Graph Networks as Learnable Physics Engines for Inference and Control",
+    "url": "https://proceedings.mlr.press/v80/sanchez-gonzalez18a.html",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-011",
+    "file": "sources/REF-011-graph-networks-as-learnable-physics-engines-for-inference-and-control.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "GenCast: learning skillful ensemble forecasting of medium-range weather",
+    "url": "https://deepmind.google/research/publications/gencast-learning-skillful-ensemble-forecasting-of-medium-range-weather/",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-012",
+    "file": "sources/REF-012-gencast-learning-skillful-ensemble-forecasting-of-medium-range-weather.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Discovering novel algorithms with AlphaTensor",
+    "url": "https://deepmind.google/blog/discovering-novel-algorithms-with-alphatensor/",
+    "kind": "divulgacion_investigacion",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-013",
+    "file": "sources/REF-013-discovering-novel-algorithms-with-alphatensor.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "AlphaChip: reinforcement learning for chip placement",
+    "url": "https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design/",
+    "kind": "divulgacion_investigacion",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-014",
+    "file": "sources/REF-014-alphachip-reinforcement-learning-for-chip-placement.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "AlphaEvolve: an evolutionary coding agent",
+    "url": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+    "kind": "divulgacion_investigacion",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-015",
+    "file": "sources/REF-015-alphaevolve-an-evolutionary-coding-agent.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Building effective agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents",
+    "kind": "guia_tecnica",
+    "lang": "EN",
+    "domain": "llm",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-016",
+    "file": "sources/REF-016-building-effective-agents.md",
+    "modules": [
+      "llm",
+      "graphrag",
+      "security"
+    ],
+    "doi": null,
+    "keywords": [
+      "llm",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "How we built our multi-agent research system",
+    "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+    "kind": "guia_tecnica",
+    "lang": "EN",
+    "domain": "llm",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-017",
+    "file": "sources/REF-017-how-we-built-our-multi-agent-research-system.md",
+    "modules": [
+      "llm",
+      "graphrag",
+      "security"
+    ],
+    "doi": null,
+    "keywords": [
+      "llm",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Effective context engineering for AI agents",
+    "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "kind": "guia_tecnica",
+    "lang": "EN",
+    "domain": "llm",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-018",
+    "file": "sources/REF-018-effective-context-engineering-for-ai-agents.md",
+    "modules": [
+      "llm",
+      "graphrag",
+      "security"
+    ],
+    "doi": null,
+    "keywords": [
+      "llm",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Demystifying evals for AI agents",
+    "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+    "kind": "guia_tecnica",
+    "lang": "EN",
+    "domain": "qa",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-019",
+    "file": "sources/REF-019-demystifying-evals-for-ai-agents.md",
+    "modules": [
+      "qa",
+      "solver",
+      "fe"
+    ],
+    "doi": null,
+    "keywords": [
+      "qa",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Constitutional AI: Harmlessness from AI feedback",
+    "url": "https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "llm",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-020",
+    "file": "sources/REF-020-constitutional-ai-harmlessness-from-ai-feedback.md",
+    "modules": [
+      "llm",
+      "graphrag",
+      "security"
+    ],
+    "doi": null,
+    "keywords": [
+      "llm",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Mitigating the risk of prompt injections in browser use",
+    "url": "https://www.anthropic.com/research/prompt-injection-defenses",
+    "kind": "guia_tecnica",
+    "lang": "EN",
+    "domain": "security",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-021",
+    "file": "sources/REF-021-mitigating-the-risk-of-prompt-injections-in-browser-use.md",
+    "modules": [
+      "security",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "security",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Trustworthy agents in practice",
+    "url": "https://www.anthropic.com/research/trustworthy-agents",
+    "kind": "guia_tecnica",
+    "lang": "EN",
+    "domain": "security",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-022",
+    "file": "sources/REF-022-trustworthy-agents-in-practice.md",
+    "modules": [
+      "security",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "security",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Equipping agents for the real world with Agent Skills",
+    "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+    "kind": "guia_tecnica",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-023",
+    "file": "sources/REF-023-equipping-agents-for-the-real-world-with-agent-skills.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems",
+    "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-024",
+    "file": "sources/REF-024-physics-informed-neural-networks-a-deep-learning-framework-for-solving-f.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": "10.1016/j.jcp.2018.10.045",
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Physics-informed machine learning",
+    "url": "https://www.nature.com/articles/s42254-021-00314-5",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-025",
+    "file": "sources/REF-025-physics-informed-machine-learning.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Neural Operator: Learning Maps Between Function Spaces",
+    "url": "https://arxiv.org/abs/2108.08481",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-026",
+    "file": "sources/REF-026-neural-operator-learning-maps-between-function-spaces.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+    "url": "https://arxiv.org/abs/2010.08895",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-027",
+    "file": "sources/REF-027-fourier-neural-operator-for-parametric-partial-differential-equations.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Learning nonlinear operators via DeepONet",
+    "url": "https://www.nature.com/articles/s42256-021-00302-5",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-028",
+    "file": "sources/REF-028-learning-nonlinear-operators-via-deeponet.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "metadatos_pendientes_confirmacion"
+  },
+  {
+    "title": "Understanding and mitigating gradient pathologies in physics-informed neural networks",
+    "url": "https://arxiv.org/abs/2001.04536",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-029",
+    "file": "sources/REF-029-understanding-and-mitigating-gradient-pathologies-in-physics-informed-ne.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "A survey on physics-informed neural networks: state of the art and future research",
+    "url": "https://arxiv.org/abs/2211.08064",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-030",
+    "file": "sources/REF-030-a-survey-on-physics-informed-neural-networks-state-of-the-art-and-future.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "metadatos_pendientes_confirmacion"
+  },
+  {
+    "title": "Graph Attention Networks",
+    "url": "https://arxiv.org/abs/1710.10903",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-031",
+    "file": "sources/REF-031-graph-attention-networks.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+    "url": "https://arxiv.org/abs/1609.02907",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-032",
+    "file": "sources/REF-032-semi-supervised-classification-with-graph-convolutional-networks.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Neural Relational Inference for Interacting Systems",
+    "url": "https://proceedings.mlr.press/v80/kipf18a.html",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-033",
+    "file": "sources/REF-033-neural-relational-inference-for-interacting-systems.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Graph inductive biases in Transformers without Message Passing",
+    "url": "https://proceedings.mlr.press/v202/ma23c.html",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-034",
+    "file": "sources/REF-034-graph-inductive-biases-in-transformers-without-message-passing.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Physics-informed GNN for medium-high voltage AC power flow with edge-aware attention",
+    "url": "https://arxiv.org/abs/2509.22458",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-035",
+    "file": "sources/REF-035-physics-informed-gnn-for-medium-high-voltage-ac-power-flow-with-edge-awa.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "PowerModelsGAT-AI: Physics-Informed Graph Attention for Multi-System Power Flow",
+    "url": "https://arxiv.org/abs/2603.16879",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-036",
+    "file": "sources/REF-036-powermodelsgat-ai-physics-informed-graph-attention-for-multi-system-powe.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Graph Neural Networks and Their Applications in Power Systems: A Review",
+    "url": "https://ieeexplore.ieee.org/document/11103635/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-037",
+    "file": "sources/REF-037-graph-neural-networks-and-their-applications-in-power-systems-a-review.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Applications of Graph Computing and Graph Neural Networks in Power Systems: A Survey",
+    "url": "https://ieeexplore.ieee.org/document/10754312/",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-038",
+    "file": "sources/REF-038-applications-of-graph-computing-and-graph-neural-networks-in-power-syste.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+    "url": "https://www.microsoft.com/en-us/research/publication/from-local-to-global-a-graph-rag-approach-to-query-focused-summarization/",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "graphrag",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-039",
+    "file": "sources/REF-039-from-local-to-global-a-graph-rag-approach-to-query-focused-summarization.md",
+    "modules": [
+      "graphrag",
+      "llm",
+      "graph"
+    ],
+    "doi": null,
+    "keywords": [
+      "graphrag",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Pandapower—An Open-Source Python Tool for Convenient Modeling Analysis and Optimization",
+    "url": "https://ieeexplore.ieee.org/document/8344496",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-040",
+    "file": "sources/REF-040-pandapoweran-open-source-python-tool-for-convenient-modeling-analysis-an.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "PyPSA: Python for Power System Analysis",
+    "url": "https://doi.org/10.5334/jors.188",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-041",
+    "file": "sources/REF-041-pypsa-python-for-power-system-analysis.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": "10.5334/jors.188",
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "MATPOWER: Steady-State Operations Planning and Analysis Tools",
+    "url": "https://ieeexplore.ieee.org/document/5491276/",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-042",
+    "file": "sources/REF-042-matpower-steady-state-operations-planning-and-analysis-tools.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "PowerModels.jl: An Open-Source Framework for Exploring Power Flow Formulations",
+    "url": "https://arxiv.org/abs/1711.01728",
+    "kind": "articulo_conferencia",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-043",
+    "file": "sources/REF-043-powermodels-jl-an-open-source-framework-for-exploring-power-flow-formula.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "PowerModelsDistribution.jl: an open-source framework for exploring distribution power flow formulations",
+    "url": "https://doi.org/10.1016/j.epsr.2020.106664",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-044",
+    "file": "sources/REF-044-powermodelsdistribution-jl-an-open-source-framework-for-exploring-distri.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": "10.1016/j.epsr.2020.106664",
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Optimal distributed generation planning in active distribution networks considering integration of energy storage",
+    "url": "https://arxiv.org/abs/1808.05712",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-045",
+    "file": "sources/REF-045-optimal-distributed-generation-planning-in-active-distribution-networks-.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Optimal Generation and Transmission Expansion Planning Addressing Short-Term Constraints",
+    "url": "https://arxiv.org/abs/1910.00446",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-046",
+    "file": "sources/REF-046-optimal-generation-and-transmission-expansion-planning-addressing-short-.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Stochastic Multistage Co-optimization of Generation and Transmission Expansion Planning",
+    "url": "https://arxiv.org/abs/1910.01640",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-047",
+    "file": "sources/REF-047-stochastic-multistage-co-optimization-of-generation-and-transmission-exp.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Robust Dynamic Transmission and Renewable Generation Expansion Planning",
+    "url": "https://arxiv.org/abs/1701.08649",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-048",
+    "file": "sources/REF-048-robust-dynamic-transmission-and-renewable-generation-expansion-planning.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments",
+    "url": "https://arxiv.org/abs/1706.02275",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-049",
+    "file": "sources/REF-049-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning",
+    "url": "https://arxiv.org/abs/1803.11485",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-050",
+    "file": "sources/REF-050-qmix-monotonic-value-function-factorisation-for-deep-multi-agent-reinfor.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Multi-Agent Reinforcement Learning: A Selective Overview of Theories and Algorithms",
+    "url": "https://arxiv.org/abs/1911.10635",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-051",
+    "file": "sources/REF-051-multi-agent-reinforcement-learning-a-selective-overview-of-theories-and-.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "PPO: Proximal Policy Optimization Algorithms",
+    "url": "https://arxiv.org/abs/1707.06347",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-052",
+    "file": "sources/REF-052-ppo-proximal-policy-optimization-algorithms.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Multi-Agent Reinforcement Learning for Energy Networks",
+    "url": "https://arxiv.org/abs/2404.15583",
+    "kind": "preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-053",
+    "file": "sources/REF-053-multi-agent-reinforcement-learning-for-energy-networks.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "P2P electricity trading: A systematic review on current developments and perspectives",
+    "url": "https://doi.org/10.1016/j.ref.2023.01.008",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-054",
+    "file": "sources/REF-054-p2p-electricity-trading-a-systematic-review-on-current-developments-and-.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": "10.1016/j.ref.2023.01.008",
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Peer-to-peer energy trading in smart grid: Frameworks implementation methodologies and demonstration projects",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0378779622009580",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-055",
+    "file": "sources/REF-055-peer-to-peer-energy-trading-in-smart-grid-frameworks-implementation-meth.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "P2P energy trading via public power networks: Practical challenges emerging solutions",
+    "url": "https://link.springer.com/article/10.1007/s11708-023-0873-9",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-056",
+    "file": "sources/REF-056-p2p-energy-trading-via-public-power-networks-practical-challenges-emergi.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Peer-to-peer kilowatt and negawatt trading: A review",
+    "url": "https://doi.org/10.1016/j.rser.2022.112908",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-057",
+    "file": "sources/REF-057-peer-to-peer-kilowatt-and-negawatt-trading-a-review.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": "10.1016/j.rser.2022.112908",
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "A survey on peer-to-peer energy trading for local communities",
+    "url": "https://doi.org/10.3389/fcomp.2022.1008504",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-058",
+    "file": "sources/REF-058-a-survey-on-peer-to-peer-energy-trading-for-local-communities.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": "10.3389/fcomp.2022.1008504",
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Recent developments and challenges using blockchain techniques for peer-to-peer energy trading",
+    "url": "https://doi.org/10.1016/j.rineng.2024.103666",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "ledger",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-059",
+    "file": "sources/REF-059-recent-developments-and-challenges-using-blockchain-techniques-for-peer-.md",
+    "modules": [
+      "ledger",
+      "p2p",
+      "bk"
+    ],
+    "doi": "10.1016/j.rineng.2024.103666",
+    "keywords": [
+      "ledger",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Electricity powered by blockchain: A review with a European perspective",
+    "url": "https://orbilu.uni.lu/handle/10993/51926",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "ledger",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-060",
+    "file": "sources/REF-060-electricity-powered-by-blockchain-a-review-with-a-european-perspective.md",
+    "modules": [
+      "ledger",
+      "p2p",
+      "bk"
+    ],
+    "doi": null,
+    "keywords": [
+      "ledger",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Applications of blockchain technology in peer-to-peer energy markets and green hydrogen supply chains",
+    "url": "https://www.nature.com/articles/s41598-024-72642-2",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "ledger",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-061",
+    "file": "sources/REF-061-applications-of-blockchain-technology-in-peer-to-peer-energy-markets-and.md",
+    "modules": [
+      "ledger",
+      "p2p",
+      "bk"
+    ],
+    "doi": null,
+    "keywords": [
+      "ledger",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "A blockchain-based optimal peer-to-peer energy trading framework for decentralized energy management",
+    "url": "https://doi.org/10.1016/j.apenergy.2024.123243",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "ledger",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-062",
+    "file": "sources/REF-062-a-blockchain-based-optimal-peer-to-peer-energy-trading-framework-for-dec.md",
+    "modules": [
+      "ledger",
+      "p2p",
+      "bk"
+    ],
+    "doi": "10.1016/j.apenergy.2024.123243",
+    "keywords": [
+      "ledger",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "P2P Energy Trading of EVs Using Blockchain Technology in Centralized and Decentralized Networks",
+    "url": "https://doi.org/10.3390/en17092135",
+    "kind": "articulo_revision",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-063",
+    "file": "sources/REF-063-p2p-energy-trading-of-evs-using-blockchain-technology-in-centralized-and.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": "10.3390/en17092135",
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Análisis de la Planificación de Redes Eléctricas en España",
+    "url": "https://oa.upm.es/90884/",
+    "kind": "tesis",
+    "lang": "ES",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-064",
+    "file": "sources/REF-064-analisis-de-la-planificacion-de-redes-electricas-en-espana.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "es"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Planejamento da expansão de sistemas de distribuição de energia elétrica considerando restauração",
+    "url": "https://repositorio.unesp.br/items/620d6f0e-ad0b-405b-8809-78d5b0498dcc",
+    "kind": "tesis_doctoral",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-065",
+    "file": "sources/REF-065-planejamento-da-expansao-de-sistemas-de-distribuicao-de-energia-eletrica.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Otimização da manutenção centrada na confiabilidade em redes de distribuição de energia elétrica",
+    "url": "https://tedebc.ufma.br/jspui/handle/tede/6523",
+    "kind": "tesis_doctoral",
+    "lang": "PT",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-066",
+    "file": "sources/REF-066-otimizacao-da-manutencao-centrada-na-confiabilidade-em-redes-de-distribu.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Modelo para planejamento da expansão de sistemas de distribuição considerando confiabilidade",
+    "url": "https://lume.ufrgs.br/handle/10183/230173",
+    "kind": "tesis",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-067",
+    "file": "sources/REF-067-modelo-para-planejamento-da-expansao-de-sistemas-de-distribuicao-conside.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Intégration du stockage dans les méthodes de planification des réseaux BT",
+    "url": "https://theses.hal.science/tel-01841465",
+    "kind": "tesis_doctoral",
+    "lang": "FR",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-068",
+    "file": "sources/REF-068-integration-du-stockage-dans-les-methodes-de-planification-des-reseaux-b.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "fr"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Stabilité des réseaux électriques de distribution en présence de productions d’énergie renouvelable",
+    "url": "https://theses.fr/2023GRALT066",
+    "kind": "tesis_doctoral",
+    "lang": "FR",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-069",
+    "file": "sources/REF-069-stabilite-des-reseaux-electriques-de-distribution-en-presence-de-product.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "fr"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Supervision énergetique des réseaux de distribution",
+    "url": "https://theses.fr/2021HESAE068",
+    "kind": "tesis_doctoral",
+    "lang": "FR",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-070",
+    "file": "sources/REF-070-supervision-energetique-des-reseaux-de-distribution.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "fr"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Synthèse robuste de dispositifs de stockage pour l'optimisation de micro-réseaux",
+    "url": "https://theses.fr/2020INPT0092",
+    "kind": "tesis_doctoral",
+    "lang": "FR",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-071",
+    "file": "sources/REF-071-synthese-robuste-de-dispositifs-de-stockage-pour-l-optimisation-de-micro.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "fr"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Optimizing cross-linked infrastructure for future energy systems",
+    "url": "https://www.ecpe.rwth-aachen.de/cms/ecpe/forschung/publikationen/~eknl/details/?file=861215",
+    "kind": "tesis_doctoral",
+    "lang": "DE",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-072",
+    "file": "sources/REF-072-optimizing-cross-linked-infrastructure-for-future-energy-systems.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "de"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Die Aufnahmefähigkeit von Niederspannungsverteilnetzen für Photovoltaik",
+    "url": "https://mediatum.ub.tum.de/?id=998003",
+    "kind": "tesis_doctoral",
+    "lang": "DE",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-073",
+    "file": "sources/REF-073-die-aufnahmefahigkeit-von-niederspannungsverteilnetzen-fur-photovoltaik.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "de"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Energy transition and sector coupling: the impact of renewable hydrogen",
+    "url": "https://depositonce.tu-berlin.de/items/f9153dd8-300b-4233-9411-4bbb436475fc",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-074",
+    "file": "sources/REF-074-energy-transition-and-sector-coupling-the-impact-of-renewable-hydrogen.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Improving Power System Approximations Through Machine Learning-Inspired Optimization Methods",
+    "url": "https://repository.gatech.edu/items/ce61b5eb-bd5b-4d05-920c-23bdc551cb07",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-075",
+    "file": "sources/REF-075-improving-power-system-approximations-through-machine-learning-inspired-.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Autonomous optimal Power Flow via Convex Solution - Sequential Linear Programming",
+    "url": "https://repository.gatech.edu/items/92b47699-c568-42ad-a366-6f52642ad792",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-076",
+    "file": "sources/REF-076-autonomous-optimal-power-flow-via-convex-solution-sequential-linear-prog.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Computational Methods for Fast and Secure Distributed Optimal Power Flow",
+    "url": "https://repository.gatech.edu/entities/publication/7e7b40c7-2d68-4add-a036-649f2efde3c2",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-077",
+    "file": "sources/REF-077-computational-methods-for-fast-and-secure-distributed-optimal-power-flow.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Deep Statistical Solver for Distribution System State Estimation",
+    "url": "https://repository.tudelft.nl/record/uuid%3A1bc2734e-0ecc-4841-8a19-638a475b0c35",
+    "kind": "tesis_maestria",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-078",
+    "file": "sources/REF-078-deep-statistical-solver-for-distribution-system-state-estimation.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Spatio-Temporal GNNs for Power Grid State Estimation under Topological Changes",
+    "url": "https://repository.tudelft.nl/record/uuid%3A2d8a6cb4-93ab-466d-b8ea-5a78d7501016",
+    "kind": "tesis_maestria",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-079",
+    "file": "sources/REF-079-spatio-temporal-gnns-for-power-grid-state-estimation-under-topological-c.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Adaptive Equivalent Models for Distribution Networks",
+    "url": "https://repository.tudelft.nl/record/uuid%3Abd8572f6-9410-49c6-85cb-c7461d004094",
+    "kind": "tesis_maestria",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-080",
+    "file": "sources/REF-080-adaptive-equivalent-models-for-distribution-networks.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Federated Learning-Based State Estimation for Integrated Transmission–Distribution Networks",
+    "url": "https://repository.tudelft.nl/record/uuid%3A1df1dcc1-aa5f-431f-bc1e-b25ea765cb6f",
+    "kind": "tesis_maestria",
+    "lang": "EN",
+    "domain": "p2p",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-081",
+    "file": "sources/REF-081-federated-learning-based-state-estimation-for-integrated-transmissiondis.md",
+    "modules": [
+      "p2p",
+      "ledger",
+      "security"
+    ],
+    "doi": null,
+    "keywords": [
+      "p2p",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Integration of electric vehicles in a flexible electricity demand side management framework",
+    "url": "https://era.ed.ac.uk/items/dfcfda2a-8eb3-41df-9152-fd6214e554b3",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-082",
+    "file": "sources/REF-082-integration-of-electric-vehicles-in-a-flexible-electricity-demand-side-m.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Optimising Qatar's energy transition through model-based analysis",
+    "url": "https://doi.org/10.25560/83106",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-083",
+    "file": "sources/REF-083-optimising-qatar-s-energy-transition-through-model-based-analysis.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": "10.25560/83106",
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Ubicación óptima de generación distribuida en el sistema de distribución",
+    "url": "https://dspace.ups.edu.ec/handle/123456789/13584",
+    "kind": "tesis",
+    "lang": "ES",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-084",
+    "file": "sources/REF-084-ubicacion-optima-de-generacion-distribuida-en-el-sistema-de-distribucion.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "es"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Planificación óptima de la generación distribuida en redes de distribución",
+    "url": "https://dialnet.unirioja.es/servlet/tesis?codigo=205224",
+    "kind": "tesis_doctoral",
+    "lang": "ES",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-085",
+    "file": "sources/REF-085-planificacion-optima-de-la-generacion-distribuida-en-redes-de-distribuci.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "es"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Planeamiento de la generación distribuida en redes eléctricas",
+    "url": "https://alicia.concytec.gob.pe/vufind/Record/UNAC_ee56489c7f1afbaffcba931035ff3f71",
+    "kind": "tesis_doctoral",
+    "lang": "ES",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-086",
+    "file": "sources/REF-086-planeamiento-de-la-generacion-distribuida-en-redes-electricas.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "es"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Otimização baseada em confiabilidade de planos de manutenção de sistemas de distribuição",
+    "url": "https://repositorio.unicamp.br/acervo/detalhe/440731",
+    "kind": "tesis_maestria",
+    "lang": "PT",
+    "domain": "solver",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-087",
+    "file": "sources/REF-087-otimizacao-baseada-em-confiabilidade-de-planos-de-manutencao-de-sistemas.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Reconfiguração otimizada de redes de distribuição de energia elétrica",
+    "url": "https://repositorio.ufu.br/handle/123456789/20975",
+    "kind": "tesis",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-088",
+    "file": "sources/REF-088-reconfiguracao-otimizada-de-redes-de-distribuicao-de-energia-eletrica.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Microservices",
+    "url": "https://www.martinfowler.com/articles/microservices.html",
+    "kind": "articulo_tecnico",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-089",
+    "file": "sources/REF-089-microservices.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Monolith First",
+    "url": "https://martinfowler.com/bliki/MonolithFirst.html",
+    "kind": "articulo_tecnico",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-090",
+    "file": "sources/REF-090-monolith-first.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "What do you mean by Event-Driven?",
+    "url": "https://martinfowler.com/articles/201701-event-driven.html",
+    "kind": "articulo_tecnico",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-091",
+    "file": "sources/REF-091-what-do-you-mean-by-event-driven.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Event Sourcing",
+    "url": "https://www.martinfowler.com/eaaDev/EventSourcing.html",
+    "kind": "articulo_tecnico",
+    "lang": "EN",
+    "domain": "bk",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-092",
+    "file": "sources/REF-092-event-sourcing.md",
+    "modules": [
+      "bk",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "bk",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "GitHub Spec Kit documentation",
+    "url": "https://github.github.com/spec-kit/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-093",
+    "file": "sources/REF-093-github-spec-kit-documentation.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "GitHub Spec Kit quickstart",
+    "url": "https://github.github.com/spec-kit/quickstart",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-094",
+    "file": "sources/REF-094-github-spec-kit-quickstart.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Model Context Protocol authorization specification",
+    "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-11-25/basic/authorization.mdx",
+    "kind": "especificacion",
+    "lang": "EN",
+    "domain": "security",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-095",
+    "file": "sources/REF-095-model-context-protocol-authorization-specification.md",
+    "modules": [
+      "security",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "security",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "D3: Data-Driven Documents",
+    "url": "https://doi.org/10.1109/TVCG.2011.185",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "fe",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-096",
+    "file": "sources/REF-096-d3-data-driven-documents.md",
+    "modules": [
+      "fe",
+      "qa",
+      "gis"
+    ],
+    "doi": "10.1109/TVCG.2011.185",
+    "keywords": [
+      "fe",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Vega-Lite: A Grammar of Interactive Graphics",
+    "url": "https://doi.org/10.1109/TVCG.2016.2599030",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "fe",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-097",
+    "file": "sources/REF-097-vega-lite-a-grammar-of-interactive-graphics.md",
+    "modules": [
+      "fe",
+      "qa",
+      "gis"
+    ],
+    "doi": "10.1109/TVCG.2016.2599030",
+    "keywords": [
+      "fe",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Usability Analysis of Visual Programming Environments: A Cognitive Dimensions Framework",
+    "url": "https://doi.org/10.1006/jvlc.1996.0009",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "fe",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-098",
+    "file": "sources/REF-098-usability-analysis-of-visual-programming-environments-a-cognitive-dimens.md",
+    "modules": [
+      "fe",
+      "qa",
+      "gis"
+    ],
+    "doi": "10.1006/jvlc.1996.0009",
+    "keywords": [
+      "fe",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "OpenStreetMap: User-Generated Street Maps",
+    "url": "https://doi.org/10.1109/MPRV.2008.80",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "gis",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-099",
+    "file": "sources/REF-099-openstreetmap-user-generated-street-maps.md",
+    "modules": [
+      "gis",
+      "graph",
+      "bk"
+    ],
+    "doi": "10.1109/MPRV.2008.80",
+    "keywords": [
+      "gis",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Citizens as sensors: the world of volunteered geography",
+    "url": "https://doi.org/10.1007/s10708-007-9111-y",
+    "kind": "articulo_revista",
+    "lang": "EN",
+    "domain": "gis",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-100",
+    "file": "sources/REF-100-citizens-as-sensors-the-world-of-volunteered-geography.md",
+    "modules": [
+      "gis",
+      "graph",
+      "bk"
+    ],
+    "doi": "10.1007/s10708-007-9111-y",
+    "keywords": [
+      "gis",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Learning on graphs from theory to industrial application in power management of distribution grids",
+    "url": "https://publications.rwth-aachen.de/record/992117",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-101",
+    "file": "sources/REF-101-learning-on-graphs-from-theory-to-industrial-application-in-power-manage.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Planejamento integrado de redes de distribuição de energia elétrica com fontes renováveis de geração distribuída na média e baixa tensão",
+    "url": "https://repositorio.unesp.br/entities/publication/46c006ce-081f-4863-9cad-51b45655f600",
+    "kind": "tesis_doctoral",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-102",
+    "file": "sources/REF-102-planejamento-integrado-de-redes-de-distribuicao-de-energia-eletrica-com-.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Planejamento de redes de distribuição de energia elétrica de média e baixa tensão",
+    "url": "https://repositorio.unesp.br/entities/publication/0e96e2cd-7287-4fae-9e88-4f2f11639529/full",
+    "kind": "tesis_doctoral",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-103",
+    "file": "sources/REF-103-planejamento-de-redes-de-distribuicao-de-energia-eletrica-de-media-e-bai.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Reconfiguração de redes de distribuição de energia elétrica através de um algoritmo de busca dispersa",
+    "url": "https://repositorio.unesp.br/entities/publication/9c497ba8-4fbf-4435-b202-a6606722ef2c",
+    "kind": "tesis_maestria",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-104",
+    "file": "sources/REF-104-reconfiguracao-de-redes-de-distribuicao-de-energia-eletrica-atraves-de-u.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Planejamento da expansão de sistemas de distribuição de energia elétrica considerando confiabilidade",
+    "url": "https://repositorio.unesp.br/entities/publication/81bf30c8-9976-4ffa-a839-c06e42e72691",
+    "kind": "tesis_maestria",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-105",
+    "file": "sources/REF-105-planejamento-da-expansao-de-sistemas-de-distribuicao-de-energia-eletrica.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Metodologia para reconfiguração de redes ativas de distribuição de energia elétrica através de uma matheuristica baseada em critérios de vizinhança",
+    "url": "https://repositorio.unesp.br/entities/publication/4b2de0b8-96f1-4571-8fea-99da6a26236c/full",
+    "kind": "tesis_maestria",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "web_2026-10-17",
+    "verification": "pagina_o_registro_identificado; sin revision sistematica de texto completo",
+    "id": "REF-106",
+    "file": "sources/REF-106-metodologia-para-reconfiguracao-de-redes-ativas-de-distribuicao-de-energ.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "identificado_en_fuente_web"
+  },
+  {
+    "title": "Fundamentals of Software Architecture, 2nd ed. (Richards & Ford, 2025)",
+    "url": "https://www.oreilly.com/library/view/fundamentals-of-software/9781098175504/",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-107",
+    "file": "sources/REF-107-fundamentals-of-software-architecture-2nd-ed-richards-ford-2025.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Software Architecture: The Hard Parts (Ford et al., 2021)",
+    "url": "https://www.oreilly.com/library/view/software-architecture-the/9781492086888/",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-108",
+    "file": "sources/REF-108-software-architecture-the-hard-parts-ford-et-al-2021.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Building Evolutionary Architectures, 2nd ed. (Ford et al., 2022)",
+    "url": "https://www.oreilly.com/library/view/building-evolutionary-architectures/9781492097532/",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-109",
+    "file": "sources/REF-109-building-evolutionary-architectures-2nd-ed-ford-et-al-2022.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Microservices Guide — Martin Fowler",
+    "url": "https://www.martinfowler.com/microservices/",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-110",
+    "file": "sources/REF-110-microservices-guide-martin-fowler.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "arc42 Method",
+    "url": "https://arc42.org/method/",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-111",
+    "file": "sources/REF-111-arc42-method.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "arc42 Quality Requirements",
+    "url": "https://docs.arc42.org/section-10/",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-112",
+    "file": "sources/REF-112-arc42-quality-requirements.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "AWS Well-Architected: six pillars",
+    "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-113",
+    "file": "sources/REF-113-aws-well-architected-six-pillars.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "AWS Well-Architected definitions",
+    "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-114",
+    "file": "sources/REF-114-aws-well-architected-definitions.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "arc42 twelve sections",
+    "url": "https://examples.arc42.org/sections/",
+    "kind": "libro_o_guia_tecnica",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-115",
+    "file": "sources/REF-115-arc42-twelve-sections.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "ENTSO-E CGMES Library (2026)",
+    "url": "https://www.entsoe.eu/data/cim/cim-for-grid-models-exchange/",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "gis",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-116",
+    "file": "sources/REF-116-entso-e-cgmes-library-2026.md",
+    "modules": [
+      "gis",
+      "graph",
+      "bk"
+    ],
+    "doi": null,
+    "keywords": [
+      "gis",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Reinforcement Learning Meets the Power Grid, Jin (2025)",
+    "url": "https://doi.org/10.1561/3100000043",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-117",
+    "file": "sources/REF-117-reinforcement-learning-meets-the-power-grid-jin-2025.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": "10.1561/3100000043",
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Reinforcement Learning for Efficient Power Systems Planning (2024)",
+    "url": "https://doi.org/10.3390/en17092167",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-118",
+    "file": "sources/REF-118-reinforcement-learning-for-efficient-power-systems-planning-2024.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": "10.3390/en17092167",
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "A Review of Smart Grid Evolution and Reinforcement Learning (2025)",
+    "url": "https://doi.org/10.3390/en18071837",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-119",
+    "file": "sources/REF-119-a-review-of-smart-grid-evolution-and-reinforcement-learning-2025.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": "10.3390/en18071837",
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Physics-informed neural networks for power systems: A systematic review (2026)",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S2352467726001438",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-120",
+    "file": "sources/REF-120-physics-informed-neural-networks-for-power-systems-a-systematic-review-2.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Physics-Informed Neural Networks in Grid-Connected Inverters (2025)",
+    "url": "https://doi.org/10.3390/en18205441",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-121",
+    "file": "sources/REF-121-physics-informed-neural-networks-in-grid-connected-inverters-2025.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": "10.3390/en18205441",
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Survey on power flow calculation in distribution networks: data-physics fusion (2026)",
+    "url": "https://www.sciencedirect.com/science/article/pii/S2352467726001402",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-122",
+    "file": "sources/REF-122-survey-on-power-flow-calculation-in-distribution-networks-data-physics-f.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Physics-informed neural networks in the energy sector (2026)",
+    "url": "https://www.sciencedirect.com/science/article/pii/S2352484725008893",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-123",
+    "file": "sources/REF-123-physics-informed-neural-networks-in-the-energy-sector-2026.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Multi-agent reinforcement learning for resources allocation optimization: survey (2025)",
+    "url": "https://link.springer.com/article/10.1007/s10462-025-11340-5",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-124",
+    "file": "sources/REF-124-multi-agent-reinforcement-learning-for-resources-allocation-optimization.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Designing the future electricity spot market with high renewables (2025)",
+    "url": "https://www.nature.com/articles/s44287-025-00163-9",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "market",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-125",
+    "file": "sources/REF-125-designing-the-future-electricity-spot-market-with-high-renewables-2025.md",
+    "modules": [
+      "market",
+      "p2p",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "market",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Multi-agent BESS collaborative control, Applied Energy (2024)",
+    "url": "https://doi.org/10.1016/j.apenergy.2024.123858",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-126",
+    "file": "sources/REF-126-multi-agent-bess-collaborative-control-applied-energy-2024.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": "10.1016/j.apenergy.2024.123858",
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Graph Neural Networks and Their Applications in Power Systems (IEEE 2025)",
+    "url": "https://doi.org/10.1109/eIT64391.2025.11103635",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-127",
+    "file": "sources/REF-127-graph-neural-networks-and-their-applications-in-power-systems-ieee-2025.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": "10.1109/eIT64391.2025.11103635",
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Reinforcement Learning for Optimizing Renewable Energy Utilization in Smart Grids (2026)",
+    "url": "https://www.mdpi.com/2412-3811/11/7/240",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-128",
+    "file": "sources/REF-128-reinforcement-learning-for-optimizing-renewable-energy-utilization-in-sm.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Designing an optimal microgrid control system using DRL: review (2024)",
+    "url": "https://doi.org/10.1016/j.jestch.2024.101651",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-129",
+    "file": "sources/REF-129-designing-an-optimal-microgrid-control-system-using-drl-review-2024.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": "10.1016/j.jestch.2024.101651",
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "A Survey of Multi-Agent Systems for Smartgrids (2024)",
+    "url": "https://doi.org/10.3390/en17153620",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-130",
+    "file": "sources/REF-130-a-survey-of-multi-agent-systems-for-smartgrids-2024.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": "10.3390/en17153620",
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "pandapower: Open Source Python Tool (2018) / bibliografía",
+    "url": "https://www.pandapower.org/references/",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-131",
+    "file": "sources/REF-131-pandapower-open-source-python-tool-2018-bibliografia.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Deep RL-Based Distribution Network Planning (2025)",
+    "url": "https://www.mdpi.com/1996-1073/18/5/1254",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-132",
+    "file": "sources/REF-132-deep-rl-based-distribution-network-planning-2025.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Robust protection in DER-rich grids using DRL (2020)",
+    "url": "https://arxiv.org/abs/2003.02422",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-133",
+    "file": "sources/REF-133-robust-protection-in-der-rich-grids-using-drl-2020.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Planning and operational resilience with DER and complex networks (2022)",
+    "url": "https://arxiv.org/abs/2208.11543",
+    "kind": "articulo_o_preprint",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-134",
+    "file": "sources/REF-134-planning-and-operational-resilience-with-der-and-complex-networks-2022.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Aprendizaje automático aplicado en redes eléctricas inteligentes — UC3M (2024)",
+    "url": "https://e-archivo.uc3m.es/entities/publication/72e0f36a-16aa-44be-8fd0-1093693ccfe7",
+    "kind": "tesis_doctoral",
+    "lang": "ES",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-135",
+    "file": "sources/REF-135-aprendizaje-automatico-aplicado-en-redes-electricas-inteligentes-uc3m-20.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "es"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Advanced design methods for active distribution networks — DTU",
+    "url": "https://orbit.dtu.dk/files/257934164/PhD_thesis_Sergey_Klyapovskiy.pdf",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-136",
+    "file": "sources/REF-136-advanced-design-methods-for-active-distribution-networks-dtu.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Application of Deep Learning Methods in Monitoring and Optimization of Electric Power Systems (2023)",
+    "url": "https://arxiv.org/abs/2309.00498",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-137",
+    "file": "sources/REF-137-application-of-deep-learning-methods-in-monitoring-and-optimization-of-e.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Reinforcement Learning for Adaptive Distribution Network — U Alberta",
+    "url": "https://ualberta.scholaris.ca/items/d5c9d718-a6b9-498e-a182-cf4820b3f1fc",
+    "kind": "tesis",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-138",
+    "file": "sources/REF-138-reinforcement-learning-for-adaptive-distribution-network-u-alberta.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Intelligence artificielle pour les systèmes d’énergie — Toulouse (2024)",
+    "url": "https://utheme.utoulouse.fr/s/fr/item/6097",
+    "kind": "tesis_doctoral",
+    "lang": "FR",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-139",
+    "file": "sources/REF-139-intelligence-artificielle-pour-les-systemes-denergie-toulouse-2024.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "fr"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Application aux systèmes avec production renouvelable et batterie — theses.fr (2023)",
+    "url": "https://theses.fr/2023EMAC0018",
+    "kind": "tesis_doctoral",
+    "lang": "FR",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-140",
+    "file": "sources/REF-140-application-aux-systemes-avec-production-renouvelable-et-batterie-theses.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "fr"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Réseau électrique intelligent pour les nouveaux usages — HAL (2019)",
+    "url": "https://theses.hal.science/tel-02460664",
+    "kind": "tesis_doctoral",
+    "lang": "FR",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-141",
+    "file": "sources/REF-141-reseau-electrique-intelligent-pour-les-nouveaux-usages-hal-2019.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "fr"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Application of Optimization in Regional Distribution Network — HAL (2025)",
+    "url": "https://theses.hal.science/tel-04977979v1/file/2025ESMA0001_karnib.pdf",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-142",
+    "file": "sources/REF-142-application-of-optimization-in-regional-distribution-network-hal-2025.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Planejamento de redes de distribuição de energia elétrica — UNESP",
+    "url": "https://repositorio.unesp.br/entities/publication/0e96e2cd-7287-4fae-9e88-4f2f11639529",
+    "kind": "tesis_doctoral",
+    "lang": "PT",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-143",
+    "file": "sources/REF-143-planejamento-de-redes-de-distribuicao-de-energia-eletrica-unesp.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Identificação de topologia de sistemas de distribuição — USP (2024)",
+    "url": "https://teses.usp.br/teses/disponiveis/18/18154/tde-16092024-152321/",
+    "kind": "tesis_doctoral",
+    "lang": "PT",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-144",
+    "file": "sources/REF-144-identificacao-de-topologia-de-sistemas-de-distribuicao-usp-2024.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Uso de técnicas de otimização baseadas em derivadas — UFRN",
+    "url": "https://repositorio.ufrn.br/items/111bf3be-eebc-408d-9ec6-301b2dde1e8d",
+    "kind": "tesis_doctoral",
+    "lang": "PT",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-145",
+    "file": "sources/REF-145-uso-de-tecnicas-de-otimizacao-baseadas-em-derivadas-ufrn.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "pt"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Electricity Distribution Network Planning Considering DG — DiVA",
+    "url": "https://www.diva-portal.org/smash/get/diva2%3A697178/fulltext01.pdf",
+    "kind": "tesis",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-146",
+    "file": "sources/REF-146-electricity-distribution-network-planning-considering-dg-diva.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Supervised learning for optimal investment planning in active networks — UPC",
+    "url": "https://upcommons.upc.edu/entities/publication/892b5cda-a92d-4e8e-917b-d8716f23c73b",
+    "kind": "tesis",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-147",
+    "file": "sources/REF-147-supervised-learning-for-optimal-investment-planning-in-active-networks-u.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Modelling and Control of Active Distribution Networks — U Liège",
+    "url": "https://orbi.uliege.be/bitstream/2268/328123/1/thesis.pdf",
+    "kind": "tesis_doctoral",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-148",
+    "file": "sources/REF-148-modelling-and-control-of-active-distribution-networks-u-liege.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Microgrid Planning in Distribution Networks Through Optimal ... — Saskatchewan",
+    "url": "https://harvest.usask.ca/bitstreams/bc8f8357-376c-4df7-9f8f-29924a803ff7/download",
+    "kind": "tesis",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-149",
+    "file": "sources/REF-149-microgrid-planning-in-distribution-networks-through-optimal-saskatchewan.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Desarrollo de red neuronal para estimar demanda — UNAP Perú",
+    "url": "https://repositorio.unapiquitos.edu.pe/items/53f085c4-9813-447a-998b-d80fa00d8fe4",
+    "kind": "tesis",
+    "lang": "ES",
+    "domain": "sciml",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-150",
+    "file": "sources/REF-150-desarrollo-de-red-neuronal-para-estimar-demanda-unap-peru.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "es"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Optimización lineal y no lineal de redes eléctricas — UNCP Perú",
+    "url": "https://repositorio.uncp.edu.pe/handle/20.500.12894/3598",
+    "kind": "tesis",
+    "lang": "ES",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-151",
+    "file": "sources/REF-151-optimizacion-lineal-y-no-lineal-de-redes-electricas-uncp-peru.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "es"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Power System Stability and Control, 2nd ed. — Kundur & Malik (2022)",
+    "url": "https://www.mheducation.com/highered/mhp/product/power-system-stability-control-second-edition.html",
+    "kind": "libro",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-152",
+    "file": "sources/REF-152-power-system-stability-and-control-2nd-ed-kundur-malik-2022.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Power System Analysis and Design, 7th ed. (2022)",
+    "url": "https://www.powerworld.com/gloveroverbyesarma",
+    "kind": "libro",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-153",
+    "file": "sources/REF-153-power-system-analysis-and-design-7th-ed-2022.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Power Generation, Operation and Control, 3rd ed. (2013)",
+    "url": "https://www.wiley-vch.de/en/areas-interest/engineering/power-generation-operation-and-control-978-0-471-79055-6",
+    "kind": "libro",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-154",
+    "file": "sources/REF-154-power-generation-operation-and-control-3rd-ed-2013.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "OpenDSS",
+    "url": "https://opendss.epri.com/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-155",
+    "file": "sources/REF-155-opendss.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "DSS-Extensions",
+    "url": "https://dss-extensions.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-156",
+    "file": "sources/REF-156-dss-extensions.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "pandapower",
+    "url": "https://pandapower.readthedocs.io/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-157",
+    "file": "sources/REF-157-pandapower.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "PyPSA",
+    "url": "https://pypsa.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-158",
+    "file": "sources/REF-158-pypsa.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "PowerModels.jl",
+    "url": "https://lanl-ansi.github.io/PowerModels.jl/stable/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-159",
+    "file": "sources/REF-159-powermodels-jl.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "PowerModelsDistribution.jl",
+    "url": "https://lanl-ansi.github.io/PowerModelsDistribution.jl/stable/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "sdd",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-160",
+    "file": "sources/REF-160-powermodelsdistribution-jl.md",
+    "modules": [
+      "sdd",
+      "qa",
+      "arch"
+    ],
+    "doi": null,
+    "keywords": [
+      "sdd",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "GridCal",
+    "url": "https://gridcal.readthedocs.io/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-161",
+    "file": "sources/REF-161-gridcal.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "GridLAB-D",
+    "url": "https://www.gridlabd.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-162",
+    "file": "sources/REF-162-gridlab-d.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "MATPOWER",
+    "url": "https://matpower.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-163",
+    "file": "sources/REF-163-matpower.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Open Energy Modelling Framework / oemof",
+    "url": "https://oemof.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-164",
+    "file": "sources/REF-164-open-energy-modelling-framework-oemof.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Pyomo",
+    "url": "https://www.pyomo.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-165",
+    "file": "sources/REF-165-pyomo.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "pymoo",
+    "url": "https://pymoo.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-166",
+    "file": "sources/REF-166-pymoo.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "DEAP",
+    "url": "https://deap.readthedocs.io/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "op",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-167",
+    "file": "sources/REF-167-deap.md",
+    "modules": [
+      "op",
+      "solver",
+      "market"
+    ],
+    "doi": null,
+    "keywords": [
+      "op",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "PyTorch",
+    "url": "https://pytorch.org/docs/stable/index.html",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-168",
+    "file": "sources/REF-168-pytorch.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "DeepXDE",
+    "url": "https://deepxde.readthedocs.io/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-169",
+    "file": "sources/REF-169-deepxde.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "JAX",
+    "url": "https://docs.jax.dev/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "sciml",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-170",
+    "file": "sources/REF-170-jax.md",
+    "modules": [
+      "sciml",
+      "graph",
+      "solver"
+    ],
+    "doi": null,
+    "keywords": [
+      "sciml",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Ray RLlib",
+    "url": "https://docs.ray.io/en/latest/rllib/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-171",
+    "file": "sources/REF-171-ray-rllib.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "PettingZoo",
+    "url": "https://pettingzoo.farama.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "marl",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-172",
+    "file": "sources/REF-172-pettingzoo.md",
+    "modules": [
+      "marl",
+      "sciml",
+      "op"
+    ],
+    "doi": null,
+    "keywords": [
+      "marl",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "GeoPandas",
+    "url": "https://geopandas.org/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "gis",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-173",
+    "file": "sources/REF-173-geopandas.md",
+    "modules": [
+      "gis",
+      "graph",
+      "bk"
+    ],
+    "doi": null,
+    "keywords": [
+      "gis",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "PostGIS",
+    "url": "https://postgis.net/documentation/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "gis",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-174",
+    "file": "sources/REF-174-postgis.md",
+    "modules": [
+      "gis",
+      "graph",
+      "bk"
+    ],
+    "doi": null,
+    "keywords": [
+      "gis",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "MapLibre GL JS",
+    "url": "https://maplibre.org/maplibre-gl-js/docs/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "fe",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-175",
+    "file": "sources/REF-175-maplibre-gl-js.md",
+    "modules": [
+      "fe",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "fe",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "React Flow",
+    "url": "https://reactflow.dev/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "fe",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-176",
+    "file": "sources/REF-176-react-flow.md",
+    "modules": [
+      "fe",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "fe",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "FastAPI",
+    "url": "https://fastapi.tiangolo.com/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-177",
+    "file": "sources/REF-177-fastapi.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Temporal",
+    "url": "https://docs.temporal.io/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "ops",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-178",
+    "file": "sources/REF-178-temporal.md",
+    "modules": [
+      "ops",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "ops",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "MLflow",
+    "url": "https://mlflow.org/docs/latest/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "ops",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-179",
+    "file": "sources/REF-179-mlflow.md",
+    "modules": [
+      "ops",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "ops",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "OpenTelemetry",
+    "url": "https://opentelemetry.io/docs/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "ops",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-180",
+    "file": "sources/REF-180-opentelemetry.md",
+    "modules": [
+      "ops",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "ops",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "OpenAPI specification",
+    "url": "https://spec.openapis.org/oas/latest.html",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-181",
+    "file": "sources/REF-181-openapi-specification.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Apache Arrow",
+    "url": "https://arrow.apache.org/docs/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "ops",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-182",
+    "file": "sources/REF-182-apache-arrow.md",
+    "modules": [
+      "ops",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "ops",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "Apache Parquet",
+    "url": "https://parquet.apache.org/docs/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "ops",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-183",
+    "file": "sources/REF-183-apache-parquet.md",
+    "modules": [
+      "ops",
+      "arch",
+      "qa"
+    ],
+    "doi": null,
+    "keywords": [
+      "ops",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "NetworkX",
+    "url": "https://networkx.org/documentation/stable/",
+    "kind": "documentacion",
+    "lang": "EN",
+    "domain": "graph",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-184",
+    "file": "sources/REF-184-networkx.md",
+    "modules": [
+      "graph",
+      "gis",
+      "sciml"
+    ],
+    "doi": null,
+    "keywords": [
+      "graph",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "IEC Common Information Model introduction",
+    "url": "https://www.iec.ch/",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-185",
+    "file": "sources/REF-185-iec-common-information-model-introduction.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "IEEE PES Distribution Test Feeders",
+    "url": "https://cmte.ieee.org/pes-testfeeders/",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "solver",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-186",
+    "file": "sources/REF-186-ieee-pes-distribution-test-feeders.md",
+    "modules": [
+      "solver",
+      "qa",
+      "gis"
+    ],
+    "doi": null,
+    "keywords": [
+      "solver",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "NIST Cybersecurity Framework 2.0",
+    "url": "https://www.nist.gov/cyberframework",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "security",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-187",
+    "file": "sources/REF-187-nist-cybersecurity-framework-2-0.md",
+    "modules": [
+      "security",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "security",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "OWASP ASVS",
+    "url": "https://owasp.org/www-project-application-security-verification-standard/",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "security",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-188",
+    "file": "sources/REF-188-owasp-asvs.md",
+    "modules": [
+      "security",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "security",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "ISO 25010 quality model (ISO catalog)",
+    "url": "https://www.iso.org/",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-189",
+    "file": "sources/REF-189-iso-25010-quality-model-iso-catalog.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "OSINERGMIN portal",
+    "url": "https://www.gob.pe/osinergmin",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-190",
+    "file": "sources/REF-190-osinergmin-portal.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  },
+  {
+    "title": "MINEM portal",
+    "url": "https://www.gob.pe/minem",
+    "kind": "norma_o_estandar",
+    "lang": "EN",
+    "domain": "arch",
+    "origin": "importado_V2",
+    "verification": "metadatos importados de V2; requieren auditoria documental y version",
+    "id": "REF-191",
+    "file": "sources/REF-191-minem-portal.md",
+    "modules": [
+      "arch",
+      "sdd",
+      "ops"
+    ],
+    "doi": null,
+    "keywords": [
+      "arch",
+      "unitesis",
+      "evidencia",
+      "scientific-software",
+      "en"
+    ],
+    "status": "importado_pendiente_auditoria"
+  }
+]

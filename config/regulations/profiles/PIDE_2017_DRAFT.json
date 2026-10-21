@@ -1,0 +1,26 @@
+{
+  "profile_id": "PIDE_2017_DRAFT",
+  "status": "draft_unapproved_as_of_2025_08",
+  "jurisdiction": "PE",
+  "applicability": "distribution_FONAFE_only",
+  "source_ids": [
+    "RM428",
+    "IL628",
+    "R080",
+    "R264",
+    "VAD2026"
+  ],
+  "forecast_years": null,
+  "evaluation_years": null,
+  "implementation_years": null,
+  "rules": [
+    {
+      "id": "PIDE-PROCEDURE-B.1.2",
+      "clause": "Annex B.1.2",
+      "type": "process",
+      "verified_in_original": true,
+      "summary": "Procedimiento aprobado de presentación/aprobación, no convalida metodología borrador"
+    }
+  ],
+  "approved_for_automatic_certification": false
+}

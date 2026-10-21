@@ -1,0 +1,17 @@
+name: SDD feature
+about: New feature with requirements and acceptance evidence
+labels: ["spec"]
+body:
+  - type: input
+    id: spec
+    attributes:
+      label: Spec identifier
+      placeholder: 001-vnrgis-ingestion
+    validations:
+      required: true
+  - type: textarea
+    id: intent
+    attributes:
+      label: User need and acceptance evidence
+    validations:
+      required: true

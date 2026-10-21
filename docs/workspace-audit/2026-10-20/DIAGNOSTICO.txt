@@ -1,0 +1,135 @@
+﻿DIAGNOSTICO Y SELECCION DE POWERINTELLIGENCE — 20/10/2026
+Raiz: D:\Proyectos\PowerIntelligence
+Proyecto principal considerado: power-intelligence (UNITESIS).
+
+1. CONCLUSION
+La carpeta contiene proyectos independientes, familias de versiones, datos, entornos y dependencias. El nucleo tiene especificaciones y comprobaciones de estructura, pero no implementa aplicaciones ni motores electricos operativos. La consolidacion debe extraer componentes revisados de los proyectos vecinos; no copiar sus arboles completos.
+Se seleccionaron 38 archivos candidatos concretos, con SHA-256, destino y gate de aceptacion. No se integraron ni se eliminaron originales.
+La instruccion final del usuario prioriza revisar todas las carpetas raiz y seleccionar aportes/candidatos a eliminacion antes de integrar. La propuesta 028 queda pospuesta; no se cambio codigo de producto.
+
+2. COBERTURA Y LIMITES
+Inventario: 1,227,720 archivos regulares; 129,300 carpetas; 177.66 GiB logicos.
+Incidencias de acceso, cambios o puntos de reanalisis: 0. Revisar errores_y_enlaces.csv.
+Se recorrio todo el arbol accesible, incluidos entornos y metadatos Git; la carpeta de esta auditoria se excluye para evitar autorreferencia. No se siguieron enlaces/reparse points.
+Revisar todos los nombres y metadatos NO equivale a lectura humana integral de 1.2 millones de archivos. Se inspeccionaron README, arquitectura, manifests, pruebas y componentes seleccionados; se analizo sintaxis/AST del Python clasificado como propio. Los binarios y datos se inventariaron y compararon por contenido cuando corresponde; no se valido su significado interno.
+1,116,532 archivos bajo nombres de entorno/cache/Git definidos en audit_inventory.py se inventariaron, pero no se deduplicaron. La categoria es heuristica por ruta, no prueba de autoria.
+El hash usa tamano y SHA-256 de muestras para filtrar candidatos; SOLO se afirma duplicado cuando coincide SHA-256 de TODO el archivo. Un tamano unico o una muestra distinta descartan identidad exacta dentro del alcance sin calcular hash completo. El AST ignora comentarios/formato, pero no demuestra equivalencia semantica ni equivalencia de dependencias.
+No se ejecutaron motores CYME, PowerFactory, GridLAB-D, GPU ni Excel COM. No se probo operacion productiva, despliegue, seguridad integral o vigencia regulatoria.
+
+3. DUPLICADOS
+Grupos exactos no-runtime: 20,420; miembros: 84,791.
+Bytes repetidos por contenido: 27.28 GiB. NO es espacio autorizado ni necesariamente recuperable: puede haber datos, dependencias, hardlinks o rutas necesarias.
+Grupos de archivos vacios: 1. No confundir .gitkeep/__init__.py vacios con basura.
+duplicados_exactos.csv: evidencia por grupo/hash/ruta. seleccion_duplicados.csv: referencia canonica propuesta y decision, siempre delete_authorized=False. La referencia se prioriza por nucleo, checkout, historial Git y prioridad de aporte; no certifica que una copia pueda borrarse.
+Los worktrees se preservan: son checkouts gestionados por Git. No borrar una carpeta denominada copia, backup, v1/v16 o un tercero embebido por el nombre.
+
+4. COMPARACION DE FAMILIAS (SIN ENTORNOS/CACHE/GIT NI TERCEROS EMBEBIDOS CLASIFICADOS)
+GridSyncNet_Iquitos <> smartgridiq2: identicos=143, diferentes=16, solo izquierda=0, solo derecha=267, no comprobados=0.
+smartgridiq <> p2p-iquitos-v6-real-feeder/p2p-iquitos-v6-real-feeder: identicos=215, diferentes=35, solo izquierda=11, solo derecha=0, no comprobados=0.
+iquitos_madrl_gridlabd_v16 <> iquitos_madrl: identicos=155, diferentes=6, solo izquierda=0, solo derecha=11, no comprobados=0.
+CityLearn-v3-MADRL-complete <> MADRL_Citylearn_v3/CityLearn: identicos=24, diferentes=200, solo izquierda=20, solo derecha=999, no comprobados=0.
+Agentaudio <> PROJECIA/Agentaudio: identicos=193, diferentes=1, solo izquierda=0, solo derecha=0, no comprobados=0.
+Una familia con diferencias o archivos exclusivos NO se selecciona como duplicado integral. comparacion_familias.csv identifica cada ruta.
+
+5. APORTE AL NUCLEO
+P1 — adaptar primero: flujos (ingesta DGS/CYME, solvers, GIS/unifilar), RECYM (CYME y evidencia de persistencia), EVATE (unidades/cargas/PowerFactory), Prodma (custodia y pronostico por etapas), PITELD (OOXML/auditoria/perfiles), analiselectrico/grid-bridge (modelo neutral y puertos), CorrecionDatos/CYME (parsers y diagnostico), SelecCablesAAAC (dimensionamiento y optimizacion).
+P2 — comparar o reservar: familias GridSyncNet, smartgridiq/P2P, Iquitos/GridLAB-D y CityLearn; informe y demandaiq; GeoAI como dependencia externa; smartgridsep solo por componentes utiles; datos y documentos bajo custodia.
+P3 — mantener separados o revisar: Agentaudio y madrl_lima/MADRL_Lima_Proyecto_v2 tienen otros dominios; PROJECIA se clasifica por subproyecto y conserva sus variantes energeticas. PGE-PIT-PIDE tiene F-100/F-200, demanda, perdidas y GLM que deben preservarse; scripts invalidos se revisan aparte.
+Electro Dunas contiene instalador VNR-GIS, manual V3 y backups de BD/parametros: potencial fuente clave de ingesta. Proyectos de inversion contiene estudios electricos, Excel, DWG y un modelo PowerFactory PFD; son fuentes bajo custodia, no codigo sobrante.
+matriz_aportes.csv cubre cada area; seleccion_por_archivo.csv aplica una clasificacion preliminar a cada archivo inventariado. Es clasificacion por ruta/extension/proyecto y revision de componentes, NO juicio funcional individual de cada archivo.
+aportes_prioritarios.csv contiene la seleccion tecnica concreta. Cada archivo requiere pruebas e integracion contra el contrato del nucleo, no copia directa.
+
+6. BLOQUEOS DE INTEGRACION
+- flujos CYME usa valores estimados R/X/ampacidad y CRS EPSG:32718 fijo en una ruta GIS; el nucleo exige procedencia y cuarentena de atributos ausentes. Conservar valor como candidato documentado, no importar como parametro validado.
+- grid-bridge usa Pydantic en su modelo de dominio; el nucleo exige dominio puro. Reutilizar diseno y semantica mediante adaptacion.
+- GridLAB-D de flujos declara alcance inicial balanceado ABCN; no acredita por si solo una red real desbalanceada por fase.
+- smartgridiq documenta fallback surrogate_proxy: pipeline exitoso con ese modo no valida GridLAB-D nativo.
+- PIT/PIDE deben conservar perfiles separados y fuentes; esta auditoria no certifica normativa ni anexos.
+- Revisar licencias y procedencia antes de redistribuir: no se encontro LICENSE raiz en varios candidatos; ausencia de archivo no prueba ausencia de derechos.
+
+7. HALLAZGOS REPRODUCIDOS (hallazgos_reproducidos.json)
+F01 [alta, documental]: assess_reference_case admite alternativas vacias, tasa invalid y vida -1 con documentary_complete=True en perfil no historico. La validacion economica depende del bucle de alternativas.
+F02 [alta, seleccion]: rank_feasible_alternatives acepta technical_feasible="false" porque comprueba truthiness. Devuelve la alternativa como factible.
+F03 [media, numerica]: annual_equivalent_cost con tasa 1e-20 y vida 10 produce ZeroDivisionError por cancelacion numerica en la anualidad. Es caso extremo admitido por el validador, no perdida financiera demostrada.
+F04 [alta, validacion]: compare_power_flows de flujos devuelve ok=True para dos resultados converged=True sin barras ni lineas. Reproduccion aislada de funcion pura; no se ensayaron motores ni se demostro que los adapters emitan ese caso.
+No se corrigio ninguno de estos hallazgos; el usuario solicito diagnostico y seleccion.
+
+8. VERIFICACIONES EJECUTADAS
+Nucleo: verify_structure.py PASS; validate_agent_setup.py PASS (24 skills); validate_library.py PASS (191 fichas, 18 dominios). Son validaciones estructurales/documentales.
+Nucleo unittest: 52 casos descubiertos, 51 correctos y 1 omitido por permisos para symlinks; no es certificacion electrica ni validacion de conexion MCP real.
+Nucleo Ruff 0.16.9: 140 incidencias (32 E501, 30 E701, 26 I001, 19 E702, 15 F401, 10 E401, 7 E402, 1 SIM117). No se aplico --fix. Mypy no disponible en Python global; no se declara aprobado.
+Runtime global: Python 3.14.4; configuracion del nucleo apunta a Python 3.12. Baseline repetido por esta diferencia en Python 3.12.10: 51 correctos y 1 omitido (baseline_python312.json). No es matriz completa de compatibilidad.
+flujos: 7 pruebas offline de DGS/tipos y GeoJSON correctas con su .venv; evidencia en verificacion_flujos.json. No validar motores a partir de estos casos sinteticos.
+Errores sintacticos detectados en Python del alcance: 6. Ver errores_sintaxis.csv; incluyen scripts auxiliares y copias, no todos son entrypoints productivos.
+tests/contract, electrical-golden, end-to-end e integration del nucleo solo tienen .gitkeep. apps, workers y paquetes TS no tienen codigo de aplicacion. De 19 paquetes Python, 12 no tienen implementacion mas alla de __init__.py.
+power-economics y power-regulation no tienen pyproject.toml, a diferencia de los otros 17 paquetes; las pruebas los importan anadiendo src a sys.path. Falta definir su empaquetado e instalacion reproducible; los tests actuales no prueban instalabilidad.
+
+9. ESTADO GIT
+La raiz PowerIntelligence y el nucleo power-intelligence no son repositorios Git. No puede vincularse el nucleo a un commit verificable en esta copia.
+demandaiq: rama=main; cambios tracked=35; entradas untracked=61; exit=0.
+EVATE: rama=main; cambios tracked=0; entradas untracked=0; exit=0.
+flujos: rama=feat/pide-dgs-results-platform; cambios tracked=0; entradas untracked=0; exit=0.
+geoai: rama=main; cambios tracked=0; entradas untracked=1; exit=0.
+madrl_lima: rama=main; cambios tracked=0; entradas untracked=1; exit=0.
+MADRLCitytleranflexresdr - copia: rama=master; cambios tracked=38; entradas untracked=0; exit=0.
+PGE-PIT-PIDE: rama=main; cambios tracked=20; entradas untracked=1; exit=0.
+PITELD: rama=feature/pit-2029-2033; cambios tracked=0; entradas untracked=2; exit=0.
+Prodma: rama=cierre-2027; cambios tracked=0; entradas untracked=0; exit=0.
+RECYM: rama=fix/modulo1-fuente-mdb-robustez; cambios tracked=12; entradas untracked=2; exit=0.
+Los conteos son del momento de lectura; untracked entries puede representar directorios completos. No se comparo remoto ni se ejecuto fetch. estado_git.json conserva status y worktrees.
+
+10. ORDEN PROPUESTO DE CONSOLIDACION
+1. Conservar la copia original y sus repositorios/worktrees; adoptar una base versionada del nucleo. No eliminar por este diagnostico.
+2. Revisar F01-F04 y sus pruebas negativas antes de promover los modulos implicados.
+3. Primer recorrido util: fuente autorizada -> custodia -> adaptador DGS/CYME -> topologia terminal/fase -> solver independiente -> evidencia -> GIS/unifilar.
+4. Adaptar los 38 candidatos en unidades pequenas con contrato y pruebas de regresion, comenzando por fidelidad de datos y adaptadores. Revisar diferencias de familias antes de elegir referencia definitiva.
+5. Incorporar pronostico, optimizacion y luego IA/P2P/ledger solo tras validar datos/topologia/solver. El numero de fichas o de tests no acredita madurez operativa.
+
+11. FUNDAMENTACION
+FUENTES.md contiene tesis de maestria y doctorado, articulos, enlaces, metadatos y limites de consulta web. Su aporte es metodologico; no reemplaza evidencia local ni benchmarks.
+
+12. REVISION DE TODAS LAS CARPETAS RAIZ
+.vscode: REVISAR_CONFIGURACION — cmake.sourceDirectory apunta a iquitos_madrl/gridlab-d; configuracion del workspace, no aporte de producto (archivos=3, Python propio=0, errores sintacticos=0).
+Agentaudio: CONSIDERAR_ARCHIVO_EXTERNO — Objetivo ajeno al nucleo electrico. Tiene valor propio; archivar antes que borrar, preservando Git/datos/licencias (archivos=44909, Python propio=14, errores sintacticos=0).
+CityLearn-v3-MADRL-complete: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Comparar CityLearn y tests contra otros forks; edificios no sustituyen solver de red (archivos=244, Python propio=116, errores sintacticos=0).
+CorrecionDatos: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Parsers y diagnostico de continuidad; correccion masiva debe acotarse por alimentador y aprobacion (archivos=349, Python propio=29, errores sintacticos=0).
+EVATE: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — CYMDIST/PowerFactory, unidades, escenarios y nuevas cargas; requiere validacion nativa (archivos=9686, Python propio=80, errores sintacticos=0).
+Electro Dunas: CONSERVAR_FUENTES_Y_METADATOS — Instalador VNR-GIS, manual V3 y backups .bak de BD/parametros; no son codigo propio, pero pueden habilitar lectura del origen. No ejecutar/restaurar en esta auditoria (archivos=17, Python propio=0, errores sintacticos=0).
+GridSyncNet_Iquitos: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Paquete gridsyncnet compartido con smartgridiq2; comparar diferencias antes de escoger (archivos=159, Python propio=61, errores sintacticos=0).
+MADRLCitytleranflexresdr - copia: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Fork CityLearn y experimentos; nombre copia no autoriza eliminar; cambios Git pendientes (archivos=57461, Python propio=252, errores sintacticos=1).
+MADRL_Citylearn_v3: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Fork CityLearn; preservar modificaciones unicas y licencia (archivos=1252, Python propio=97, errores sintacticos=0).
+MADRL_Lima_Proyecto_v2: CONSIDERAR_ARCHIVO_EXTERNO — Objetivo ajeno al nucleo electrico. Tiene valor propio; archivar antes que borrar, preservando Git/datos/licencias (archivos=51, Python propio=23, errores sintacticos=0).
+PGE-PIT-PIDE: CONSERVAR_FUENTES_Y_METADATOS — Contiene F-100, F-200, demanda, perdidas y modelo GLM; preservar. Dos scripts de visualizacion tienen errores sintacticos (archivos=14659, Python propio=8, errores sintacticos=2).
+PITELD: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — OOXML, auditoria y entregables; conservar frontera PIT/PIDE y validacion Excel (archivos=40997, Python propio=152, errores sintacticos=0).
+PROJECIA: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Contenedor heterogeneo con copias de audio, CityLearn y MARL; elegir a nivel de archivo (archivos=447296, Python propio=547, errores sintacticos=3).
+Prodma: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Custodia, etapas separadas, limpieza causal y validacion temporal; no importar datos privados (archivos=115912, Python propio=538, errores sintacticos=0).
+Proyectos de inversion: CONSERVAR_FUENTES_Y_METADATOS — Datos y documentos de inversion: revisar derechos, fecha y procedencia, sin copiar al codigo (archivos=429, Python propio=0, errores sintacticos=0).
+RECYM: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — CYME, commit/reapertura, contexto alimentador, jobs y evidencia; requiere runtime/licencia CYME (archivos=24810, Python propio=419, errores sintacticos=0).
+SelecCablesAAAC: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Catalogos, dimensionamiento, costos y backends; verificar unidades y benchmarks (archivos=22245, Python propio=101, errores sintacticos=0).
+analiselectrico: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Modelo neutral, workers y puente; Pydantic no puede copiarse directamente al dominio puro (archivos=33005, Python propio=61, errores sintacticos=0).
+data: CONSERVAR_FUENTES_Y_METADATOS — Contiene .datasets_metadata.json; catalogo de datasets, revisar vinculos antes de usar o borrar (archivos=1, Python propio=0, errores sintacticos=0).
+demandaiq: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Multiples entrenadores/versiones, poca bateria de pruebas; preferir contratos de Prodma (archivos=37739, Python propio=75, errores sintacticos=0).
+flujos: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Adaptadores DGS/CYME, solvers, validacion cruzada, GIS y decision; bloquear supuestos electricos no autorizados (archivos=79848, Python propio=166, errores sintacticos=0).
+geoai: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Proyecto externo GeoAI; no equivale a topologia electrica ni fuente VNR; preservar licencia (archivos=9729, Python propio=56, errores sintacticos=0).
+informe: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Validacion exogena, ventanas de valle y comparacion exhaustiva; no copiar datos del estudio (archivos=19603, Python propio=55, errores sintacticos=0).
+iquitos_citylearn_project: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Escenarios BESS/EV/solar; sin tests propios detectados en primera revision (archivos=34, Python propio=28, errores sintacticos=0).
+iquitos_madrl: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Algoritmos y cosimulacion; GridLAB-D embebido es tercero, no aporte propio (archivos=41787, Python propio=27, errores sintacticos=0).
+iquitos_madrl_gridlabd_v1: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Varias versiones anidadas; separar fisica, baselines y resultados antes de consolidar (archivos=37974, Python propio=154, errores sintacticos=0).
+iquitos_madrl_gridlabd_v16: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Algoritmos y cosimulacion; comparar con iquitos_madrl antes de adoptar (archivos=184, Python propio=27, errores sintacticos=0).
+madrl_lima: CONSIDERAR_ARCHIVO_EXTERNO — Objetivo ajeno al nucleo electrico. Tiene valor propio; archivar antes que borrar, preservando Git/datos/licencias (archivos=147267, Python propio=116, errores sintacticos=0).
+p2p-iquitos-v6-real-feeder: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Familia p2p_llm_marl; nombre v6 no demuestra mayor madurez (archivos=318, Python propio=81, errores sintacticos=0).
+power-intelligence: CONSERVAR_PROYECTO_PRINCIPAL — Nucleo objetivo; no considerar eliminacion (archivos=651, Python propio=47, errores sintacticos=0).
+smartgridiq: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Lazo GridLAB-D y safety; fallback surrogate_proxy nunca prueba motor real (archivos=22919, Python propio=85, errores sintacticos=0).
+smartgridiq2: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Misma familia gridsyncnet; preservar cambios y evidencia exclusiva (archivos=547, Python propio=61, errores sintacticos=0).
+smartgridsep: CONSERVAR_HASTA_EXTRAER_Y_VALIDAR_APORTES — Servicio de simulacion y esquemas; evitar duplicar arquitectura principal (archivos=15634, Python propio=16, errores sintacticos=0).
+
+13. CANDIDATOS A DEPURACION; NINGUN BORRADO AUTORIZADO NI EJECUTADO
+{"candidate_counts": {"grupo_con_copias_exactas": 81820, "cache_python": 266777, "cache_herramienta": 20455, "lock_office": 36, "temporal_no_confirmado": 3, "cache_sistema": 2}, "candidate_bytes": {"grupo_con_copias_exactas": 43197492377, "cache_python": 5078680696, "cache_herramienta": 619553532, "lock_office": 5898, "temporal_no_confirmado": 6950644, "cache_sistema": 29696}, "inventory_category_counts": {"proyecto_datos_documentos": 99003, "entorno_cache_git": 1116532, "tercero_embebido": 12185}, "inventory_category_bytes": {"proyecto_datos_documentos": 91754580202, "entorno_cache_git": 97921728596, "tercero_embebido": 1089087154}, "root_folders": 33, "automatic_deletions": 0, "meaning": "Counts are review candidates, not deletable files or recoverable-space estimates. Duplicate rows include copies that may be retained. Git metadata/worktrees are excluded from cleanup."}
+candidatos_depuracion.csv separa cache Python, cache de herramientas/sistema, locks Office, temporales y grupos con copias exactas; indica condiciones antes de retirar cada archivo. No sumar sus bytes como espacio recuperable.
+fuera_alcance_principal.csv identifica audio/seguridad urbana: considerar archivo externo con respaldo y revision de aportes genericos; no implica que esos proyectos carezcan de valor ni que pueda borrarse su codigo.
+No retirar .git, worktrees, fuentes, manuales, backups, modelos, licencias, entrenamientos o documentos unicos a partir de esta clasificacion. SHA identico no demuestra que sus rutas sean intercambiables.
+
+14. ARTEFACTOS
+inventario_archivos.csv; inventario_carpetas.csv; duplicados_exactos.csv; duplicados_grupos.json; seleccion_duplicados.csv; matriz_aportes.csv; seleccion_por_archivo.csv; seleccion_codigo_y_documentos.csv; aportes_prioritarios.csv; comparacion_familias.csv; comparacion_familias_resumen.json; clones_python_ast.csv; simbolos_python.csv; errores_sintaxis.csv; errores_y_enlaces.csv; proyectos_resumen.csv; resumen.json; estado_git.json; hallazgos_reproducidos.json; verificacion_flujos.json; FUENTES.md.
+Los CSV completos superan potencialmente el limite de filas de Excel; usar lectura por proyecto/chunks con Python o el subconjunto seleccion_codigo_y_documentos.csv y aportes_prioritarios.csv.
+Adicionales: decision_carpetas_raiz.csv, candidatos_depuracion.csv, depuracion_resumen.json, fuera_alcance_principal.csv, decisiones_familias.csv y diferencias de codigo .diff.

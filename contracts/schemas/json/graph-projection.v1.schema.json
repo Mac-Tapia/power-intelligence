@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.unitesis.local/v1/graph-projection.v1.schema.json",
+  "title": "graph-projection.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "network_snapshot_id",
+    "topology_hash",
+    "nodes",
+    "edges"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "network_snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topology_hash": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "phases"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phases": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "A",
+                "B",
+                "C",
+                "N"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from_node",
+          "to_node",
+          "phase",
+          "equipment_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from_node": {
+            "type": "string",
+            "minLength": 1
+          },
+          "to_node": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phase": {
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "N"
+            ]
+          },
+          "equipment_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "inventario_archivos.csv": {
+    "rows": 1227720,
+    "expected": 1227720,
+    "ok": true
+  },
+  "seleccion_por_archivo.csv": {
+    "rows": 1227720,
+    "expected": 1227720,
+    "ok": true
+  },
+  "duplicados_exactos.csv": {
+    "rows": 84791,
+    "expected": 84791,
+    "ok": true
+  },
+  "seleccion_duplicados.csv": {
+    "rows": 84791,
+    "expected": 84791,
+    "ok": true
+  },
+  "decision_carpetas_raiz.csv": {
+    "rows": 33,
+    "expected": 33,
+    "ok": true
+  },
+  "aportes_prioritarios.csv": {
+    "rows": 38,
+    "expected": 38,
+    "ok": true
+  },
+  "errores_sintaxis.csv": {
+    "rows": 6,
+    "expected": 6,
+    "ok": true
+  },
+  "all_root_folders": {
+    "ok": true,
+    "count": 33
+  },
+  "38_source_hashes_unchanged": {
+    "ok": true
+  },
+  "seleccion_duplicados.csv_no_deletion_authorized": {
+    "ok": true,
+    "nonfalse_flags": 0
+  },
+  "candidatos_depuracion.csv_no_deletion_authorized": {
+    "ok": true,
+    "nonfalse_flags": 0
+  },
+  "fuera_alcance_principal.csv_no_deletion_authorized": {
+    "ok": true,
+    "nonfalse_flags": 0
+  },
+  "artifact_hashes": {
+    "ok": true,
+    "files": 36
+  }
+}

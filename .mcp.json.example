@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "unitesis-project": {
+      "command": "python",
+      "args": [
+        "ABSOLUTE_PATH_TO_REPO/tools/mcp/unitesis_server.py"
+      ]
+    }
+  }
+}

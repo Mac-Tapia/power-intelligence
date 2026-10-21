@@ -1,0 +1,186 @@
+[
+  {
+    "id": "R217",
+    "title": "Resolución 217-2013-OS/CD original",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/pdf/2013/OSINERGMIN%20No.217-2013-OS-CD.pdf",
+    "kind": "original_2013",
+    "verification": "confirmed",
+    "note": "SST/SCT, PIT, artículos 5-12 y módulos de costos; aplicar modificatorias"
+  },
+  {
+    "id": "R147",
+    "title": "Resolución 147-2017-OS/CD",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/Resoluciones-GRT-2017.aspx",
+    "kind": "amendment",
+    "verification": "confirmed",
+    "note": "Modifica 217-2013; conciliación por artículo pendiente"
+  },
+  {
+    "id": "R018",
+    "title": "Resolución 018-2018-OS/CD",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/Resoluciones-GRT-2018.aspx",
+    "kind": "amendment",
+    "verification": "confirmed",
+    "note": "Modifica 5.8.2 y 12.3; conciliación por artículo pendiente"
+  },
+  {
+    "id": "R177",
+    "title": "Resolución 177-2021-OS/CD",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/Resoluciones-GRT-2021.aspx",
+    "kind": "amendment",
+    "verification": "confirmed",
+    "note": "Calendario histórico de modificación PIT 2021-2025, no reutilizar para 2025-2029"
+  },
+  {
+    "id": "R242",
+    "title": "Resolución 242-2021-OS/CD",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/Resoluciones-GRT-2021.aspx",
+    "kind": "amendment",
+    "verification": "confirmed",
+    "note": "Modificatorias relativas a SST/SCT"
+  },
+  {
+    "id": "R080",
+    "title": "Resolución 080-2012-OS/CD y texto concordado",
+    "url": "https://www2.osinergmin.gob.pe/Resoluciones/pdf/2012/OSINERGMIN%20No.080-2012-OS-CD.pdf",
+    "kind": "procedure",
+    "verification": "confirmed",
+    "note": "Anexos A.2.1/2 transmisión y B.1.2 distribución; verificar versión aplicable"
+  },
+  {
+    "id": "R264",
+    "title": "Resolución 264-2016-OS/CD",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/pdf/2016/R_OSINERGMIN_No.264-2016-OS-CD.pdf",
+    "kind": "procedure",
+    "verification": "confirmed",
+    "note": "Incorpora Anexo B.1.2 para aprobación PIDE FONAFE"
+  },
+  {
+    "id": "RM428",
+    "title": "RM 428-2017-MEM/DM",
+    "url": "https://busquedas.elperuano.pe/dispositivo/NL/1577466-1",
+    "kind": "draft_publication",
+    "verification": "confirmed",
+    "note": "Publicación oficial 19/10/2017: autoriza prepublicación del PROYECTO de criterios PIDE, no aprobación."
+  },
+  {
+    "id": "IL628",
+    "title": "Informe Legal 628-2025-GRT",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/pdf/2025/Informe-Legal-628-2025-GRT.pdf",
+    "kind": "legal_assessment",
+    "verification": "confirmed",
+    "note": "En agosto 2025 criterios PIDE pendientes de aprobación; verificar cambios posteriores"
+  },
+  {
+    "id": "R112",
+    "title": "Resolución 112-2024-OS/CD y modificaciones",
+    "url": "https://www.osinergmin.gob.pe/empresas/electricidad/transmision/plan-inversiones",
+    "kind": "approved_plan",
+    "verification": "confirmed",
+    "note": "PIT 2025-2029 y modificación 149-2024"
+  },
+  {
+    "id": "R2026",
+    "title": "Actualizaciones PIT 2026",
+    "url": "https://busquedas.elperuano.pe/dispositivo/NL/2560029-1",
+    "kind": "approved_plan_amendment",
+    "verification": "confirmed",
+    "note": "Modificación Área 6 y ventanas de presentación mayo/junio/julio 2026 según Área"
+  },
+  {
+    "id": "MOD2026",
+    "title": "Base de Módulos Estándares 2026",
+    "url": "https://www.osinergmin.gob.pe/Resoluciones/Resoluciones-GRT-2026.aspx",
+    "kind": "cost_source",
+    "verification": "confirmed",
+    "note": "Costos 2025 actualizados por Res 008-2026 y 059-2026; comprobar versión por estudio"
+  },
+  {
+    "id": "VAD2026",
+    "title": "Términos VAD 2026-2030/2027-2031",
+    "url": "https://www2.osinergmin.gob.pe/GRT/Procesos-Regulatorios/VAD-2026-2030_2027-2031/Anexo-T%C3%A9rminosVAD-2026-2030-2027-2031-R033-2026-OS-CD.pdf",
+    "kind": "regulatory_terms",
+    "verification": "confirmed",
+    "note": "Numeral 7.5 incorpora PIDE aprobado conforme metodología vigente; condicionado"
+  },
+  {
+    "id": "PMI6",
+    "title": "PMBOK Guide Sixth Edition + Agile Practice Guide",
+    "url": "https://www.pmi.org/shop/p-/book/a-guide-to-the-project-management-body-of-knowledge-%28pmbok-guide%29-%E2%80%94-sixth-edition-and-agile-practice-guide-%28english%29/00101602400",
+    "kind": "guidance",
+    "verification": "confirmed",
+    "note": "5 grupos, 10 áreas; artefactos UNITESIS, sin reproducir texto protegido"
+  },
+  {
+    "id": "MINEM_GDP2023",
+    "title": "Guía metodológica de planificación eléctrica en la distribución con recursos energéticos distribuidos y nuevas tecnologías (MINEM, 2023)",
+    "url": "https://eficienciaenergetica.minem.gob.pe/Content/fileman/Uploads/Documents/ESPACIO%20PLANEAMIENTO/Guia%20Metodologica_01_19122023_rev.pdf",
+    "kind": "technical_guidance",
+    "verification": "locator_identified_fulltext_pending",
+    "note": "Guía de planificación DER/EV/BESS; NO equivale a aprobación de metodología PIDE"
+  },
+  {
+    "id": "UNI_EU",
+    "title": "Plan de inversión en distribución eléctrica de la empresa Electro Ucayali S.A. (UNI, tesis)",
+    "url": "https://repositorio.uni.edu.pe/handle/20.500.14076/27044",
+    "kind": "academic_thesis",
+    "verification": "repository_metadata_identified",
+    "note": "Antecedente académico de distribución y PIDE; NO es norma vinculante"
+  },
+  {
+    "id": "DS027_2018",
+    "title": "Decreto Supremo 027-2018-EM, normas relacionadas con PIDE",
+    "url": "https://busquedas.elperuano.pe/dispositivo/NL/1698730-5",
+    "kind": "historic_regulatory_amendment",
+    "verification": "official_locator_identified",
+    "note": "Considerar cambios históricos sobre competencia reglamentaria y sus sucesores; contrastar con DS028-2021-EM"
+  },
+  {
+    "id": "PIDE_EL_PERUANO_2017",
+    "title": "R.M. N.° 428-2017-MEM/DM, autoriza publicación proyecto criterios PIDE",
+    "url": "https://busquedas.elperuano.pe/dispositivo/NL/1577466-1",
+    "kind": "official_prepublication",
+    "verification": "confirmed_page",
+    "note": "El Peruano 19/10/2017: autoriza publicación para comentarios; no constituye aprobación sustantiva"
+  },
+  {
+    "id": "PIDE_MINEM_PREPUBLICACIONES",
+    "title": "Ficha PIDE en Pre Publicaciones Electricidad - MINEM",
+    "url": "https://www.gob.pe/institucion/minem/colecciones/25457-pre-publicaciones-electricidad?sheet=2",
+    "kind": "official_catalog",
+    "verification": "confirmed_listing",
+    "note": "El MINEM lo clasifica dentro de prepublicaciones, no norma vigente"
+  },
+  {
+    "id": "PIDE_ELECTROPUNO_TDR_2018",
+    "title": "Términos de referencia para elaboración del PIDE Electro Puno, 2018",
+    "url": "https://www.electropuno.com.pe/web/archivos_ftp/201804041549_84.pdf",
+    "kind": "historic_project_terms",
+    "verification": "reviewed_selected_pages",
+    "note": "TDR sectorial, no norma: plan 20 años y programa 4 años, mercado, diagnóstico, alternativas, evaluación, formatos, Gantt"
+  },
+  {
+    "id": "PIDE_ADINELSA_TDR_2018",
+    "title": "Bases integradas de consultoría PIDE - ADINELSA",
+    "url": "https://www.adinelsa.com.pe/files/adinelsaweb/Licitaciones_Procesos/AS-SM-36-2018-ADINELSA-1/BASES_INTEGRADAS_PIDE_20181122_182003_613.pdf",
+    "kind": "historic_project_terms",
+    "verification": "search_excerpts",
+    "note": "Entregables ficha técnica/económica, unifilar georreferenciado, Gantt, formatos 08–15; no vinculante general"
+  },
+  {
+    "id": "PIDE_UNI_2024",
+    "title": "UNI: Plan de inversión en distribución eléctrica de Electro Ucayali S.A.",
+    "url": "https://cybertesis.uni.edu.pe/bitstream/20.500.14076/27044/1/vargas_fc.pdf",
+    "kind": "academic_case",
+    "verification": "search_excerpts",
+    "note": "Caso académico aplicación del borrador 2017 a 20 años y cartera 4 años; no norma"
+  },
+  {
+    "id": "PIDE_DS028_2021",
+    "title": "D.S. N.° 028-2021-EM (PIDE, plazo posterior VAD 2023–2027)",
+    "url": "https://cdn.www.gob.pe/uploads/document/file/3242050/DS%20N%C2%B0%20028-2021-MINEM-EM.pdf.pdf",
+    "kind": "regulatory_change",
+    "verification": "official_pdf_identified",
+    "note": "Revisar cuarta disposición complementaria final; no prueba aprobación posterior"
+  }
+]

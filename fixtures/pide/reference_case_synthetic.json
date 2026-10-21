@@ -1,0 +1,12 @@
+{
+  "project_id": "SYNTH-PIDE-001", "network_snapshot_id":"SYNTH-GRAPH-01",
+  "profile":"ELECTRO_PUNO_TDR_2018_HISTORIC",
+  "source_evidence":"synthetic_fixture_only",
+  "discount_rate":0.10, "discount_rate_source":"HYPOTHETICAL_TEST_RATE_NOT_REGULATORY",
+  "economic_life_years":30,
+  "alternatives":[
+    {"id":"A01","category":"expansion_reinforcement","evidence":"synthetic_only","technical_feasibility":"not_evaluated","costs":{"capex":100000,"annual_om":2000,"annual_loss_cost":1000}},
+    {"id":"A02","category":"quality_improvement","evidence":"synthetic_only","technical_feasibility":"not_evaluated","costs":{"capex":120000,"annual_om":1800,"annual_loss_cost":800}},
+    {"id":"A03","category":"technology_efficiency","evidence":"synthetic_only","technical_feasibility":"not_evaluated","costs":{"capex":150000,"annual_om":1500,"annual_loss_cost":500}}
+  ]
+}

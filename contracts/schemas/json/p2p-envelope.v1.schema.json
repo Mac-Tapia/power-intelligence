@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.unitesis.local/v1/p2p-envelope.v1.schema.json",
+  "title": "p2p-envelope.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "message_id",
+    "peer_id",
+    "tenant_id",
+    "network_snapshot_id",
+    "issued_at",
+    "expires_at",
+    "payload_hash",
+    "signature",
+    "message_type"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "message_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "peer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "network_snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload_hash": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message_type": {
+      "enum": [
+        "SYNC_MANIFEST",
+        "SCENARIO_PROPOSAL",
+        "ACK",
+        "EVIDENCE_AVAILABLE"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "unitesis-power-agents"
+version = "0.0.0"
+description = "LLM, tool calling and RAG with typed tools, human approval and source citations."
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/unitesis_agents"]

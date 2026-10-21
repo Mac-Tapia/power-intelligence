@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RegulatoryStudyPackage",
+  "type": "object",
+  "required": [
+    "project_id",
+    "study_id",
+    "regulatory_profile",
+    "model_snapshot",
+    "alternatives",
+    "economic_currency",
+    "reviewer"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "study_id": {
+      "type": "string"
+    },
+    "regulatory_profile": {
+      "type": "string"
+    },
+    "model_snapshot": {
+      "type": "string"
+    },
+    "alternatives": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "technical_feasible",
+          "norm_checks",
+          "economic_result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "technical_feasible": {
+            "type": "boolean"
+          },
+          "norm_checks": {
+            "type": "array"
+          },
+          "economic_result": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "economic_currency": {
+      "type": "string"
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "regulatory_submission_ready": {
+      "const": false
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,17 @@
+{
+  "profile_id": "PIT_2025_2029",
+  "status": "plan_period_verified_rule_consolidation_pending",
+  "jurisdiction": "PE",
+  "applicability": "transmission_SST_SCT",
+  "source_ids": [
+    "R217",
+    "R112",
+    "R2026",
+    "MOD2026"
+  ],
+  "forecast_years": 30,
+  "evaluation_years": 10,
+  "implementation_years": 4,
+  "rules": [],
+  "approved_for_automatic_certification": false
+}

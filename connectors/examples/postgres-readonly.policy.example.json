@@ -1,0 +1,25 @@
+{
+  "connector": "postgres-readonly",
+  "status": "not-installed",
+  "database": "dev_or_staging_synthetic",
+  "role": "unitesis_agent_ro",
+  "grants": [
+    "CONNECT",
+    "USAGE on approved schema",
+    "SELECT on approved views"
+  ],
+  "explicit_denies": [
+    "INSERT",
+    "UPDATE",
+    "DELETE",
+    "TRUNCATE",
+    "DDL",
+    "COPY TO external"
+  ],
+  "limits": {
+    "statement_timeout_ms": 3000,
+    "row_limit": 1000,
+    "network": "local_only"
+  },
+  "secrets": "vault or environment; never repo"
+}

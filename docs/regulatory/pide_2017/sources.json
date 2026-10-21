@@ -1,0 +1,71 @@
+{
+  "retrieval_date": "2026-10-17",
+  "annex_original_downloaded": false,
+  "annex_original_sha256": null,
+  "sources": [
+    {
+      "id": "RM_428_2017",
+      "type": "official_prepublication_resolution",
+      "authority": "MINEM / El Peruano",
+      "date": "2017-10-19",
+      "url": "https://busquedas.elperuano.pe/dispositivo/NL/1577466-1",
+      "verified_scope": "Prepublicación; NO incluye texto íntegro recuperado del Anexo metodológico",
+      "binding": false
+    },
+    {
+      "id": "MINEM_CATALOG_2017",
+      "type": "official_catalog",
+      "authority": "MINEM",
+      "date": "2017-10-19",
+      "url": "https://www.gob.pe/institucion/minem/colecciones/25457-pre-publicaciones-electricidad?sheet=2",
+      "verified_scope": "Ficha de publicación; el archivo anexo no fue recuperado",
+      "binding": false
+    },
+    {
+      "id": "ELECTRO_PUNO_TDR_2018",
+      "type": "historical_procurement_terms",
+      "authority": "Electro Puno",
+      "date": "2018",
+      "url": "https://www.electropuno.com.pe/web/archivos_ftp/201804041549_84.pdf",
+      "verified_scope": "TDR 23 páginas; numerales 7,9,10 y entregables; distinto del proyecto normativo MINEM",
+      "binding": false
+    },
+    {
+      "id": "ADINELSA_BASES_2018",
+      "type": "historical_procurement_terms",
+      "authority": "ADINELSA",
+      "date": "2018",
+      "url": "https://www.adinelsa.com.pe/files/adinelsaweb/Licitaciones_Procesos/AS-SM-36-2018-ADINELSA-1/BASES_INTEGRADAS_PIDE_20181122_182003_613.pdf",
+      "verified_scope": "TDR PIDE referenciales, no equivalentes al Anexo original",
+      "binding": false
+    },
+    {
+      "id": "OSINERGMIN_LEGAL_628_2025",
+      "type": "regulatory_legal_report",
+      "authority": "Osinergmin",
+      "date": "2025-08",
+      "url": "https://www.osinergmin.gob.pe/Resoluciones/pdf/2025/Informe-Legal-628-2025-GRT.pdf",
+      "verified_scope": "Informe público indica aprobación no acreditada al momento de su elaboración",
+      "binding": false
+    },
+    {
+      "id": "DS_028_2021",
+      "type": "decree",
+      "authority": "MINEM",
+      "date": "2021-11-24",
+      "url": "https://cdn.www.gob.pe/uploads/document/file/3242050/DS%20N%C2%B0%20028-2021-MINEM-EM.pdf.pdf",
+      "verified_scope": "Difiere aprobación metodología hasta después de fijación VAD 2023–2027; sujeto a cambios posteriores",
+      "binding": true
+    },
+    {
+      "id": "REG_PROCEDURE_B12",
+      "type": "regulatory_procedure",
+      "authority": "Osinergmin",
+      "date": "2016",
+      "url": "https://www.osinergmin.gob.pe/Resoluciones/pdf/2016/Osinergmin-264-2016-OS-CD.pdf",
+      "verified_scope": "Procedimiento, NO el contenido sustantivo PIDE",
+      "binding": true
+    }
+  ],
+  "next_action": "Obtener PDF original de anexos 2017 MINEM y examinar cada formato 01-15 antes de activar exportación oficial"
+}

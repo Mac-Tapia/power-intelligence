@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0",
+  "policy": {
+    "default_mode": "deny",
+    "server_registration": "review-before-enable",
+    "secrets": "outside-repository",
+    "production_writes": "forbidden",
+    "human_approval_for": "mutations/deployments/access grants",
+    "database_access": "read-only-dev-or-staging"
+  },
+  "connectors": [
+    {
+      "id": "unitesis-project",
+      "category": "local",
+      "access": "read",
+      "purpose": "project specs, architectures, tasks and skill catalog",
+      "status": "implemented",
+      "guardrails": "No credential required; allowlisted paths only."
+    },
+    {
+      "id": "github-readonly",
+      "category": "github",
+      "access": "read",
+      "purpose": "repository/issues/PRs and code review",
+      "status": "optional",
+      "guardrails": "GitHub official MCP, readonly toolsets, scoped token, no write by default."
+    },
+    {
+      "id": "github-write-approved",
+      "category": "github",
+      "access": "write",
+      "purpose": "create authorized issues/PRs",
+      "status": "planned",
+      "guardrails": "Separate per-agent token and host approval; never default."
+    },
+    {
+      "id": "playwright-local",
+      "category": "browser",
+      "access": "test",
+      "purpose": "UI E2E smoke, accessibility and responsive tests",
+      "status": "optional",
+      "guardrails": "Microsoft Playwright MCP or CLI with skills; localhost/staging only."
+    },
+    {
+      "id": "postgres-readonly",
+      "category": "postgres",
+      "access": "read",
+      "purpose": "query schema and test data in isolated DB",
+      "status": "optional",
+      "guardrails": "Read-only PostgreSQL role; no production URI, statement timeout."
+    },
+    {
+      "id": "gis-catalog-authorized",
+      "category": "gis",
+      "access": "read",
+      "purpose": "catalog of licensed data and source manifests",
+      "status": "planned",
+      "guardrails": "Custom MCP adapter to VNR-GIS authorized ingestion manifest, no bulk exfil."
+    },
+    {
+      "id": "simulation-sandbox",
+      "category": "power",
+      "access": "execute-sandbox",
+      "purpose": "reproducible studies and benchmarks",
+      "status": "planned",
+      "guardrails": "Custom solver MCP with validated tool schema and isolated job worker."
+    },
+    {
+      "id": "experiment-registry-readonly",
+      "category": "mlops",
+      "access": "read",
+      "purpose": "run metadata metrics and model registry",
+      "status": "planned",
+      "guardrails": "Read-only MLflow or equivalent adapter subject to review."
+    },
+    {
+      "id": "docs-search-approved",
+      "category": "retrieval",
+      "access": "read",
+      "purpose": "standards, theses, source corpus with citations",
+      "status": "planned",
+      "guardrails": "RAG corpus restricted to approved licensed sources and tenant."
+    },
+    {
+      "id": "p2p-sandbox-readonly",
+      "category": "p2p",
+      "access": "read",
+      "purpose": "synthetic peers & proposed market messages",
+      "status": "planned",
+      "guardrails": "No peer write actions on production."
+    },
+    {
+      "id": "ledger-sandbox-readonly",
+      "category": "ledger",
+      "access": "read",
+      "purpose": "ledger anchor verification in testnet",
+      "status": "planned",
+      "guardrails": "Never expose validator key or broadcast transactions."
+    },
+    {
+      "id": "observability-readonly",
+      "category": "ops",
+      "access": "read",
+      "purpose": "staging logs and traces redacted",
+      "status": "planned",
+      "guardrails": "Redacted traces; tenant isolation."
+    },
+    {
+      "id": "design-system-docs",
+      "category": "frontend",
+      "access": "read",
+      "purpose": "component catalog and tokens",
+      "status": "planned",
+      "guardrails": "Local repository resource server first; external doc MCP optional."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "architect",
+      "skills": [
+        "unitesis-spec-driven",
+        "unitesis-domain-ddd",
+        "unitesis-api-contracts",
+        "unitesis-security-threat-model"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "github-readonly"
+      ]
+    },
+    {
+      "id": "backend",
+      "skills": [
+        "unitesis-backend-fastapi",
+        "unitesis-domain-ddd",
+        "unitesis-api-contracts",
+        "unitesis-db-postgis",
+        "unitesis-testing-qa"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "github-readonly",
+        "postgres-readonly"
+      ]
+    },
+    {
+      "id": "frontend",
+      "skills": [
+        "unitesis-frontend-react",
+        "unitesis-design-system",
+        "unitesis-api-contracts",
+        "unitesis-testing-qa"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "playwright-local",
+        "github-readonly"
+      ]
+    },
+    {
+      "id": "gis-topology",
+      "skills": [
+        "unitesis-gis-ingestion",
+        "unitesis-electric-graph",
+        "unitesis-db-postgis"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "postgres-readonly",
+        "gis-catalog-authorized"
+      ]
+    },
+    {
+      "id": "power-solver",
+      "skills": [
+        "unitesis-power-simulation",
+        "unitesis-evidence-audit",
+        "unitesis-testing-qa"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "simulation-sandbox"
+      ]
+    },
+    {
+      "id": "sciml",
+      "skills": [
+        "unitesis-sciml-pinn-gnn",
+        "unitesis-evidence-audit"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "experiment-registry-readonly"
+      ]
+    },
+    {
+      "id": "marl-llm",
+      "skills": [
+        "unitesis-marl-llm",
+        "unitesis-mcp-connectors",
+        "unitesis-security-threat-model"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "simulation-sandbox"
+      ]
+    },
+    {
+      "id": "graph-rag",
+      "skills": [
+        "unitesis-electric-graph",
+        "unitesis-technical-research",
+        "unitesis-mcp-connectors"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "docs-search-approved"
+      ]
+    },
+    {
+      "id": "p2p-ledger",
+      "skills": [
+        "unitesis-p2p-blockchain",
+        "unitesis-security-threat-model",
+        "unitesis-evidence-audit"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "p2p-sandbox-readonly",
+        "ledger-sandbox-readonly"
+      ]
+    },
+    {
+      "id": "devops",
+      "skills": [
+        "unitesis-devops-observability",
+        "unitesis-security-threat-model",
+        "unitesis-git-worktree"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "github-readonly"
+      ]
+    },
+    {
+      "id": "qa",
+      "skills": [
+        "unitesis-testing-qa",
+        "unitesis-evidence-audit",
+        "unitesis-security-threat-model"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "playwright-local"
+      ]
+    },
+    {
+      "id": "researcher",
+      "skills": [
+        "unitesis-technical-research",
+        "unitesis-evidence-audit"
+      ],
+      "connectors": [
+        "unitesis-project",
+        "docs-search-approved"
+      ]
+    }
+  ]
+}

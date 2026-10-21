@@ -1,0 +1,62 @@
+{
+  "profile_id": "PIT_SST_SCT_217_2013_BASE",
+  "status": "historical_base_requires_consolidation",
+  "jurisdiction": "PE",
+  "applicability": "transmission_SST_SCT",
+  "source_ids": [
+    "R217",
+    "R147",
+    "R018",
+    "R177",
+    "R242",
+    "R112"
+  ],
+  "forecast_years": 30,
+  "evaluation_years": 10,
+  "implementation_years": 4,
+  "rules": [
+    {
+      "id": "PIT-217-6.2.1",
+      "clause": "6.2.1",
+      "type": "forecast",
+      "verified_in_original": true,
+      "summary": "Proyección de demanda 30 años (texto original)"
+    },
+    {
+      "id": "PIT-217-11.3",
+      "clause": "11.3",
+      "type": "economic",
+      "verified_in_original": true,
+      "summary": "Alternativas viables; minimizar VP inversión+O&M+pérdidas (texto original)"
+    },
+    {
+      "id": "PIT-217-10.2",
+      "clause": "10.2",
+      "type": "schedule",
+      "verified_in_original": true,
+      "summary": "Puesta en operación 4 años (texto original)"
+    },
+    {
+      "id": "PIT-217-12.1.8.f",
+      "clause": "12.1.8.f",
+      "type": "alternatives",
+      "verified_in_original": true,
+      "summary": "Evaluar rotación de transformadores y transferencia de cargas previo nuevas instalaciones"
+    },
+    {
+      "id": "PIT-217-12.2",
+      "clause": "12.2",
+      "type": "quality",
+      "verified_in_original": true,
+      "summary": "Tensión y suministro bajo NTCSE, verificar modificación"
+    },
+    {
+      "id": "PIT-217-12.3",
+      "clause": "12.3",
+      "type": "reliability",
+      "verified_in_original": false,
+      "summary": "Revisar versión consolidada tras 018-2018 antes de fijar umbrales"
+    }
+  ],
+  "approved_for_automatic_certification": false
+}
