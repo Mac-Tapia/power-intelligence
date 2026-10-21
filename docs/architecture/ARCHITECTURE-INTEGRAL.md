@@ -105,7 +105,7 @@ Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/
 | 020–025 | regulación PIT/PIDE, PMBOK, UI regulatoria, monitor | `power-regulation` | `config/regulations` | registro documental; cálculos no iniciados |
 | 026–027 | PIDE metodológico y auditoría | `power-regulation` | fuentes PIDE | parcial: anualidad ilustrativa y bloqueos |
 | 028 | DER, BESS, EV y renovables | `power-optimization` | — | pendiente |
-| 029 | SciML GNN/PINN | `power-sciml`, `workers/ml-training` | `pf-scenarios-<case_id>` desde redes reales | parcial: dataset candidato, línea base física y destilación maestro → alumno con prior físico (maestro p95 test 0,009 p.u., línea base 0,041); gate AC-029-S02 (≤ 0,005) aún no superado |
+| 029 | SciML GNN/PINN | `power-sciml`, `workers/ml-training` | `pf-scenarios-<case_id>` desde redes reales | parcial: destilación maestro → alumno, validación cruzada por alimentadores y dominio de validez; el cribador físico truncado (3 iteraciones) pasa AC-029-S02 en 0,015 ms por escenario y el GNN solo no lo supera (AC-029-S06); IA reorientada a redes malladas, de fases y multiescenario |
 | 030 | MARL y agentes LLM | `power-marl`, `power-agents` | `district-flex-<case_id>`, corpus | pendiente |
 | 031 | seguridad, observabilidad y operación | `apps/control-api`, `scripts/dev` | — | parcial: telemetría y respaldo local |
 | 032 | informes y evidencia | `power-evidence` | — | parcial: sobre de evidencia con publicación atómica |

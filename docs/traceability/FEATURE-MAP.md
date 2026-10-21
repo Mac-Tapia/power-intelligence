@@ -33,7 +33,7 @@ Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/
 | 026 | pide methodological reference | `026-pide-methodological-reference` | G4 | 7/19 | parcial |
 | 027 | pide source audit and reference engine | `027-pide-source-audit-and-reference-engine` | G4 | 8/22 | parcial |
 | 028 | der bess ev and renewables | `028-der-bess-ev-and-renewables` | G5 | 0/11 | pendiente |
-| 029 | sciml pinn gnn | `029-sciml-pinn-gnn` | G5 | 5/17 | parcial: dataset candidato, línea base y destilación maestro → alumno entrenada (maestro p95 test 0,009 p.u.); gate AC-029-S02 aún no superado |
+| 029 | sciml pinn gnn | `029-sciml-pinn-gnn` | G5 | 5/17 | parcial: destilación, validación cruzada y dominio de validez operativos; el cribador físico truncado pasa el gate (p95 0,0026 p.u.); el modelo aprendido solo todavía no supera a la física (AC-029-S06) |
 | 030 | marl llm engineering agents | `030-marl-llm-engineering-agents` | G5 | 0/19 | pendiente |
 | 031 | security observability operations | `031-security-observability-operations` | G7 | 3/14 | parcial: telemetría y respaldo local |
 | 032 | reporting and evidence | `032-reporting-and-evidence` | G4 | 0/10 | parcial: sobre de evidencia |

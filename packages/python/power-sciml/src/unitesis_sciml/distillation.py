@@ -447,3 +447,40 @@ def cross_validate(graphs: list[FeederGraph], candidates: list[DistillationSpec]
 def merge_validation_into_training(graphs: list[FeederGraph]) -> list[FeederGraph]:
     """Final fit after cross-validation: every non-test feeder trains, test stays held out."""
     return [replace(g, split="train") if g.split == "valid" else g for g in graphs]
+
+
+def applicability_report(model: torch.nn.Module, graphs: list[FeederGraph], split: str, *,
+                         defer_below_pu: float, v_min_pu: float = 0.95) -> dict[str, Any]:
+    """Score a surrogate inside its declared domain; severe scenarios go to the solver.
+
+    A scenario is *deferred* when the linear physics prior (cheap, no learning) predicts a
+    minimum voltage below ``defer_below_pu``: the surrogate is not trusted there and the own
+    solver computes it. Accepted scenarios are scored with ``score_voltages``; violations in
+    deferred scenarios count as detected, because the solver handles them. Coverage (share
+    of scenarios the surrogate answers) is reported next to the gate.
+    """
+    true, pred = [], []
+    total = deferred = deferred_violations = 0
+    with torch.no_grad():
+        for g in (g for g in graphs if g.split == split):
+            prior_min = (1 + g.features[..., 3]).min(dim=1).values
+            keep = prior_min >= defer_below_pu
+            total += int(keep.numel())
+            deferred += int((~keep).sum())
+            deferred_violations += int((g.vm[~keep] < v_min_pu).sum())
+            if keep.any():
+                out = predict(model, g.features[keep], g)
+                true.append(g.vm[keep].numpy().ravel())
+                pred.append(out[..., 0].numpy().ravel())
+    report: dict[str, Any] = {"split": split, "defer_below_pu": defer_below_pu,
+                              "scenarios": total, "deferred_to_solver": deferred,
+                              "coverage": (total - deferred) / total if total else None,
+                              "violations_in_deferred": deferred_violations}
+    if true:
+        accepted = score_voltages(np.concatenate(true), np.concatenate(pred), v_min_pu=v_min_pu)
+        report["accepted"] = accepted
+        found = (accepted["violation_recall"] or 0.0) * accepted["true_violations"]
+        n_true = accepted["true_violations"] + deferred_violations
+        report["system_violation_recall"] = (found + deferred_violations) / n_true \
+            if n_true else None
+    return report
