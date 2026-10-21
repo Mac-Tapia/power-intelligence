@@ -54,9 +54,9 @@
 ## Fuentes reales y VNR-GIS universal
 
 - [x] T001-U01: restaurar los respaldos VNR-GIS del caso en bases nuevas de solo lectura con verificación y manifiesto (AC-001-U02).
-- [ ] T001-U02 (VNR hecho; MDB pendiente): perfil REA del esquema VNRGIS (tablas, columnas, claves, versión) y del MDB de estudio (AC-001-U03).
+- [x] T001-U02: perfil REA del esquema VNRGIS (tablas, columnas, claves, versión) y del MDB de estudio (AC-001-U03).
 - [x] T001-U03: lector VNR-GIS por versión de esquema → `ElectricalSnapshot` con cuarentena (AC-001-U01, AC-001-03). Evidencia: `vnrgis_sql.py`, `vnrgis_reader.py`, `vnrgis_import.py`, `docs/architecture/formats/VNRGIS-RECOVERED.md`. Piloto: 95 leídos, 6 validados y resueltos; longitud idéntica a CYME en 5/6.
 - [x] T001-U04: mapeo `CodNorma` + letra de tensión ↔ catálogo CYME, recuperado sin conflictos; control de plausibilidad del catálogo (10 hallazgos en la familia D). Pendiente: completar R/X faltantes con otra fuente real (MDB o fabricante).
-- [ ] T001-U05: lector MDB offline (controlador Access de Windows) para bases de estudio CYME.
+- [x] T001-U05: lector MDB offline de solo lectura (`access_mdb.py`, Jet de Windows por PowerShell de 32 bits, sin instalar nada). Las bases del caso son la base nativa de estudio CYME (333 tablas `CYM*`), superconjunto del TXT. Hay dos linajes: red actual de 38 657 tramos (`BaseDatos.mdb`, `BaseDatos2.mdb`) y red de julio 2025 de 37 607 tramos (`BASE JUL25 1.mdb`). **Falta que el propietario indique la base oficial.**
 - [ ] T001-U06: constructor de datasets que combine VNR + TXT + MDB del caso y cite sus manifiestos (AC-001-U05).
 

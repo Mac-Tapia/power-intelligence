@@ -164,11 +164,12 @@ def audit_source(src: dict, roots: dict[str, Path]) -> dict:
                         "next_step": "restore into a new local database, then run the 001 adapter"}
     if kind == "access_mdb_folder":
         inv = inventory_folder(path)
-        reader_ok = importlib.util.find_spec("pyodbc") is not None
+        from unitesis_adapters.access_mdb import POWERSHELL32
+        reader_ok = POWERSHELL32.exists()          # Windows Jet via 32-bit PowerShell
         return entry | {"status": "inventoried" if reader_ok else "pending_reader", "checks": [],
                         "inventory": inv,
-                        "next_step": "authorize an Access reader (pyodbc + Access ODBC driver, "
-                                     "or mdbtools) for offline table export"}
+                        "next_step": "profile with unitesis_adapters.access_mdb.schema (read-only)"
+                        if reader_ok else "a Windows host with the Jet OLE DB provider is required"}
     if kind in ("spreadsheet_folder", "document_folder"):
         inv = inventory_folder(path)
         if kind == "document_folder":
