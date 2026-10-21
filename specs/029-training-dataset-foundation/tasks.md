@@ -8,7 +8,7 @@
 - [ ] T029-06: autorizar lectores (`openpyxl`, `xlrd`, `pyxlsb`) y crear la capa bronze de medidores, líneas y cabeceras.
 - [ ] T029-07: restaurar el VNR-GIS en una base local nueva y ejecutar el adaptador 001 (spec 001).
 - [ ] T029-08: gold `feeder-load-15min-pe-ica-electrodunas` con exógenas aprobadas y splits cronológicos.
-- [ ] T029-09: gold `vnr-pf-scenarios-pe-ica-electrodunas` (depende de 001 y 004‑B).
+- [ ] T029-09: `pf-scenarios-pe-ica-electrodunas` construido como dataset **candidato** desde la red real TXT (44 alimentadores, 2 173 muestras, manifiesto en `local-data/datasets/`). Pasa a gold cuando se confirme la autorización (T029-05); MDB y VNR se agregan con T001-T011/T003.
 - [ ] T029-10: gold `district-flex-pe-ica-electrodunas` desde clientes importantes y medidores reales; pronósticos causales.
 - [ ] T029-11: corpus normativo PE con licencia por documento; trazas de herramientas; set de evaluación.
 - [ ] T029-12: prueba de no fuga de datos sensibles en Git (AC-029-07).

@@ -102,6 +102,32 @@ def cmd_import_cyme(a: argparse.Namespace) -> int:
     return EXIT_OK if report["summary"].get("model_validated") else EXIT_INVALID
 
 
+def cmd_build_pf_dataset(a: argparse.Namespace) -> int:
+    from unitesis_application.pf_dataset import build_pf_dataset
+    from unitesis_config import load_case
+    from unitesis_sciml.pf_scenarios import ScenarioSpec
+
+    case = load_case(ROOT / "config/cases" / f"{a.case}.json")
+    spec = ScenarioSpec(a.scenarios, a.u_min, a.u_max, a.sigma, a.seed,
+                        contrast_fraction=a.contrast_fraction)
+    m = build_pf_dataset(case, a.networks_dir, a.out_dir, spec, limit_feeders=a.limit_feeders)
+    _print({"dataset_id": m["dataset_id"], "totals": m["totals"],
+            "split_counts": m["split_counts"], "max_label_residual_pu": m["max_label_residual_pu"],
+            "manifest": str(Path(a.out_dir).resolve() / "manifest.json")})
+    contrast_ok = m["totals"]["contrast_failed"] == 0
+    return EXIT_OK if m["totals"]["kept"] and contrast_ok else EXIT_COMPARISON
+
+
+def cmd_eval_pf_baseline(a: argparse.Namespace) -> int:
+    from unitesis_application.pf_baselines import evaluate_baseline
+
+    r = evaluate_baseline(a.networks_dir, a.dataset_dir, a.output, split=a.split,
+                          v_min_pu=a.v_min_pu)
+    _print({"surrogate": r["surrogate"], "split": r["split"], "feeders": r["feeders"],
+            "overall": r["overall"], "evidence": str(Path(a.output).resolve())})
+    return EXIT_OK
+
+
 def cmd_verify(a: argparse.Namespace) -> int:
     payload = read_evidence(a.evidence)
     _print({"status": "reread_verified", "schema": payload.get("schema"),
@@ -233,6 +259,27 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--allow-positive-sequence", action="store_true",
                    help="import non three-phase feeders as a declared approximation")
     s.set_defaults(func=cmd_import_cyme)
+
+    s = sub.add_parser("build-pf-dataset", help="labelled power-flow scenarios (spec 006)")
+    s.add_argument("--case", required=True)
+    s.add_argument("--networks-dir", type=Path, required=True, help="import-cyme output")
+    s.add_argument("--out-dir", type=Path, required=True)
+    s.add_argument("--scenarios", type=int, required=True, help="scenarios per feeder")
+    s.add_argument("--u-min", type=float, required=True, help="min utilisation of conn. kVA")
+    s.add_argument("--u-max", type=float, required=True, help="max utilisation of conn. kVA")
+    s.add_argument("--sigma", type=float, required=True, help="per-load lognormal sigma")
+    s.add_argument("--seed", type=int, required=True)
+    s.add_argument("--contrast-fraction", type=float, default=0.1)
+    s.add_argument("--limit-feeders", type=int)
+    s.set_defaults(func=cmd_build_pf_dataset)
+
+    s = sub.add_parser("eval-pf-baseline", help="score the physics baseline (AC-006-06)")
+    s.add_argument("--networks-dir", type=Path, required=True)
+    s.add_argument("--dataset-dir", type=Path, required=True)
+    s.add_argument("--output", type=Path, required=True)
+    s.add_argument("--split", choices=("train", "valid", "test"), default="test")
+    s.add_argument("--v-min-pu", type=float, default=0.95)
+    s.set_defaults(func=cmd_eval_pf_baseline)
 
     s = sub.add_parser("verify-evidence", help="re-read evidence and check its digest")
     s.add_argument("evidence", type=Path)

@@ -11,9 +11,10 @@ Lo local (país, empresa, CRS, zona horaria, moneda, frecuencia, normas y fuente
 | Núcleo eléctrico (dominio, topología, BFS y Newton-Raphson propios, contraste pandapower, evidencia) | operativo para redes equilibradas radiales y malladas (specs 004‑A y 004‑B1; benchmark IEEE 33) |
 | Nueva carga y alternativas de conductor con VPN | operativos (specs 002 y 005) |
 | CLI, API local y workstation web | operativos, solo local (sin autenticación; spec 009) |
-| Ingesta de redes reales (TXT CYME ASCII, MDB, VNR-GIS) | pendiente (spec 001); fuentes del caso auditadas |
+| Ingesta de redes reales | TXT CYME ASCII operativo (93 alimentadores leídos, 44 validados); MDB y VNR-GIS pendientes (spec 001) |
 | Datasets por caso y controles de calidad | controles operativos; datasets gold pendientes (spec 029) |
-| GNN/PINN, MADRL, LLM | specs 006/007/008 listas; sin código |
+| GNN/PINN (006) | dataset candidato desde la red real (44 alimentadores, 2 173 muestras etiquetadas y contrastadas), métrica y línea base física operativas; el GNN requiere autorizar `torch` |
+| MADRL, LLM | specs 007/008 listas; sin código |
 
 Arquitectura y estado por capacidad: [`docs/architecture/ARCHITECTURE-INTEGRAL.md`](docs/architecture/ARCHITECTURE-INTEGRAL.md) · mapa de specs: [`docs/traceability/FEATURE-MAP.md`](docs/traceability/FEATURE-MAP.md) · contratos: [`docs/architecture/CONTRACTS-AND-EVIDENCE.md`](docs/architecture/CONTRACTS-AND-EVIDENCE.md).
 

@@ -90,7 +90,7 @@ Estados: **operativo** (código, pruebas y uso por CLI/API), **parcial**, **scaf
 | 003 | GIS ↔ unifilar | `power-topology`, `apps/workstation-web` | coordenadas UTM VNR | parcial: unifilar desde snapshot; GIS pendiente |
 | **004** | motores de simulación | `power-simulation` | snapshots | A (BFS) y B1 (Newton-Raphson, radial/mallado) operativos; B2 trafos, C desbalanceado, D cortocircuito pendientes |
 | **005** | expansión, SED, BESS, DER, EV | `power-optimization`, `power-economics` | catálogos, base económica | parcial: alternativas de conductor + VPN — **spec creada** |
-| **006** | SciML GNN/PINN sustituto | `power-sciml`, `workers/ml-training` | gold `vnr-pf-scenarios-<case_id>` desde redes reales TXT/MDB/VNR (029) | **sin código**; Y-bus y residuo listos (004-B1); faltan lectores 001 |
+| **006** | SciML GNN/PINN sustituto | `power-sciml`, `workers/ml-training` | gold `pf-scenarios-<case_id>` desde redes reales TXT/MDB/VNR (029) | dataset candidato con red real (44 alimentadores, 2 173 muestras), métrica y línea base física operativas; falta el GNN (requiere `torch`) |
 | **007** | MADRL seguro | `power-marl`, `workers/ml-training` | gold `district-flex-<case_id>` (029) | **sin código**; datos del piloto pendientes de lector — **spec creada** |
 | **008** | LLM local + RAG + herramientas | `power-agents`, `power-graphrag` | corpus y trazas (029) | **sin código**; corpus inexistente — **spec creada** |
 | **009** | industrialización | `infra/`, `apps/control-api` | — | no iniciado: sin auth, jobs en memoria — **spec creada** |
@@ -131,7 +131,7 @@ redes reales TXT (CYME ASCII) + MDB + VNR-GIS (001) ──► snapshots por alim
      ▼
 solver propio (004-A) ──► etiquetas: V, ángulo, I, pérdidas, convergencia (descarta no convergentes)
      ▼
-dataset gold `vnr-pf-scenarios` (grafo por muestra + etiquetas + hash de snapshot)
+dataset gold `pf-scenarios` (grafo por muestra + etiquetas + hash de snapshot)
      ▼
 entrenamiento GNN con pérdida física (residuo de balance de potencia AC sobre la Y-bus propia)
      ▼

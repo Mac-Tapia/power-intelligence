@@ -12,7 +12,7 @@ Estimar en milisegundos tensiones, ángulos, corrientes y cargabilidad de alimen
 - **PINN estricto** (EDP con autodiferenciación): solo para dinámica o transitorios, en una fase posterior. Un flujo en régimen estacionario no se presenta como PINN.
 - Una penalización física suave no garantiza que se cumpla la física. Toda predicción que sirva para decidir se verifica.
 
-## Datos: redes reales del caso (dataset gold `vnr-pf-scenarios-<case_id>`, spec 029)
+## Datos: redes reales del caso (dataset gold `pf-scenarios-<case_id>`, spec 029)
 
 El entrenamiento se hace **con redes reales** de la empresa del caso. Los benchmarks IEEE y las redes sintéticas solo validan el motor y las pruebas unitarias, nunca entrenan. El método es universal (cualquier empresa ingestada con la spec 001). El piloto es `pe-ica-electrodunas`, con tres fuentes complementarias:
 

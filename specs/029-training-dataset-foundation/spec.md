@@ -56,7 +56,7 @@ Antes de usarlas incluso como referencia de método hay que corregirlas.
 | Propósito | Dataset gold | Fuentes del piloto | Bloqueo |
 |---|---|---|---|
 | Forecast | `feeder-load-15min-pe-ica-electrodunas` | medidores, líneas, cabeceras y exógenas | lector xlsx/xls/xlsb (autorizar `openpyxl`, `xlrd`, `pyxlsb`) |
-| GNN/PINN (006) | `vnr-pf-scenarios-pe-ica-electrodunas` | redes reales TXT + MDB + VNR-GIS, catálogo BD_Equipo, perfiles gold, solver propio | lector TXT (T001-T010); lector MDB y VNR restaurado; transformadores (004‑B2) |
+| GNN/PINN (006) | `pf-scenarios-pe-ica-electrodunas` | redes reales TXT + MDB + VNR-GIS, catálogo BD_Equipo, perfiles gold, solver propio | lector TXT (T001-T010); lector MDB y VNR restaurado; transformadores (004‑B2) |
 | MADRL (007) | `district-flex-pe-ica-electrodunas` | clientes importantes, medidores, exógenas y DER de escenario | no existe dataset CityLearn de Ica: construirlo desde mediciones reales del caso |
 | LLM (008) | `corpus-<jurisdicción>` + `tool-use-traces` + `eval-electrical-qa` | normas PE registradas, expedientes DGER autorizados, ejecuciones de la CLI | licencias y textos completos |
 
