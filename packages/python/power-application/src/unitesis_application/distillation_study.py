@@ -14,15 +14,23 @@ from typing import Any
 
 from unitesis_evidence.store import publish_evidence
 
+# Declared candidate grid for model selection on the validation split (T029-K06).
+SELECTION_GRID: tuple[dict[str, Any], ...] = (
+    {"architecture": "graphsage", "teacher_hidden": 64, "teacher_layers": 4},
+    {"architecture": "impedance", "teacher_hidden": 32, "teacher_layers": 6},
+    {"architecture": "impedance", "teacher_hidden": 64, "teacher_layers": 8},
+)
+
 
 def run_pf_distillation(dataset_dir: str | Path, output: str | Path, models_dir: str | Path,
-                        **spec_overrides: Any) -> dict[str, Any]:
+                        *, select: bool = False, **spec_overrides: Any) -> dict[str, Any]:
     import torch  # optional dependency: imported only when distillation is requested
     from unitesis_sciml.distillation import (
         DistillationSpec,
         TeacherProvenance,
         load_feeder_graphs,
         run_distillation,
+        select_by_validation,
     )
 
     dataset = Path(dataset_dir)
@@ -38,7 +46,13 @@ def run_pf_distillation(dataset_dir: str | Path, output: str | Path, models_dir:
     if not any(g.split == "train" for g in graphs):
         raise ValueError("dataset has no training feeders")
     spec = DistillationSpec(**spec_overrides)
+    selection = None
+    if select:
+        candidates = [DistillationSpec(**{**spec_overrides, **c}) for c in SELECTION_GRID]
+        spec, selection = select_by_validation(graphs, candidates)
     report, models = run_distillation(graphs, spec, physics)
+    report["selection"] = {"criterion": "lowest validation p95; test never consulted",
+                           "candidates": selection} if selection else None
     out_models = Path(models_dir)
     out_models.mkdir(parents=True, exist_ok=True)
     for name, model in models.items():

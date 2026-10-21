@@ -114,12 +114,37 @@ class DistillationTest(unittest.TestCase):
         model = PowerGraphSAGE(5, 8, 2)
         torch.nn.init.zeros_(model.output.weight)
         torch.nn.init.zeros_(model.output.bias)
-        out = predict(model, self.train_g.features, self.train_g.edge_index)
+        out = predict(model, self.train_g.features, self.train_g)
         feats = self.train_g.features
         self.assertTrue(torch.allclose(out[..., 0], 1 + feats[..., 3]))
         self.assertTrue(torch.allclose(out[..., 1], feats[..., 4]))
         # the prior alone is already close to the solver on this lightly loaded feeder
         self.assertLess(float((out[..., 0] - self.train_g.vm).abs().max()), 0.01)
+
+    def test_impedance_messages_follow_admittance(self):
+        from unitesis_sciml.edge_gnn import ImpedanceGNN
+        g = self.train_g
+        self.assertEqual(tuple(g.edge_attr.shape), (g.edge_index.shape[1], 3))
+        model = ImpedanceGNN(5, 8, 3)
+        out = model(g.features, g.edge_index, g.edge_attr)
+        self.assertEqual(tuple(out.shape), (*g.features.shape[:2], 2))
+        with self.assertRaises(ValueError):
+            model(g.features, g.edge_index, g.edge_attr[:, :2])
+
+    def test_selection_uses_validation_only(self):
+        from dataclasses import replace as dc_replace
+
+        from unitesis_sciml.distillation import DistillationSpec, select_by_validation
+        # a poisoned test split must not change the choice
+        poisoned = dc_replace(self.test_g, vm=self.test_g.vm * 0 + 5.0)
+        cands = [DistillationSpec(epochs=3, teacher_hidden=8, teacher_layers=2),
+                 DistillationSpec(epochs=3, teacher_hidden=8, teacher_layers=2,
+                                  architecture="graphsage")]
+        best_a, table_a = select_by_validation([self.train_g, self.valid_g, self.test_g], cands)
+        best_b, table_b = select_by_validation([self.train_g, self.valid_g, poisoned], cands)
+        self.assertEqual(best_a, best_b)
+        self.assertEqual([r["valid_p95_pu"] for r in table_a],
+                         [r["valid_p95_pu"] for r in table_b])
 
     def test_loss_terms(self):
         from unitesis_sciml.distillation import DistillationSpec, distillation_loss

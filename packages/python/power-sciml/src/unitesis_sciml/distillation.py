@@ -39,10 +39,12 @@ from typing import Any
 import numpy as np
 import torch
 
+from .edge_gnn import ImpedanceGNN, edge_features
 from .gnn import PowerGraphSAGE, ac_balance_loss
 from .surrogate_metrics import score_voltages
 
 ALLOWED_TEACHERS = ("own_physics_solver", "own_model")
+ARCHITECTURES = ("graphsage", "impedance")
 BASE_MVA = 1.0
 
 
@@ -77,6 +79,7 @@ class DistillationSpec:
     grad_clip: float = 1.0
     perturbation: float = 0.2             # relative load perturbation for those scenarios
     seed: int = 7
+    architecture: str = "impedance"      # impedance-aware messages (T029-K06) or graphsage
 
     def __post_init__(self) -> None:
         weights = (self.alpha_teacher, self.beta_label, self.gamma_physics)
@@ -87,6 +90,8 @@ class DistillationSpec:
             raise ValueError("sizes and epochs must be positive")
         if not 0 <= self.physics_warmup_fraction < 1 or self.grad_clip <= 0:
             raise ValueError("warm-up fraction in [0, 1) and positive gradient clip")
+        if self.architecture not in ARCHITECTURES:
+            raise ValueError(f"architecture must be one of {', '.join(ARCHITECTURES)}")
         if not 0 <= self.perturbation < 1 or self.unlabelled_per_scenario < 0:
             raise ValueError("perturbation in [0, 1) and non-negative unlabelled count")
 
@@ -101,6 +106,13 @@ class FeederGraph:
     vm: torch.Tensor                  # S x N
     va_rad: torch.Tensor              # S x N
     y_scale: float = 1.0              # mean |Y_ii|: normalises the AC residual per feeder
+    edge_attr: torch.Tensor | None = None   # E x 3 scale-free impedance descriptors
+
+    def __post_init__(self) -> None:
+        if self.edge_attr is None:
+            src, dst = self.edge_index
+            y_series = -self.ybus[src, dst]
+            self.edge_attr = edge_features(1 / y_series)
 
 
 def ybus_from_edges(n: int, edge_index: np.ndarray, z_pu: np.ndarray) -> np.ndarray:
@@ -166,10 +178,16 @@ def _injections(features: torch.Tensor) -> torch.Tensor:
     return torch.complex(-features[..., 0], -features[..., 1]).to(torch.complex128)
 
 
-def predict(model: PowerGraphSAGE, features: torch.Tensor,
-            edge_index: torch.Tensor) -> torch.Tensor:
+def make_model(architecture: str, features: int, hidden: int, layers: int) -> torch.nn.Module:
+    if architecture == "impedance":
+        return ImpedanceGNN(features, hidden, layers)
+    return PowerGraphSAGE(features, hidden, layers)
+
+
+def predict(model: torch.nn.Module, features: torch.Tensor, g: FeederGraph) -> torch.Tensor:
     """[vm, angle] as a correction of the linear physics prior carried in the features."""
-    out = model(features, edge_index)
+    out = (model(features, g.edge_index, g.edge_attr) if getattr(model, "uses_edge_attr", False)
+           else model(features, g.edge_index))
     return torch.stack([1 + features[..., 3] + out[..., 0], features[..., 4] + out[..., 1]],
                        dim=-1)
 
@@ -207,8 +225,8 @@ def _labels(g: FeederGraph) -> torch.Tensor:
     return torch.stack([g.vm, g.va_rad], dim=-1)
 
 
-def train(model: PowerGraphSAGE, graphs: list[FeederGraph], spec: DistillationSpec, *,
-          teacher: PowerGraphSAGE | None = None) -> list[float]:
+def train(model: torch.nn.Module, graphs: list[FeederGraph], spec: DistillationSpec, *,
+          teacher: torch.nn.Module | None = None) -> list[float]:
     """Fit on the ``train`` split; with a teacher, add its soft targets and unlabelled scenarios."""
     torch.manual_seed(spec.seed)
     gen = torch.Generator().manual_seed(spec.seed)
@@ -230,10 +248,10 @@ def train(model: PowerGraphSAGE, graphs: list[FeederGraph], spec: DistillationSp
                 t_out = None
                 if teacher is not None:
                     with torch.no_grad():
-                        t_out = predict(teacher, feats, g.edge_index)
+                        t_out = predict(teacher, feats, g)
                 if label is None and phase.gamma_physics == 0 and t_out is None:
                     continue
-                out = predict(model, feats, g.edge_index)
+                out = predict(model, feats, g)
                 physics = (physics_residual(out, g, feats) if phase.gamma_physics
                            else out.new_zeros(()))
                 loss = distillation_loss(out, t_out, label, physics, phase)
@@ -246,16 +264,16 @@ def train(model: PowerGraphSAGE, graphs: list[FeederGraph], spec: DistillationSp
     return history
 
 
-def evaluate(model: PowerGraphSAGE, graphs: list[FeederGraph], split: str,
-             teacher: PowerGraphSAGE | None = None) -> dict[str, Any]:
+def evaluate(model: torch.nn.Module, graphs: list[FeederGraph], split: str,
+             teacher: torch.nn.Module | None = None) -> dict[str, Any]:
     true, pred, fidelity = [], [], []
     with torch.no_grad():
         for g in (g for g in graphs if g.split == split):
-            out = predict(model, g.features, g.edge_index)
+            out = predict(model, g.features, g)
             true.append(g.vm.numpy().ravel())
             pred.append(out[..., 0].numpy().ravel())
             if teacher is not None:
-                fidelity.append((out - predict(teacher, g.features, g.edge_index))[..., 0]
+                fidelity.append((out - predict(teacher, g.features, g))[..., 0]
                                 .abs().numpy().ravel())
     if not true:
         return {"split": split, "nodes_scored": 0}
@@ -276,12 +294,12 @@ def _params(model: torch.nn.Module) -> int:
     return sum(p.numel() for p in model.parameters())
 
 
-def _latency_ms(model: PowerGraphSAGE, graphs: list[FeederGraph]) -> float:
+def _latency_ms(model: torch.nn.Module, graphs: list[FeederGraph]) -> float:
     with torch.no_grad():
         t0 = time.perf_counter()
         n = 0
         for g in graphs:
-            model(g.features, g.edge_index)
+            predict(model, g.features, g)
             n += g.features.shape[0]
     return (time.perf_counter() - t0) * 1e3 / max(n, 1)
 
@@ -291,17 +309,18 @@ def run_distillation(graphs: list[FeederGraph], spec: DistillationSpec,
     """Teacher, distilled student and same-size baseline student; returns (report, models)."""
     torch.manual_seed(spec.seed)
     features = graphs[0].features.shape[-1]
-    teacher = PowerGraphSAGE(features, spec.teacher_hidden, spec.teacher_layers)
+    teacher = make_model(spec.architecture, features, spec.teacher_hidden, spec.teacher_layers)
     teacher_spec = DistillationSpec(**{**asdict(spec), "alpha_teacher": 0.0})
     train(teacher, graphs, teacher_spec)
     teacher.eval()
-    model_teacher = TeacherProvenance("graphsage-teacher", "own_model", "1",
+    model_teacher = TeacherProvenance(f"{spec.architecture}-teacher", "own_model", "1",
                                       state_sha256(teacher))
     torch.manual_seed(spec.seed)
-    student = PowerGraphSAGE(features, spec.student_hidden, spec.student_layers)
+    student = make_model(spec.architecture, features, spec.student_hidden, spec.student_layers)
     train(student, graphs, spec, teacher=teacher)
     torch.manual_seed(spec.seed)
-    baseline = PowerGraphSAGE(features, spec.student_hidden, spec.student_layers)
+    baseline = make_model(spec.architecture, features, spec.student_hidden,
+                          spec.student_layers)
     train(baseline, graphs, teacher_spec)
     models = {"teacher": teacher, "student": student, "baseline_student": baseline}
     report: dict[str, Any] = {
@@ -327,3 +346,25 @@ def run_distillation(graphs: list[FeederGraph], spec: DistillationSpec,
     report["decision_rule"] = ("a surrogate is usable for screening only if its test gate "
                                "passes; every decision is confirmed by the own solver")
     return report, models
+
+
+def select_by_validation(graphs: list[FeederGraph], candidates: list[DistillationSpec]
+                         ) -> tuple[DistillationSpec, list[dict[str, Any]]]:
+    """Fit a teacher per candidate and keep the lowest *validation* p95.
+
+    The test split is never looked at here; it is evaluated once, on the chosen spec, by
+    ``run_distillation``. Ties keep the earlier (simpler) candidate.
+    """
+    table = []
+    features = graphs[0].features.shape[-1]
+    for spec in candidates:
+        torch.manual_seed(spec.seed)
+        model = make_model(spec.architecture, features, spec.teacher_hidden,
+                           spec.teacher_layers)
+        train(model, graphs, DistillationSpec(**{**asdict(spec), "alpha_teacher": 0.0}))
+        valid = evaluate(model, graphs, "valid")
+        table.append({"spec": asdict(spec), "parameters": _params(model),
+                      "valid_p95_pu": valid.get("p95_abs_error_pu"),
+                      "valid_recall": valid.get("violation_recall")})
+    best = min(range(len(table)), key=lambda i: (table[i]["valid_p95_pu"] or float("inf"), i))
+    return candidates[best], table
