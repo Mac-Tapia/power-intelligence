@@ -1,6 +1,6 @@
 # Arquitectura integral — sincronizada con specs, módulos y datos
 
-**Estado:** referencia vigente y única del proyecto (revisada el 20/10/2026).
+**Estado:** referencia vigente y única del proyecto (revisada el 21/10/2026).
 **Regla de lectura:** cada capacidad tiene **una** spec dueña, **un** paquete dueño, **una** fuente de datos declarada y **un** estado verificable. Si alguno de los cuatro falta, la capacidad no existe todavía.
 
 ## 0. Producto universal y casos de aplicación
@@ -23,9 +23,9 @@ UNITESIS es universal: el código no contiene supuestos de país, empresa, frecu
 | G1 | ingesta sin pérdida, manifiestos raw, invalidación | **parcial**: JSON neutral sí; VNR-GIS no (spec 001) |
 | G2 | consistencia topología ↔ GIS ↔ unifilar | **parcial**: topología radial sí; GIS no (spec 003) |
 | G3 | benchmark de flujo de potencia y validación independiente | **cumplida para el alcance radial equilibrado** (BFS propio frente a pandapower, diferencias ≤ 1e-11) |
-| G4+ | optimización e IA, solo con las puertas anteriores en verde | optimización de conductores operativa; PINN/MADRL/LLM **bloqueados por datos** (spec 029) |
+| G4+ | optimización e IA, solo con las puertas anteriores en verde | optimización de conductores operativa; PINN/MADRL/LLM **bloqueados por datos** (spec 035) |
 
-**Corrección de nomenclatura:** "trifásico desbalanceado" no es G3; es una capacidad de la spec 004 (`004-B`). En adelante, G3 se califica por alcance: `G3[radial-equilibrado]` cumplida y `G3[trifásico-desbalanceado]` pendiente.
+**Corrección de nomenclatura:** "trifásico desbalanceado" no es G3; es la capacidad 008-C de la spec 008. En adelante, G3 se califica por alcance: `G3[radial-equilibrado]` cumplida y `G3[trifásico-desbalanceado]` pendiente.
 
 ## 2. Capas y regla de dependencia
 
@@ -37,7 +37,7 @@ flowchart TB
     DOCS["Normas, TDR, estudios DGER"]
     CAT["Catálogos de conductores<br/>con fuente"]
   end
-  subgraph Datos["Capa de datos — spec 029"]
+  subgraph Datos["Capa de datos — spec 035"]
     RAW["raw + SHA-256"] --> BRZ["bronze (tipado)"] --> SLV["silver (reglas con evidencia)"] --> GLD["gold por tarea + splits"]
     QA["quality gates<br/>unitesis_sciml.quality"]
   end
@@ -80,29 +80,45 @@ Reglas inamovibles: `power-domain` solo usa la stdlib. Toda salida de IA vuelve 
 
 ## 3. Matriz sincronizada spec ↔ módulo ↔ datos ↔ estado
 
-Estados: **operativo** (código, pruebas y uso por CLI/API), **parcial**, **scaffold** (solo estructura), **sin spec** (la capacidad se declara en el FEATURE-MAP pero no tiene archivo de spec).
+Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/10/2026). Las equivalencias con la numeración anterior están en [`SPEC-ID-MIGRATION.md`](../traceability/SPEC-ID-MIGRATION.md). Estados: **operativo** (código, pruebas y uso por CLI/API), **parcial**, **scaffold** (solo estructura), **pendiente** (spec sin código). El detalle por tarea vive en `specs/<id>/tasks.md` y en [`master-backlog-assessment.csv`](../traceability/master-backlog-assessment.csv).
 
 | Spec | Capacidad | Paquete dueño | Datos | Estado |
 |---|---|---|---|---|
-| 000 | repo, CI, contratos | raíz, `tests/governance`, `scripts/verify_structure.py` | — | operativo (T006–T008 abiertas) |
-| 001 | ingesta VNR-GIS multiempresa | `power-adapters` (`vnrgis_sql.py`, pendiente) | piloto: `.bak` VNR Electro Dunas abr‑2024 + parámetros | **pendiente**; esquema relevado (§4.1) |
-| 002 | nueva carga | `power-application` | snapshot | parcial: cribado equilibrado operativo; versión por fase depende de 004‑B |
-| 003 | GIS ↔ unifilar | `power-topology`, `apps/workstation-web` | coordenadas UTM VNR | parcial: unifilar desde snapshot; GIS pendiente |
-| **004** | motores de simulación | `power-simulation` | snapshots | A (BFS) y B1 (Newton-Raphson, radial/mallado) operativos; B2 trafos, C desbalanceado, D cortocircuito pendientes |
-| **005** | expansión, SED, BESS, DER, EV | `power-optimization`, `power-economics` | catálogos, base económica | parcial: alternativas de conductor + VPN — **spec creada** |
-| **006** | SciML GNN/PINN sustituto | `power-sciml`, `workers/ml-training` | gold `pf-scenarios-<case_id>` desde redes reales TXT/MDB/VNR (029) | dataset candidato con red real (44 alimentadores, 2 173 muestras), métrica y línea base física operativas; falta el GNN (requiere `torch`) |
-| **007** | MADRL seguro | `power-marl`, `workers/ml-training` | gold `district-flex-<case_id>` (029) | **sin código**; datos del piloto pendientes de lector — **spec creada** |
-| **008** | LLM local + RAG + herramientas | `power-agents`, `power-graphrag` | corpus y trazas (029) | **sin código**; corpus inexistente — **spec creada** |
-| **009** | industrialización | `infra/`, `apps/control-api` | — | no iniciado: sin auth, jobs en memoria — **spec creada** |
-| 010–014 | grafo, P2P, ledger, mercado, GraphRAG | `power-graph/p2p/ledger/market/graphrag` | — | scaffold (helpers mínimos) |
-| 015 | skills/MCP | `.agents`, `connectors`, `tools/mcp` | — | operativo en modo lectura |
-| 020–025 | regulación PIT/PIDE, PMBOK, UI regulatoria | `power-regulation` | `config/regulations` | registro documental; los cálculos no se han iniciado |
+| 000 | repo, CI, contratos | raíz, `tests/governance`, `scripts/verify_structure.py` | — | operativo |
+| 001 | ingesta de redes reales (VNR-GIS, CYME ASCII) | `power-adapters`, `power-application.network_import` | TXT CYME, MDB y `.bak` VNR del caso | parcial: CYME ASCII operativo (93 leídos, 44 validados); VNR-GIS y MDB pendientes |
+| 002 | nueva carga | `power-application.study` | snapshot | parcial: cribado equilibrado operativo; por fase depende de 008-C |
+| 003 | GIS ↔ unifilar | `power-topology`, `apps/control-api` (`networks.py`), `apps/workstation-web` (`map.js`) | geometría `.geo.json` por alimentador | parcial: unifilar y router de geometría; integración en la UI pendiente |
+| 004 | runtime fullstack | `apps/`, `scripts/unitesis.py`, `infra/` | — | parcial: CLI, API y workstation locales; frontend React pendiente |
+| 005 | identidad, tenant y autorización | `apps/control-api` | — | parcial: bearer local con roles y tenant; OIDC pendiente |
+| 006 | modelo eléctrico canónico | `power-domain` | snapshots v2/v3 | operativo: `ElectricalSnapshot` con identidad numérica estable |
+| 007 | jobs durables y eventos | `power-adapters`, `power-application` | SQLite / PostgreSQL local | parcial: jobs durables y worker; recuperación distribuida pendiente |
+| 008 | solvers AC y validación | `power-simulation`, `power-topology` | snapshots, benchmarks | parcial: BFS, Newton-Raphson (radial/mallado) y transformadores operativos con contraste; trifásico desbalanceado (008-C) pendiente |
+| 009 | escenarios y modelo temporal | `power-application`, `power-sciml` | perfiles | parcial: escenarios de carga declarados en datasets PF |
+| 010 | grafo eléctrico | `power-graph` | — | scaffold |
+| 011–013 | P2P, ledger, mercado P2P | `power-p2p`, `power-ledger`, `power-market` | — | scaffold |
+| 014 | GraphRAG técnico | `power-graphrag` | corpus con licencia | pendiente |
+| 015 | skills, agentes y MCP | `.agents`, `connectors`, `tools/mcp` | — | parcial: SDK y handshake stdio probados |
+| 016 | pronóstico de demanda y perfiles | `power-sciml.datasets` | medidores del caso | parcial: splits cronológicos y controles; modelos pendientes |
+| 017 | cortocircuito, calidad y confiabilidad | `power-simulation` | — | pendiente |
+| 018 | alternativas de planificación | `power-optimization`, `power-economics` | catálogos, base económica | parcial: alternativas de conductor con VPN y capacidad remanente certificada |
+| 019 | optimización multiobjetivo | `power-optimization.pareto` | — | parcial: frente de Pareto y factor de emisión declarado |
+| 020–025 | regulación PIT/PIDE, PMBOK, UI regulatoria, monitor | `power-regulation` | `config/regulations` | registro documental; cálculos no iniciados |
 | 026–027 | PIDE metodológico y auditoría | `power-regulation` | fuentes PIDE | parcial: anualidad ilustrativa y bloqueos |
-| 029 | fundación de datasets por caso | `power-config.cases`, `power-sciml.quality`, `scripts/datasets` | registro v2 | piloto: 5 fuentes aprobadas, 7 pendientes de lector, 2 de restauración |
+| 028 | DER, BESS, EV y renovables | `power-optimization` | — | pendiente |
+| 029 | SciML GNN/PINN | `power-sciml`, `workers/ml-training` | `pf-scenarios-<case_id>` desde redes reales | parcial: dataset candidato, línea base física y GraphSAGE unitario; entrenamiento pendiente de gold |
+| 030 | MARL y agentes LLM | `power-marl`, `power-agents` | `district-flex-<case_id>`, corpus | pendiente |
+| 031 | seguridad, observabilidad y operación | `apps/control-api`, `scripts/dev` | — | parcial: telemetría y respaldo local |
+| 032 | informes y evidencia | `power-evidence` | — | parcial: sobre de evidencia con publicación atómica |
+| 033–034 | cartera de inversión; generación y transmisión | — | — | pendiente |
+| 035 | federación de datos autorizada | `power-config.cases`, `power-sciml.quality`, `scripts/datasets` | registro de fuentes v2 | parcial: controles operativos; fuentes pendientes de lector o restauración |
+| 036 | catálogo de tarifas y costos | `config/catalogs` | catálogos con fuente | parcial: catálogo de conductores |
+| 037 | interoperabilidad DGS/MDB/SQL | `power-adapters` | — | parcial: CYME ASCII; MDB y SQL pendientes |
+| 038 | benchmarks y reproducibilidad | `benchmarks/`, `scripts/benchmarks` | fixtures sintéticos | parcial: benchmark de flujo de potencia y línea base SciML |
+| 039 | release y gobierno de producción | — | — | pendiente |
 
 ## 4. Pipelines de datos por capacidad
 
-### 4.1 VNR-GIS → ElectricalSnapshot (001, prerrequisito de 006)
+### 4.1 VNR-GIS → ElectricalSnapshot (001, prerrequisito de 029)
 
 El esquema VNR-GIS es un formato estándar de las distribuidoras peruanas: el adaptador es por formato y versión, no por empresa. Relevado sobre una base VNR ya restaurada en la instancia local (solo metadatos); las cifras se confirmarán sobre el backup del caso piloto al restaurarlo:
 
@@ -118,7 +134,7 @@ El esquema VNR-GIS es un formato estándar de las distribuidoras peruanas: el ad
 Calidad observada: 15 304 tramos MT, 92 alimentadores, 106 raíces (hay alimentadores con varias raíces o islas: control G1/G2), 42 normas de conductor y 6 SED sin demanda.
 Regla: el mapeo `CodNorma` → conductor del catálogo y la geometría (DMG) se registran como tabla versionada con fuente. Lo que no se pueda mapear va a cuarentena y no se completa por defecto.
 
-### 4.2 Capa PINN / GNN sustituto (006)
+### 4.2 Capa PINN / GNN sustituto (029)
 
 Objetivo: un **aproximador rápido** del flujo de potencia y del estado de la red (tensiones y cargabilidad) para cribar miles de escenarios: planificación, MADRL y nueva carga. Nunca reemplaza al solver propio (ADR-0002).
 
@@ -126,10 +142,10 @@ Objetivo: un **aproximador rápido** del flujo de potencia y del estado de la re
 redes reales TXT (CYME ASCII) + MDB + VNR-GIS (001) ──► snapshots por alimentador
      (topología real; R/X del catálogo real BD_Equipo mapeado a CodNorma; IEEE solo valida el motor)
      │
-     ├─► generador de escenarios (029): demanda por SED = MaxDemTotal × perfil (forecast gold)
+     ├─► generador de escenarios (009/035): demanda por SED = MaxDemTotal × perfil (forecast gold)
      │     × factor de potencia declarado como supuesto de escenario; cambios de topología N-1
      ▼
-solver propio (004-A) ──► etiquetas: V, ángulo, I, pérdidas, convergencia (descarta no convergentes)
+solver propio (008-A) ──► etiquetas: V, ángulo, I, pérdidas, convergencia (descarta no convergentes)
      ▼
 dataset gold `pf-scenarios` (grafo por muestra + etiquetas + hash de snapshot)
      ▼
@@ -143,14 +159,14 @@ Decisiones de experto incorporadas:
 
 - **Split por alimentador, no aleatorio.** Si un mismo alimentador aparece en train y en test, el modelo memoriza la topología. Los 92 alimentadores se dividen en grupos disjuntos para estimar el error fuera de distribución.
 - **La pérdida física se calcula con la Y-bus del dominio propio**, no con otra implementación paralela. Así el residuo se mide igual que en el solver.
-- **"PINN" en sentido estricto** (resolver EDP con autodiferenciación) no aplica al flujo estacionario. Lo correcto aquí es un *GNN informado por la física* (residuo AC como regularizador) y, para dinámica, PINN de transitorios en una fase posterior. La spec 006 lo distingue para no prometer lo que el método no da.
-- Dependencia de software: `torch` no está instalado; se necesita autorización para instalarlo (constitución: no instalar sin permiso).
+- **"PINN" en sentido estricto** (resolver EDP con autodiferenciación) no aplica al flujo estacionario. Lo correcto aquí es un *GNN informado por la física* (residuo AC como regularizador) y, para dinámica, PINN de transitorios en una fase posterior. La spec 029 lo distingue para no prometer lo que el método no da.
+- Dependencia de software: `torch` autorizado por el usuario el 21/10/2026 (`requirements/torch-cuda124.txt`).
 
-### 4.3 MADRL (007)
+### 4.3 MADRL (030)
 
-`district-flex-<case_id>` (029; piloto construido con clientes importantes, medidores y exógenas reales de Electro Dunas; sin oráculo; splits por año) → entorno CityLearn → **acople a red**: cada edificio se asigna explícitamente a una barra del snapshot. Las violaciones de tensión o cargabilidad del solver (o del sustituto 006, confirmado por el solver) entran en la recompensa y en la restricción. Algoritmos de referencia: HAPPO, MAPPO, MASAC y MATD3 frente a una línea base basada en reglas. Ninguna política actúa sobre SCADA (spec 011 y constitución).
+`district-flex-<case_id>` (035; piloto construido con clientes importantes, medidores y exógenas reales de Electro Dunas; sin oráculo; splits por año) → entorno CityLearn → **acople a red**: cada edificio se asigna explícitamente a una barra del snapshot. Las violaciones de tensión o cargabilidad del solver (o del sustituto 029, confirmado por el solver) entran en la recompensa y en la restricción. Algoritmos de referencia: HAPPO, MAPPO, MASAC y MATD3 frente a una línea base basada en reglas. Ninguna política actúa sobre SCADA (spec 031 y constitución).
 
-### 4.4 LLM (008)
+### 4.4 LLM (030)
 
 No se preentrena ni se ajusta un modelo con datos de clientes. Hay tres activos:
 
@@ -160,27 +176,27 @@ No se preentrena ni se ajusta un modelo con datos de clientes. Hay tres activos:
 
 El ajuste fino (SFT/LoRA) de un modelo local solo se hace sobre las trazas de herramientas, y solo si la evaluación muestra una mejora frente a RAG + tool calling.
 
-### 4.5 Forecast de demanda (insumo de 006 y 007)
+### 4.5 Forecast de demanda (016, insumo de 029 y 030)
 
-`feeder-load-15min-<case_id>` gold (piloto: medidores P/Q 2023‑2026, líneas L‑6605/6606 y cabeceras de Electro Dunas, con las exógenas aprobadas de Ica) → `unitesis_sciml.datasets` (ya operativo: splits cronológicos con hueco y manifiesto) → modelos base (persistencia estacional, CatBoost de Prodma adaptado) → perfiles para los escenarios de 006/007.
+`feeder-load-15min-<case_id>` gold (piloto: medidores P/Q 2023‑2026, líneas L‑6605/6606 y cabeceras de Electro Dunas, con las exógenas aprobadas de Ica) → `unitesis_sciml.datasets` (ya operativo: splits cronológicos con hueco y manifiesto) → modelos base (persistencia estacional, CatBoost de Prodma adaptado) → perfiles para los escenarios de 029/030.
 
 ## 5. Ruta crítica (orden obligatorio)
 
-1. **004-B1 Newton-Raphson y Y-bus compartida**: hecho (benchmark IEEE 33 radial y mallado).
+1. **008-B1 Newton-Raphson y Y-bus compartida**: hecho (benchmark IEEE 33 radial y mallado).
 2. **001 lectores de redes reales**: TXT CYME ASCII (fuente ya auditada: 96 alimentadores), luego MDB (requiere lector Access autorizado) y VNR-GIS (restaurar el `.bak`). Incluye el mapeo `BD_Equipo` ↔ `CodNorma` para la R/X real.
-3. **004-B2 transformadores**, necesarios para alimentadores reales MT/BT.
-4. **029 autorización y datos gold** (medidores, perfiles, pronósticos causales).
-5. **006 GNN informado por la física** entrenado con las redes reales del caso; **007 MADRL** acoplado a red; **005 expansión**: el sustituto criba y el solver confirma.
-6. **008 LLM** con citas y herramientas; **009 industrialización** antes de cualquier uso compartido.
+3. **008-B2 transformadores**, necesarios para alimentadores reales MT/BT.
+4. **035 autorización y datos gold** (medidores, perfiles, pronósticos causales).
+5. **029 GNN informado por la física** entrenado con las redes reales del caso; **030 MADRL** acoplado a red; **018/019 planificación**: el sustituto criba y el solver confirma.
+6. **030 LLM** con citas y herramientas; **004/005/007/031 industrialización** antes de cualquier uso compartido.
 
 ## 6. Reglas de sincronización (una fuente de verdad por concepto)
 
 | Concepto | Fuente única | Prohibido |
 |---|---|---|
-| Identidad eléctrica | `ElectricalSnapshot.content_sha256` (v2) | usar `NetworkSnapshot` v1 (legado, retirada en T004-A4) como identidad de estudio |
+| Identidad eléctrica | `ElectricalSnapshot.content_sha256` (v2) | usar `NetworkSnapshot` v1 (legado, retirada en T006-A4) como identidad de estudio |
 | Topología | `power-topology` sobre el snapshot | inferir conectividad por proximidad GIS (ADR-0003) |
 | Parámetros de conductor | `config/catalogs/conductors/*.json` con fuente | defaults, o R/X dentro de redes neuronales |
-| Datos de entrenamiento | manifiestos gold de la spec 029 por `case_id` | entrenar con archivos sueltos; mezclar casos o referencias de método |
+| Datos de entrenamiento | manifiestos gold de la spec 035 por `case_id` | entrenar con archivos sueltos; mezclar casos o referencias de método |
 | Supuestos locales | `config/cases/` + perfiles por jurisdicción | constantes de país o empresa en el código |
 | Resultado eléctrico | solver propio + contraste + evidencia | resultados de GNN, MADRL o LLM sin confirmación |
 | Estado de capacidades | esta matriz (§3) + `tasks.md` de cada spec | README o planes que contradigan la matriz |

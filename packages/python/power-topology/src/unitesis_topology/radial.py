@@ -2,7 +2,7 @@
 
 Open switches and out-of-service lines stay in the snapshot inventory and are reported
 as excluded; they are not deleted. Meshes, multiple slacks and voltage mismatches across
-a line are rejected because the solver scope 004-A is radial and balanced.
+a line are rejected because the solver scope 008-A is radial and balanced.
 """
 
 from __future__ import annotations
@@ -74,7 +74,7 @@ def build_radial_tree(snapshot: ElectricalSnapshot) -> RadialTree:
         raise TopologyError("exactly one slack is supported in the radial scope")
     if any(t.in_service for t in snapshot.transformers):
         raise TopologyError("transformers are outside the radial sweep scope; use the "
-                            "Newton-Raphson engine (004-B2)")
+                            "Newton-Raphson engine (008-B2)")
     slack = snapshot.slacks[0].bus
     active, excluded = _active_branches(snapshot)
     adj: dict[str, list[tuple[str, Branch]]] = {b.bus_id: [] for b in snapshot.buses}

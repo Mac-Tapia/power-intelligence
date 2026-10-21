@@ -261,7 +261,7 @@ def _build_feeder(network_id, sections, source, config, catalog, status, loads_b
     if non_abc and not rules.allow_positive_sequence_approximation:
         quarantine.append(QuarantineRecord(
             network_id, "Phase", f"{non_abc} non three-phase sections need the unbalanced "
-            "model (004-C) or an explicit positive-sequence approximation", ref))
+            "model (008-C) or an explicit positive-sequence approximation", ref))
 
     loads: list[Load] = []
     attributes: dict[str, dict[str, float]] = {}

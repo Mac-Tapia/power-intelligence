@@ -26,3 +26,30 @@
 ## Entregables
 
 `RawImportManifest`, `SourceSchemaMapping`, `ValidationReport`, `CanonicalAssetGraph`, `MissingAttributeCatalog`, y pruebas de conformidad contra fixtures.
+
+---
+
+## Anexo del plan maestro — Alcance y aceptación ejecutable (pendiente)
+
+**Requisito:** `SPEC-001` · **Gate:** `G1` · **Dependencias:** SPEC-006.  
+**Alcance verificable:** Ingerir fuentes reales VNR-GIS y adaptadores autorizados con procedencia e inconsistencias explícitas.  
+**Ubicación propuesta:** `workers/ingestion/, packages/python/power-adapters/, data contracts`.
+
+### Historias funcionales
+- Como ingeniero/planificador, necesito usar este módulo sin falsear parámetros ni resultados.
+- Como responsable técnico, necesito revisar evidencia, versión, normativa y resultados antes de aprobar un estudio.
+- Como desarrollador/QA, necesito replicar fallos y casos positivos con tests y entradas versionadas.
+
+### Requisitos y aceptación del plan maestro
+- **FR-001-01:** implementar el comportamiento descrito en alcance, con contrato versionado y campos obligatorios documentados.
+- **FR-001-02:** entrada válida: Importaciones de dos esquemas documentados conservan RAW, unidades, CRS, atributos faltantes y cuarentena; repetición determinista.
+- **FR-001-03:** entrada inválida/incompleta produce error tipado, auditable y sin valores silenciosos.
+- **NFR-001-01:** separar dominio, casos de uso, puertos, adaptadores e interfaz; prohibido import circular y conexión a producción en tests.
+- **NFR-001-02:** preservar trazabilidad de usuario/tenant, timestamp UTC, versión, hash de input y commit cuando aplique.
+- **AC-001-01:** caso exitoso demuestra `FR-001-01/02` con fixture y evidencia automatizada.
+- **AC-001-02:** caso negativo demuestra `FR-001-03`, sin alterar estado persistido ni fuente original.
+- **AC-001-03:** integración/extremo a extremo y revisión técnica documentadas; tests verdes en CI.
+- **AC-001-04:** normativa y licenciamiento verificados cuando afectan al resultado; ningún borrador PIDE tratado como vigente.
+
+### Límites y estado
+**Estado actual: especificación de implementación, no funcionalidad terminada.** Mantener los criterios anteriores de este documento como requisitos acumulativos. Cualquier contradicción debe resolverse con ADR y revisión humana.

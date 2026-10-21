@@ -1,7 +1,7 @@
-"""Shared per-unit admittance model and AC power-balance residual (spec 004, AC-004-02).
+"""Shared per-unit admittance model and AC power-balance residual (spec 008, AC-008-A02).
 
 The single Y-bus formulation used by the Newton-Raphson engine, the comparator and the
-physics-informed surrogate of spec 006: no second implementation may exist. Lines are
+physics-informed surrogate of spec 029: no second implementation may exist. Lines are
 series R + jX (shunt susceptance not modelled yet, same scope as the BFS engine).
 Per-unit bases: ``base_mva`` and each node's nominal line-to-line kV.
 """
@@ -85,6 +85,6 @@ def power_mismatch(ybus: sparse.csr_matrix, v: np.ndarray, s_spec: np.ndarray) -
     """AC balance residual per node, S_calc - S_spec = V * conj(Y V) - S_spec (per unit).
 
     Zero at an exact solution for every non-slack node; this is the physics term reused
-    by the spec 006 surrogate and the residual reported by the Newton-Raphson engine.
+    by the spec 029 surrogate and the residual reported by the Newton-Raphson engine.
     """
     return v * np.conj(ybus @ v) - s_spec

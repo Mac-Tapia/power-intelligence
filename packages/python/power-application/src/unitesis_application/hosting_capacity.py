@@ -1,5 +1,5 @@
 """Use case: remaining capacity per bus (spec 002 T002-03) screened by a surrogate and
-certified by the own solver (spec 006 T006-06, ADR-0002).
+certified by the own solver (spec 029 T029-S06, ADR-0002).
 
 For each candidate bus the surrogate sweeps all load levels at once; the solver then checks
 the boundary (accepted level passes, next level fails). If the surrogate is wrong, the limit

@@ -1,4 +1,4 @@
-"""Own Newton-Raphson AC power flow (spec 004-B1): radial or meshed, balanced, one slack.
+"""Own Newton-Raphson AC power flow (spec 008-B1): radial or meshed, balanced, one slack.
 
 Polar formulation on the shared Y-bus (``ybus.py``), sparse Jacobian, flat start.
 Convergence is declared only when the AC power-balance residual of every non-slack node

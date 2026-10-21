@@ -1,4 +1,4 @@
-"""Two-winding transformers (spec 004-B2): domain, identity, topology, solver, contrast."""
+"""Two-winding transformers (spec 008-B2): domain, identity, topology, solver, contrast."""
 
 import json
 import sys

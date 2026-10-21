@@ -1,4 +1,4 @@
-"""Own Newton-Raphson engine, shared Y-bus and meshed topology (spec 004, T004-B1)."""
+"""Own Newton-Raphson engine, shared Y-bus and meshed topology (spec 008, T008-B1)."""
 
 import json
 import sys

@@ -8,13 +8,16 @@ Lo local (país, empresa, CRS, zona horaria, moneda, frecuencia, normas y fuente
 
 | Capa | Estado |
 |---|---|
-| Núcleo eléctrico (dominio, topología, BFS y Newton-Raphson propios, contraste pandapower, evidencia) | operativo para redes equilibradas radiales y malladas (specs 004‑A y 004‑B1; benchmark IEEE 33) |
-| Nueva carga y alternativas de conductor con VPN | operativos (specs 002 y 005) |
-| CLI, API local y workstation web | operativos, solo local (sin autenticación; spec 009) |
-| Ingesta de redes reales | TXT CYME ASCII operativo (93 alimentadores leídos, 44 validados); MDB y VNR-GIS pendientes (spec 001) |
-| Datasets por caso y controles de calidad | controles operativos; datasets gold pendientes (spec 029) |
-| GNN/PINN (006) | dataset candidato desde la red real (44 alimentadores, 2 173 muestras etiquetadas y contrastadas), métrica y línea base física operativas; el GNN requiere autorizar `torch` |
-| MADRL, LLM | specs 007/008 listas; sin código |
+| Núcleo eléctrico (dominio, topología, BFS y Newton-Raphson propios, transformadores, contraste pandapower, evidencia) | operativo para redes equilibradas radiales y malladas (specs 006 y 008: 008-A, 008-B1, 008-B2; benchmark IEEE 33) |
+| Nueva carga, alternativas de conductor con VPN, capacidad remanente y Pareto | operativos (specs 002, 018 y 019) |
+| CLI, API local y workstation web | locales, con perfil bearer opcional (specs 004 y 005) |
+| Jobs y recuperación | jobs durables locales; recuperación distribuida y producción pendientes (specs 007 y 031) |
+| Ingesta de redes reales | TXT CYME ASCII operativo (93 alimentadores leídos, 44 validados); MDB y VNR-GIS pendientes (specs 001 y 037) |
+| Datasets por caso y controles de calidad | controles operativos; datasets gold pendientes (spec 035) |
+| GNN/PINN | dataset candidato desde la red real, línea base física y GraphSAGE unitario; entrenamiento pendiente de gold (spec 029) |
+| MADRL, LLM | spec 030; sin código |
+
+Las 40 specs siguen la numeración del plan maestro ([equivalencias con la anterior](docs/traceability/SPEC-ID-MIGRATION.md)).
 
 Arquitectura y estado por capacidad: [`docs/architecture/ARCHITECTURE-INTEGRAL.md`](docs/architecture/ARCHITECTURE-INTEGRAL.md) · mapa de specs: [`docs/traceability/FEATURE-MAP.md`](docs/traceability/FEATURE-MAP.md) · contratos: [`docs/architecture/CONTRACTS-AND-EVIDENCE.md`](docs/architecture/CONTRACTS-AND-EVIDENCE.md).
 
@@ -53,7 +56,7 @@ Códigos de salida: 0 correcto · 2 entrada inválida o en cuarentena · 3 motor
 | `specs/` | una carpeta por capacidad (`spec.md` + `tasks.md`) |
 | `docs/` | arquitectura, ADR, contratos, trazabilidad, regulación, biblioteca científica, agentes, desarrollo |
 | `fixtures/`, `tests/` | casos sintéticos y suites `unit`, `contract`, `integration`, `security`, `governance` |
-| `infra/db/postgres` | esquema SQL append-only (adaptador PostgreSQL: spec 009) |
+| `infra/db/postgres` | esquema SQL append-only (adaptador PostgreSQL: spec 007) |
 | `datasets/quality` | evidencias de auditoría de fuentes (solo métricas) |
 | `local-data/` | fuera de Git: fuentes de referencia del caso y salidas locales |
 

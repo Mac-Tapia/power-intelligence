@@ -1,4 +1,4 @@
-"""Power-flow scenario dataset, surrogate metrics and physics baseline (spec 006 T006-01..03)."""
+"""Power-flow scenario dataset, surrogate metrics and physics baseline (spec 029 T029-S01..03)."""
 
 import sys
 import tempfile

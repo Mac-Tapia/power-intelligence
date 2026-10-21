@@ -28,6 +28,8 @@ docs/scientific-evidence/
   modules/                       <- 18 síntesis técnicas por dominio
   agent-queries/                 <- consultas sugeridas y playbooks
   catalog.json                   <- índice complementario (metadatos)
+  UPDATED-REFERENCES.md          <- 21 fuentes prioritarias verificadas (21/10/2026) y estado del catálogo
+  prioritized-references.json    <- las mismas fuentes prioritarias en formato estructurado
 ```
 
 ## Lectura obligatoria para cualquier agente

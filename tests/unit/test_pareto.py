@@ -1,4 +1,4 @@
-"""Pareto front of feasible alternatives and declared emission factor (spec 005 T005-04)."""
+"""Pareto front of feasible alternatives and declared emission factor (spec 019 T019-E04)."""
 
 import json
 import sys

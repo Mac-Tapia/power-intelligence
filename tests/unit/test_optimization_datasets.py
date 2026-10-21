@@ -1,4 +1,4 @@
-"""Conductor screening on cloned scenarios and leakage-safe datasets (specs 002/005/029)."""
+"""Conductor screening on cloned scenarios and leakage-safe datasets (specs 002/018/035)."""
 
 import json
 import sys

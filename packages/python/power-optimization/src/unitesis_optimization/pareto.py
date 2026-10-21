@@ -1,4 +1,4 @@
-"""Pareto front for multi-objective alternatives (spec 005, AC-005-03).
+"""Pareto front for multi-objective alternatives (spec 018, AC-018-E03).
 
 Only alternatives already confirmed technically feasible are candidates. Objectives are
 declared with their direction; an alternative is dominated when another one is at least as

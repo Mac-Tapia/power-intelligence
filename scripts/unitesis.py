@@ -311,7 +311,7 @@ def build_parser() -> argparse.ArgumentParser:
                    help="import non three-phase feeders as a declared approximation")
     s.set_defaults(func=cmd_import_cyme)
 
-    s = sub.add_parser("build-pf-dataset", help="labelled power-flow scenarios (spec 006)")
+    s = sub.add_parser("build-pf-dataset", help="labelled power-flow scenarios (spec 029)")
     s.add_argument("--case", required=True)
     s.add_argument("--networks-dir", type=Path, required=True, help="import-cyme output")
     s.add_argument("--out-dir", type=Path, required=True)
@@ -324,7 +324,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--limit-feeders", type=int)
     s.set_defaults(func=cmd_build_pf_dataset)
 
-    s = sub.add_parser("eval-pf-baseline", help="score the physics baseline (AC-006-06)")
+    s = sub.add_parser("eval-pf-baseline", help="score the physics baseline (AC-029-S06)")
     s.add_argument("--networks-dir", type=Path, required=True)
     s.add_argument("--dataset-dir", type=Path, required=True)
     s.add_argument("--output", type=Path, required=True)

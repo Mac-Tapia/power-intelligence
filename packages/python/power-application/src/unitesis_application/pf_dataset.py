@@ -1,4 +1,4 @@
-"""Use case: real feeder snapshots -> labelled power-flow scenarios (spec 006 T006-01..03).
+"""Use case: real feeder snapshots -> labelled power-flow scenarios (spec 029 T029-S01..03).
 
 Input: the output folder of ``import_cyme_export`` (or any importer with the same report).
 For each validated feeder and scenario the own Newton-Raphson engine produces the labels;
@@ -157,7 +157,7 @@ def build_pf_dataset(case: ApplicationCase, networks_dir: str | Path, out_dir: s
         "engine": {"name": engine.name, "version": engine.version()},
         "reference": {"name": reference.name},
         "code_tree_sha256": sha256(canonical(code_manifest())).hexdigest(),
-        "split_policy": "by feeder (AC-006-01); a feeder never spans two partitions",
+        "split_policy": "by feeder (AC-029-S01); a feeder never spans two partitions",
         "split_counts": {s: sum(f["split"] == s for f in feeders)
                          for s in ("train", "valid", "test")},
         "totals": totals, "max_label_residual_pu": worst,

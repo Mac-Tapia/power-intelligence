@@ -1,7 +1,7 @@
-"""Evaluation of power-flow surrogates against solver labels (spec 006, AC-006-02/03/06).
+"""Evaluation of power-flow surrogates against solver labels (spec 029, AC-029-S02/03/06).
 
 Any surrogate (physics baseline, GNN, PINN) is scored with the same function so results are
-comparable. Gate AC-006-02: p95 absolute voltage error <= 0.005 pu and recall >= 0.99 for
+comparable. Gate AC-029-S02: p95 absolute voltage error <= 0.005 pu and recall >= 0.99 for
 under-voltage violations; with too few true violations in the evaluated set the gate is
 reported as ``insufficient_violations`` instead of passing.
 """

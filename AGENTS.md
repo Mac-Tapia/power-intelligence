@@ -10,7 +10,7 @@ Antes de cambiar código, leer `.specify/memory/constitution.md`, `docs/architec
 3. **Verdad eléctrica** (ADR-0002). GNN/PINN, MADRL y LLM proponen o criban; el solver propio confirma con contraste independiente y la aceptación es humana. Nunca afirmar que un cálculo es correcto sin benchmark y tolerancias declaradas (`docs/architecture/CONTRACTS-AND-EVIDENCE.md`).
 4. **Sin valores inventados.** Los parámetros faltantes van a cuarentena y quedan visibles. La proximidad GIS no implica conectividad (ADR-0003).
 5. **Dominio puro.** `power-domain` usa solo la stdlib; no importar FastAPI, SQL, Torch, GIS ni motores.
-6. **Datos.** Entrenar solo con datasets gold de la spec 029 por `case_id`. Las fuentes `method_reference` nunca son evidencia de un caso. Los valores de clientes no entran en Git.
+6. **Datos.** Entrenar solo con datasets gold de la spec 035 por `case_id`. Las fuentes `method_reference` nunca son evidencia de un caso. Los valores de clientes no entran en Git.
 7. **Spec primero.** Toda capacidad nueva empieza con spec, criterios y tareas; marcar las tareas solo con evidencia ejecutada.
 8. **Sin historia en el árbol.** No crear documentos versionados (`*_V5.md`, planes superados, logs de operaciones) ni carpetas vacías; el historial vive en Git.
 9. **Dependencias.** No instalar ni actualizar dependencias, ni descargar datos confidenciales, sin autorización explícita. Las versiones están en `requirements/dev.txt`.

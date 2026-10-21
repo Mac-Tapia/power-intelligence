@@ -33,30 +33,9 @@ Las tareas genéricas T207 a T210 se califican por área: pruebas negativas, evi
 
 **Conclusión:** el proyecto **no cumple todavía el plan maestro completo**. Cumple de forma verificable el núcleo eléctrico determinista, la ingesta real CYME, la cadena de evidencia, el gobierno de agentes y los bloqueos regulatorios. Están **sin implementar** DER/BESS/EV (028), MARL/LLM (030), cartera (033), transmisión (034), P2P/ledger/mercado (011-013), GraphRAG (014), frontend React, OIDC, cortocircuito y confiabilidad.
 
-## Conflicto de numeración (decisión necesaria)
+## Numeración (resuelta el 21/10/2026)
 
-El plan maestro reutiliza IDs que en el proyecto activo significan otra cosa. Equivalencias:
-
-| Plan maestro | Spec activa equivalente |
-|---|---|
-| 004 fullstack-runtime | 009 industrialización (local) + `apps/` |
-| 005 identity-tenant | 009 (perfil bearer local) |
-| 006 canonical-electrical-model | 004 (dominio) |
-| 007 durable-jobs | 009 (jobs SQLite) |
-| 008 ac-solvers-and-validation | 004 motores |
-| 009 scenario-time-model | 002/006 (parcial) |
-| 016 demand-forecast | 029 datasets + `power-sciml` |
-| 017 short-circuit-quality | 004-D (pendiente) |
-| 018 planning-alternatives / 019 multiobjective | 005 expansión |
-| 028 DER/BESS/EV | 005-03 / 007 |
-| 029 sciml-pinn-gnn | 006 |
-| 030 marl-llm | 007 + 008 |
-| 031 security-observability | 009 |
-| 032 reporting / 038 benchmarks | contratos de evidencia / `benchmarks/` |
-| 035 data-federation / 037 format-interop | 029 / 001-T010-T012 |
-| 000-003, 010-015, 020-027 | mismo ID y alcance |
-
-Mientras convivan las dos numeraciones, "spec 006" es ambiguo. Recomendación: **adoptar la numeración del plan maestro como canónica** y migrar las tareas y la evidencia ya hechas a esos IDs, con una tabla de redirección. Es un cambio que afecta a varios agentes, así que debe hacerse una sola vez y coordinado.
+El usuario aprobó adoptar la numeración del plan maestro como canónica. Las 40 specs viven en `specs/` con el avance previo incorporado, y las equivalencias están en [`SPEC-ID-MIGRATION.md`](SPEC-ID-MIGRATION.md). La copia `unitesis-power-intelligence/` se eliminó tras comprobar que su contenido útil (las specs) ya estaba consolidado. Los estados de esta matriz se aplicaron a las casillas de cada `tasks.md`.
 
 ## Módulos (código real)
 
@@ -87,7 +66,7 @@ Mientras convivan las dos numeraciones, "spec 006" es ambiguo. Recomendación: *
 
 ## Siguientes pasos por impacto
 
-1. Decidir la numeración canónica y consolidar las specs del plan maestro en el repositorio único.
+1. ~~Decidir la numeración canónica y consolidar las specs del plan maestro.~~ Hecho (ver arriba).
 2. G3: trifásico desbalanceado (desbloquea 49 alimentadores reales), cortocircuito y benchmark desbalanceado.
 3. G5-029: entrenar el GNN informado por la física (PyTorch ya disponible) y compararlo con la línea base.
 4. G0/G1: integrar router y mapa (003), cerrar la UI autenticada que falla y commitear el lote de plataforma.

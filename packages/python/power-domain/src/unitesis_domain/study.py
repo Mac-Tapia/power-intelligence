@@ -1,4 +1,4 @@
-"""StudyRequest / StudyResult contracts (spec 004; CONTRACTS-AND-EVIDENCE).
+"""StudyRequest / StudyResult contracts (spec 008; CONTRACTS-AND-EVIDENCE).
 
 Source, model, request and result carry distinct hashes. Execution time is never part
 of an identity. A result's status is explicit; success is never inferred from

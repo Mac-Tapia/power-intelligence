@@ -1,4 +1,4 @@
-"""Ingestion quarantine, SQL repository, evidence read-back and custody (specs 001/004)."""
+"""Ingestion quarantine, SQL repository, evidence read-back and custody (specs 001/008)."""
 
 import json
 import sqlite3

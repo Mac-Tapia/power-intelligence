@@ -89,6 +89,11 @@ for line in feature_map.splitlines():
     elif re.fullmatch(r"\d{3}", cell):
         mapped.add(cell)
 spec_dirs = {p.name[:3]: p for p in (ROOT / "specs").iterdir() if p.is_dir()}
+spec_names = [p.name for p in (ROOT / "specs").iterdir() if p.is_dir()]
+problems += [
+    f"spec ID {i} used by more than one folder"
+    for i in sorted({n[:3] for n in spec_names if sum(m[:3] == n[:3] for m in spec_names) > 1})
+]
 problems += [
     f"FEATURE-MAP lists {i} but specs/ has no folder" for i in sorted(mapped - set(spec_dirs))
 ]

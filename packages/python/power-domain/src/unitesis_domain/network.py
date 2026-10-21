@@ -1,4 +1,4 @@
-"""Neutral electrical model and ``ElectricalSnapshot`` v2 (spec 004; CONTRACTS-AND-EVIDENCE).
+"""Neutral electrical model and ``ElectricalSnapshot`` v2 (spec 006; CONTRACTS-AND-EVIDENCE).
 
 Semantics adapted from ``flujos/solvers/base.py`` and ``grid-bridge/domain/elements.py``
 but rewritten on the standard library: no Pydantic, no solver imports.
@@ -136,7 +136,7 @@ class Slack:
 
 @dataclass(frozen=True, slots=True)
 class Transformer:
-    """Two-winding transformer, balanced positive sequence (spec 004-B2).
+    """Two-winding transformer, balanced positive sequence (spec 008-B2).
 
     Series impedance from the short-circuit test (``vk_percent``, ``vkr_percent`` on
     ``sn_mva``); rated voltages may differ from the bus nominal voltages (off-nominal

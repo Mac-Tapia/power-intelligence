@@ -1,10 +1,10 @@
-"""Energized network for general solvers (spec 004-B): meshes allowed, ideal switches fused.
+"""Energized network for general solvers (spec 008-B): meshes allowed, ideal switches fused.
 
 Closed switches merge their buses into one electrical node (zero impedance); open switches
 and out-of-service lines stay in the inventory as excluded. The energized part is the
-component that contains the slack. Rejected (AC-004-01, never simplified silently):
+component that contains the slack. Rejected (AC-008-A01, never simplified silently):
 more than one slack, lines or switches joining different nominal voltages (transformers
-arrive with 004-B2) and loads on de-energized islands.
+arrive with 008-B2) and loads on de-energized islands.
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ class EnergizedNetwork:
     excluded: tuple[str, ...]                 # open switches / out-of-service elements
     deenergized_buses: tuple[str, ...]
     meshed: bool
-    transformers: tuple[Transformer, ...] = ()   # in-service, energized (004-B2)
+    transformers: tuple[Transformer, ...] = ()   # in-service, energized (008-B2)
 
 
 def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
@@ -41,7 +41,7 @@ def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
         if kv_a != kv_b:
             bid = br.line_id if isinstance(br, Line) else br.switch_id
             raise TopologyError(f"{bid}: joins {kv_a} kV and {kv_b} kV; transformers are "
-                                "required (004-B2)")
+                                "required (008-B2)")
 
     trafos = [t for t in snapshot.transformers if t.in_service]
     excluded = sorted([*excluded, *(t.transformer_id for t in snapshot.transformers

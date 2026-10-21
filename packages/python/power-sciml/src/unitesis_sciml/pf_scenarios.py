@@ -1,10 +1,10 @@
-"""Load scenarios and leakage-safe splits for the physics-informed surrogate (spec 006).
+"""Load scenarios and leakage-safe splits for the physics-informed surrogate (spec 029).
 
 Scenario demand is an explicit, recorded assumption, never presented as measurement:
 ``P_i = connected_kVA_i / 1000 * u * e_i * pf_i`` with a feeder-wide utilisation ``u``
 drawn from ``U(u_min, u_max)`` and a per-load lognormal factor ``e_i`` (median 1, ``sigma``),
 ``Q_i = P_i * tan(acos(pf_i))`` using the source power factor. Splits are by feeder
-(AC-006-01): a feeder's scenarios never appear in two partitions.
+(AC-029-S01): a feeder's scenarios never appear in two partitions.
 """
 
 from __future__ import annotations

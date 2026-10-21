@@ -1,4 +1,4 @@
-"""Power-flow benchmark (spec 004, AC-004-03): own engines vs the independent reference.
+"""Power-flow benchmark (spec 008, AC-008-A03): own engines vs the independent reference.
 
 Cases: synthetic 6-bus feeder, IEEE 33-bus radial and IEEE 33-bus meshed (ties closed).
 Publishes verified evidence with engine versions, comparison status, maximum differences,
@@ -78,7 +78,7 @@ def main() -> int:
                "all_applicable_passed": ok, "results": rows,
                "note": "Balanced positive-sequence scope; series lines without shunt "
                        "susceptance; transformers without magnetising branch. Not an "
-                       "unbalanced three-phase benchmark (004-C)."}
+                       "unbalanced three-phase benchmark (008-C)."}
     publish_evidence(OUT, payload)
     for r in rows:
         md = r["max_differences"] or {}

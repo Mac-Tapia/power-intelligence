@@ -23,7 +23,7 @@ class PowerFlowEngine(Protocol):
 
 @runtime_checkable
 class SurrogateEngine(Protocol):
-    """Fast approximate power flow (spec 006). Screens only; never certifies (ADR-0002)."""
+    """Fast approximate power flow (spec 029). Screens only; never certifies (ADR-0002)."""
 
     name: str
 

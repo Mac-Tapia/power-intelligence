@@ -1,4 +1,4 @@
-"""Physics baseline for the power-flow surrogate (spec 006, AC-006-06), no training needed.
+"""Physics baseline for the power-flow surrogate (spec 029, AC-029-S06), no training needed.
 
 First-order linearisation on the shared Y-bus around the no-load profile V0:
 ``V ≈ V0 + Y_bb^-1 conj(S_b / V0)`` for non-slack nodes (valid for radial and meshed
@@ -75,7 +75,7 @@ def evaluate_baseline(networks_dir: str | Path, dataset_dir: str | Path, output:
         "overall": score_voltages(np.concatenate(trues), np.concatenate(preds),
                                   v_min_pu=v_min_pu),
         "per_feeder": per_feeder,
-        "note": "Physics baseline (AC-006-06). Learned surrogates must beat it on the same "
+        "note": "Physics baseline (AC-029-S06). Learned surrogates must beat it on the same "
                 "split; any decision is confirmed by the own solver (ADR-0002).",
     }
     return publish_evidence(output, payload)

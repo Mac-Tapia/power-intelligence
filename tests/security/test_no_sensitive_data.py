@@ -1,4 +1,4 @@
-"""AC-029-07: customer values, identifiers and local data never enter Git.
+"""AC-035-D07: customer values, identifiers and local data never enter Git.
 
 Uses structural patterns only (real names or values must not be written into this test).
 """

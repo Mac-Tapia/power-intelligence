@@ -1,4 +1,4 @@
-"""ElectricalSnapshot v2 identity and radial topology (spec 004, A05)."""
+"""ElectricalSnapshot v2 identity and radial topology (spec 008, A05)."""
 
 import sys
 import unittest

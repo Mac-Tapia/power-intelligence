@@ -4,7 +4,7 @@ Each check returns a plain report with a ``status`` and the numbers behind it, s
 can be re-run and compared. Checks never repair data: a failing source is quarantined or
 rebuilt from its raw origin with an explicit, recorded transformation.
 
-Defects these gates were written for (review 2026-10-20, spec 029):
+Defects these gates were written for (review 2026-10-20, spec 035):
 
 * ``forecast_leakage``: "predicted" columns equal to the future actual value (an oracle).
 * ``monthly_split_consistency``: a total column shifted k months against its components.

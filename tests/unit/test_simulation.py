@@ -1,4 +1,4 @@
-"""Radial BFS physics, pandapower agreement and comparison gates (spec 004, F04, A07)."""
+"""Radial BFS physics, pandapower agreement and comparison gates (spec 008, F04, A07)."""
 
 import cmath
 import sys
