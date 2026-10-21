@@ -154,3 +154,115 @@ class StudyResult:
     @property
     def result_sha256(self) -> str:
         return _digest(self.as_dict())
+
+
+UNBALANCED_RESULT_SCHEMA = "unitesis.unbalanced-study-result/v1"
+
+
+@dataclass(frozen=True, slots=True)
+class PhaseVoltage:
+    """Line-to-neutral voltage of one phase; ``vm_pu`` on the bus nominal kV / sqrt(3)."""
+
+    bus_id: str
+    phase: str
+    vm_pu: float
+    va_deg: float
+
+    def __post_init__(self) -> None:
+        if self.phase not in ("A", "B", "C"):
+            raise ValueError(f"{self.bus_id}: invalid phase {self.phase!r}")
+        require_finite(self.vm_pu, f"{self.bus_id}.{self.phase}.vm_pu")
+        require_finite(self.va_deg, f"{self.bus_id}.{self.phase}.va_deg")
+
+
+@dataclass(frozen=True, slots=True)
+class PhaseBranchFlow:
+    """Current and power entering a branch at its from-side, per phase."""
+
+    branch_id: str
+    from_bus: str
+    to_bus: str
+    phase: str
+    i_from_a: float
+    i_to_a: float
+    p_from_mw: float
+    q_from_mvar: float
+    loading_percent: float | None = None
+
+    def __post_init__(self) -> None:
+        for name in ("i_from_a", "i_to_a", "p_from_mw", "q_from_mvar"):
+            require_finite(getattr(self, name), f"{self.branch_id}.{self.phase}.{name}")
+
+
+@dataclass(frozen=True, slots=True)
+class BranchLoss:
+    branch_id: str
+    p_loss_mw: float
+    q_loss_mvar: float
+
+
+@dataclass(frozen=True, slots=True)
+class VoltageUnbalance:
+    """IEC voltage unbalance factor |V2| / |V1| of a three-phase bus, in percent."""
+
+    bus_id: str
+    vuf_percent: float
+
+
+@dataclass(frozen=True, slots=True)
+class UnbalancedStudyResult:
+    """Phase-frame power flow result (spec 008-C); separate from the balanced contract."""
+
+    request_sha256: str
+    snapshot_sha256: str
+    scenario_id: str
+    engine: str
+    engine_version: str
+    status: StudyStatus
+    converged: bool = False
+    iterations: int = 0
+    residual_mva: float | None = None          # max nodal power mismatch at the solution
+    voltages: tuple[PhaseVoltage, ...] = ()
+    flows: tuple[PhaseBranchFlow, ...] = ()
+    losses: tuple[BranchLoss, ...] = ()
+    unbalance: tuple[VoltageUnbalance, ...] = ()
+    slack_p_mw: float | None = None
+    slack_q_mvar: float | None = None
+    total_load_p_mw: float | None = None
+    total_load_q_mvar: float | None = None
+    total_loss_p_mw: float | None = None
+    total_loss_q_mvar: float | None = None
+    excluded_elements: tuple[str, ...] = ()
+    messages: tuple[str, ...] = ()
+
+    def __post_init__(self) -> None:
+        if self.status not in ("computed", "failed", "unavailable"):
+            raise ValueError(f"invalid status {self.status!r}")
+        if self.status == "computed" and (not self.converged or not self.voltages):
+            raise ValueError("a computed result requires convergence and phase voltages")
+
+    @property
+    def balance_mismatch_mva(self) -> float | None:
+        """|S_slack - S_load - S_loss| with the loss summed over branches."""
+        vals = (self.slack_p_mw, self.slack_q_mvar, self.total_load_p_mw,
+                self.total_load_q_mvar, self.total_loss_p_mw, self.total_loss_q_mvar)
+        if any(v is None for v in vals):
+            return None
+        sp, sq, lp, lq, xp, xq = vals  # type: ignore[misc]
+        return abs(complex(sp - lp - xp, sq - lq - xq))
+
+    def voltage(self, bus_id: str, phase: str) -> PhaseVoltage:
+        for v in self.voltages:
+            if v.bus_id == bus_id and v.phase == phase:
+                return v
+        raise KeyError((bus_id, phase))
+
+    def as_dict(self) -> dict[str, Any]:
+        data = asdict(self)
+        data["schema"] = UNBALANCED_RESULT_SCHEMA
+        data["balance_mismatch_mva"] = self.balance_mismatch_mva
+        return data
+
+    @property
+    def result_sha256(self) -> str:
+        return _digest(self.as_dict())

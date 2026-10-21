@@ -12,7 +12,7 @@ Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/
 | 005 | identity tenant authorization | `005-identity-tenant-authorization` | G0 | 1/12 | parcial: bearer local con tenant |
 | 006 | canonical electrical model | `006-canonical-electrical-model` | G1 | 2/12 | operativo: snapshot v2/v3 |
 | 007 | durable jobs and events | `007-durable-jobs-and-events` | G1 | 3/14 | parcial: jobs durables locales |
-| 008 | ac solvers and validation | `008-ac-solvers-and-validation` | G3 | 5/15 | parcial: BFS, NR y transformadores operativos; desbalanceado pendiente |
+| 008 | ac solvers and validation | `008-ac-solvers-and-validation` | G3 | 5/15 | parcial: BFS, NR, transformadores y trifásico desbalanceado (IEEE 13) operativos; IEEE 123 y Dyn pendientes |
 | 009 | scenario time model | `009-scenario-time-model` | G2 | 1/10 | parcial: escenarios de carga en datasets PF |
 | 010 | electrical graph | `010-electrical-graph` | G1 | 3/17 | scaffold |
 | 011 | p2p federation | `011-p2p-federation` | G6 | 0/17 | scaffold |

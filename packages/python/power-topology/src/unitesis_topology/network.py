@@ -12,9 +12,9 @@ from __future__ import annotations
 from collections import deque
 from dataclasses import dataclass
 
-from unitesis_domain import ElectricalSnapshot, Line, Transformer
+from unitesis_domain import ElectricalSnapshot, Line, Transformer, VoltageRegulator
 
-from .radial import TopologyError, _active_branches
+from .radial import TopologyError, _active_branches, require_balanced
 
 
 @dataclass(frozen=True, slots=True)
@@ -28,9 +28,14 @@ class EnergizedNetwork:
     deenergized_buses: tuple[str, ...]
     meshed: bool
     transformers: tuple[Transformer, ...] = ()   # in-service, energized (008-B2)
+    regulators: tuple[VoltageRegulator, ...] = ()  # in-service, energized (008-C)
 
 
-def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
+def build_energized_network(snapshot: ElectricalSnapshot, *,
+                            phase_frame: bool = False) -> EnergizedNetwork:
+    """``phase_frame=True`` is reserved for the three-phase engine (008-C)."""
+    if not phase_frame:
+        require_balanced(snapshot)
     if len(snapshot.slacks) != 1:
         raise TopologyError("exactly one slack is supported until multi-source studies (004-B)")
     slack = snapshot.slacks[0].bus
@@ -44,8 +49,14 @@ def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
                                 "required (008-B2)")
 
     trafos = [t for t in snapshot.transformers if t.in_service]
+    regs = [r for r in snapshot.regulators if r.in_service]
+    for reg in regs:
+        if snapshot.bus(reg.from_bus).nominal_kv != snapshot.bus(reg.to_bus).nominal_kv:
+            raise TopologyError(f"{reg.regulator_id}: a regulator joins buses of equal "
+                                "nominal voltage")
     excluded = sorted([*excluded, *(t.transformer_id for t in snapshot.transformers
-                                    if not t.in_service)])
+                                    if not t.in_service),
+                       *(r.regulator_id for r in snapshot.regulators if not r.in_service)])
     for tr in trafos:
         for bus, vn in ((tr.hv_bus, tr.vn_hv_kv), (tr.lv_bus, tr.vn_lv_kv)):
             ratio = vn / snapshot.bus(bus).nominal_kv
@@ -59,6 +70,9 @@ def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
     for tr in trafos:
         adj[tr.hv_bus].add(tr.lv_bus)
         adj[tr.lv_bus].add(tr.hv_bus)
+    for reg in regs:
+        adj[reg.from_bus].add(reg.to_bus)
+        adj[reg.to_bus].add(reg.from_bus)
     energized = {slack}
     queue = deque([slack])
     while queue:
@@ -95,8 +109,11 @@ def build_energized_network(snapshot: ElectricalSnapshot) -> EnergizedNetwork:
         key=lambda ln: ln.line_id))
     tr_in = tuple(sorted((t for t in trafos if t.hv_bus in energized),
                          key=lambda t: t.transformer_id))
+    reg_in = tuple(sorted((r for r in regs if r.from_bus in energized),
+                          key=lambda r: r.regulator_id))
     pairs = [(ln.from_bus, ln.to_bus) for ln in lines] + [(t.hv_bus, t.lv_bus) for t in tr_in]
+    pairs += [(r.from_bus, r.to_bus) for r in reg_in]
     edges = {frozenset((node_of[a], node_of[b])) for a, b in pairs if node_of[a] != node_of[b]}
     meshed = len(pairs) > len(edges) or len(edges) > len(nodes) - 1
     return EnergizedNetwork(slack, tuple(sorted(energized)), node_of, nodes, lines,
-                            tuple(excluded), tuple(deenergized), meshed, tr_in)
+                            tuple(excluded), tuple(deenergized), meshed, tr_in, reg_in)

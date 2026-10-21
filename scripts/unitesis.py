@@ -69,6 +69,18 @@ def _print(data: dict[str, Any]) -> None:
 def cmd_study(a: argparse.Namespace) -> int:
     from unitesis_application.study import engine_by_name, run_study
 
+    if a.engine == "3ph":
+        from unitesis_application.unbalanced_study import run_unbalanced_study
+
+        result = run_unbalanced_study(a.input, a.output, scenario_id=a.scenario)
+        cand = result["candidate"]
+        _print({"status": result["status"], "snapshot_sha256": result["snapshot_sha256"],
+                "iterations": cand["iterations"], "residual_mva": cand["residual_mva"],
+                "comparison": result["comparison"]["status"],
+                "messages": cand["messages"],
+                "evidence": str(Path(a.output).resolve()), "technical_acceptance": False})
+        return EXIT_UNAVAILABLE if result["status"] == "computed" else EXIT_NOT_CONVERGED
+
     result = run_study(a.input, a.output, scenario_id=a.scenario,
                        candidate=engine_by_name(a.engine))
     comparison = result["comparison"]
@@ -309,9 +321,12 @@ def build_parser() -> argparse.ArgumentParser:
         sp.add_argument("--input", type=Path, required=True)
         sp.add_argument("--output", type=Path, required=True)
 
-    def engine(sp: argparse.ArgumentParser) -> None:
-        sp.add_argument("--engine", choices=("nr", "bfs"), default="nr",
-                        help="own engine: nr = Newton-Raphson (radial/meshed), bfs = radial sweep")
+    def engine(sp: argparse.ArgumentParser, three_phase: bool = False) -> None:
+        sp.add_argument("--engine", choices=("nr", "bfs", "3ph") if three_phase else ("nr", "bfs"),
+                        default="nr",
+                        help="own engine: nr = Newton-Raphson (radial/meshed), bfs = radial "
+                             "sweep" + (", 3ph = three-phase unbalanced (008-C)"
+                                        if three_phase else ""))
 
     def criteria(sp: argparse.ArgumentParser) -> None:
         sp.add_argument("--case", help="take planning criteria from this application case")
@@ -321,7 +336,7 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("study", help="power flow + independent comparison + evidence")
     io(s)
     s.add_argument("--scenario", default="base")
-    engine(s)
+    engine(s, three_phase=True)
     s.set_defaults(func=cmd_study)
 
     s = sub.add_parser("new-load", help="new customer connection on a cloned scenario")

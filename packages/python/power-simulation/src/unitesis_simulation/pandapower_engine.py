@@ -12,6 +12,7 @@ from typing import Any
 
 from unitesis_domain import BranchResult, BusResult, ElectricalSnapshot, StudyRequest, StudyResult
 from unitesis_ports import EngineUnavailable
+from unitesis_topology import TopologyError, require_balanced
 
 ENGINE_NAME = "pandapower-nr"
 _UNBOUNDED_KA = 1e6  # pandapower requires max_i_ka; loading is then reported as None
@@ -39,6 +40,10 @@ class PandapowerEngine:
         if request.snapshot_sha256 != snapshot.content_sha256:
             return StudyResult(**base, status="failed",
                                messages=("request snapshot hash does not match model",))
+        try:
+            require_balanced(snapshot)
+        except TopologyError as exc:
+            return StudyResult(**base, status="failed", messages=(f"unsupported topology: {exc}",))
         net = pp.create_empty_network(f_hz=snapshot.frequency_hz, sn_mva=1.0)
         idx = {b.bus_id: pp.create_bus(net, vn_kv=b.nominal_kv, name=b.bus_id)
                for b in snapshot.buses}

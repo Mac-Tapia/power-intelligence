@@ -1,0 +1,232 @@
+{
+ "schema": "unitesis.benchmark-reference/1",
+ "case": "ieee13-kersting",
+ "reference": "GridLAB-D test_IEEE_13_NR.glm complex_assert (IEEE PES published voltages); tolerance as set by GridLAB-D per node and phase",
+ "voltage_unit": "V line-to-neutral (480 V bus: 634)",
+ "nodes": [
+  {
+   "bus": "611",
+   "phase": "C",
+   "vm_v": 2339.0,
+   "va_deg": 115.78,
+   "tolerance_v": 8.0
+  },
+  {
+   "bus": "632",
+   "phase": "A",
+   "vm_v": 2452.29,
+   "va_deg": -2.49,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "632",
+   "phase": "B",
+   "vm_v": 2502.7000000000003,
+   "va_deg": -121.72000000000001,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "632",
+   "phase": "C",
+   "vm_v": 2443.82,
+   "va_deg": 117.83,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "633",
+   "phase": "A",
+   "vm_v": 2445.01,
+   "va_deg": -2.56,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "633",
+   "phase": "B",
+   "vm_v": 2498.15,
+   "va_deg": -121.77000000000001,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "633",
+   "phase": "C",
+   "vm_v": 2437.54,
+   "va_deg": 117.83,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "634",
+   "phase": "A",
+   "vm_v": 275.47,
+   "va_deg": -3.2299999999999995,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "634",
+   "phase": "B",
+   "vm_v": 283.16,
+   "va_deg": -122.22,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "634",
+   "phase": "C",
+   "vm_v": 276.04,
+   "va_deg": 117.35000000000001,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "645",
+   "phase": "B",
+   "vm_v": 2480.67,
+   "va_deg": -121.9,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "645",
+   "phase": "C",
+   "vm_v": 2439.07,
+   "va_deg": 117.86,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "646",
+   "phase": "B",
+   "vm_v": 2476.5,
+   "va_deg": -121.97999999999999,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "646",
+   "phase": "C",
+   "vm_v": 2434.12,
+   "va_deg": 117.90000000000002,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "650",
+   "phase": "A",
+   "vm_v": 2401.7771,
+   "va_deg": 0.0,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "650",
+   "phase": "B",
+   "vm_v": 2401.7771,
+   "va_deg": -119.99999999999999,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "650",
+   "phase": "C",
+   "vm_v": 2401.7771,
+   "va_deg": 119.99999999999999,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "652",
+   "phase": "A",
+   "vm_v": 2363.35,
+   "va_deg": -5.21,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "671",
+   "phase": "A",
+   "vm_v": 2377.78,
+   "va_deg": -5.300000000000001,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "671",
+   "phase": "B",
+   "vm_v": 2528.9399999999996,
+   "va_deg": -122.34,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "671",
+   "phase": "C",
+   "vm_v": 2348.63,
+   "va_deg": 116.02000000000001,
+   "tolerance_v": 8.0
+  },
+  {
+   "bus": "675",
+   "phase": "A",
+   "vm_v": 2362.16,
+   "va_deg": -5.55,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "675",
+   "phase": "B",
+   "vm_v": 2534.68,
+   "va_deg": -122.51999999999998,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "675",
+   "phase": "C",
+   "vm_v": 2344.04,
+   "va_deg": 116.04,
+   "tolerance_v": 8.0
+  },
+  {
+   "bus": "680",
+   "phase": "A",
+   "vm_v": 2377.78,
+   "va_deg": -5.300000000000001,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "680",
+   "phase": "B",
+   "vm_v": 2528.9399999999996,
+   "va_deg": -122.34,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "680",
+   "phase": "C",
+   "vm_v": 2348.63,
+   "va_deg": 116.03000000000002,
+   "tolerance_v": 10.0
+  },
+  {
+   "bus": "684",
+   "phase": "A",
+   "vm_v": 2373.11,
+   "va_deg": -5.32,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "684",
+   "phase": "C",
+   "vm_v": 2343.8,
+   "va_deg": 115.93000000000002,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "692",
+   "phase": "A",
+   "vm_v": 2377.78,
+   "va_deg": -5.300000000000001,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "692",
+   "phase": "B",
+   "vm_v": 2528.9399999999996,
+   "va_deg": -122.34,
+   "tolerance_v": 2.0
+  },
+  {
+   "bus": "692",
+   "phase": "C",
+   "vm_v": 2348.63,
+   "va_deg": 116.02000000000001,
+   "tolerance_v": 8.0
+  }
+ ]
+}

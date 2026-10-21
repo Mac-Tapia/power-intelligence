@@ -19,6 +19,7 @@ for _src in sorted((ROOT / "packages/python").glob("*/src")):
 
 from unitesis_application.alternatives import run_conductor_alternatives  # noqa: E402
 from unitesis_application.study import run_new_load_study, run_study  # noqa: E402
+from unitesis_application.unbalanced_study import run_unbalanced_study  # noqa: E402
 from unitesis_simulation import RadialBFSEngine  # noqa: E402
 
 SCHEMAS = ROOT / "contracts/schemas/json"
@@ -90,6 +91,8 @@ class EvidenceContractTests(unittest.TestCase):
             catalog_path=ROOT / "config/catalogs/conductors/aaac6201_nexans_reference.json",
             basis_path=ROOT / "fixtures/economics/conductor_alternatives_synthetic.json",
             operating_temperature_c=75.0, phase_gmd_m=1.2, reference=ref)
+        cls.unbalanced = run_unbalanced_study(
+            ROOT / "fixtures/networks/ieee13_kersting.json", out / "u.json")
 
     @classmethod
     def tearDownClass(cls):
@@ -98,7 +101,8 @@ class EvidenceContractTests(unittest.TestCase):
     def test_payloads_match_their_contracts(self):
         cases = {"study-evidence.v1.schema.json": self.study,
                  "new-load-evidence.v1.schema.json": self.new_load,
-                 "alternatives-evidence.v1.schema.json": self.alternatives}
+                 "alternatives-evidence.v1.schema.json": self.alternatives,
+                 "unbalanced-study-evidence.v1.schema.json": self.unbalanced}
         for name, payload in cases.items():
             with self.subTest(schema=name):
                 self.assertEqual(validate(payload, load(name)), [])

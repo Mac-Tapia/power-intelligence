@@ -32,14 +32,14 @@
 
 ## Criterios vigentes incorporados (antes spec 004)
 
-**Estado:** 008-A, 008-B1 y 008-B2 operativos; 008-C y 017 pendientes. Paquete dueño: `power-simulation`. Motores propietarios excluidos (ADR-0010).
+**Estado:** 008-A, 008-B1, 008-B2 y 008-C (IEEE 13) operativos; 008-C2/C3 y 017 pendientes. Paquete dueño: `power-simulation`. Motores propietarios excluidos (ADR-0010).
 
 ### Alcances
 
 - **008-A (operativo):** flujo AC radial equilibrado por barrido atrás/adelante; una slack; cargas PQ; líneas serie; interruptores ideales; contraste con pandapower bajo las tolerancias de `docs/architecture/CONTRACTS-AND-EVIDENCE.md`.
 - **008-B1 (operativo):** Newton-Raphson propio sobre la Y-bus compartida, para redes radiales y malladas, con interruptores ideales fusionados.
 - **008-B2 (operativo):** transformadores MT/BT de dos devanados con impedancia, relación, tap y desfase de grupo (sin rama magnetizante).
-- **008-C:** trifásico desbalanceado por fase (A/B/C/N), cargas monofásicas.
+- **008-C (operativo, IEEE 13):** trifásico desbalanceado en marco de fases: matrices de línea reducidas por Kron con admitancia en derivación, reguladores ideales de tap fijo, transformadores YNyn0, cargas ZIP en estrella o delta. Resultado propio `UnbalancedStudyResult` (separado del equilibrado).
 - **017:** cortocircuito IEC 60909 simplificado.
 
 ### Criterios de aceptación

@@ -92,7 +92,7 @@ Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/
 | 005 | identidad, tenant y autorización | `apps/control-api` | — | parcial: bearer local con roles y tenant; OIDC pendiente |
 | 006 | modelo eléctrico canónico | `power-domain` | snapshots v2/v3 | operativo: `ElectricalSnapshot` con identidad numérica estable |
 | 007 | jobs durables y eventos | `power-adapters`, `power-application` | SQLite / PostgreSQL local | parcial: jobs durables y worker; recuperación distribuida pendiente |
-| 008 | solvers AC y validación | `power-simulation`, `power-topology` | snapshots, benchmarks | parcial: BFS, Newton-Raphson (radial/mallado) y transformadores operativos con contraste; trifásico desbalanceado (008-C) pendiente |
+| 008 | solvers AC y validación | `power-simulation`, `power-topology` | snapshots, benchmarks | parcial: BFS, Newton-Raphson (radial/mallado), transformadores y trifásico desbalanceado propio (008-C, IEEE 13 contra valores publicados) operativos; IEEE 123, Dyn y lectura CYME por fase pendientes |
 | 009 | escenarios y modelo temporal | `power-application`, `power-sciml` | perfiles | parcial: escenarios de carga declarados en datasets PF |
 | 010 | grafo eléctrico | `power-graph` | — | scaffold |
 | 011–013 | P2P, ledger, mercado P2P | `power-p2p`, `power-ledger`, `power-market` | — | scaffold |

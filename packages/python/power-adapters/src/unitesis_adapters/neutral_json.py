@@ -27,11 +27,12 @@ from unitesis_domain import (
     SnapshotError,
     Switch,
     Transformer,
+    VoltageRegulator,
 )
 
 INPUT_SCHEMA = "unitesis.network-input/1"
 MANIFEST_SCHEMA = "unitesis.source-manifest/1"
-PARSER = "unitesis-neutral-json/0.2.0"
+PARSER = "unitesis-neutral-json/0.3.0"
 UNITS = {
     "voltage": "kV",
     "length": "km",
@@ -55,18 +56,26 @@ _SPECS: dict[str, tuple[type, tuple[str, ...], tuple[str, ...], str]] = {
             "x_ohm_per_km",
             "in_service",
         ),
-        ("max_current_ka",),
+        ("max_current_ka", "phases", "z_phase_ohm_per_km", "b_phase_us_per_km"),
         "line_id",
     ),
     "switches": (Switch, ("switch_id", "from_bus", "to_bus", "closed"), (), "switch_id"),
-    "loads": (Load, ("load_id", "bus", "p_mw", "q_mvar", "in_service"), (), "load_id"),
+    "loads": (Load, ("load_id", "bus", "p_mw", "q_mvar", "in_service"),
+              ("phases", "connection", "model", "phase_p_mw", "phase_q_mvar"), "load_id"),
     "slacks": (Slack, ("bus", "vm_pu", "angle_deg"), (), "bus"),
     "transformers": (
         Transformer,
         ("transformer_id", "hv_bus", "lv_bus", "sn_mva", "vn_hv_kv", "vn_lv_kv", "vk_percent",
          "vkr_percent", "in_service"),
-        ("tap_pos", "tap_step_percent", "shift_degree"),
+        ("tap_pos", "tap_step_percent", "shift_degree", "vector_group"),
         "transformer_id",
+    ),
+    "regulators": (
+        VoltageRegulator,
+        ("regulator_id", "from_bus", "to_bus", "phases", "tap_positions", "step_percent",
+         "in_service"),
+        (),
+        "regulator_id",
     ),
 }
 
@@ -135,7 +144,8 @@ def build_snapshot(payload: dict[str, Any], source_ref: str) -> IngestionResult:
     quarantine: list[QuarantineRecord] = []
     built: dict[str, list[Any]] = {}
     for coll, (cls, required, optional, id_field) in _SPECS.items():
-        rows = net.get(coll, [] if coll in ("switches", "loads", "transformers") else None)
+        optional_coll = ("switches", "loads", "transformers", "regulators")
+        rows = net.get(coll, [] if coll in optional_coll else None)
         if not isinstance(rows, list):
             quarantine.append(QuarantineRecord("network", coll, "array required", source_ref))
             continue
@@ -189,6 +199,7 @@ def build_snapshot(payload: dict[str, Any], source_ref: str) -> IngestionResult:
             slacks=tuple(built["slacks"]),
             name=payload["source_id"],
             transformers=tuple(built.get("transformers", [])),
+            regulators=tuple(built.get("regulators", [])),
         )
     except (SnapshotError, ValueError) as exc:
         quarantine.append(QuarantineRecord("network", "*", str(exc), source_ref))
@@ -214,7 +225,7 @@ def snapshot_to_payload(snapshot: ElectricalSnapshot, source_id: str, *,
     """Inverse mapping, used to export imported feeders and cloned scenarios."""
     canon = snapshot.canonical()
     network = {k: canon[k] for k in ("buses", "lines", "switches", "loads", "slacks",
-                                     "transformers") if k in canon}
+                                     "transformers", "regulators") if k in canon}
     network["frequency_hz"] = canon["frequency_hz"]
     payload: dict[str, Any] = {"schema": INPUT_SCHEMA, "source_id": source_id, "units": UNITS,
                                "network": network}

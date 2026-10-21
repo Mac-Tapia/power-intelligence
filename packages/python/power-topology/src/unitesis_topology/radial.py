@@ -69,7 +69,16 @@ def energized_components(snapshot: ElectricalSnapshot) -> list[set[str]]:
     return comps
 
 
+def require_balanced(snapshot: ElectricalSnapshot) -> None:
+    """Balanced engines cannot represent phase-frame data; never simplified silently."""
+    ids = snapshot.phase_frame_elements()
+    if ids:
+        shown = ", ".join(ids[:10]) + (f" (+{len(ids) - 10})" if len(ids) > 10 else "")
+        raise TopologyError(f"phase-frame elements need the three-phase engine (008-C): {shown}")
+
+
 def build_radial_tree(snapshot: ElectricalSnapshot) -> RadialTree:
+    require_balanced(snapshot)
     if len(snapshot.slacks) != 1:
         raise TopologyError("exactly one slack is supported in the radial scope")
     if any(t.in_service for t in snapshot.transformers):

@@ -79,10 +79,10 @@ SPEC-007/T207,SPEC-007,G1,Contracts/negative permission tests,parcial,pruebas ne
 SPEC-007/T208,SPEC-007,G1,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
 SPEC-007/T209,SPEC-007,G1,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
 SPEC-007/T210,SPEC-007,G1,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
-SPEC-008/T201,SPEC-008,G3,"Especificar contrato PowerFlowInput/Output incluyendo modelo de fases, slack y unidades.",parcial,StudyRequest/StudyResult + esquemas; sin modelo de fases
+SPEC-008/T201,SPEC-008,G3,"Especificar contrato PowerFlowInput/Output incluyendo modelo de fases, slack y unidades.",cumplida,snapshot v4 por fase; UnbalancedStudyResult; unbalanced-study-evidence.v1
 SPEC-008/T202,SPEC-008,G3,Crear adaptador OpenDSS/DSS-Extensions y motor pandapower donde cobertura aplicable.,parcial,adaptador pandapower; sin OpenDSS
 SPEC-008/T203,SPEC-008,G3,Validar consistencia de datos y faltantes antes de cualquier ejecución del solver.,cumplida,cuarentena y rechazo de alcance antes de resolver
-SPEC-008/T204,SPEC-008,G3,"Ejecutar pruebas feeder de referencia radial, mallado y desbalanceado con tolerancias justificadas.",parcial,"IEEE 33 radial y mallado, MT/BT con trafos, 44 alimentadores reales; desbalanceado pendiente"
+SPEC-008/T204,SPEC-008,G3,"Ejecutar pruebas feeder de referencia radial, mallado y desbalanceado con tolerancias justificadas.",cumplida,"IEEE 33 radial/mallado, MT/BT, IEEE 13 desbalanceado (unbalanced-results.json)"
 SPEC-008/T205,SPEC-008,G3,"Persistir versión solver, hash inputs/snapshot, residuos, iteraciones y flags de convergencia.",cumplida,"versión, hashes, residuo, iteraciones y convergencia en StudyResult/evidencia"
 SPEC-008/T206,SPEC-008,G3,Rechazar reportes con fallas físicas; comparar resultados frente a mediciones donde existan.,parcial,resultados fallidos nunca 'computed'; comparación con mediciones pendiente
 SPEC-008/T207,SPEC-008,G3,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta

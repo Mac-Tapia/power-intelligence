@@ -47,7 +47,8 @@
         "schema": {
           "enum": [
             "unitesis.electrical-snapshot/v2",
-            "unitesis.electrical-snapshot/v3"
+            "unitesis.electrical-snapshot/v3",
+            "unitesis.electrical-snapshot/v4"
           ]
         }
       }

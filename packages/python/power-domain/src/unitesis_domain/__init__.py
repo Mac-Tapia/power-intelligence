@@ -3,6 +3,7 @@
 from .network import (
     SNAPSHOT_SCHEMA,
     SNAPSHOT_SCHEMA_V3,
+    SNAPSHOT_SCHEMA_V4,
     Bus,
     ElectricalSnapshot,
     Line,
@@ -12,20 +13,31 @@ from .network import (
     SnapshotError,
     Switch,
     Transformer,
+    VoltageRegulator,
+    delta_branches,
 )
 from .study import (
+    UNBALANCED_RESULT_SCHEMA,
+    BranchLoss,
     BranchResult,
     BusResult,
     ComparisonTolerances,
+    PhaseBranchFlow,
+    PhaseVoltage,
     SolverSettings,
     StudyRequest,
     StudyResult,
     StudyStatus,
+    UnbalancedStudyResult,
+    VoltageUnbalance,
 )
 
 __all__ = [
     "SNAPSHOT_SCHEMA",
     "SNAPSHOT_SCHEMA_V3",
+    "SNAPSHOT_SCHEMA_V4",
+    "UNBALANCED_RESULT_SCHEMA",
+    "BranchLoss",
     "BranchResult",
     "Bus",
     "BusResult",
@@ -33,6 +45,8 @@ __all__ = [
     "ElectricalSnapshot",
     "Line",
     "Load",
+    "PhaseBranchFlow",
+    "PhaseVoltage",
     "QuarantineRecord",
     "Slack",
     "SnapshotError",
@@ -42,4 +56,8 @@ __all__ = [
     "StudyStatus",
     "Switch",
     "Transformer",
+    "UnbalancedStudyResult",
+    "VoltageUnbalance",
+    "VoltageRegulator",
+    "delta_branches",
 ]
