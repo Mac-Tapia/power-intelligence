@@ -146,7 +146,12 @@ def inventory_folder(path: Path) -> dict:
 
 
 def audit_source(src: dict, roots: dict[str, Path]) -> dict:
-    path = roots[src.get("root", "archive")] / src["path"]
+    root = src.get("root", "archive")
+    if root not in roots:
+        base = {k: src.get(k) for k in ("source_id", "case_id", "role", "kind", "root", "path")}
+        return base | {"status": "missing", "checks": [],
+                       "next_step": f"pass --root {root}=<folder>"}
+    path = roots[root] / src["path"]
     entry = {k: src.get(k) for k in ("source_id", "case_id", "role", "purpose", "kind",
                                      "origin", "column_origin", "sensitivity",
                                      "authorization", "root", "path")}
@@ -197,9 +202,16 @@ def main() -> int:
     parser.add_argument("--include-method-references", action="store_true",
                         help="with --case, also audit role=method_reference sources")
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--root", action="append", default=[], metavar="NAME=PATH",
+                        help="extra declared root (e.g. vnrgis_reference=D:/...)")
     args = parser.parse_args()
     registry = json.loads(args.registry.read_text(encoding="utf-8"))
     roots = {"archive": args.archive_root, "local_reference": ROOT / "local-data/reference"}
+    for item in args.root:
+        name, _, value = item.partition("=")
+        if not name or not value:
+            parser.error(f"--root expects NAME=PATH, got {item!r}")
+        roots[name] = Path(value)
     selected = [s for s in registry["sources"]
                 if args.case is None or s.get("case_id") == args.case
                 or (args.include_method_references and s.get("role") == "method_reference")]

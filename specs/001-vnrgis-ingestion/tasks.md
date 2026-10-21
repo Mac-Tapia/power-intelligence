@@ -50,3 +50,13 @@
 
 - [x] T001-R01: leer `CUSTOMER LOADS.Phase` con la máscara recuperada (1=A, 2=B, 4=C) y poner en cuarentena códigos fuera de ella; declarar `LOADS.Connection` como regla pendiente de confirmación.
 - [ ] T001-R02: leer `LINE CONFIGURATION.Overhead` y verificar `HEADNODES` contra `SOURCE`.
+
+## Fuentes reales y VNR-GIS universal
+
+- [ ] T001-U01: restaurar los respaldos VNR-GIS del caso en bases nuevas de solo lectura con verificación y manifiesto (AC-001-U02).
+- [ ] T001-U02: perfil REA del esquema VNRGIS (tablas, columnas, claves, versión) y del MDB de estudio (AC-001-U03).
+- [ ] T001-U03: lector VNR-GIS por versión de esquema → `ElectricalSnapshot` con cuarentena (AC-001-U01, AC-001-03).
+- [ ] T001-U04: mapeo versionado `CodNorma` ↔ catálogo CYME para R/X, con cuarentena de lo no mapeable (AC-001-U04).
+- [ ] T001-U05: lector MDB offline (controlador Access de Windows) para bases de estudio CYME.
+- [ ] T001-U06: constructor de datasets que combine VNR + TXT + MDB del caso y cite sus manifiestos (AC-001-U05).
+

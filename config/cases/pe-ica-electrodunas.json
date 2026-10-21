@@ -70,6 +70,44 @@
         "0": "wye"
       },
       "phase_frame_evidence": "REA del export del 03/08/2026 (ADR-0012): CUSTOMER LOADS.Phase es una mascara A=1, B=2, C=4 (7287 cargas, 0 conflictos frente a la fase del tramo). LOADS.Connection tiene un unico valor (0) y lo usan tambien 218 cargas en tramos monofasicos, donde una conexion delta es imposible: 0 se interpreta como estrella. Pendiente de confirmacion del propietario; los estudios por fase mantienen technical_acceptance=false."
+    },
+    "line_demand_xlsx": {
+      "timestamp_header": "FECHA",
+      "columns": [
+        [
+          "L6605 KW",
+          "L6605",
+          "kw"
+        ],
+        [
+          "L6605 KVAR",
+          "L6605",
+          "kvar"
+        ],
+        [
+          "L6605 KVA",
+          "L6605",
+          "kva"
+        ],
+        [
+          "L6606 KW",
+          "L6606",
+          "kw"
+        ],
+        [
+          "L6606 KVAR",
+          "L6606",
+          "kvar"
+        ],
+        [
+          "L6606 KVA",
+          "L6606",
+          "kva"
+        ]
+      ],
+      "frequency": "15min",
+      "interval_ending": true,
+      "evidence": "Encabezados de la hoja L-6605-6 (FECHA, L6605/L6606 en KVA, KW y KVAR): magnitud y unidad salen del propio encabezado. La primera marca es 00:15 con paso de 15 min: cada marca cierra su intervalo. Zona horaria: la del caso (sin horario de verano en Peru)."
     }
   },
   "planning_criteria": {
