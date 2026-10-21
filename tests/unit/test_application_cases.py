@@ -23,7 +23,8 @@ class PilotCaseTests(unittest.TestCase):
         case = load_case(CASES / "pe-ica-electrodunas.json")
         self.assertEqual((case.country, case.frequency_hz, case.currency), ("PE", 60.0, "PEN"))
         self.assertFalse(case.crs_verified)
-        self.assertFalse(case.authorized)
+        if case.authorized:                     # confirmed by the user on 2026-10-21
+            self.assertEqual(case.authorization_scope, "local_processing_and_training")
         self.assertEqual(check_consistency(case, PROFILES, REGISTRY), [])
 
     def test_templates_are_not_cases(self):
@@ -53,6 +54,16 @@ class PlanningCriteriaTests(unittest.TestCase):
             data = copy.deepcopy(PILOT) | {"planning_criteria": bad}
             with self.subTest(bad=bad), self.assertRaises(CaseError):
                 parse_case(data)
+
+
+class AuthorizationTests(unittest.TestCase):
+    def test_confirmed_authorization_requires_authority_date_and_scope(self):
+        data = copy.deepcopy(PILOT)
+        data["authorization"] = {"status": "confirmed"}
+        with self.assertRaises(CaseError):
+            parse_case(data)
+        data["authorization"] = {"status": "pending_owner_confirmation"}
+        self.assertFalse(parse_case(data).authorized)
 
 
 class UniversalityTests(unittest.TestCase):

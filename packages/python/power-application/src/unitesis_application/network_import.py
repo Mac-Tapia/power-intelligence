@@ -32,6 +32,35 @@ def cyme_rules_for(case: ApplicationCase, *, allow_positive_sequence: bool | Non
     return ReaderRules(case.frequency_hz, float(rules["default_connector_max_m"]), allow)
 
 
+def geometry_feature_collection(imp, case: ApplicationCase) -> dict[str, Any]:
+    """Source geometry as GeoJSON-like features in the case CRS (projected, not RFC 7946).
+
+    Geometry is provenance for GIS views (spec 003); it never enters the electrical
+    identity (ADR-0003). Feature ids are the electrical ids, so GIS and one-line views
+    select the same element.
+    """
+    features: list[dict[str, Any]] = []
+    for sid, coords in sorted(imp.geometry.get("sections", {}).items()):
+        features.append({"type": "Feature", "id": sid,
+                         "geometry": {"type": "LineString", "coordinates": coords},
+                         "properties": {"kind": "section"}})
+    for nid, xy in sorted(imp.geometry.get("nodes", {}).items()):
+        features.append({"type": "Feature", "id": nid,
+                         "geometry": {"type": "Point", "coordinates": xy},
+                         "properties": {"kind": "node"}})
+    xs = [c[0] for f in features for c in (f["geometry"]["coordinates"]
+                                            if f["geometry"]["type"] == "LineString"
+                                            else [f["geometry"]["coordinates"]])]
+    ys = [c[1] for f in features for c in (f["geometry"]["coordinates"]
+                                            if f["geometry"]["type"] == "LineString"
+                                            else [f["geometry"]["coordinates"]])]
+    return {"type": "FeatureCollection", "network_id": imp.network_id,
+            "crs": case.crs, "crs_verified": case.crs_verified,
+            "extent": [min(xs), min(ys), max(xs), max(ys)] if xs else None,
+            "missing_node_coordinates": imp.geometry.get("missing_node_coordinates", 0),
+            "features": features}
+
+
 def import_cyme_export(case: ApplicationCase, network: str | Path, loads: str | Path,
                        equipment: str | Path, out_dir: str | Path, *,
                        allow_positive_sequence: bool | None = None) -> dict[str, Any]:
@@ -61,8 +90,13 @@ def import_cyme_export(case: ApplicationCase, network: str | Path, loads: str | 
                            f"(sha256 {imp.manifest['files']['network']['sha256'][:16]}); "
                            f"case {case.case_id}")
             path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+            geo = geometry_feature_collection(imp, case)
+            geo_path = feeders_dir / f"{imp.network_id}.geo.json"
+            geo_path.write_text(json.dumps(geo, separators=(",", ":")), encoding="utf-8")
             row.update(snapshot_sha256=imp.snapshot.content_sha256,
                        snapshot_file=str(path.relative_to(out)).replace("\\", "/"),
+                       geometry_file=str(geo_path.relative_to(out)).replace("\\", "/"),
+                       geometry_extent=geo["extent"],
                        load_attributes=imp.load_attributes)
         rows.append(row)
     report = {

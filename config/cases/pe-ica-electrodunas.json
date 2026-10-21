@@ -7,8 +7,11 @@
   "region": "Ica",
   "utility": "Electro Dunas S.A.A.",
   "authorization": {
-    "status": "pending_owner_confirmation",
-    "note": "Registrar el documento de autorización del propietario antes de publicar datasets gold o evidencias con datos reales."
+    "status": "confirmed",
+    "authority": "explicit_user_instruction",
+    "confirmed_on": "2026-10-21",
+    "scope": "local_processing_and_training",
+    "note": "El usuario autorizó expresamente utilizar los datos locales en esta sesión. No se declara licencia para publicar datos privados ni se sustituye la validación de calidad."
   },
   "electrical": {
     "frequency_hz": 60.0,

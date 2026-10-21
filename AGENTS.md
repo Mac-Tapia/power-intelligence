@@ -4,6 +4,7 @@ Antes de cambiar código, leer `.specify/memory/constitution.md`, `docs/architec
 
 ## Reglas
 
+0. **Trabajo concurrente.** Antes de editar, leer y actualizar el tablero `local-data/coordination/BOARD.md` según `docs/development/AGENT-COORDINATION.md`: reclamar archivos, no editar los reclamados por otro agente y commitear solo rutas explícitas propias (nunca `git add -A` con trabajo ajeno sin commitear).
 1. **Producto universal.** No codificar supuestos de país, empresa, frecuencia, CRS, moneda ni norma. Lo local va en `config/cases/<case_id>.json`, en perfiles regulatorios con `jurisdiction` y en `config/datasets/sources.v2.json`. El caso piloto es `pe-ica-electrodunas`.
 2. **Motores propios** (ADR-0010). Nada de `cympy`, `powerfactory`, COM/ComLdf ni automatización de sus GUI; lo vigila `tests/security/test_no_proprietary_engines.py`. Se permiten lectores offline de archivos.
 3. **Verdad eléctrica** (ADR-0002). GNN/PINN, MADRL y LLM proponen o criban; el solver propio confirma con contraste independiente y la aceptación es humana. Nunca afirmar que un cálculo es correcto sin benchmark y tolerancias declaradas (`docs/architecture/CONTRACTS-AND-EVIDENCE.md`).

@@ -69,6 +69,7 @@ class FeederImport:
     quarantine: list[QuarantineRecord] = field(default_factory=list)
     snapshot: ElectricalSnapshot | None = None
     load_attributes: dict[str, dict[str, float]] = field(default_factory=dict)
+    geometry: dict[str, Any] = field(default_factory=dict)   # source coordinates, not identity
 
 
 def parse_sections(path: Path) -> dict[str, list[dict[str, str]]]:
@@ -151,6 +152,16 @@ def read_export(network: Path, loads: Path, equipment: Path,
         for row in net.get(sec, []):
             status[row["SectionID"]] = row.get("Status", "")
     sources = {r["NetworkID"]: r for r in net["SOURCE"]}
+    coords: dict[str, tuple[float, float]] = {}
+    for row in net.get("NODE", []):
+        x, y = _float(row.get("CoordX")), _float(row.get("CoordY"))
+        if x is not None and y is not None:
+            coords[row["NodeID"]] = (x, y)
+    vertices: dict[str, list[tuple[int, float, float]]] = defaultdict(list)
+    for row in net.get("INTERMEDIATE NODES", []):
+        x, y, k = _float(row.get("CoordX")), _float(row.get("CoordY")), _float(row.get("SeqNumber"))
+        if x is not None and y is not None and k is not None:
+            vertices[row["SectionID"]].append((int(k), x, y))
     loads_by_section: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in lds["CUSTOMER LOADS"]:
         loads_by_section[row["SectionID"]].append(row)
@@ -167,9 +178,28 @@ def read_export(network: Path, loads: Path, equipment: Path,
 
     results = []
     for network_id in sorted(feeders):
-        results.append(_build_feeder(network_id, feeders[network_id], sources.get(network_id),
-                                     config, catalog, status, loads_by_section, rules, files))
+        imp = _build_feeder(network_id, feeders[network_id], sources.get(network_id),
+                            config, catalog, status, loads_by_section, rules, files)
+        imp.geometry = _geometry(feeders[network_id], coords, vertices)
+        results.append(imp)
     return results
+
+
+def _geometry(sections, coords, vertices) -> dict[str, Any]:
+    nodes: dict[str, list[float]] = {}
+    paths: dict[str, list[list[float]]] = {}
+    for sec in sections:
+        a, b = sec["FromNodeID"], sec["ToNodeID"]
+        for n in (a, b):
+            if n in coords:
+                nodes[n] = list(coords[n])
+        if a in coords and b in coords:
+            mid = [[x, y] for _, x, y in sorted(vertices.get(sec["SectionID"], []))]
+            paths[sec["SectionID"]] = [list(coords[a]), *mid, list(coords[b])]
+    return {"nodes": nodes, "sections": paths,
+            "missing_node_coordinates": sum(1 for s in sections
+                                            for n in (s["FromNodeID"], s["ToNodeID"])
+                                            if n not in coords)}
 
 
 def _build_feeder(network_id, sections, source, config, catalog, status, loads_by_section,

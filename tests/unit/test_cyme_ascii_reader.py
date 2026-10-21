@@ -114,6 +114,23 @@ class ImportUseCaseTests(unittest.TestCase):
             payload = json.loads((Path(tmp) / row["snapshot_file"]).read_text(encoding="utf-8"))
             self.assertIn("pe-ica-electrodunas", payload["provenance"])
 
+    def test_geometry_is_separate_and_shares_electrical_ids(self):
+        case = load_case(ROOT / "config/cases/pe-ica-electrodunas.json")
+        with tempfile.TemporaryDirectory() as tmp:
+            report = import_cyme_export(case, *FILES, tmp)
+            row = next(r for r in report["feeders"] if r["state"] == "model_validated")
+            geo = json.loads((Path(tmp) / row["geometry_file"]).read_text(encoding="utf-8"))
+            snap = ingest_file(Path(tmp) / row["snapshot_file"]).require_snapshot()
+        self.assertEqual(geo["crs"], case.crs)
+        self.assertFalse(geo["crs_verified"])
+        section_ids = {f["id"] for f in geo["features"] if f["properties"]["kind"] == "section"}
+        branch_ids = {ln.line_id for ln in snap.lines} | {s.switch_id for s in snap.switches}
+        self.assertEqual(section_ids, branch_ids)
+        node_ids = {f["id"] for f in geo["features"] if f["properties"]["kind"] == "node"}
+        self.assertEqual(node_ids, {b.bus_id for b in snap.buses})
+        self.assertEqual(geo["extent"], [0.0, 0.0, 300.0, 50.0])
+        self.assertEqual(snap.content_sha256, row["snapshot_sha256"])   # geometry not in identity
+
     def test_case_without_rules_is_rejected(self):
         case = load_case(ROOT / "config/cases/pe-ica-electrodunas.json")
         bare = type(case)(**{**{f: getattr(case, f) for f in case.__dataclass_fields__},

@@ -39,6 +39,7 @@ class ApplicationCase:
     regulatory_profiles: tuple[str, ...]
     source_ids: tuple[str, ...]
     authorized: bool
+    authorization_scope: str = ""
     import_rules: dict[str, dict[str, Any]] = field(default_factory=dict)
     planning_criteria: dict[str, Any] = field(default_factory=dict)
 
@@ -93,6 +94,11 @@ def parse_case(data: dict[str, Any]) -> ApplicationCase:
         raise CaseError("regulatory_profiles and source_ids must be arrays")
     if len(set(sources)) != len(sources):
         raise CaseError("duplicate source_ids")
+    auth = _require(data, "authorization")
+    if auth.get("status") == "confirmed":
+        missing = [k for k in ("authority", "confirmed_on", "scope") if not auth.get(k)]
+        if missing:
+            raise CaseError(f"confirmed authorization must declare {missing}")
     import_rules = data.get("import_rules", {})
     if not isinstance(import_rules, dict) or not all(
             isinstance(v, dict) for v in import_rules.values()):
@@ -115,7 +121,9 @@ def parse_case(data: dict[str, Any]) -> ApplicationCase:
         timezone=tz, measurement_interval=_require(data, "time.measurement_interval"),
         currency=currency, regulatory_profiles=tuple(profiles), source_ids=tuple(sources),
         authorized=_require(data, "authorization.status") == "confirmed",
-        import_rules=import_rules, planning_criteria=criteria)
+        import_rules=import_rules, planning_criteria=criteria,
+        authorization_scope=str(auth.get("scope", "")) if auth.get("status") == "confirmed"
+        else "")
 
 
 def check_consistency(case: ApplicationCase, profiles_dir: Path,
