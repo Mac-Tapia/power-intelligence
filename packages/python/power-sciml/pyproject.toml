@@ -7,7 +7,7 @@ name = "unitesis-power-sciml"
 version = "0.0.0"
 description = "GNN, PINN, neural operator and uncertainty research, trained only on declared datasets."
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["numpy>=1.26", "pandas>=2.1"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/unitesis_sciml"]

@@ -1,5 +1,5 @@
 # power-application
 
-Use cases for ingestion, scenarios, new load, study and approval; orchestrates ports.
+Casos de uso: estudio, nueva carga, alternativas y datasets de forecast.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 002/004/005 · **Estado:** operativo. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

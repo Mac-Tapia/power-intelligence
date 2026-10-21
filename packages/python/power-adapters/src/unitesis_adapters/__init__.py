@@ -1,1 +1,1 @@
-"""Adapters: VNRGIS, MDB, SQL, DGS, CIM, GIS, OpenDSS, pandapower. Implement ports only."""
+"""Adapters: neutral JSON, SQL repositories, DGS/CYME. Implement ports only."""

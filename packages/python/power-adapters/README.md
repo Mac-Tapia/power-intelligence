@@ -1,5 +1,5 @@
 # power-adapters
 
-Adapters: VNRGIS, MDB, SQL, DGS, CIM, GIS, OpenDSS, pandapower. Implement ports only.
+Ingesta JSON neutral con cuarentena y repositorio SQLite append-only. Pendiente: adaptador VNR-GIS y lectores offline DGS/CYME.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 001 · **Estado:** parcial. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

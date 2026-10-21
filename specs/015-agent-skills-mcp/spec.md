@@ -1,4 +1,4 @@
-# 015 — Skills y conectores de agentes (Spec V6)
+# 015 — Skills y conectores de agentes
 
 **Objetivo:** habilitar agentes IA para implementación segura de backend, frontend y módulos científicos con instrucciones portables y conectores de mínimo privilegio.
 

@@ -1,4 +1,4 @@
-# Propuesta de eventos de integración V5
+# Eventos de integración P2P y ledger (propuesta, specs 011/012)
 
 **No ejecutables**. Versionar en `contracts/` y publicar desde outbox transaccional.
 

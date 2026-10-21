@@ -1,5 +1,5 @@
 # power-sciml
 
-GNN, PINN, neural operator and uncertainty research, trained only on declared datasets.
+Datasets de forecast sin fuga y controles de calidad de fuentes. Pendiente: sustituto GNN/PINN.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 006/029 · **Estado:** parcial. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

@@ -1,5 +1,5 @@
 # power-optimization
 
-MILP/MINLP/NSGA and stochastic planning; verify every Pareto candidate with reference solver.
+Catálogos de conductores trazables y cribado de alternativas en escenarios clonados.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 005 · **Estado:** parcial (conductores). Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

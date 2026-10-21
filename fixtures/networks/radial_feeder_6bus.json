@@ -1,0 +1,31 @@
+{
+  "schema": "unitesis.network-input/1",
+  "source_id": "synthetic-6bus-feeder-22.9kV-not-a-real-feeder",
+  "units": {"voltage": "kV", "length": "km", "impedance": "ohm/km", "power": "MW/MVAr", "current": "kA", "frequency": "Hz"},
+  "authorization": "synthetic_fixture",
+  "network": {
+    "frequency_hz": 60.0,
+    "buses": [
+      {"bus_id": "SE", "nominal_kv": 22.9}, {"bus_id": "B1", "nominal_kv": 22.9},
+      {"bus_id": "B2", "nominal_kv": 22.9}, {"bus_id": "B2S", "nominal_kv": 22.9},
+      {"bus_id": "B3", "nominal_kv": 22.9}, {"bus_id": "B4", "nominal_kv": 22.9}
+    ],
+    "lines": [
+      {"line_id": "L01", "from_bus": "SE", "to_bus": "B1", "length_km": 2.0, "r_ohm_per_km": 0.30, "x_ohm_per_km": 0.40, "max_current_ka": 0.30, "in_service": true},
+      {"line_id": "L12", "from_bus": "B1", "to_bus": "B2", "length_km": 1.5, "r_ohm_per_km": 0.45, "x_ohm_per_km": 0.42, "max_current_ka": 0.20, "in_service": true},
+      {"line_id": "L13", "from_bus": "B1", "to_bus": "B3", "length_km": 3.0, "r_ohm_per_km": 0.60, "x_ohm_per_km": 0.43, "max_current_ka": 0.15, "in_service": true},
+      {"line_id": "L34", "from_bus": "B3", "to_bus": "B4", "length_km": 1.0, "r_ohm_per_km": 0.60, "x_ohm_per_km": 0.43, "max_current_ka": 0.15, "in_service": false}
+    ],
+    "switches": [
+      {"switch_id": "S2", "from_bus": "B2", "to_bus": "B2S", "closed": true},
+      {"switch_id": "TIE", "from_bus": "B2S", "to_bus": "B4", "closed": false}
+    ],
+    "loads": [
+      {"load_id": "C1", "bus": "B1", "p_mw": 0.8, "q_mvar": 0.3, "in_service": true},
+      {"load_id": "C2", "bus": "B2S", "p_mw": 1.2, "q_mvar": 0.5, "in_service": true},
+      {"load_id": "C3", "bus": "B3", "p_mw": 0.6, "q_mvar": 0.2, "in_service": true},
+      {"load_id": "C4", "bus": "B4", "p_mw": 0.0, "q_mvar": 0.0, "in_service": true}
+    ],
+    "slacks": [{"bus": "SE", "vm_pu": 1.0, "angle_deg": 0.0}]
+  }
+}

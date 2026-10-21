@@ -1,0 +1,18 @@
+{
+  "schema": "unitesis.economic-basis/1",
+  "authorization": "synthetic_fixture",
+  "source": "Synthetic fixture for method verification only; NOT market prices, NOT a tariff.",
+  "currency": "USD",
+  "base_year": 2026,
+  "discount_rate": 0.12,
+  "horizon_years": 20,
+  "energy_price_per_mwh": 60.0,
+  "loss_load_factor": 0.35,
+  "annual_om_fraction": 0.01,
+  "conductor_costs": [
+    {"conductor_id": "nexans-aaac6201-50-7", "cost_per_km": 9000.0},
+    {"conductor_id": "nexans-aaac6201-70-19", "cost_per_km": 11500.0},
+    {"conductor_id": "nexans-aaac6201-120-19", "cost_per_km": 16500.0},
+    {"conductor_id": "nexans-aaac6201-240-61", "cost_per_km": 29000.0}
+  ]
+}

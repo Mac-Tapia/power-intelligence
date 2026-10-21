@@ -1,5 +1,5 @@
 # power-topology
 
-Electrical multi-graph by equipment-terminal-phase-switch, not raw GIS coordinates.
+Dueño único de la conectividad física: componentes energizados, islas, mallas y árbol radial.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 004 · **Estado:** operativo (radial). Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

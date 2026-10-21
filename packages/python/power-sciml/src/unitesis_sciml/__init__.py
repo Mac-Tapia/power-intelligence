@@ -1,1 +1,1 @@
-"""GNN, PINN, neural operator and uncertainty research, trained only on declared datasets."""
+"""Scientific ML: forecasting datasets now; PINN/GNN remain screening tools, never solvers."""

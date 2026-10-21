@@ -1,0 +1,58 @@
+{
+  "schema": "unitesis.application-case/1",
+  "case_id": "pe-ica-electrodunas",
+  "role": "pilot_application_case",
+  "description": "Caso de aplicación piloto: concesión de Electro Dunas (Ica, Chincha, Pisco, Nasca). Valida el producto universal con datos reales; no define el producto.",
+  "country": "PE",
+  "region": "Ica",
+  "utility": "Electro Dunas S.A.A.",
+  "authorization": {
+    "status": "pending_owner_confirmation",
+    "note": "Registrar el documento de autorización del propietario antes de publicar datasets gold o evidencias con datos reales."
+  },
+  "electrical": {
+    "frequency_hz": 60.0,
+    "nominal_voltages_kv": {
+      "status": "derive_from_source",
+      "note": "Se obtienen de los códigos CodTenNomi del VNR-GIS mediante una tabla versionada; nunca se asumen."
+    }
+  },
+  "spatial": {
+    "crs": "EPSG:32718",
+    "crs_status": "declared_pending_verification",
+    "note": "La provincia de Ica cae en UTM 18S; confirmar contra metadatos del VNR-GIS antes de publicar geometría."
+  },
+  "time": {
+    "timezone": "America/Lima",
+    "measurement_interval": "15min"
+  },
+  "economics": {
+    "currency": "PEN",
+    "note": "Tasas, precios de energía y costos siempre en una base económica explícita con fuente (unitesis.economic-basis/1)."
+  },
+  "regulatory_profiles": [
+    "DISTRIBUTION_INTERNAL_STUDY",
+    "PIT_2025_2029",
+    "PIT_SST_SCT_217_2013_BASE"
+  ],
+  "regulatory_notes": [
+    "PIDE (DL 1208) aplica a empresas FONAFE (spec 026 AC2); verificar la elegibilidad de esta empresa antes de habilitar perfiles PIDE."
+  ],
+  "source_ids": [
+    "eldu-vnrgis-2024-04",
+    "eldu-vnrgis-params-2024-04",
+    "eldu-meter-demand-2023-2026",
+    "eldu-new-customers",
+    "eldu-line-demand-l6605-l6606",
+    "eldu-feeder-head-measurements",
+    "eldu-feeder-meters",
+    "eldu-supply-customers",
+    "eldu-key-customers",
+    "eldu-exog-temperature-ica",
+    "eldu-exog-calendar-pe",
+    "eldu-exog-gdp-bcrp",
+    "eldu-exog-population-ica",
+    "eldu-exog-nasa-power-pisco",
+    "eldu-dger-investment-studies"
+  ]
+}

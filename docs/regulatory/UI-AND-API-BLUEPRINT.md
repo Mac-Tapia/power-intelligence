@@ -1,4 +1,4 @@
-# Full Stack V8 — interfaz y contratos pendientes
+# Regulación: interfaz y contratos pendientes (specs 020-025)
 
 ## Workstation react frontend (React/TypeScript)
 - `/regulations` catálogo por ámbito, versión y estado; banners «proyecto no vigente».

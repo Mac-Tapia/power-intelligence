@@ -1,0 +1,14 @@
+{
+  "schema": "unitesis.network-input/1",
+  "source_id": "synthetic-two-bus-not-a-real-feeder",
+  "units": {"voltage": "kV", "length": "km", "impedance": "ohm/km", "power": "MW/MVAr", "current": "kA", "frequency": "Hz"},
+  "authorization": "synthetic_fixture",
+  "network": {
+    "frequency_hz": 60.0,
+    "buses": [{"bus_id": "source", "nominal_kv": 12.66}, {"bus_id": "load", "nominal_kv": 12.66}],
+    "lines": [{"line_id": "L1", "from_bus": "source", "to_bus": "load", "length_km": 1.0,
+               "r_ohm_per_km": 0.4, "x_ohm_per_km": 0.3, "max_current_ka": 0.2, "in_service": true}],
+    "loads": [{"load_id": "D1", "bus": "load", "p_mw": 0.5, "q_mvar": 0.2, "in_service": true}],
+    "slacks": [{"bus": "source", "vm_pu": 1.0, "angle_deg": 0.0}]
+  }
+}

@@ -1,46 +1,152 @@
-"""Portable structural contract test; no external dependencies."""
-from pathlib import Path
+"""Structural contract of the repository (stdlib + the stdlib-only power-config package).
+
+Checks: required governance files, FEATURE-MAP <-> specs/ in both directions, application
+cases valid and consistent with regulatory profiles and data sources, and the cleanliness
+rules (no placeholder folders, no versioned/historical documents, no data artifacts).
+"""
+
+import json
+import re
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "packages/python/power-config/src"))
+
+from unitesis_config import CaseError, check_consistency, list_cases, load_case  # noqa: E402
+
+SKIP = {
+    ".git",
+    ".venv",
+    "local-data",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".pytest_cache",
+    "__pycache__",
+    ".playwright-mcp",
+}
 REQUIRED = [
-    "README.md", "AGENTS.md", ".specify/memory/constitution.md",
-    ".github/workflows/scaffold-ci.yml", ".github/PULL_REQUEST_TEMPLATE.md",
-    "docs/architecture/MODULE-BOUNDARIES.md", "docs/development/SDD-WORKTREE-GUIDE.md",
-    "specs/000-repository-foundation/spec.md", "specs/001-vnrgis-ingestion/spec.md",
-    "packages/python/power-domain/src/unitesis_domain/models.py",
-    "scripts/dev/worktree.py", "tests/bootstrap/test_domain.py", "pnpm-workspace.yaml",
+    "README.md",
+    "AGENTS.md",
+    ".specify/memory/constitution.md",
+    ".github/workflows/ci.yml",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    "requirements/dev.txt",
+    "docs/architecture/ARCHITECTURE-INTEGRAL.md",
+    "docs/architecture/MODULE-BOUNDARIES.md",
+    "docs/architecture/CONTRACTS-AND-EVIDENCE.md",
+    "docs/traceability/FEATURE-MAP.md",
+    "docs/traceability/contribution-registry.json",
+    "docs/development/SDD-WORKTREE-GUIDE.md",
+    "config/datasets/sources.v2.json",
+    "config/cases/_template.json",
+    "scripts/unitesis.py",
+    "scripts/dev/worktree.py",
+    "apps/control-api/src/unitesis_api/main.py",
+    "tests/security/test_no_proprietary_engines.py",
+    # agent governance (spec 015)
+    ".cursor/mcp.json",
+    ".cursor/worktrees.json",
+    "connectors/registry.json",
+    "tools/mcp/unitesis_server.py",
+    "docs/agents/AGENT-ROLES.md",
+    "scripts/agents/validate_agent_setup.py",
 ]
-problems = [item for item in REQUIRED if not (ROOT / item).is_file()]
+FORBIDDEN_DATA = (
+    "*.mdb",
+    "*.accdb",
+    "*.bak",
+    "*.dgs",
+    "*.pfd",
+    "*.sxst",
+    "*.parquet",
+    "*.pt",
+    "*.pth",
+    "*.ckpt",
+    "*.xlsx",
+    "*.xls",
+    "*.xlsb",
+)
+VERSIONED_DOC = re.compile(r"(^|[_-])V\d+(\.\d+)?([_.-]|$)", re.IGNORECASE)
+problems: list[str] = []
+
+
+def walk_files():
+    for path in ROOT.rglob("*"):
+        if not set(path.relative_to(ROOT).parts) & SKIP and path.is_file():
+            yield path
+
+
+problems += [f"missing required file: {r}" for r in REQUIRED if not (ROOT / r).is_file()]
+
+# FEATURE-MAP <-> specs/
+feature_map = (ROOT / "docs/traceability/FEATURE-MAP.md").read_text(encoding="utf-8")
+mapped: set[str] = set()
+for line in feature_map.splitlines():
+    cell = line.split("|")[1].strip() if line.startswith("|") and line.count("|") > 2 else ""
+    if m := re.fullmatch(r"(\d{3})[–-](\d{3})", cell):
+        mapped |= {f"{i:03d}" for i in range(int(m[1]), int(m[2]) + 1)}
+    elif re.fullmatch(r"\d{3}", cell):
+        mapped.add(cell)
+spec_dirs = {p.name[:3]: p for p in (ROOT / "specs").iterdir() if p.is_dir()}
+problems += [
+    f"FEATURE-MAP lists {i} but specs/ has no folder" for i in sorted(mapped - set(spec_dirs))
+]
+problems += [
+    f"specs/{spec_dirs[i].name} missing from FEATURE-MAP" for i in sorted(set(spec_dirs) - mapped)
+]
+for folder in sorted(spec_dirs.values()):
+    for name in ("spec.md", "tasks.md"):
+        if not (folder / name).is_file():
+            problems.append(f"specs/{folder.name}/{name} missing")
+
+# Application cases <-> regulatory profiles <-> data sources
+registry = json.loads((ROOT / "config/datasets/sources.v2.json").read_text(encoding="utf-8"))
+cases = list_cases(ROOT / "config/cases")
+if not cases:
+    problems.append("no application case in config/cases")
+for case_id, path in cases.items():
+    try:
+        case = load_case(path)
+    except CaseError as exc:
+        problems.append(f"case {case_id}: {exc}")
+        continue
+    if case.case_id != case_id:
+        problems.append(f"case file {path.name} declares case_id {case.case_id}")
+    problems += [
+        f"case {case_id}: {i}"
+        for i in check_consistency(case, ROOT / "config/regulations/profiles", registry)
+    ]
+for src in registry["sources"]:
+    if src.get("case_id") is not None and src["case_id"] not in cases:
+        problems.append(f"source {src['source_id']} points to unknown case {src['case_id']}")
+
+# Cleanliness: no placeholders, no empty folders, no versioned docs, no data artifacts
+for path in walk_files():
+    rel = path.relative_to(ROOT).as_posix()
+    if path.name == ".gitkeep":
+        problems.append(f"placeholder file: {rel}")
+    if rel.startswith("docs/") and path.suffix == ".md" and VERSIONED_DOC.search(path.stem):
+        problems.append(f"versioned/historical document name: {rel}")
+for pattern in FORBIDDEN_DATA:
+    for path in ROOT.rglob(pattern):
+        if not set(path.relative_to(ROOT).parts) & SKIP:
+            problems.append(
+                f"data artifact must live outside Git: {path.relative_to(ROOT).as_posix()}"
+            )
+for folder in ROOT.rglob("*"):
+    if (
+        folder.is_dir()
+        and not set(folder.relative_to(ROOT).parts) & SKIP
+        and not any(folder.iterdir())
+    ):
+        problems.append(f"empty folder: {folder.relative_to(ROOT).as_posix()}")
+
 if problems:
-    print("FAIL: missing files:\n" + "\n".join(problems), file=sys.stderr)
+    print("FAIL:\n  " + "\n  ".join(problems), file=sys.stderr)
     sys.exit(1)
-# No large/source data leaked into repo scaffold
-for extension in ("*.mdb", "*.dgs", "*.parquet", "*.pt", "*.ckpt"):
-    leaked = list(ROOT.rglob(extension))
-    if leaked:
-        print(f"FAIL: forbidden artifact {extension}: {leaked[0]}", file=sys.stderr)
-        sys.exit(1)
-print(f"PASS: structural invariants ({len(REQUIRED)} required files)")
-
-# V5 extension invariants: require every new feature's 3 SDD artifacts and 4 schemas
-V5_FEATURES = ("010-electrical-graph","011-p2p-federation","012-ledger-evidence",
-               "013-p2p-energy-market","014-graphrag-knowledge")
-V5_SCHEMAS = ("graph-projection.v1.schema.json", "p2p-envelope.v1.schema.json",
-              "p2p-energy-trade.v1.schema.json", "ledger-anchor.v1.schema.json")
-missing_v5 = [f"specs/{f}/{n}" for f in V5_FEATURES for n in ("spec.md","plan.md","tasks.md")
-             if not (ROOT / "specs" / f / n).is_file()]
-missing_v5 += [f"contracts/schemas/json/{n}" for n in V5_SCHEMAS
-               if not (ROOT / "contracts/schemas/json" / n).is_file()]
-if missing_v5:
-    print("FAIL: V5 required files missing: " + ", ".join(missing_v5), file=sys.stderr)
-    sys.exit(1)
-print("PASS: V5 SDD feature artifacts and schemas")
-
-# V6 AI-SDD addendum
-V6_REQUIRED = ["specs/015-agent-skills-mcp/spec.md", "specs/015-agent-skills-mcp/plan.md", "specs/015-agent-skills-mcp/tasks.md", ".cursor/mcp.json", ".cursor/worktrees.json", "connectors/registry.json", "tools/mcp/unitesis_server.py", "docs/architecture/BACKEND-FRONTEND-BLUEPRINT_V6.md", "docs/agents/AGENT-ROLES.md", "scripts/agents/validate_agent_setup.py"]
-missing_v6 = [v for v in V6_REQUIRED if not (ROOT / v).is_file()]
-if missing_v6:
-    print("FAIL: V6 artifacts missing: " + ", ".join(missing_v6), file=sys.stderr)
-    sys.exit(1)
-print(f"PASS: V6 AI agents / MCP artifacts ({len(V6_REQUIRED)} required files)")
+print(
+    f"PASS: {len(REQUIRED)} required files, {len(spec_dirs)} specs synchronized with "
+    f"FEATURE-MAP, {len(cases)} application case(s) consistent, no placeholders, "
+    "no versioned docs, no data artifacts"
+)

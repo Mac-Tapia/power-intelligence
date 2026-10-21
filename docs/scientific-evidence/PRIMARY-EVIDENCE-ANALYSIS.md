@@ -1,4 +1,4 @@
-# UNITESIS V7 — Análisis de evidencia primaria prioritaria
+# Análisis de evidencia primaria prioritaria
 
 **Estado:** fichas interpretativas basadas en registros editoriales, abstracts o páginas institucionales consultadas el 17-10-2026. No se han auditado exhaustivamente los textos completos. Cada bloque separa lo que la fuente aporta de la decisión/propuesta experimental de UNITESIS.
 

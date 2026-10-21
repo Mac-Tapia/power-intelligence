@@ -1,5 +1,5 @@
-# Especificaciones versionadas
+# Especificaciones
 
-Cada funcionalidad tiene su **identificador estable** `NNN-titulo`, with `spec.md` (WHAT/WHY + criterios), `plan.md` (HOW y diseño), `tasks.md` (trabajo trazable), `contracts/` y evidencia de pruebas. Las especificaciones de ejemplo no reemplazan artefactos que Spec Kit genere de forma automática.
+Una carpeta por capacidad con identificador estable `NNN-titulo`. `spec.md` contiene el qué y el porqué, con criterios de aceptación verificables; `tasks.md` contiene las tareas trazables. `plan.md` es opcional, para el diseño cuando hace falta. Una tarea se marca `[x]` solo con evidencia ejecutada (pruebas, comandos, archivos).
 
-**IMPORTANTE**: la carpeta `specs/` vive en la rama y Git la versiona. No almacenar dentro de cada spec enlaces absolutos a worktrees locales.
+El índice con el estado de cada spec está en `docs/traceability/FEATURE-MAP.md`. Toda spec listada allí debe existir aquí y viceversa; lo comprueba `scripts/verify_structure.py`.

@@ -1,5 +1,5 @@
 # power-agents
 
-LLM, tool calling and RAG with typed tools, human approval and source citations.
+Orquestación LLM con herramientas tipadas, citas y confirmación humana.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 008 · **Estado:** sin código. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

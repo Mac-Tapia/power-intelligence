@@ -19,6 +19,6 @@ Verify --> DB
 
 Diagramas C4 de componentes y despliegue se crearán por especificación; no se asume despliegue en Kubernetes sin necesidad.
 
-### V5: Extensiones del diagrama de contenedores
+### Extensiones: grafo, P2P, mercado y ledger
 
 `API -> Graph Query Adapter -> read model (PostgreSQL/NetworkX; Neo4j opcional)`; `API -> P2P Bridge -> trusted peer transport`; `Market Simulation -> Solver AC -> Evidence Store -> optional LedgerAnchor`. GraphRAG consume proyecciones por snapshot y ACL; nunca rutas de SCADA. Ver ADR-0004/0005/0006.

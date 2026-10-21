@@ -1,12 +1,14 @@
 """Small, dependency-free domain invariants, not a power-flow implementation."""
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 from hashlib import sha256
 from json import dumps
 from typing import Literal
 
 Phase = Literal["A", "B", "C", "N"]
+
 
 @dataclass(frozen=True, slots=True)
 class Equipment:
@@ -19,6 +21,7 @@ class Equipment:
             raise ValueError("Stable equipment ID and kind are required")
         if not 0 < self.nominal_kv < 2000:
             raise ValueError("Nominal voltage must be physically positive (kV)")
+
 
 @dataclass(frozen=True, slots=True)
 class NetworkSnapshot:
@@ -37,8 +40,10 @@ class NetworkSnapshot:
         canonical = {
             "source_id": self.source_id,
             "equipment": sorted(
-                [dict(equipment_id=e.equipment_id,kind=e.kind,nominal_kv=e.nominal_kv)
-                 for e in self.equipment],
+                [
+                    dict(equipment_id=e.equipment_id, kind=e.kind, nominal_kv=e.nominal_kv)
+                    for e in self.equipment
+                ],
                 key=lambda item: item["equipment_id"],
             ),
         }

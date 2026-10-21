@@ -1,4 +1,4 @@
-# Matriz de roles y permisos de agentes — UNITESIS V6
+# Matriz de roles y permisos de agentes
 
 Cada agente opera en su propio **git worktree** y con herramientas **mínimas**, nunca con todos los conectores a la vez. El perfil define qué skills puede descubrir y qué conectores puede **solicitar**, no concede acceso automático.
 
@@ -6,7 +6,7 @@ Cada agente opera en su propio **git worktree** y con herramientas **mínimas**,
 |---|---|---|---|
 | architect | ADR + C4 + plan revisado | docs/architecture, specs | Dependencias y riesgos aprobados |
 | backend | API contract-first + casos de uso | apps/control-api, packages/python | Contrato y RBAC/ABAC verificados |
-| frontend | workstation accesible con GIS/unifilar | apps/workstation-web, packages/ts | Contrato + Playwright + accesibilidad |
+| frontend | workstation accesible con GIS/unifilar | apps/workstation-web | Contrato + Playwright + accesibilidad |
 | gis-topology | ingesta y grafo canónico | packages/python/power-topology | Fidelidad GIS/CRS/topología |
 | power-solver | estudios AC y benchmarks | packages/python/power-simulation | Tolerancias golden + convergencia |
 | sciml | entrenamiento PINN/GNN | packages/python/power-sciml | Baselines + OOD + error físico |

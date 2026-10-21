@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$id": "https://unitesis.example.invalid/contracts/new-load-evidence/1",
+  "title": "UNITESIS new-load screening evidence (unitesis.new-load-evidence/1)",
+  "required": [
+    "schema",
+    "source_manifest",
+    "request",
+    "before",
+    "after",
+    "screening",
+    "violations",
+    "technical_acceptance",
+    "limitations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "unitesis.new-load-evidence/1"
+    },
+    "source_manifest": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_sha256",
+        "snapshot_sha256"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "request": {
+      "type": "object",
+      "required": [
+        "load_id",
+        "bus",
+        "p_mw",
+        "q_mvar",
+        "criteria"
+      ]
+    },
+    "before": {
+      "type": "object",
+      "required": [
+        "snapshot_sha256",
+        "summary",
+        "comparison"
+      ],
+      "properties": {
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "comparison": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "passed",
+                "failed",
+                "unavailable"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "after": {
+      "type": "object",
+      "required": [
+        "snapshot_sha256",
+        "summary",
+        "comparison",
+        "result"
+      ],
+      "properties": {
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "comparison": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "passed",
+                "failed",
+                "unavailable"
+              ]
+            }
+          }
+        },
+        "result": {
+          "type": "object",
+          "required": [
+            "schema",
+            "request_sha256",
+            "snapshot_sha256",
+            "engine",
+            "engine_version",
+            "status",
+            "converged",
+            "buses",
+            "branches"
+          ],
+          "properties": {
+            "schema": {
+              "const": "unitesis.study-result/v1"
+            },
+            "request_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "snapshot_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "engine": {
+              "type": "string",
+              "minLength": 1
+            },
+            "engine_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "enum": [
+                "computed",
+                "failed",
+                "unavailable"
+              ]
+            },
+            "converged": {
+              "type": "boolean"
+            },
+            "buses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "bus_id",
+                  "vm_pu",
+                  "va_deg"
+                ],
+                "properties": {
+                  "bus_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "vm_pu": {
+                    "type": "number"
+                  },
+                  "va_deg": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "branches": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "branch_id",
+                  "from_bus",
+                  "to_bus",
+                  "i_ka",
+                  "p_loss_mw"
+                ],
+                "properties": {
+                  "branch_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "i_ka": {
+                    "type": "number"
+                  },
+                  "p_loss_mw": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "screening": {
+      "enum": [
+        "violations",
+        "no_violation_detected",
+        "not_computed"
+      ]
+    },
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "technical_acceptance": {
+      "const": false
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

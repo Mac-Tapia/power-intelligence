@@ -1,4 +1,4 @@
-# UNITESIS V7 · Biblioteca científica consultable por agentes
+# Biblioteca científica consultable por agentes
 
 **Fecha de compilación:** 17 de octubre de 2026.  
 **Total de fichas individuales:** 191 archivos Markdown.  

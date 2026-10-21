@@ -1,0 +1,20 @@
+{
+  "schema": "unitesis.application-case/1",
+  "case_id": "cc-region-utility",
+  "role": "application_case",
+  "description": "Plantilla: copiar por empresa/región. El núcleo es universal; todo lo local se declara aquí o en perfiles/catálogos versionados.",
+  "country": "ISO-3166 alpha-2",
+  "region": "",
+  "utility": "",
+  "authorization": {"status": "pending_owner_confirmation", "note": ""},
+  "electrical": {
+    "frequency_hz": 50.0,
+    "nominal_voltages_kv": {"status": "derive_from_source", "note": ""}
+  },
+  "spatial": {"crs": "EPSG:xxxx", "crs_status": "declared_pending_verification", "note": ""},
+  "time": {"timezone": "Area/City", "measurement_interval": "15min"},
+  "economics": {"currency": "ISO-4217", "note": ""},
+  "regulatory_profiles": [],
+  "regulatory_notes": [],
+  "source_ids": []
+}

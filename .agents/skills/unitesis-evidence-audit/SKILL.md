@@ -20,11 +20,11 @@ Generar evidencia reproducible de ingeniería, estudios y decisiones.
 Nunca reportar estudio aprobado sin solver, tolerancias y firmante/autorización.
 
 ## Alcance
-packages/python/power-evidence/; storage/research-registry/
+packages/python/power-evidence/; datasets/quality/
 
 ## Entrega
 Resumen de cambios, decisiones, artefactos, pruebas ejecutadas realmente, errores, riesgos abiertos y vínculo al PR/spec.
 
 
-## Fuentes de investigación UNITESIS V7
+## Fuentes de investigación
 Antes de implementar, consultar `docs/scientific-evidence/modules/bk.md`, `docs/scientific-evidence/modules/ledger.md`, `docs/scientific-evidence/modules/ops.md`, `docs/scientific-evidence/modules/qa.md`, además de `docs/scientific-evidence/MATRIX-MODULES.md`. Validar ficha y tipo de evidencia, documentar fuente y experimento en la spec. Nunca tratar referencias pendientes o abstracts como validación de producto.

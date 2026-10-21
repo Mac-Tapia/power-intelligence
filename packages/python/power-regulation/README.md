@@ -1,3 +1,5 @@
-# power-regulation (scaffold V8)
-Biblioteca Python pura de perfiles normativos, filtros de elegibilidad y control de evidencia. NO implementa todos los artículos, NO certifica expedientes y NO invoca solvers.
-Límites: las normas cambian; modificar profile requiere revisión legal; ninguna regla del proyecto PIDE 2017 puede declararse vinculante hasta contar con publicación oficial aprobatoria.
+# power-regulation
+
+Perfiles regulatorios por jurisdicción y bloqueo de certificación automática; referencia PIDE ilustrativa.
+
+**Spec dueña:** 020–027 · **Estado:** parcial. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

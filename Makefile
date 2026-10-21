@@ -1,10 +1,18 @@
-.PHONY: doctor test list-worktrees
+.PHONY: doctor test test-governance lint serve list-worktrees
+
+PY ?= .venv/Scripts/python
 
 doctor:
-	python scripts/verify_structure.py
+	$(PY) scripts/verify_structure.py
 
 test:
-	python -m unittest discover -s tests/bootstrap -v
+	$(PY) -m pytest -q
+
+test-governance:
+	$(PY) -m pytest -q tests/governance
+
+serve:
+	$(PY) scripts/unitesis.py serve
 
 list-worktrees:
-	python scripts/dev/worktree.py list
+	$(PY) scripts/dev/worktree.py list

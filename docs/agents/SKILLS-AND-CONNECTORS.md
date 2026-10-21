@@ -1,4 +1,4 @@
-# Skills & Connectors: plan de integración SDD/MCP V6
+# Skills y conectores: integración SDD/MCP
 
 ## Modelo de capacidades
 
