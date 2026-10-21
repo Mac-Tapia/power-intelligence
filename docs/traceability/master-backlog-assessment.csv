@@ -1,0 +1,401 @@
+task_id,spec_id,gate,title,assessed_status,evidence
+SPEC-000/T201,SPEC-000,G0,"Auditar requisitos de Python, uv, Node, pnpm, Git y herramientas de Cursor en Windows.",parcial,docs/development/LOCAL-SETUP-WINDOWS.md; sin Node/pnpm (UI estática)
+SPEC-000/T202,SPEC-000,G0,Establecer lockfiles reproducibles y validar instalaciones limpias sin rutas personales.,parcial,requirements/dev.txt y extended.txt fijados; sin uv.lock
+SPEC-000/T203,SPEC-000,G0,Ejecutar y corregir verificación estructural y matrices de dependencias entre paquetes.,cumplida,"scripts/verify_structure.py; scripts/dev/project_inventory.py (sin commit, sesión de plataforma)"
+SPEC-000/T204,SPEC-000,G0,"Configurar GitHub CODEOWNERS, branch protection y PR template según acceso real.",parcial,.github/CODEOWNERS y PR template; protección de rama no configurada en GitHub
+SPEC-000/T205,SPEC-000,G0,Comprobar creación y desmontaje seguro de Git worktrees sin pérdida de cambios.,parcial,scripts/dev/worktree.py sin prueba dedicada
+SPEC-000/T206,SPEC-000,G0,"Documentar configuración reproducible, fallo controlado y evidencia de revisión para repository-foundation.",cumplida,"README.md, docs/development/*, AGENT-COORDINATION.md"
+SPEC-000/T207,SPEC-000,G0,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-000/T208,SPEC-000,G0,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-000/T209,SPEC-000,G0,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-000/T210,SPEC-000,G0,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-001/T201,SPEC-001,G1,Inventariar dos fuentes públicas/autorizadas y licencias; archivar metadatos y hash original.,parcial,config/datasets/sources.v2.json + auditoría con SHA; licencias por documento pendientes
+SPEC-001/T202,SPEC-001,G1,"Crear contrato de manifest, mapeador schema-version, CRS y diccionario de atributos por origen.",parcial,"manifiestos CYME/neutral con parser, reglas e interpretaciones; mapper VNR pendiente"
+SPEC-001/T203,SPEC-001,G1,Implementar extractores SHP/GeoPackage/ZIP seguros sin inferir terminales por cercanía.,pendiente,sin extractores SHP/GeoPackage/ZIP
+SPEC-001/T204,SPEC-001,G1,"Construir pipeline bronze/silver con validación, cuarentena y reportes de rechazo.",parcial,"CYME→snapshot con cuarentena (cyme_ascii.py); bronze Excel spreadsheet.py (sin commit, sesión de plataforma)"
+SPEC-001/T205,SPEC-001,G1,"Agregar pruebas golden para CRS, duplicados, columnas ausentes, unidades y archivos corruptos.",parcial,"tests/unit/test_cyme_ascii_reader.py, test_adapters_evidence.py"
+SPEC-001/T206,SPEC-001,G1,Exponer import-jobs asíncronos con seguimiento y enlace a snapshot canónico.,pendiente,importación por CLI; API de redes solo lectura (networks.py)
+SPEC-001/T207,SPEC-001,G1,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-001/T208,SPEC-001,G1,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-001/T209,SPEC-001,G1,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-001/T210,SPEC-001,G1,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-002/T201,SPEC-002,G4,"Crear contrato de solicitud de nueva carga con fase, kW, kvar/fp, fecha y nodo autorizado.",parcial,p/q/barra en new-load; faltan fase y fecha
+SPEC-002/T202,SPEC-002,G4,Vincular curvas 15 min al equipo/medidor y generar snapshot clon inmutable.,parcial,escenario clonado sí; curvas 15 min por medidor no
+SPEC-002/T203,SPEC-002,G4,Ejecutar análisis AC antes/después y capturar no convergencia y parámetros faltantes.,cumplida,run_new_load_study + evidencia; no convergencia reportada
+SPEC-002/T204,SPEC-002,G4,Comparar los indicadores por barra/fase/elemento y límites de normativa seleccionada.,parcial,criterios del caso (NTCSE) aplicados; sin desagregación por fase
+SPEC-002/T205,SPEC-002,G4,Evaluar alternativas transferir/repotenciar/refuerzo sin aplicar maniobras reales.,parcial,solo alternativas de conductor y capacidad remanente
+SPEC-002/T206,SPEC-002,G4,"Generar reporte trazable con evidencia de solver, CAPEX/OPEX y recomendación revisable.",parcial,evidencia JSON trazable; sin informe formateado
+SPEC-002/T207,SPEC-002,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-002/T208,SPEC-002,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-002/T209,SPEC-002,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-002/T210,SPEC-002,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-003/T201,SPEC-003,G2,Definir proyecciones independientes map/unifilar del mismo snapshot con identificadores estables.,parcial,geo.json con ids eléctricos y unifilar desde snapshot; integración UI pendiente
+SPEC-003/T202,SPEC-003,G2,Implementar renderizado GIS con CRS y capa de red por zoom/límites.,parcial,map.js con CRS declarado; sin zoom ni conexión a la UI
+SPEC-003/T203,SPEC-003,G2,Implementar unifilar interactivo por equipos/terminales y layouts persistentes.,parcial,unifilar SVG automático; sin layouts persistentes
+SPEC-003/T204,SPEC-003,G2,"Sincronizar selección, inspector de equipos y colores de resultados del solver.",parcial,UnitesisMap.select y colores; falta cablear con app.js
+SPEC-003/T205,SPEC-003,G2,Añadir edición validada por comandos/versionado y restauración de revisión.,pendiente,sin edición versionada
+SPEC-003/T206,SPEC-003,G2,"Probar con red radial y mallada, zoom, miles de elementos y fallas de conexión.",pendiente,sin pruebas de UI con miles de elementos
+SPEC-003/T207,SPEC-003,G2,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-003/T208,SPEC-003,G2,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-003/T209,SPEC-003,G2,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-003/T210,SPEC-003,G2,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-004/T201,SPEC-004,G0,"Crear src/unitesis_api/main.py con app factory, versión API, routers y manejador central de errores.",cumplida,"apps/control-api create_app, routers, errores con código (sin commit, sesión de plataforma)"
+SPEC-004/T202,SPEC-004,G0,"Crear React+TypeScript estricto, navegación, layout principal, cliente API tipado y estados de carga.",pendiente,sin React+TypeScript
+SPEC-004/T203,SPEC-004,G0,"Configurar Postgres/PostGIS local, almacenamiento de objetos de desarrollo y migraciones iniciales.",parcial,"postgres_repository.py (sin commit, sesión de plataforma); pruebas omitidas sin DSN; sin PostGIS/objetos"
+SPEC-004/T204,SPEC-004,G0,Versionar contrato OpenAPI y generar cliente TS sin editar código generado a mano.,parcial,OpenAPI generado por FastAPI; sin cliente TS
+SPEC-004/T205,SPEC-004,G0,"Configurar compose, healthchecks, seed sintético y comandos make/dev Windows.",parcial,"health, Makefile, serve; sin compose"
+SPEC-004/T206,SPEC-004,G0,Probar petición UI→API→DB con tests de integración y E2E de navegador.,parcial,"tests/integration/test_workstation_browser.py (sin commit, sesión de plataforma) — FALLA actualmente"
+SPEC-004/T207,SPEC-004,G0,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-004/T208,SPEC-004,G0,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-004/T209,SPEC-004,G0,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-004/T210,SPEC-004,G0,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-005/T201,SPEC-005,G0,"Definir matriz roles/atributos/permisos por proyectos, fuentes, escenarios y expedientes.",parcial,"roles en credenciales bearer (security.py) (sin commit, sesión de plataforma)"
+SPEC-005/T202,SPEC-005,G0,Integrar OIDC de proveedor configurable y sesiones seguras en API/BFF.,pendiente,sin OIDC
+SPEC-005/T203,SPEC-005,G0,Aplicar filtros tenant_id en consultas y políticas por resource ID.,parcial,"almacenes por tenant; test_tenant_security.py (sin commit, sesión de plataforma)"
+SPEC-005/T204,SPEC-005,G0,"Establecer auditoría de modificaciones, no repudio interno y redacción de secretos.",parcial,evidencia append-only y errores sin secretos; sin auditoría de cambios por usuario
+SPEC-005/T205,SPEC-005,G0,"Probar negativas cross-tenant, token expirado, escalamiento vertical y CSRF.",parcial,"401/403/tenant probados (sin commit, sesión de plataforma); CSRF y token expirado sin verificar en esta revisión"
+SPEC-005/T206,SPEC-005,G0,Documentar aprovisionamiento/desaprovisionamiento y pruebas de recuperación.,parcial,apps/control-api/README.md
+SPEC-005/T207,SPEC-005,G0,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-005/T208,SPEC-005,G0,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-005/T209,SPEC-005,G0,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-005/T210,SPEC-005,G0,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-006/T201,SPEC-006,G1,"Definir entidades de red, terminal, fase, switch, conductor, trafo, SED/SET, cargas y DER.",parcial,"Bus/Line/Switch/Load/Slack/Transformer; faltan terminal, fase, SED/SET, DER"
+SPEC-006/T202,SPEC-006,G1,"Definir unidades, nominal/base, por fase y conexión a tierra con validación tipada.",parcial,unidades y validación numérica tipada; solo secuencia positiva
+SPEC-006/T203,SPEC-006,G1,Implementar snapshots inmutables y revisionado por comando con IDs estables.,parcial,snapshots inmutables con hash; sin revisionado por comando
+SPEC-006/T204,SPEC-006,G1,Definir mapeos a esquema CIM acotado y política de campos no soportados.,pendiente,sin mapeo CIM
+SPEC-006/T205,SPEC-006,G1,"Construir property tests de conexiones incompatibles, islas y transformadores.",parcial,"pruebas negativas de islas, mallas, tensiones y trafos; no son property-based"
+SPEC-006/T206,SPEC-006,G1,Publicar contratos JSON y diagramas de relaciones sin dependencias de ORM.,parcial,esquemas JSON de evidencia; sin esquema JSON del snapshot ni diagramas
+SPEC-006/T207,SPEC-006,G1,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-006/T208,SPEC-006,G1,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-006/T209,SPEC-006,G1,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-006/T210,SPEC-006,G1,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-007/T201,SPEC-007,G1,Definir estados queued/running/succeeded/failed/cancelled y transición permitida.,parcial,"queued/running/finished/failed (sin commit, sesión de plataforma); sin cancelled"
+SPEC-007/T202,SPEC-007,G1,Implementar outbox transaccional y consumidor idempotente con claves de deduplicación.,parcial,"enqueue idempotente y claim atómico (sin commit, sesión de plataforma); sin outbox"
+SPEC-007/T203,SPEC-007,G1,"Crear worker de prueba con límites, timeouts, cancelación y reintentos exponenciales.",pendiente,ejecución en proceso; sin worker con timeouts/reintentos
+SPEC-007/T204,SPEC-007,G1,"Implementar API de colas, consulta de eventos y cuotas por tenant.",parcial,API de jobs; sin eventos ni cuotas
+SPEC-007/T205,SPEC-007,G1,"Probar caída de worker, reinicio, doble entrega, cancelación y artefactos incompletos.",parcial,"recuperación tras reinicio y doble claim probados (sin commit, sesión de plataforma)"
+SPEC-007/T206,SPEC-007,G1,Medir latencias y auditar la identidad que disparó cada job.,pendiente,sin métricas de latencia ni auditoría de identidad por job
+SPEC-007/T207,SPEC-007,G1,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-007/T208,SPEC-007,G1,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-007/T209,SPEC-007,G1,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-007/T210,SPEC-007,G1,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-008/T201,SPEC-008,G3,"Especificar contrato PowerFlowInput/Output incluyendo modelo de fases, slack y unidades.",parcial,StudyRequest/StudyResult + esquemas; sin modelo de fases
+SPEC-008/T202,SPEC-008,G3,Crear adaptador OpenDSS/DSS-Extensions y motor pandapower donde cobertura aplicable.,parcial,adaptador pandapower; sin OpenDSS
+SPEC-008/T203,SPEC-008,G3,Validar consistencia de datos y faltantes antes de cualquier ejecución del solver.,cumplida,cuarentena y rechazo de alcance antes de resolver
+SPEC-008/T204,SPEC-008,G3,"Ejecutar pruebas feeder de referencia radial, mallado y desbalanceado con tolerancias justificadas.",parcial,"IEEE 33 radial y mallado, MT/BT con trafos, 44 alimentadores reales; desbalanceado pendiente"
+SPEC-008/T205,SPEC-008,G3,"Persistir versión solver, hash inputs/snapshot, residuos, iteraciones y flags de convergencia.",cumplida,"versión, hashes, residuo, iteraciones y convergencia en StudyResult/evidencia"
+SPEC-008/T206,SPEC-008,G3,Rechazar reportes con fallas físicas; comparar resultados frente a mediciones donde existan.,parcial,resultados fallidos nunca 'computed'; comparación con mediciones pendiente
+SPEC-008/T207,SPEC-008,G3,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-008/T208,SPEC-008,G3,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-008/T209,SPEC-008,G3,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-008/T210,SPEC-008,G3,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-009/T201,SPEC-009,G2,"Definir snapshot red, perfil de demanda, fecha operativa y overlays de cambios.",parcial,escenarios por snapshot clonado; sin fecha operativa ni overlays
+SPEC-009/T202,SPEC-009,G2,Implementar clonado copy-on-write y diff estructurado entre escenarios.,parcial,clonado sí; diff estructurado no
+SPEC-009/T203,SPEC-009,G2,"Crear escenarios máxima/mínima demanda, N-1 y programación 15 min/8760 h configurables.",parcial,escenarios de demanda en pf_dataset; sin N-1 ni 8760 h
+SPEC-009/T204,SPEC-009,G2,Bloquear ejecución cuando se carezca de datos requeridos de operación.,cumplida,fail-closed por datos faltantes
+SPEC-009/T205,SPEC-009,G2,Conectar ediciones GIS/unifilar a revisiones de escenario y no a fuente primaria.,pendiente,sin edición GIS/unifilar
+SPEC-009/T206,SPEC-009,G2,"Probar resultados deterministas, conflicto de revisión y escenario eliminado.",parcial,determinismo probado; conflictos de revisión no
+SPEC-009/T207,SPEC-009,G2,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-009/T208,SPEC-009,G2,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-009/T209,SPEC-009,G2,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-009/T210,SPEC-009,G2,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-010/T201,SPEC-010,G1,Diseñar vertices/equipos/terminales y relaciones permitidas con hashes de revisiones.,parcial,buses/ramas con hash; sin terminales
+SPEC-010/T202,SPEC-010,G1,Crear proyecciones de conectividad eléctrica y aislar grafo de mapa y GraphRAG.,cumplida,power-topology separado de geometría y GraphRAG (ADR-0003)
+SPEC-010/T203,SPEC-010,G1,"Detectar islas, huérfanos, ciclos, orientaciones y fronteras de alimentador.",cumplida,"islas, mallas, desenergizados, árbol radial, raíces"
+SPEC-010/T204,SPEC-010,G1,Construir exportador topológico de entrada a solvers por adaptador.,cumplida,snapshot→Y-bus y →pandapower
+SPEC-010/T205,SPEC-010,G1,Probar consultas por subgrafo con límites y permisos tenant.,pendiente,sin consultas por subgrafo ni permisos
+SPEC-010/T206,SPEC-010,G1,"Validar fases, transformadores, configuraciones de interruptor y reconfiguración.",parcial,trafos e interruptores validados; fases y reconfiguración pendientes
+SPEC-010/T207,SPEC-010,G1,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-010/T208,SPEC-010,G1,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-010/T209,SPEC-010,G1,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-010/T210,SPEC-010,G1,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-011/T201,SPEC-011,G6,"Definir mensajes tipados, esquema de identidad mutua y scopes de datos.",parcial,contracts/schemas/json/p2p-envelope.v1
+SPEC-011/T202,SPEC-011,G6,Implementar transporte libp2p en laboratorio aislado o adaptador equivalente evaluado.,pendiente,
+SPEC-011/T203,SPEC-011,G6,"Incluir anti-replay, expiración, cuotas y cifrado autenticado.",pendiente,
+SPEC-011/T204,SPEC-011,G6,Diseñar reconciliación eventual y resolución de conflictos por versiones.,pendiente,
+SPEC-011/T205,SPEC-011,G6,"Probar pérdidas de mensajes, reintentos, nodo falso y desincronización.",pendiente,
+SPEC-011/T206,SPEC-011,G6,Mantener desactivada escritura sobre SCADA y equipos de campo.,parcial,no existe integración SCADA; falta control explícito
+SPEC-011/T207,SPEC-011,G6,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-011/T208,SPEC-011,G6,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-011/T209,SPEC-011,G6,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-011/T210,SPEC-011,G6,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-012/T201,SPEC-012,G6,"Definir contrato EvidenceAnchor, políticas de privacidad y evaluación necesidad de blockchain.",parcial,ledger-anchor.v1 schema
+SPEC-012/T202,SPEC-012,G6,Implementar ledger local/in-memory y validaciones de idempotencia.,parcial,power-ledger/attest.py (digest)
+SPEC-012/T203,SPEC-012,G6,Crear adaptador para red permissioned de prueba aislada sujeto a threat model.,pendiente,
+SPEC-012/T204,SPEC-012,G6,"Verificar hashes, sellos temporales y permisos, sin almacenar SCADA o PII on-chain.",pendiente,
+SPEC-012/T205,SPEC-012,G6,"Probar tampering, reordenamiento, reenvíos, caída de nodo y restauración.",pendiente,
+SPEC-012/T206,SPEC-012,G6,Emitir evidencia de costo y latencia antes de optar por ledger productivo.,pendiente,
+SPEC-012/T207,SPEC-012,G6,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-012/T208,SPEC-012,G6,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-012/T209,SPEC-012,G6,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-012/T210,SPEC-012,G6,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-013/T201,SPEC-013,G6,"Definir ofertas P/Q, precios, límites, intervalos y roles DER/BESS/EV.",parcial,p2p-energy-trade.v1 schema
+SPEC-013/T202,SPEC-013,G6,Crear motor de clearing simulado con balance de energía y restricciones de recursos.,pendiente,
+SPEC-013/T203,SPEC-013,G6,Ejecutar solver AC para cada propuesta de despacho o intercambio.,pendiente,
+SPEC-013/T204,SPEC-013,G6,"Comparar bienestar, pérdidas, congestión y costos transaccionales.",pendiente,
+SPEC-013/T205,SPEC-013,G6,"Probar fraude, oferta imposible, baterías sin energía y escenarios sin convergencia.",pendiente,
+SPEC-013/T206,SPEC-013,G6,Bloquear liquidación comercial real hasta dictamen jurídico y autorización expresa.,parcial,power-market/gates.py bloquea propuestas sin evidencia
+SPEC-013/T207,SPEC-013,G6,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-013/T208,SPEC-013,G6,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-013/T209,SPEC-013,G6,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-013/T210,SPEC-013,G6,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-014/T201,SPEC-014,G6,Construir índices textuales y relaciones de activos/documentos de solo lectura.,parcial,scripts/research/query_evidence.py (léxico) sobre 191 fichas
+SPEC-014/T202,SPEC-014,G6,"Configurar ingestión de normativa, evidencia y biblioteca científica con permisos.",parcial,catálogo científico y regulatorio; sin permisos
+SPEC-014/T203,SPEC-014,G6,Implementar recuperación híbrida y scoring documentado.,pendiente,
+SPEC-014/T204,SPEC-014,G6,"Generar respuestas con citas verificables, abstención y soporte de español/inglés.",pendiente,
+SPEC-014/T205,SPEC-014,G6,"Probar prompt injection, documentos contaminados y aislamiento tenant.",pendiente,
+SPEC-014/T206,SPEC-014,G6,"Medir exactitud factual, recall y tasa de abstención en set revisado.",pendiente,
+SPEC-014/T207,SPEC-014,G6,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-014/T208,SPEC-014,G6,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-014/T209,SPEC-014,G6,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-014/T210,SPEC-014,G6,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-015/T201,SPEC-015,G0,Validar estructura de 20 skills y cobertura por módulo y agente.,cumplida,scripts/agents/validate_agent_setup.py (24 skills)
+SPEC-015/T202,SPEC-015,G0,Ejecutar lector MCP local de solo lectura y verificar compatibilidad de protocolo.,cumplida,"tests/integration/test_mcp_transport.py (sin commit, sesión de plataforma)"
+SPEC-015/T203,SPEC-015,G0,Definir permisos/scopes por agente y riesgos de comandos destructivos.,cumplida,connectors/registry.json con deny por defecto
+SPEC-015/T204,SPEC-015,G0,Integrar skills SDD para Cursor/otros clientes sin amarrar código a un agente.,cumplida,scripts/agents/sync_skills.py
+SPEC-015/T205,SPEC-015,G0,"Probar path traversal, escaping, secreto accidental y permisos denegados.",cumplida,tests/governance/test_agents_mcp.py
+SPEC-015/T206,SPEC-015,G0,Generar guía de conexión autenticada sin almacenar credenciales.,parcial,AI-AGENT-ONBOARDING.md; conexión autenticada externa no probada
+SPEC-015/T207,SPEC-015,G0,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-015/T208,SPEC-015,G0,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-015/T209,SPEC-015,G0,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-015/T210,SPEC-015,G0,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-016/T201,SPEC-016,G3,"Diseñar contrato de fechas/zonas horarias, kW/kvar/kWh y correspondencia medidor-alimentador.",parcial,DatasetSpec + zona horaria del caso; mapeo medidor-alimentador pendiente
+SPEC-016/T202,SPEC-016,G3,Ingerir archivos Excel/CSV/Parquet autorizados y normalizar resoluciones temporales.,parcial,"CSV operativo; Excel bronze (sin commit, sesión de plataforma)"
+SPEC-016/T203,SPEC-016,G3,"Aplicar QA de duplicados, periodos ausentes, outliers y reporte de decisión por imputación.",cumplida,"power-sciml/datasets.py (outliers causales, congelados) + quality.py"
+SPEC-016/T204,SPEC-016,G3,Integrar nuevas cargas como constantes 15 min únicamente donde usuario lo indique.,pendiente,
+SPEC-016/T205,SPEC-016,G3,Implementar baselines estacionales y evaluación temporal sin fuga futuro.,parcial,splits cronológicos con hueco; sin modelos base de pronóstico
+SPEC-016/T206,SPEC-016,G3,"Publicar curvas, errores MAE/RMSE/MAPE cuando definido y bandas por escenario.",pendiente,
+SPEC-016/T207,SPEC-016,G3,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-016/T208,SPEC-016,G3,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-016/T209,SPEC-016,G3,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-016/T210,SPEC-016,G3,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-017/T201,SPEC-017,G3,Definir subtipos de estudio cortocircuito 3f/1f/2f y requisitos de secuencia/red puesta a tierra.,pendiente,
+SPEC-017/T202,SPEC-017,G3,Implementar adaptador de falla soportado con versión y pruebas cruzadas.,pendiente,
+SPEC-017/T203,SPEC-017,G3,"Calcular perfiles de calidad y límites por normativa versionada, no por constante global.",parcial,"planning_criteria del caso (NTCSE, numeral por verificar)"
+SPEC-017/T204,SPEC-017,G3,Incorporar confiabilidad SAIDI/SAIFI/ENS únicamente con tasas e interrupciones documentadas.,pendiente,
+SPEC-017/T205,SPEC-017,G3,Agregar pruebas de TC/transformador/falla mal parametrizados y casos IEC/ANSI según cobertura.,pendiente,
+SPEC-017/T206,SPEC-017,G3,Emitir reporte de aplicabilidad normativa y faltantes antes de certificación.,pendiente,
+SPEC-017/T207,SPEC-017,G3,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-017/T208,SPEC-017,G3,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-017/T209,SPEC-017,G3,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-017/T210,SPEC-017,G3,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-018/T201,SPEC-018,G4,"Diseñar catálogo de soluciones: transferir, SED/SET, nuevo alimentador, reconductor, regulación, BESS.",parcial,solo reconductorado
+SPEC-018/T202,SPEC-018,G4,Establecer rule packs PIT/PIDE/interno separados con condiciones de aplicabilidad.,parcial,perfiles PIT/PIDE/interno separados
+SPEC-018/T203,SPEC-018,G4,Generar diseños candidatos con cambios de topología y recursos documentados.,parcial,cambio de conductor en escenario clonado
+SPEC-018/T204,SPEC-018,G4,Validar cada candidato con solver de referencia e impedir factibilidad supuesta.,cumplida,contraste independiente obligatorio (alternatives.py)
+SPEC-018/T205,SPEC-018,G4,"Comparar CAPEX, pérdidas, confiabilidad, plazo y Pareto cuando aplique.",parcial,"CAPEX, pérdidas y Pareto; sin confiabilidad ni plazo"
+SPEC-018/T206,SPEC-018,G4,"Aplicar mínimo de tres solo al perfil histórico que lo exige, nunca universal.",cumplida,pide_reference: mínimo 3 solo en perfil histórico (pruebas)
+SPEC-018/T207,SPEC-018,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-018/T208,SPEC-018,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-018/T209,SPEC-018,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-018/T210,SPEC-018,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-019/T201,SPEC-019,G4,"Formalizar variables discretas/continuas, costos y restricciones eléctricas.",parcial,variables de conductor y costos
+SPEC-019/T202,SPEC-019,G4,Crear baseline MILP o búsqueda exhaustiva pequeña y heurística NSGA-II/III según problema.,parcial,exhaustivo sobre catálogo; sin NSGA
+SPEC-019/T203,SPEC-019,G4,Conectar evaluador AC y cache por hash de red/decisiones sin valores simulados.,parcial,evaluador AC sí; caché no
+SPEC-019/T204,SPEC-019,G4,"Implementar Monte Carlo, escenarios de demanda y sensibilidad de pesos.",pendiente,
+SPEC-019/T205,SPEC-019,G4,Comparar con baseline y reportar hypervolume/tiempo/violaciones cuando pertinente.,pendiente,
+SPEC-019/T206,SPEC-019,G4,"Persistir semilla, versión, presupuesto de cómputo y Pareto no dominado.",parcial,frente de Pareto persistido en evidencia
+SPEC-019/T207,SPEC-019,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-019/T208,SPEC-019,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-019/T209,SPEC-019,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-019/T210,SPEC-019,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-020/T201,SPEC-020,G4,"Inventariar texto 217-2013, modificatorias, anexos y edición por periodo regulatorio.",parcial,docs/regulatory/SOURCES.json
+SPEC-020/T202,SPEC-020,G4,Construir matriz cláusula→datos→algoritmo→salida→test con fuente primaria.,parcial,PIT-217-CLAUSE-MATRIX.md
+SPEC-020/T203,SPEC-020,G4,Implementar elegibilidad SST/SCT y perfil independiente de distribución.,pendiente,
+SPEC-020/T204,SPEC-020,G4,Vincular alternativas y cálculos económicos al método reglamentario aplicable.,pendiente,
+SPEC-020/T205,SPEC-020,G4,"Probar error por cláusula no verificada, fuente vencida o estudio no elegible.",parcial,certificación bloqueada (RegulatoryBlock)
+SPEC-020/T206,SPEC-020,G4,Solicitar aprobación profesional antes de marcar expediente PIT como regulatorio.,cumplida,aprobación humana obligatoria
+SPEC-020/T207,SPEC-020,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-020/T208,SPEC-020,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-020/T209,SPEC-020,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-020/T210,SPEC-020,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-021/T201,SPEC-021,G4,"Separar ámbito FONAFE, planificación interna y normativa vigente con metadatos.",parcial,perfiles PIDE separados
+SPEC-021/T202,SPEC-021,G4,Formalizar 20 años/4 años/3 alternativas solo para referencia 2018 autorizada.,cumplida,20/4/3 solo para referencia histórica (pruebas)
+SPEC-021/T203,SPEC-021,G4,"Conectar diagnóstico, demanda, alternativas, evaluación económica y cartera.",pendiente,
+SPEC-021/T204,SPEC-021,G4,Catalogar y mapear formatos 01–15 como pendiente de fuente primaria.,cumplida,config/regulations/pide_formats_original_pending.json
+SPEC-021/T205,SPEC-021,G4,Implementar validación de cumplimiento formal y de alcance por empresa/periodo.,parcial,
+SPEC-021/T206,SPEC-021,G4,Probar rechazo de certificación de prepublicación y ausencia de Anexo 1.,cumplida,pruebas de rechazo de certificación
+SPEC-021/T207,SPEC-021,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-021/T208,SPEC-021,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-021/T209,SPEC-021,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-021/T210,SPEC-021,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-022/T201,SPEC-022,G4,"Definir contratos CAPEX, OPEX, reposición, pérdidas, energía no suministrada y horizonte.",parcial,EconomicBasis; sin reposición ni ENS
+SPEC-022/T202,SPEC-022,G4,Implementar flujos de caja reales/nominales y valor presente con tasas declaradas.,parcial,valor presente real; nominal no
+SPEC-022/T203,SPEC-022,G4,Agregar costos de módulos estándares solo desde catálogo/regla versionada.,pendiente,
+SPEC-022/T204,SPEC-022,G4,Vincular energía/pérdidas al solver y escenarios de crecimiento.,parcial,pérdidas del solver; crecimiento no
+SPEC-022/T205,SPEC-022,G4,"Probar factores de descuento, signos, tasas límite, datos faltantes y sensibilidad.",cumplida,"tests/unit/test_economic_basis.py, governance/test_economics_regressions.py"
+SPEC-022/T206,SPEC-022,G4,Exportar comparativas por alternativa con fuente de precios y resumen de supuestos.,cumplida,evidencia de alternativas con fuente de precios
+SPEC-022/T207,SPEC-022,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-022/T208,SPEC-022,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-022/T209,SPEC-022,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-022/T210,SPEC-022,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-023/T201,SPEC-023,G4,"Definir entidad Proyecto, entregables, fases, baselines, cambios y aprobaciones.",parcial,templates/projects/PMBOK6/project.json
+SPEC-023/T202,SPEC-023,G4,"Crear plantillas charter, alcance, EDT, cronograma, presupuesto y matriz interesados.",cumplida,plantillas PMBOK6 completas
+SPEC-023/T203,SPEC-023,G4,"Registrar riesgos, adquisiciones, comunicaciones, calidad y responsables RACI.",pendiente,
+SPEC-023/T204,SPEC-023,G4,Construir seguimiento de valor ganado e hitos regulatorios por versión.,pendiente,
+SPEC-023/T205,SPEC-023,G4,"Separar aprobación de estudio, presupuesto, obra y puesta en servicio.",pendiente,
+SPEC-023/T206,SPEC-023,G4,"Probar permisos, cambios de línea base, versionado y cierre administrativo.",pendiente,
+SPEC-023/T207,SPEC-023,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-023/T208,SPEC-023,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-023/T209,SPEC-023,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-023/T210,SPEC-023,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-024/T201,SPEC-024,G4,"Diseñar vistas de reglas, citas, semáforos normativos neutros y comparador de escenarios.",pendiente,
+SPEC-024/T202,SPEC-024,G4,"Crear endpoints de consulta de cláusulas, requisitos y evidencias aprobadas.",pendiente,
+SPEC-024/T203,SPEC-024,G4,"Diferenciar prepublicación, vigente auditado, histórico y criterio interno.",parcial,estado de perfiles
+SPEC-024/T204,SPEC-024,G4,"Agregar fichas PMBOK, estado de aprobaciones y adjuntos con ACL.",pendiente,
+SPEC-024/T205,SPEC-024,G4,"Validar accesibilidad, filtrado tenant y exportación consistente.",pendiente,
+SPEC-024/T206,SPEC-024,G4,Probar mensajes de bloqueo cuando falte documento normativo original.,pendiente,
+SPEC-024/T207,SPEC-024,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-024/T208,SPEC-024,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-024/T209,SPEC-024,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-024/T210,SPEC-024,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-025/T201,SPEC-025,G4,"Estructurar URL primaria, autoridad, fecha y norma citada, huellas y política de licencia.",parcial,SOURCES.json con URL y autoridad
+SPEC-025/T202,SPEC-025,G4,Implementar lector manual/on-demand de fuentes permitidas con hash/diff.,parcial,scripts/pide/register_source.py
+SPEC-025/T203,SPEC-025,G4,Registrar estado de vigencia y cambios detectados como solicitudes de revisión.,pendiente,
+SPEC-025/T204,SPEC-025,G4,Construir matriz efecto cambios sobre estudios/reglas/expedientes.,pendiente,
+SPEC-025/T205,SPEC-025,G4,"Probar origen inaccesible, enlace cambiado, PDF distinto y documentos duplicados.",pendiente,
+SPEC-025/T206,SPEC-025,G4,Añadir flujo de aprobación de cambio de versión regulatoria.,pendiente,
+SPEC-025/T207,SPEC-025,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-025/T208,SPEC-025,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-025/T209,SPEC-025,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-025/T210,SPEC-025,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-026/T201,SPEC-026,G4,"Registrar R.M. 428-2017-MEM/DM, enlace y texto de prepublicación disponible.",cumplida,PIDE-2017-PREPUBLICACION-EL-PERUANO.md + sources.json
+SPEC-026/T202,SPEC-026,G4,"Mapear diferencias entre borrador MINEM 2017, procedimiento B.1.2 y TDR 2018.",parcial,matriz de estudio
+SPEC-026/T203,SPEC-026,G4,"Definir perfil documentado historical-reference, nunca effective-law por defecto.",cumplida,perfil historical-reference
+SPEC-026/T204,SPEC-026,G4,Establecer política de recuperación y auditoría del Anexo 1 original.,parcial,política documentada
+SPEC-026/T205,SPEC-026,G4,Crear prueba de bloqueo ante fuente primaria incompleta.,cumplida,pruebas de bloqueo
+SPEC-026/T206,SPEC-026,G4,Publicar glosario de términos y decisiones de interpretación pendientes.,pendiente,sin glosario
+SPEC-026/T207,SPEC-026,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-026/T208,SPEC-026,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-026/T209,SPEC-026,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-026/T210,SPEC-026,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-027/T201,SPEC-027,G4,"Localizar/solicitar documento primario original Anexo 1, guardar URI/hash/permisos.",bloqueada,anexo original no accesible en fuente primaria
+SPEC-027/T202,SPEC-027,G4,"Inventariar artículos, anexos, formatos y fórmulas en matriz con páginas fuente.",bloqueada,depende del anexo
+SPEC-027/T203,SPEC-027,G4,"Vincular campos, unidades, obligatoriedad y métodos de cálculo uno a uno.",pendiente,
+SPEC-027/T204,SPEC-027,G4,Implementar validaciones de formato y versión solo para contenido confirmado.,parcial,valida solo contenido confirmado
+SPEC-027/T205,SPEC-027,G4,Probar documentalmente cada requisito y registrar diferencias con TDR Electro Puno.,parcial,diferencias con TDR documentadas
+SPEC-027/T206,SPEC-027,G4,Habilitar revisión humana obligatoria antes de activar perfil normativo.,cumplida,revisión humana obligatoria
+SPEC-027/T207,SPEC-027,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-027/T208,SPEC-027,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-027/T209,SPEC-027,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-027/T210,SPEC-027,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-028/T201,SPEC-028,G5,"Definir DER, perfil meteorológico, convertidor, batería, eficiencia, SOC, degradación y EV.",pendiente,
+SPEC-028/T202,SPEC-028,G5,Implementar estados intertemporales y restricciones de carga/descarga.,pendiente,
+SPEC-028/T203,SPEC-028,G5,Modelar inyección por fase y controles soportados en solver.,pendiente,
+SPEC-028/T204,SPEC-028,G5,Preparar escenarios penetración DER/EV/almacenamiento y precios documentados.,pendiente,
+SPEC-028/T205,SPEC-028,G5,"Probar conservación energética, límites SOC y perfiles nulos.",pendiente,
+SPEC-028/T206,SPEC-028,G5,"Comparar impacto sobre tensión, pérdidas y continuidad sin inferencias automáticas.",pendiente,
+SPEC-028/T207,SPEC-028,G5,Contracts/negative permission tests,pendiente,
+SPEC-028/T208,SPEC-028,G5,Integration and reproducibility evidence,pendiente,
+SPEC-028/T209,SPEC-028,G5,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-028/T210,SPEC-028,G5,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-029/T201,SPEC-029,G5,Diseñar dataset derivado de VNR-GIS y casos de entrenamiento con licencia/autorización.,parcial,dataset desde 44 alimentadores reales CYME con autorización; VNR pendiente
+SPEC-029/T202,SPEC-029,G5,"Definir residuales AC completos P/Q, unidades, fases, topología y límites adecuados.",cumplida,power_mismatch + verificación del residuo de cada etiqueta
+SPEC-029/T203,SPEC-029,G5,Entrenar baseline MLP/PINN y GNN con arquitectura y loss transparentes.,pendiente,PyTorch disponible; entrenamiento GNN/PINN pendiente
+SPEC-029/T204,SPEC-029,G5,Separar sets por tiempo/red/topología; prevenir leakage y registrar semillas.,parcial,split por alimentador con semilla; temporal pendiente
+SPEC-029/T205,SPEC-029,G5,Comparar velocidad/precisión frente a solver determinista por tipo de red.,parcial,línea base física vs solver (benchmarks/sciml); sin modelo aprendido
+SPEC-029/T206,SPEC-029,G5,"Implementar detector OOD, rechazo seguro y registro reproducible de modelos.",parcial,rechazo seguro vía certificación del solver; sin detector OOD ni registro de modelos
+SPEC-029/T207,SPEC-029,G5,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-029/T208,SPEC-029,G5,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-029/T209,SPEC-029,G5,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-029/T210,SPEC-029,G5,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-030/T201,SPEC-030,G5,Definir roles planner/operator/economics/research/reviewer y permisos de herramientas.,pendiente,
+SPEC-030/T202,SPEC-030,G5,Construir acciones/observaciones/recompensas multiobjetivo con validación de unidades.,pendiente,
+SPEC-030/T203,SPEC-030,G5,Implementar entorno MARL offline y baseline heurístico determinista.,pendiente,
+SPEC-030/T204,SPEC-030,G5,Integrar LLM local para traducir tareas a tools JSON autorizadas (sin ejecutar código libre).,pendiente,
+SPEC-030/T205,SPEC-030,G5,"Comparar políticas, seguridad, generalización y costos de inferencia contra baseline.",pendiente,
+SPEC-030/T206,SPEC-030,G5,"Probar prompt injection, tool spoofing y operaciones físicas rechazadas.",pendiente,
+SPEC-030/T207,SPEC-030,G5,Contracts/negative permission tests,pendiente,
+SPEC-030/T208,SPEC-030,G5,Integration and reproducibility evidence,pendiente,
+SPEC-030/T209,SPEC-030,G5,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-030/T210,SPEC-030,G5,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-031/T201,SPEC-031,G7,Aplicar threat model STRIDE y escáner de dependencias/secretos/SBOM.,parcial,threat model P2P/ledger; sin escáneres ni SBOM
+SPEC-031/T202,SPEC-031,G7,"Configurar métricas, trazas estructuradas, logs correlacionados y redacción sensible.",pendiente,
+SPEC-031/T203,SPEC-031,G7,Diseñar backup/restauración de Postgres/PostGIS y artefactos con pruebas reales.,parcial,"backup/restauración SQLite (sin commit, sesión de plataforma); PostgreSQL omitido"
+SPEC-031/T204,SPEC-031,G7,Separar entornos local/staging/prod y gestión de secretos/rotación.,parcial,perfil solo-local y credenciales fuera de Git
+SPEC-031/T205,SPEC-031,G7,"Ejecutar pruebas de carga, degradación de cola, DR y límites de recursos.",pendiente,
+SPEC-031/T206,SPEC-031,G7,"Documentar on-call, runbooks, incidentes y SLO medidos, no supuestos.",pendiente,
+SPEC-031/T207,SPEC-031,G7,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-031/T208,SPEC-031,G7,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-031/T209,SPEC-031,G7,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-031/T210,SPEC-031,G7,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-032/T201,SPEC-032,G4,Diseñar EvidenceBundle y plantilla de tablas antes/después y fichas de alternativas.,parcial,payloads de evidencia antes/después
+SPEC-032/T202,SPEC-032,G4,"Versionar plantillas de informe técnico, económico y proyecto.",pendiente,
+SPEC-032/T203,SPEC-032,G4,Generar PDF/MD/xlsx donde corresponda sin modificar los datos canónicos.,pendiente,
+SPEC-032/T204,SPEC-032,G4,Agregar citas a documentos normativos por artículo y estado de auditoría.,pendiente,
+SPEC-032/T205,SPEC-032,G4,"Implementar aprobación y firma electrónica como etapa separada, si legalmente aplicable.",pendiente,
+SPEC-032/T206,SPEC-032,G4,Probar que todas las cifras se rastreen a datasets y cálculos reproducibles.,parcial,cadena de hashes y evidencia releída
+SPEC-032/T207,SPEC-032,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-032/T208,SPEC-032,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-032/T209,SPEC-032,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-032/T210,SPEC-032,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-033/T201,SPEC-033,G4,Construir registro de proyectos candidatos y dependencias técnicas entre obras.,pendiente,
+SPEC-033/T202,SPEC-033,G4,Formular programación presupuestal y reglas de elegibilidad por perfil PIT/PIDE/interno.,pendiente,
+SPEC-033/T203,SPEC-033,G4,"Incorporar capacidad de ejecución, restricciones de recursos y plazos administrativos.",pendiente,
+SPEC-033/T204,SPEC-033,G4,Optimizar cartera bajo escenarios y generar visualización plurianual.,pendiente,
+SPEC-033/T205,SPEC-033,G4,"Probar dobles conteos, incompatibilidades, fechas inviables y cambios de prioridad.",pendiente,
+SPEC-033/T206,SPEC-033,G4,"Publicar roadmap, cronograma PMBOK y evidencia de selección/descartes.",pendiente,
+SPEC-033/T207,SPEC-033,G4,Contracts/negative permission tests,pendiente,
+SPEC-033/T208,SPEC-033,G4,Integration and reproducibility evidence,pendiente,
+SPEC-033/T209,SPEC-033,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-033/T210,SPEC-033,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-034/T201,SPEC-034,G5,Inventariar requisitos para red transporte vs distribución en modelo canónico.,pendiente,
+SPEC-034/T202,SPEC-034,G5,"Crear casos generación/renovables, despacho, pérdidas y contingencias N-1.",pendiente,
+SPEC-034/T203,SPEC-034,G5,Conectar modelos de generación a límites y restricciones térmicas/tensión.,pendiente,
+SPEC-034/T204,SPEC-034,G5,Implementar OPF baseline según soporte del solver y analizar diferencia vs flujo AC.,pendiente,
+SPEC-034/T205,SPEC-034,G5,"Validar casos IEEE abiertos con modelos, tolerancias y unidades documentadas.",parcial,IEEE 33 de distribución validado
+SPEC-034/T206,SPEC-034,G5,Distinguir normativa COES/NTCSE y supuestos según jurisdicción actual.,pendiente,
+SPEC-034/T207,SPEC-034,G5,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-034/T208,SPEC-034,G5,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-034/T209,SPEC-034,G5,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-034/T210,SPEC-034,G5,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-035/T201,SPEC-035,G6,Definir adaptadores para SQL Server/PostgreSQL y backups autorizados con clasificación de datos.,parcial,"registro de fuentes con sensibilidad; postgres_repository (sin commit, sesión de plataforma)"
+SPEC-035/T202,SPEC-035,G6,"Establecer conectores de solo lectura, políticas de red y control de credenciales.",parcial,política MCP Postgres RO de ejemplo
+SPEC-035/T203,SPEC-035,G6,Construir incremental ingest por watermark y hashes para auditar cambios.,pendiente,
+SPEC-035/T204,SPEC-035,G6,"Aislar sincronización de mediciones, activos GIS y metadatos con linaje.",pendiente,
+SPEC-035/T205,SPEC-035,G6,"Probar alteración de esquema, reconexión, fuga tenant y límites de tamaño.",pendiente,
+SPEC-035/T206,SPEC-035,G6,Documentar desactivación segura y política de retención.,pendiente,
+SPEC-035/T207,SPEC-035,G6,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-035/T208,SPEC-035,G6,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-035/T209,SPEC-035,G6,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-035/T210,SPEC-035,G6,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-036/T201,SPEC-036,G4,"Modelar familias de módulos, componentes, unidades, fecha base, moneda y procedencia.",parcial,base económica y catálogo de conductores con fuente/año/moneda
+SPEC-036/T202,SPEC-036,G4,Cargar solo tablas de costos legalmente accesibles y verificables.,pendiente,
+SPEC-036/T203,SPEC-036,G4,"Implementar indexación, conversión monetaria y actualización según regla identificada.",pendiente,
+SPEC-036/T204,SPEC-036,G4,Incorporar análisis de sensibilidad y alternativas con distinta vida útil.,pendiente,
+SPEC-036/T205,SPEC-036,G4,"Probar incompatibilidad de periodos, componente faltante y doble contabilización.",pendiente,
+SPEC-036/T206,SPEC-036,G4,Producir memorias de costo firmadas/visadas por responsable técnico.,pendiente,
+SPEC-036/T207,SPEC-036,G4,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-036/T208,SPEC-036,G4,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-036/T209,SPEC-036,G4,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-036/T210,SPEC-036,G4,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-037/T201,SPEC-037,G1,"Definir matriz de cobertura y licencias de DGS, OpenDSS, MDB, TXT, SHP y SQL.",parcial,registro de formatos y ADR-0010
+SPEC-037/T202,SPEC-037,G1,Implementar exportador inicial OpenDSS de red validada.,pendiente,
+SPEC-037/T203,SPEC-037,G1,Diseñar importador/exportador DGS solo con esquemas/versiones documentadas.,pendiente,
+SPEC-037/T204,SPEC-037,G1,Generar reporte de diferencias y atributos incompatibles en round-trip.,pendiente,
+SPEC-037/T205,SPEC-037,G1,"Probar dos feeders golden con unidades, fases, taps y switches.",parcial,CYME sintético + red real; ida y vuelta neutral con trafos
+SPEC-037/T206,SPEC-037,G1,Bloquear etiqueta compatible con PowerFactory/CYME hasta validación en herramienta original.,cumplida,ADR-0010 + tests/security/test_no_proprietary_engines.py
+SPEC-037/T207,SPEC-037,G1,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-037/T208,SPEC-037,G1,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-037/T209,SPEC-037,G1,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-037/T210,SPEC-037,G1,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-038/T201,SPEC-038,G3,"Inventariar feeders de referencia, problemas de optimización y datasets GIS accesibles.",parcial,"IEEE 33, sintéticos, 44 reales"
+SPEC-038/T202,SPEC-038,G3,Crear protocolo de tolerancias acordado con ingeniero y referencias independientes.,parcial,tolerancias en CONTRACTS-AND-EVIDENCE; sin acuerdo formal con ingeniero
+SPEC-038/T203,SPEC-038,G3,"Implementar runner reproducible que capture CPU/RAM/GPU, semillas y versiones.",parcial,"benchmark con versiones, plataforma y tiempos; sin RAM/GPU"
+SPEC-038/T204,SPEC-038,G3,"Incluir tests metamórficos (escalado, switch, interconexiones inválidas) sin falsos positivos.",parcial,"invariancia de orden, int/float, fusión de interruptores"
+SPEC-038/T205,SPEC-038,G3,Comparar cálculos deterministas vs modelos neuronales en igual set.,parcial,línea base física vs solver
+SPEC-038/T206,SPEC-038,G3,Publicar benchmarking y límites de validez con trazabilidad bibliográfica.,parcial,benchmarks/power-flow/results.json con límites
+SPEC-038/T207,SPEC-038,G3,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-038/T208,SPEC-038,G3,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-038/T209,SPEC-038,G3,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-038/T210,SPEC-038,G3,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
+SPEC-039/T201,SPEC-039,G7,Definir perfiles core/regulatory/research/market con funcionalidades y exclusiones.,pendiente,
+SPEC-039/T202,SPEC-039,G7,Construir matriz de releases y flags off por defecto para módulos no certificados.,pendiente,
+SPEC-039/T203,SPEC-039,G7,Preparar pipeline CI/CD y migraciones reversibles con pruebas staging.,parcial,.github/workflows/ci.yml
+SPEC-039/T204,SPEC-039,G7,"Realizar UAT con ingenieros, recuperación de disaster y mediciones de desempeño.",pendiente,
+SPEC-039/T205,SPEC-039,G7,"Formalizar checklist legal, licencias, documentación y retención de datos.",pendiente,
+SPEC-039/T206,SPEC-039,G7,Emitir acta release go/no-go por perfil con evidencias y responsable.,pendiente,
+SPEC-039/T207,SPEC-039,G7,Contracts/negative permission tests,parcial,pruebas negativas existentes en el área; cobertura incompleta
+SPEC-039/T208,SPEC-039,G7,Integration and reproducibility evidence,parcial,evidencia releída/benchmarks del área
+SPEC-039/T209,SPEC-039,G7,Reference and regulatory review,pendiente,requiere revisión humana de referencias/normativa
+SPEC-039/T210,SPEC-039,G7,"CI, review and acceptance",pendiente,CI existe; aceptación humana pendiente
