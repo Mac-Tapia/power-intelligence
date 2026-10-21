@@ -26,5 +26,5 @@ packages/python/power-p2p/; packages/python/power-ledger/; packages/python/power
 Resumen de cambios, decisiones, artefactos, pruebas ejecutadas realmente, errores, riesgos abiertos y vínculo al PR/spec.
 
 
-## Fuentes de investigación UNITESIS V7
+## Fuentes de investigación
 Antes de implementar, consultar `docs/scientific-evidence/modules/p2p.md`, `docs/scientific-evidence/modules/ledger.md`, `docs/scientific-evidence/modules/market.md`, `docs/scientific-evidence/modules/security.md`, además de `docs/scientific-evidence/MATRIX-MODULES.md`. Validar ficha y tipo de evidencia, documentar fuente y experimento en la spec. Nunca tratar referencias pendientes o abstracts como validación de producto.

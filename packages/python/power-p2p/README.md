@@ -1,7 +1,5 @@
 # power-p2p
 
-Red de colaboración entre peers autorizados; identidad, deduplicación, mensajes firmados, relojes, retry y replicación. No es SCADA.
+Mensajería P2P de escenarios y evidencias entre instituciones; sin SCADA.
 
-**Estado V5:** scaffolding y contratos; ninguna red operativa, blockchain desplegada, matching o liquidación real.
-
-La capa de dominio no depende de este paquete. Los módulos se comunican por puertos y contratos tipados.
+**Spec dueña:** 011 · **Estado:** scaffold. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

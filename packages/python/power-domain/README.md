@@ -1,5 +1,5 @@
 # power-domain
 
-Entities, value objects, electrical invariants and events. Pure Python, zero infrastructure dependencies.
+Modelo eléctrico neutral e inmutable (`ElectricalSnapshot` v2), contratos de estudio y unidades. Solo stdlib.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 008 · **Estado:** operativo. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

@@ -1,0 +1,4 @@
+# Authorized GPU dependency; CUDA 12.4 wheels compatible with the detected driver.
+# Install separately from extended.txt; do not use this index for other packages.
+--index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124

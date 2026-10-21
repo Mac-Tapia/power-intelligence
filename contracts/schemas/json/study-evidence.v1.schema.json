@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$id": "https://unitesis.example.invalid/contracts/study-evidence/1",
+  "title": "UNITESIS study evidence payload (unitesis.study-evidence/1)",
+  "description": "Payload inside the power-intelligence.evidence/1 envelope. Supersedes study-run 0.1.0 for executed studies: code identity is a tree digest, not a git commit.",
+  "required": [
+    "schema",
+    "generated_at_utc",
+    "scenario_id",
+    "snapshot_sha256",
+    "snapshot",
+    "source_manifest",
+    "code_tree_sha256",
+    "status",
+    "candidate",
+    "comparison",
+    "technical_acceptance",
+    "regulatory_acceptance",
+    "limitations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "unitesis.study-evidence/1"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "minLength": 20
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "snapshot": {
+      "type": "object",
+      "required": [
+        "schema",
+        "frequency_hz",
+        "buses",
+        "slacks"
+      ],
+      "properties": {
+        "schema": {
+          "enum": [
+            "unitesis.electrical-snapshot/v2",
+            "unitesis.electrical-snapshot/v3",
+            "unitesis.electrical-snapshot/v4"
+          ]
+        }
+      }
+    },
+    "source_manifest": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_sha256",
+        "snapshot_sha256"
+      ],
+      "properties": {
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "code_tree_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "enum": [
+        "computed",
+        "failed",
+        "unavailable"
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "required": [
+        "schema",
+        "request_sha256",
+        "snapshot_sha256",
+        "engine",
+        "engine_version",
+        "status",
+        "converged",
+        "buses",
+        "branches"
+      ],
+      "properties": {
+        "schema": {
+          "const": "unitesis.study-result/v1"
+        },
+        "request_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "engine": {
+          "type": "string",
+          "minLength": 1
+        },
+        "engine_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "computed",
+            "failed",
+            "unavailable"
+          ]
+        },
+        "converged": {
+          "type": "boolean"
+        },
+        "buses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "bus_id",
+              "vm_pu",
+              "va_deg"
+            ],
+            "properties": {
+              "bus_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "vm_pu": {
+                "type": "number"
+              },
+              "va_deg": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "branches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "branch_id",
+              "from_bus",
+              "to_bus",
+              "i_ka",
+              "p_loss_mw"
+            ],
+            "properties": {
+              "branch_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "i_ka": {
+                "type": "number"
+              },
+              "p_loss_mw": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "reference": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "comparison": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "unavailable"
+          ]
+        }
+      }
+    },
+    "technical_acceptance": {
+      "const": false
+    },
+    "regulatory_acceptance": {
+      "const": false
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -11,3 +11,8 @@ testpaths = ["tests"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
+
+[tool.ruff.lint.per-file-ignores]
+# Tests and CLI scripts put packages/python/*/src on sys.path before importing them.
+"tests/**" = ["E402"]
+"scripts/**" = ["E402"]

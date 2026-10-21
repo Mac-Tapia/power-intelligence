@@ -1,7 +1,5 @@
 # power-graphrag
 
-GraphRAG de documentos, activos y evidencias; no reemplaza motor AC ni modelo eléctrico canónico.
+Índice documental citado por jurisdicción y snapshot.
 
-**Estado V5:** scaffolding y contratos; ninguna red operativa, blockchain desplegada, matching o liquidación real.
-
-La capa de dominio no depende de este paquete. Los módulos se comunican por puertos y contratos tipados.
+**Spec dueña:** 014/030 · **Estado:** scaffold. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

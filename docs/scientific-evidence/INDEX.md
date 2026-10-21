@@ -1,4 +1,4 @@
-# UNITESIS V7 · Biblioteca científica consultable por agentes
+# Biblioteca científica consultable por agentes
 
 **Fecha de compilación:** 17 de octubre de 2026.  
 **Total de fichas individuales:** 191 archivos Markdown.  
@@ -28,6 +28,8 @@ docs/scientific-evidence/
   modules/                       <- 18 síntesis técnicas por dominio
   agent-queries/                 <- consultas sugeridas y playbooks
   catalog.json                   <- índice complementario (metadatos)
+  UPDATED-REFERENCES.md          <- 21 fuentes prioritarias verificadas (21/10/2026) y estado del catálogo
+  prioritized-references.json    <- las mismas fuentes prioritarias en formato estructurado
 ```
 
 ## Lectura obligatoria para cualquier agente

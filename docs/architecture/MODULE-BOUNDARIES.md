@@ -7,7 +7,7 @@
 
 ```text
 apps/control-api     -> application -> domain
-workers/*            -> application -> ports -> adapters at composition root
+workers/*            -> application -> ports -> adapters at composition root (cada worker se crea con su spec)
 power-adapters       -> domain + ports  (nunca al revés)
 power-simulation     -> domain + ports  (solvers externos mediante adapter)
 power-optimization   -> domain + ports  (solvers externos mediante adapter)
@@ -38,7 +38,7 @@ power-domain         -> únicamente biblioteca estándar y tipos propios
 ## Guía de extracción futura
 Separar un bounded context como servicio solo si límites de despliegue, licencias, latencia, volumen o autonomía de equipo lo justifican con mediciones.
 
-### Extensión V5 (ownership)
+### Ownership de grafo, P2P, mercado y ledger
 - `power-topology`: única topología física versionada, nunca escrita directamente desde P2P, ledger, GraphRAG o agentes.
 - `power-graph`: proyección/retrieval temporal y graph queries; los grafos no son el source of truth.
 - `power-p2p`: P2P de comunicaciones para evidencia/escenarios únicamente; no SCADA.

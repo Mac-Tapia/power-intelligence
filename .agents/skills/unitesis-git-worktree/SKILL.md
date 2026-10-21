@@ -26,5 +26,5 @@ scripts/dev/; .github/; specs/
 Resumen de cambios, decisiones, artefactos, pruebas ejecutadas realmente, errores, riesgos abiertos y vínculo al PR/spec.
 
 
-## Fuentes de investigación UNITESIS V7
+## Fuentes de investigación
 Antes de implementar, consultar `docs/scientific-evidence/modules/sdd.md`, `docs/scientific-evidence/modules/arch.md`, además de `docs/scientific-evidence/MATRIX-MODULES.md`. Validar ficha y tipo de evidencia, documentar fuente y experimento en la spec. Nunca tratar referencias pendientes o abstracts como validación de producto.

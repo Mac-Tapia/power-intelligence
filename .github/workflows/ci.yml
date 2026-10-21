@@ -1,0 +1,29 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements/dev.txt
+      - name: Structure, specs, cases and prohibitions
+        run: python scripts/verify_structure.py
+      - name: Lint
+        run: ruff check .
+      - name: Tests (unit, contract, integration, security, governance)
+        run: python -m pytest -q
+      - name: Agent skills and MCP governance
+        run: python scripts/agents/validate_agent_setup.py
+      - name: File ownership and specification inventory
+        run: python scripts/dev/project_inventory.py --root . --output local-data/diagnostics/inventory.json

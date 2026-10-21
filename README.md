@@ -1,97 +1,75 @@
 # UNITESIS Power Intelligence
 
-**Plataforma de ingeniería y planificación eléctrica con GIS, gemelo digital y computación científica.**
+Plataforma **universal** de ingeniería y planificación de redes de distribución: ingesta trazable, motor de flujo de potencia propio con contraste independiente, escenarios de nueva carga, alternativas técnico‑económicas, evidencia verificable y capas de IA (GNN/PINN, MADRL, LLM) que proponen pero nunca certifican.
 
-> Estado: **esqueleto estructural verificable, NO software eléctrico operativo**. El scaffold no calcula flujos, no importa VNR-GIS real y no ejecuta PINN/MARL. Toda capacidad se libera únicamente tras cumplir su especificación, pruebas y revisión.
+Lo local (país, empresa, CRS, zona horaria, moneda, frecuencia, normas y fuentes) se declara por **caso de aplicación** en `config/cases/`. El caso piloto es `pe-ica-electrodunas` (Electro Dunas: Ica, Chincha, Pisco, Nasca).
 
-## Primer objetivo vertical
+## Estado
 
-`Fuente VNR-GIS autorizada -> Bronze/Silver -> grafo por terminal/fase -> GIS + unifilar -> completar parámetros -> nuevo cliente -> solver de referencia -> antes/después -> evidencia -> informe`.
+| Capa | Estado |
+|---|---|
+| Núcleo eléctrico (dominio, topología, BFS y Newton-Raphson propios, transformadores, contraste pandapower, evidencia) | operativo para redes equilibradas radiales y malladas (specs 006 y 008: 008-A, 008-B1, 008-B2; benchmark IEEE 33) |
+| Nueva carga, alternativas de conductor con VPN, capacidad remanente y Pareto | operativos (specs 002, 018 y 019) |
+| CLI, API local y workstation web | locales, con perfil bearer opcional (specs 004 y 005) |
+| Jobs y recuperación | jobs durables locales; recuperación distribuida y producción pendientes (specs 007 y 031) |
+| Ingesta de redes reales | TXT CYME ASCII operativo (93 alimentadores leídos, 44 validados); MDB y VNR-GIS pendientes (specs 001 y 037) |
+| Datasets por caso y controles de calidad | controles operativos; datasets gold pendientes (spec 035) |
+| GNN/PINN | dataset candidato desde la red real, línea base física y GraphSAGE unitario; entrenamiento pendiente de gold (spec 029) |
+| MADRL, LLM | spec 030; sin código |
 
-## Estructura
+Las 40 specs siguen la numeración del plan maestro ([equivalencias con la anterior](docs/traceability/SPEC-ID-MIGRATION.md)).
 
-- `apps/`: interfaz profesional y API de control.
-- `packages/python/`: dominios, casos de uso, puertos, adaptadores y motores independientes.
-- `packages/ts/`: contratos y componentes frontend.
-- `workers/`: procesos de larga duración CPU/GPU/solvers, nunca en peticiones HTTP.
-- `specs/` + `.specify/`: especificaciones SDD versionadas.
-- `docs/`: C4, ADR, arquitecturas, contratos, trazabilidad y operaciones.
-- `fixtures/` y `tests/`: casos sintéticos/abiertos y verificaciones.
-- `scripts/`: herramientas de bootstrap y worktrees seguros.
+Las 40 specs siguen la numeración del plan maestro ([equivalencias con la anterior](docs/traceability/SPEC-ID-MIGRATION.md)).
 
-## Primeras comprobaciones sin instalar dependencias
+Las 40 specs siguen la numeración del plan maestro ([equivalencias con la anterior](docs/traceability/SPEC-ID-MIGRATION.md)).
 
-```powershell
-python scripts/verify_structure.py
-python -m unittest discover -s tests/bootstrap -v
-python scripts/dev/worktree.py list
-```
+Arquitectura y estado por capacidad: [`docs/architecture/ARCHITECTURE-INTEGRAL.md`](docs/architecture/ARCHITECTURE-INTEGRAL.md) · mapa de specs: [`docs/traceability/FEATURE-MAP.md`](docs/traceability/FEATURE-MAP.md) · contratos: [`docs/architecture/CONTRACTS-AND-EVIDENCE.md`](docs/architecture/CONTRACTS-AND-EVIDENCE.md).
 
-## Activación de GitHub Spec Kit (Cursor)
+## Uso
 
-1. Crea un commit de esta estructura en Git para conservar los archivos antes de inicializar herramientas.
-2. Instala Spec Kit y ejecuta `specify init --here --integration cursor-agent --script ps --force` **revisando la diferencia después**. Esto puede regenerar `.specify/` y `.cursor/`; recupera la constitución del commit si resultó reemplazada.
-3. Si deseas ramas gestionadas desde Spec Kit: `specify extension add git` (según tu versión instalada).
-4. Sigue las especificaciones (`/speckit-specify`, `/speckit-clarify`, `/speckit-plan`, `/speckit-checklist`, `/speckit-tasks`, `/speckit-analyze`, `/speckit-implement`, `/speckit-converge`). Las denominaciones visibles pueden variar por versión e integración.
-5. No ejecutes `specify init` en cada worktree. Inicializa una vez, confirma los archivos generados y luego crea worktrees.
-
-Ver `docs/development/SDD-WORKTREE-GUIDE.md` y `docs/architecture/MODULE-BOUNDARIES.md`.
-
-## Extensión V5 — Graph, P2P y Blockchain
-
-Esta versión añade **cinco bounded contexts nuevos** (`power-graph`, `power-p2p`, `power-ledger`, `power-market`, `power-graphrag`) y especificaciones SDD `010`–`014` con planes, tareas, schemas y pruebas de invariantes. **Ningún comercio P2P, libp2p, red blockchain o grafo DB de producción está desplegado**.
-
-- Arquitectura: [`docs/architecture/GRAPH_P2P_BLOCKCHAIN_V5.md`](docs/architecture/GRAPH_P2P_BLOCKCHAIN_V5.md).
-- Worktrees: [`docs/development/SDD-WORKTREE-V5.md`](docs/development/SDD-WORKTREE-V5.md).
-- Contracts: `contracts/schemas/json/{graph-projection,p2p-envelope,p2p-energy-trade,ledger-anchor}.v1.schema.json`.
-- Pruebas: `python -m unittest discover -s tests/bootstrap -v`.
-
-## V6: Skills, conectores MCP y blueprint full-stack
-
-Se agregaron **20 skills compatibles con Agent Skills**, perfiles técnicos, registro MCP con modo `deny`, conector local de lectura de documentación, un blueprint detallado de backend/frontend, script para preparar MCP portable y pruebas de seguridad del scaffold.
-
-- `docs/agents/SKILLS-AND-CONNECTORS.md`: política, roles y configuración.
-- `docs/architecture/BACKEND-FRONTEND-BLUEPRINT_V6.md`: diseño objetivo FastAPI + React, contratos y seguridad.
-- `specs/015-agent-skills-mcp/`: spec, plan y tareas SDD.
-- `.agents/skills/*/SKILL.md`: habilidades portables por tecnología.
-- `connectors/registry.json`: qué puede solicitar cada agente (no activa conexiones).
-
-Comprobar:
-```bash
-python scripts/verify_structure.py
-python scripts/agents/validate_agent_setup.py
-python -m unittest discover -s tests/bootstrap -v
-```
-Para ejecutar el servidor MCP **después de instalar voluntariamente el SDK oficial**:
-```bash
-python -m pip install -r tools/mcp/requirements-mcp.txt
-# Cursor consume .cursor/mcp.json; verificar estado en Cursor > MCP
-# VS Code: generar .mcp.json portable y local
-python scripts/agents/bootstrap_mcp.py --target vscode --write
-```
-La V6 no instala paquetes de terceros, no conecta servicios externos, no implementa las aplicaciones ni despliega infraestructura.
-
-
-## Biblioteca científica V7 para todos los agentes
-
-**191 fichas Markdown originales** con fuentes enlazadas, organizadas por 18 dominios y mapeadas a 20 Agent Skills. Punto de entrada: [`docs/scientific-evidence/INDEX.md`](docs/scientific-evidence/INDEX.md).
+Entorno: Python 3.12 en `.venv` con `requirements/dev.txt`.
 
 ```powershell
-python scripts/research/validate_library.py
-python scripts/research/query_evidence.py --module sciml --limit 10
+.venv\Scripts\python scripts/unitesis.py study --input fixtures/networks/radial_feeder_6bus.json --output local-data/evidence/base.json
+.venv\Scripts\python scripts/unitesis.py new-load --input fixtures/networks/radial_feeder_6bus.json --output local-data/evidence/nl.json --load-id NL1 --bus B3 --p-mw 0.5 --q-mvar 0.2
+.venv\Scripts\python scripts/unitesis.py alternatives --input fixtures/networks/radial_feeder_6bus.json --output local-data/evidence/alt.json --line L13 --catalog config/catalogs/conductors/aaac6201_nexans_reference.json --basis fixtures/economics/conductor_alternatives_synthetic.json --temperature-c 75 --gmd-m 1.2
+.venv\Scripts\python scripts/unitesis.py verify-evidence local-data/evidence/base.json
+.venv\Scripts\python scripts/unitesis.py serve          # http://127.0.0.1:8000/
+.venv\Scripts\python scripts/datasets/audit_sources.py --case pe-ica-electrodunas --archive-root <archivo-de-donantes>
 ```
 
-Las fichas no incluyen el texto completo de publicaciones y su estatus bibliográfico está marcado; las fuentes originales exigen comprobación antes de ser citadas en una tesis o informe regulatorio.
+Códigos de salida: 0 correcto · 2 entrada inválida o en cuarentena · 3 motor de referencia ausente · 4 sin convergencia · 5 contraste fallido · 6 evidencia corrupta.
 
-## UNITESIS V8 — PIT, PIDE, economía y PMBOK 6
-Lea `docs/regulatory/INDEX.md`, `PIDE-ANNEX1-STATUS.md`, `SOURCES.json`, y `docs/project-management/PMBOK6-UNITESIS-MAPPING.md` antes de estudiar inversiones o agregar reglas de cumplimiento. Norma 217-2013 SST/SCT ≠ metodología PIDE; bloquea certificación de borradores. El perfil 217 original requiere consolidar todas sus modificatorias. La biblioteca V7 sigue vigente.
+## Verificación
 
-## V8.1 PIDE distribución
-Se documentó la prepublicación oficial 2017 y se agregó un perfil metodológico histórico separado del proceso regulatorio FONAFE. Leer `docs/regulatory/PIDE-2017-PREPUBLICACION-EL-PERUANO.md` antes de utilizar PIDE.
+```powershell
+.venv\Scripts\python scripts/verify_structure.py   # estructura, specs, casos, prohibiciones
+.venv\Scripts\python -m pytest -q                  # unit, contract, integration, security, governance
+.venv\Scripts\ruff check .
+.venv\Scripts\python scripts/dev/project_inventory.py --root . --output local-data/diagnostics/inventory.json
+```
 
-## PIDE V8.2: auditoría de fuentes y motor de referencia
-Leer `docs/regulatory/pide_2017/INDEX.md`. CLI de ejemplo: `python scripts/pide/evaluate_reference.py --input fixtures/pide/reference_case_synthetic.json`. Los formatos originales 01–15 siguen bloqueados hasta recuperar el Anexo MINEM.
+El inventario vincula archivos con módulo y specs existentes, detecta archivos sin dueño
+y enumera consumidores Python. La propiedad documental no acredita implementación:
+los módulos scaffold y las tareas pendientes siguen visibles en el mapa de capacidades.
+El [diseño aprobado](docs/development/READINESS-AND-CLEANUP.md) y su
+[plan de implementación](docs/development/READINESS-IMPLEMENTATION-PLAN.md) describen
+las entregas de preparación integral y sus límites.
 
-## Consolidación del workspace — revisión 20/10/2026
+## Estructura por capas
 
-[Spec 028](specs/028-workspace-consolidation/spec.md), [revisión arquitectónica y limpieza](specs/028-workspace-consolidation/architecture-review.md) y [tareas con estado](specs/028-workspace-consolidation/tasks.md). Definen aportes por módulo, contratos y criterios de integración/eliminación. El núcleo continúa en fase de estructura y auxiliares; esta revisión no implementa ni acepta un solver eléctrico.
+| Carpeta | Contenido |
+|---|---|
+| `packages/python/power-*` | 19 módulos (dominio, puertos, adaptadores, topología, simulación, optimización, economía, regulación, evidencia, aplicación, config, sciml, marl, agents, graph, graphrag, p2p, market, ledger) |
+| `apps/` | `control-api` (FastAPI) y `workstation-web/public` (UI estática servida por la API) |
+| `scripts/` | `unitesis.py` (CLI única), `datasets/`, `agents/`, `research/`, `pide/`, `dev/`, `verify_structure.py` |
+| `config/` | casos de aplicación, catálogos, perfiles regulatorios, registro de fuentes, catálogo de estudios |
+| `contracts/` | esquemas JSON versionados y eventos |
+| `specs/` | una carpeta por capacidad (`spec.md` + `tasks.md`) |
+| `docs/` | arquitectura, ADR, contratos, trazabilidad, regulación, biblioteca científica, agentes, desarrollo |
+| `fixtures/`, `tests/` | casos sintéticos y suites `unit`, `contract`, `integration`, `security`, `governance` |
+| `infra/db/postgres` | esquema SQL append-only (adaptador PostgreSQL: spec 007) |
+| `datasets/quality` | evidencias de auditoría de fuentes (solo métricas) |
+| `local-data/` | fuera de Git: fuentes de referencia del caso y salidas locales |
+
+Las carpetas nuevas (workers, benchmarks, paquetes TS…) se crean cuando una tarea de spec las necesita; no se dejan carpetas vacías.

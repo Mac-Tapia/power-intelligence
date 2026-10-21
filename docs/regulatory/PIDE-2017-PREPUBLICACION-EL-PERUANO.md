@@ -1,4 +1,4 @@
-# PIDE — Prepublicación oficial (19/10/2017) y aplicación metodológica UNITESIS V8.1
+# PIDE — Prepublicación oficial (19/10/2017) y aplicación metodológica
 
 ## Identificación y jerarquía de fuentes
 - **Primaria normativa**: Resolución Ministerial N.° 428-2017-MEM/DM, diario oficial El Peruano, 19/10/2017. **Autoriza publicar** el proyecto de resolución que aprobaría «Criterios y Metodología de Planificación para la Elaboración del Plan de Inversión en Distribución Eléctrica (PIDE)». https://busquedas.elperuano.pe/dispositivo/NL/1577466-1

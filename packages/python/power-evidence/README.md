@@ -1,5 +1,5 @@
 # power-evidence
 
-Provenance, hashes, immutable reports and independent validation evidence.
+Publicación atómica de evidencia con relectura e integridad; inventario de custodia.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 008 · **Estado:** operativo. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

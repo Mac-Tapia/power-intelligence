@@ -1,44 +1,24 @@
-# Instructions for coding agents (UNITESIS)
+# Instrucciones para agentes de código (UNITESIS)
 
-Read `.specify/memory/constitution.md`, the feature's `specs/<id>/spec.md`, `docs/architecture/MODULE-BOUNDARIES.md`, the relevant ADR and test plan **before** changing code.
+Antes de cambiar código, leer `.specify/memory/constitution.md`, `docs/architecture/ARCHITECTURE-INTEGRAL.md`, `docs/architecture/MODULE-BOUNDARIES.md`, la spec de la capacidad (`specs/<id>/spec.md` y `tasks.md`) y los ADR relacionados (`docs/architecture/decisions/`).
 
-1. Never claim an electrical calculation is correct unless verified on a reference benchmark under declared tolerances.
-2. No invented VNR-GIS attributes; missing parameters must be quarantined and made visible to the engineer.
-3. Electrical topology is based on terminals, voltage, phase and switch states; GIS proximity is not connectivity.
-4. LLM, PINN and MARL may propose or screen candidates; final acceptance requires a deterministic independent solver and approved engineering workflow.
-5. All features start with a human-reviewable spec, acceptance scenarios and tasks; use one branch and worktree per feature when parallel.
-6. Keep domain pure: no importing FastAPI, SQLAlchemy, Torch, GIS drivers or simulation libraries into `power-domain`.
-7. Always run targeted unit, contract and regression tests; update evidence and spec status. No production SCADA switching from an autonomous agent.
-8. Do not auto-update dependencies or fetch confidential datasets without explicit authorization.
+## Reglas
 
-- Features 010–014: leer ADR-0004, ADR-0005, ADR-0006 y `docs/architecture/GRAPH_P2P_BLOCKCHAIN_V5.md` antes de modificar graph/P2P/ledger.
-- Prohibido mezclar grafo lógico P2P, grafo comercial y grafo eléctrico terminal/fase.
-- No ejecutar contratos ni transacciones reales desde pruebas, ni enviar datos de red sensibles a ledger.
+0. **Trabajo concurrente.** Antes de editar, leer y actualizar el tablero `local-data/coordination/BOARD.md` según `docs/development/AGENT-COORDINATION.md`: reclamar archivos, no editar los reclamados por otro agente y commitear solo rutas explícitas propias (nunca `git add -A` con trabajo ajeno sin commitear).
+1. **Producto universal.** No codificar supuestos de país, empresa, frecuencia, CRS, moneda ni norma. Lo local va en `config/cases/<case_id>.json`, en perfiles regulatorios con `jurisdiction` y en `config/datasets/sources.v2.json`. El caso piloto es `pe-ica-electrodunas`.
+2. **Motores propios** (ADR-0010). Nada de `cympy`, `powerfactory`, COM/ComLdf ni automatización de sus GUI; lo vigila `tests/security/test_no_proprietary_engines.py`. Se permiten lectores offline de archivos.
+3. **Verdad eléctrica** (ADR-0002). GNN/PINN, MADRL y LLM proponen o criban; el solver propio confirma con contraste independiente y la aceptación es humana. Nunca afirmar que un cálculo es correcto sin benchmark y tolerancias declaradas (`docs/architecture/CONTRACTS-AND-EVIDENCE.md`).
+4. **Sin valores inventados.** Los parámetros faltantes van a cuarentena y quedan visibles. La proximidad GIS no implica conectividad (ADR-0003).
+5. **Dominio puro.** `power-domain` usa solo la stdlib; no importar FastAPI, SQL, Torch, GIS ni motores.
+6. **Datos.** Entrenar solo con datasets gold de la spec 035 por `case_id`. Las fuentes `method_reference` nunca son evidencia de un caso. Los valores de clientes no entran en Git.
+7. **Spec primero.** Toda capacidad nueva empieza con spec, criterios y tareas; marcar las tareas solo con evidencia ejecutada.
+8. **Sin historia en el árbol.** No crear documentos versionados (`*_V5.md`, planes superados, logs de operaciones) ni carpetas vacías; el historial vive en Git.
+9. **Dependencias.** No instalar ni actualizar dependencias, ni descargar datos confidenciales, sin autorización explícita. Las versiones están en `requirements/dev.txt`.
+10. Ejecutar antes de entregar: `python scripts/verify_structure.py`, `python -m pytest -q` y `ruff check .`.
 
-## V6 — Agentes, skills y conectores
+## Dominios específicos
 
-**Antes de cualquier tarea** consulta `.agents/skills/` según rol, `docs/agents/AGENT-ROLES.md`, `connectors/registry.json` y `docs/agents/SKILLS-AND-CONNECTORS.md`. El MCP local solo lee documentación allowlisted, y ningún conector opcional representa una conexión activa.
-
-- Todo agente trabaja en un worktree por spec/feature; no hereda privilegios de otros agentes.
-- Para backend aplica skill FastAPI + DDD + API Contracts; para frontend React + Design System + contratos. Validar conjuntamente con QA.
-- MCP nunca sustituye RBAC/ABAC real, límites de base de datos, aprobación humana ni seguridad de red.
-- No instalar MCP de terceros, habilitar GitHub-write, operar PostgreSQL productivo o descargar datasets regulados sin revisión y autorización explícitas.
-- No afirmar test UI, conexión MCP real o backend/frontend ejecutables cuando aún no existen.
-
-
-## Protocolo científico obligatorio UNITESIS V7
-- Antes de diseñar o modificar un módulo, leer `docs/scientific-evidence/INDEX.md`, `MATRIX-MODULES.md` y `modules/<área>.md`.
-- Consultar fichas Markdown en `sources/`; cada ficha indica si está basada en página localizada o referencia heredada V2. **Ninguna ficha reemplaza el artículo original**.
-- Usar `python scripts/research/query_evidence.py` para búsquedas offline por palabras clave, módulo e idioma.
-- Al proponer algoritmos o cambios de API/UI, añadir `specs/<feature>/research.md` con matriz evidencia-vacíos-pruebas; no confundir documentación técnica con artículo científico revisado por pares.
-- No declarar PINN físicamente exacta, blockchain normativamente habilitada ni reproducibilidad sin evidencia ejecutada.
-- Biblioteca multilingüe EN/ES/PT/FR/DE; no copiar PDFs ni transcripciones completas protegidas.
-
-## UNITESIS V8 — PIT, PIDE, economía y PMBOK 6
-Lea `docs/regulatory/INDEX.md`, `PIDE-ANNEX1-STATUS.md`, `SOURCES.json`, y `docs/project-management/PMBOK6-UNITESIS-MAPPING.md` antes de estudiar inversiones o agregar reglas de cumplimiento. Norma 217-2013 SST/SCT ≠ metodología PIDE; bloquea certificación de borradores. El perfil 217 original requiere consolidar todas sus modificatorias. La biblioteca V7 sigue vigente.
-
-## V8.1 — prepublicación PIDE 2017
-Para toda planificación de distribución leer `docs/regulatory/PIDE-2017-PREPUBLICACION-EL-PERUANO.md` y `docs/agents/PIDE-DISTRIBUTION-AGENT-QUERY.md`; perfil PIDE referencia no es norma aprobada, 20/4 histórico solo se aplica al caso explícito; comprobar FONAFE antes de usar trámite B.1.2.
-
-## V8.2 — REGLA BASE PIDE DOCUMENTAL
-**Leer primero** `docs/regulatory/pide_2017/INDEX.md`. RM 428-2017 prepublicó, no aprobó; Anexo original 01–15 pendiente. TDR Electro Puno 2018 NO es la norma. La calculadora `pide_reference` es ilustrativa; prohibido reportar cumplimiento regulatorio o estudios reales sin datos/solver.
+- **Grafo, P2P, ledger y mercado (010–013):** ADR-0004/0005/0006. No mezclar el grafo P2P, el comercial y el eléctrico; no hay transacciones reales ni datos de red sensibles en el ledger.
+- **Regulación (020–027):** `docs/regulatory/INDEX.md`, `docs/regulatory/pide_2017/INDEX.md`, `SOURCES.json` y `docs/project-management/PMBOK6-UNITESIS-MAPPING.md`. El PIDE 2017 es una prepublicación, no una norma aprobada; la certificación automática está bloqueada.
+- **Investigación:** `docs/scientific-evidence/INDEX.md` y `python scripts/research/query_evidence.py`. Las fichas no reemplazan al artículo original.
+- **Agentes y MCP (015):** `.agents/skills/`, `docs/agents/AGENT-ROLES.md`, `connectors/registry.json`. El MCP local solo lee documentación permitida; ningún conector opcional está activo.

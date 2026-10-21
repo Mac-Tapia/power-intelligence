@@ -1,0 +1,133 @@
+{
+  "schema": "unitesis.application-case/1",
+  "case_id": "pe-ica-electrodunas",
+  "role": "pilot_application_case",
+  "description": "Caso de aplicación piloto: concesión de Electro Dunas (Ica, Chincha, Pisco, Nasca). Valida el producto universal con datos reales; no define el producto.",
+  "country": "PE",
+  "region": "Ica",
+  "utility": "Electro Dunas S.A.A.",
+  "authorization": {
+    "status": "confirmed",
+    "authority": "explicit_user_instruction",
+    "confirmed_on": "2026-10-21",
+    "scope": "local_processing_and_training",
+    "note": "El usuario autorizó expresamente utilizar los datos locales en esta sesión. No se declara licencia para publicar datos privados ni se sustituye la validación de calidad."
+  },
+  "electrical": {
+    "frequency_hz": 60.0,
+    "nominal_voltages_kv": {
+      "status": "derive_from_source",
+      "note": "Se obtienen de los códigos CodTenNomi del VNR-GIS mediante una tabla versionada; nunca se asumen."
+    }
+  },
+  "spatial": {
+    "crs": "EPSG:32718",
+    "crs_status": "declared_pending_verification",
+    "note": "La provincia de Ica cae en UTM 18S; confirmar contra metadatos del VNR-GIS antes de publicar geometría."
+  },
+  "time": {
+    "timezone": "America/Lima",
+    "measurement_interval": "15min"
+  },
+  "economics": {
+    "currency": "PEN",
+    "note": "Tasas, precios de energía y costos siempre en una base económica explícita con fuente (unitesis.economic-basis/1)."
+  },
+  "regulatory_profiles": [
+    "DISTRIBUTION_INTERNAL_STUDY",
+    "PIT_2025_2029",
+    "PIT_SST_SCT_217_2013_BASE"
+  ],
+  "regulatory_notes": [
+    "PIDE (DL 1208) aplica a empresas FONAFE (spec 026 AC2); verificar la elegibilidad de esta empresa antes de habilitar perfiles PIDE."
+  ],
+  "source_ids": [
+    "eldu-vnrgis-2024-04",
+    "eldu-vnrgis-params-2024-04",
+    "eldu-cyme-study-mdb",
+    "eldu-cyme-ascii-2026-08",
+    "eldu-meter-demand-2023-2026",
+    "eldu-new-customers",
+    "eldu-line-demand-l6605-l6606",
+    "eldu-feeder-head-measurements",
+    "eldu-feeder-meters",
+    "eldu-supply-customers",
+    "eldu-key-customers",
+    "eldu-exog-temperature-ica",
+    "eldu-exog-calendar-pe",
+    "eldu-exog-gdp-bcrp",
+    "eldu-exog-population-ica",
+    "eldu-exog-nasa-power-pisco",
+    "eldu-dger-investment-studies"
+  ],
+  "import_rules": {
+    "cyme_ascii": {
+      "default_connector_max_m": 10.0,
+      "allow_positive_sequence_approximation": false,
+      "evidence": "En la exportación del 03/08/2026 los 22 791 tramos con código DEFAULT miden como máximo 7,18 m (mediana 1,07 m): son tramos de conexión de cargas y seccionadores, que se modelan como conexión ideal.",
+      "phase_frame_from_sequence": true,
+      "load_connection_codes": {
+        "0": "wye"
+      },
+      "phase_frame_evidence": "REA del export del 03/08/2026 (ADR-0012): CUSTOMER LOADS.Phase es una mascara A=1, B=2, C=4 (7287 cargas, 0 conflictos frente a la fase del tramo). LOADS.Connection tiene un unico valor (0) y lo usan tambien 218 cargas en tramos monofasicos, donde una conexion delta es imposible: 0 se interpreta como estrella. Pendiente de confirmacion del propietario; los estudios por fase mantienen technical_acceptance=false."
+    },
+    "line_demand_xlsx": {
+      "timestamp_header": "FECHA",
+      "columns": [
+        [
+          "L6605 KW",
+          "L6605",
+          "kw"
+        ],
+        [
+          "L6605 KVAR",
+          "L6605",
+          "kvar"
+        ],
+        [
+          "L6605 KVA",
+          "L6605",
+          "kva"
+        ],
+        [
+          "L6606 KW",
+          "L6606",
+          "kw"
+        ],
+        [
+          "L6606 KVAR",
+          "L6606",
+          "kvar"
+        ],
+        [
+          "L6606 KVA",
+          "L6606",
+          "kva"
+        ]
+      ],
+      "frequency": "15min",
+      "interval_ending": true,
+      "evidence": "Encabezados de la hoja L-6605-6 (FECHA, L6605/L6606 en KVA, KW y KVAR): magnitud y unidad salen del propio encabezado. La primera marca es 00:15 con paso de 15 min: cada marca cierra su intervalo. Zona horaria: la del caso (sin horario de verano en Peru)."
+    },
+    "vnrgis": {
+      "voltage_codes": {
+        "D": 10.0,
+        "G": 22.9
+      },
+      "sed_power_factor": 0.97,
+      "included_states": [
+        "E",
+        "M",
+        "N"
+      ],
+      "evidence": "REA (ADR-0012): CodTenNomi D=10 kV y G=22,9 kV, deducido sin conflictos al emparejar 95 salidas VNR con los alimentadores CYME por codigo (69 y 26 observaciones). VNR no trae factor de potencia: se usa 0,97, el valor uniforme del estudio CYME del mismo caso (modelado, no medido). Estados VNR incluidos: Existente, Modificado, Nuevo (se excluyen Proyectado y Eliminado)."
+    }
+  },
+  "planning_criteria": {
+    "v_min_pu": 0.95,
+    "v_max_pu": 1.05,
+    "max_loading_percent": 100.0,
+    "source": "NTCSE, D.S. N.° 020-97-EM: tolerancia de tensión de hasta ±5 % de la nominal en puntos de entrega (±7,5 % en redes secundarias urbano-rurales y rurales); cargabilidad ≤ 100 % de la ampacidad del catálogo",
+    "status": "clause_pending_verification_against_official_text"
+  }
+}

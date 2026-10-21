@@ -1,4 +1,4 @@
-# Threat model V5 — P2P / Ledger / Graph
+# Threat model — P2P / Ledger / Graph
 
 | Superficie | Ataque | Control requerido | Prueba |
 |---|---|---|---|

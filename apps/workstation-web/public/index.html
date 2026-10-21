@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UNITESIS Workstation</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">⚡</span>
+      <div>
+        <h1>UNITESIS Power Intelligence</h1>
+        <p>Workstation de estudios de distribución · motor propio con contraste independiente</p>
+      </div>
+    </div>
+    <span id="health" class="badge muted">conectando…</span>
+  </header>
+
+  <main class="layout">
+    <aside class="panel side">
+      <section aria-label="Acceso">
+        <h2>Acceso</h2>
+        <label for="access-token">Credencial (si el servidor la requiere)</label>
+        <input id="access-token" type="password" autocomplete="off">
+        <button id="connect-access" class="secondary">Conectar</button>
+        <button id="disconnect-access" class="secondary">Cerrar sesión</button>
+        <p id="access-msg" class="msg">La credencial solo se conserva en memoria durante esta sesión.</p>
+      </section>
+      <section>
+        <h2>1 · Red</h2>
+        <label for="example">Ejemplo incluido</label>
+        <div class="row">
+          <select id="example"></select>
+          <button id="load-example" class="secondary">Cargar</button>
+        </div>
+        <label for="file">o archivo JSON neutral</label>
+        <input id="file" type="file" accept="application/json,.json">
+        <button id="import" disabled>Importar red</button>
+        <p id="import-msg" class="msg"></p>
+      </section>
+      <section>
+        <h2>Snapshots importados</h2>
+        <ul id="snapshots" class="snap-list"><li class="muted">Ninguno todavía</li></ul>
+      </section>
+      <section class="note">
+        <strong>Aceptación técnica y regulatoria:</strong> pendiente de revisión humana.
+        Los resultados son de ingeniería preliminar (alcance radial equilibrado).
+      </section>
+    </aside>
+
+    <section class="panel main">
+      <div class="diagram-head">
+        <h2>Unifilar</h2>
+        <span id="snap-id" class="mono muted">sin snapshot</span>
+      </div>
+      <div id="diagram" class="diagram"><p class="muted">Importa una red para ver el unifilar.</p></div>
+      <div class="legend">
+        <span><i class="sw ok"></i>V ≥ 0.95 pu / carga ≤ 80 %</span>
+        <span><i class="sw warn"></i>0.95–0.97 pu / 80–100 %</span>
+        <span><i class="sw bad"></i>&lt; 0.95 pu / &gt; 100 %</span>
+        <span><i class="sw open"></i>abierto / fuera de servicio</span>
+      </div>
+
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-tab="flow" aria-selected="true">Flujo de potencia</button>
+        <button role="tab" data-tab="newload" aria-selected="false">Nueva carga</button>
+        <button role="tab" data-tab="alt" aria-selected="false">Alternativas de conductor</button>
+      </nav>
+
+      <div class="tab" id="tab-flow">
+        <p class="hint">Barrido atrás/adelante propio, contrastado con pandapower bajo las tolerancias declaradas (spec 008).</p>
+        <button id="run-flow" disabled>Ejecutar estudio</button>
+        <div id="flow-out"></div>
+      </div>
+
+      <div class="tab" id="tab-newload" hidden>
+        <p class="hint">Escenario clonado: la red fuente no se modifica.</p>
+        <form id="newload-form" class="grid-form">
+          <label>ID de carga <input name="load_id" value="NUEVA-1" required></label>
+          <label>Barra <select name="bus" id="nl-bus"></select></label>
+          <label>P (MW) <input name="p_mw" type="number" step="any" value="0.5" required></label>
+          <label>Q (MVAr) <input name="q_mvar" type="number" step="any" value="0.2" required></label>
+          <button type="submit" disabled>Evaluar conexión</button>
+        </form>
+        <div id="newload-out"></div>
+      </div>
+
+      <div class="tab" id="tab-alt" hidden>
+        <p class="hint">Cada alternativa factible se re-resuelve con el motor independiente; solo se clasifica si el contraste pasa.</p>
+        <form id="alt-form" class="grid-form">
+          <label>Línea <select name="line_id" id="alt-line"></select></label>
+          <label>Catálogo <select name="catalog_id" id="alt-catalog"></select></label>
+          <label>T. operación (°C) <input name="operating_temperature_c" type="number" step="any" value="75" required></label>
+          <label>DMG fases (m) <input name="phase_gmd_m" type="number" step="any" value="1.2" required></label>
+          <label>V mín (pu) <input name="v_min_pu" type="number" step="any" value="0.95" required></label>
+          <label>Carga máx (%) <input name="max_loading_percent" type="number" step="any" value="100" required></label>
+          <label class="wide">Base económica (JSON explícito con fuente)
+            <textarea name="economic_basis" id="alt-basis" rows="8" spellcheck="false"></textarea>
+          </label>
+          <button type="submit" disabled>Evaluar alternativas</button>
+        </form>
+        <div id="alt-out"></div>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

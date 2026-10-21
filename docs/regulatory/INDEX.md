@@ -1,4 +1,4 @@
-# UNITESIS V8 — Centro normativo técnico-económico
+# Centro normativo técnico-económico
 
 > Estado 17-10-2026: diseño e implementación parcial de funciones puras; no constituye un validador legal completo ni un estudio aprobado.
 
@@ -38,5 +38,5 @@ Ver `SOURCES.json`; para PIDE consultar específicamente informe legal 628-2025-
 
 - [Anexo B.1.2 - procedimiento FONAFE](PIDE-ANNEX-B1.2-PROCEDURE.md)
 
-### PIDE 2017 — V8.2
+### PIDE 2017
 [Auditoría del Anexo pendiente y matriz TDR verificable](pide_2017/INDEX.md). No confundir TDR Electro Puno con el texto normativo oficial.

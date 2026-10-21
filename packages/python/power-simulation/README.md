@@ -1,5 +1,5 @@
 # power-simulation
 
-Power-flow, short-circuit, reliability and scenario execution; no silent solver stubs.
+Motores propios (BFS radial), adaptador de contraste pandapower y comparador con prueba de independencia.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 008 · **Estado:** 008-A operativo. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

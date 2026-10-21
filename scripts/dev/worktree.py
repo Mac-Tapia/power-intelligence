@@ -8,24 +8,29 @@ Examples:
 
 No force deletions, no shell execution, no branch deletion. Git is required.
 """
+
 from __future__ import annotations
+
 import argparse
-from pathlib import Path
 import re
 import subprocess
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE_DIR = ROOT.parent / "unitesis-worktrees"
 ALLOWED = re.compile(r"^[0-9]{3}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 
+
 def git(*args: str) -> None:
     subprocess.run(["git", "-C", str(ROOT), *args], check=True)
+
 
 def path_for(branch: str) -> Path:
     if not ALLOWED.fullmatch(branch):
         raise ValueError("Use NNN-kebab-case branch ID, e.g. 001-vnrgis-ingestion")
     return BASE_DIR / branch
+
 
 def main() -> int:
     p = argparse.ArgumentParser(description="Manage sibling worktrees for UNITESIS")
@@ -57,6 +62,7 @@ def main() -> int:
     except (subprocess.CalledProcessError, FileNotFoundError, ValueError) as err:
         print(f"ERROR: {err}", file=sys.stderr)
         return 1
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -1,5 +1,5 @@
 # power-marl
 
-Safe multi-agent RL, CTDE and independent environment; no direct SCADA controls.
+Entorno MADRL acoplado a red, en sandbox.
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 030 · **Estado:** sin código. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.

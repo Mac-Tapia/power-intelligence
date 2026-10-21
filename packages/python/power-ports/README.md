@@ -1,5 +1,5 @@
 # power-ports
 
-Protocols for repositories, engines, artifacts and workflows; contracts only.
+Protocolos entre aplicación e infraestructura (motor, repositorios, evidencia, datasets).
 
-**Estado:** módulo por implementar según su spec; cualquier entrada ejecutable exige tests.
+**Spec dueña:** 008 · **Estado:** operativo. Reglas de dependencia: `docs/architecture/MODULE-BOUNDARIES.md`.
