@@ -56,5 +56,12 @@
     "eldu-exog-population-ica",
     "eldu-exog-nasa-power-pisco",
     "eldu-dger-investment-studies"
-  ]
+  ],
+  "import_rules": {
+    "cyme_ascii": {
+      "default_connector_max_m": 10.0,
+      "allow_positive_sequence_approximation": false,
+      "evidence": "En la exportación del 03/08/2026 los 22 791 tramos con código DEFAULT miden como máximo 7,18 m (mediana 1,07 m): son tramos de conexión de cargas y seccionadores, que se modelan como conexión ideal."
+    }
+  }
 }

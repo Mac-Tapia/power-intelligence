@@ -2,7 +2,10 @@
 
 Polar formulation on the shared Y-bus (``ybus.py``), sparse Jacobian, flat start.
 Convergence is declared only when the AC power-balance residual of every non-slack node
-is below the requested tolerance (per unit on ``BASE_MVA``); a small step is not enough.
+is below the effective tolerance (per unit on ``BASE_MVA``); a small step is not enough.
+The effective tolerance is ``max(requested, rounding floor)``: with very short real sections
+the admittances are large and ``V * conj(Y V)`` cannot be evaluated more precisely than
+``ROUNDING_FACTOR * eps * max_row_sum(|Y|)``. Both values are reported in the result.
 Scope is declared and enforced by ``build_energized_network``: out-of-scope elements fail
 the study with the reason, they are never simplified away.
 """
@@ -11,6 +14,7 @@ from __future__ import annotations
 
 import math
 import warnings
+from dataclasses import replace
 
 import numpy as np
 from scipy import sparse
@@ -22,7 +26,8 @@ from unitesis_topology import TopologyError, build_energized_network
 from .ybus import build_ybus, power_mismatch, specified_injections
 
 ENGINE_NAME = "unitesis-newton-raphson"
-ENGINE_VERSION = "0.1.0"
+ENGINE_VERSION = "0.2.0"
+ROUNDING_FACTOR = 64.0
 
 
 def _jacobian(ybus: sparse.csr_matrix, v: np.ndarray, pq: np.ndarray) -> sparse.csr_matrix:
@@ -64,6 +69,9 @@ class NewtonRaphsonEngine:
         va = np.full(n, math.radians(slack.angle_deg))
         v = vm * np.exp(1j * va)
         settings = request.settings
+        row_sum = float(abs(model.ybus).sum(axis=1).max()) if n > 1 else 0.0
+        floor = ROUNDING_FACTOR * float(np.finfo(float).eps) * row_sum
+        tolerance = max(settings.tolerance_pu, floor)
         residual = 0.0
         iterations = 0
         converged = n == 1
@@ -73,7 +81,7 @@ class NewtonRaphsonEngine:
             residual = float(np.max(np.abs(f)))
             if not math.isfinite(residual):
                 break
-            if residual <= settings.tolerance_pu:
+            if residual <= tolerance:
                 converged = True
                 break
             with warnings.catch_warnings():
@@ -93,8 +101,12 @@ class NewtonRaphsonEngine:
             return StudyResult(**base, status="failed", iterations=iterations,
                                residual_pu=residual if math.isfinite(residual) else None,
                                excluded_elements=network.excluded,
-                               messages=("Newton-Raphson did not converge",))
-        return self._result(base, snapshot, network, model, s_spec, v, iterations, residual)
+                               messages=("Newton-Raphson did not converge "
+                                         f"(effective tolerance {tolerance:.2e} pu)",))
+        result = self._result(base, snapshot, network, model, s_spec, v, iterations, residual)
+        note = (f"effective tolerance {tolerance:.2e} pu (requested "
+                f"{settings.tolerance_pu:.0e}, rounding floor {floor:.2e})")
+        return replace(result, messages=(*result.messages, note))
 
     @staticmethod
     def _result(base, snapshot, network, model, s_spec, v, iterations, residual) -> StudyResult:

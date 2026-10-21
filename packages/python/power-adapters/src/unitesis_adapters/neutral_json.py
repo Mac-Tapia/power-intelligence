@@ -199,9 +199,17 @@ def ingest_file(path: str | Path) -> IngestionResult:
     return result
 
 
-def snapshot_to_payload(snapshot: ElectricalSnapshot, source_id: str) -> dict[str, Any]:
-    """Inverse mapping, used to export scenarios (e.g. a cloned new-load case)."""
+def snapshot_to_payload(snapshot: ElectricalSnapshot, source_id: str, *,
+                        provenance: str | None = None,
+                        authorization: str | None = None) -> dict[str, Any]:
+    """Inverse mapping, used to export imported feeders and cloned scenarios."""
     canon = snapshot.canonical()
     network = {k: canon[k] for k in ("buses", "lines", "switches", "loads", "slacks")}
     network["frequency_hz"] = canon["frequency_hz"]
-    return {"schema": INPUT_SCHEMA, "source_id": source_id, "units": UNITS, "network": network}
+    payload: dict[str, Any] = {"schema": INPUT_SCHEMA, "source_id": source_id, "units": UNITS,
+                               "network": network}
+    if provenance:
+        payload["provenance"] = provenance
+    if authorization:
+        payload["authorization"] = authorization
+    return payload

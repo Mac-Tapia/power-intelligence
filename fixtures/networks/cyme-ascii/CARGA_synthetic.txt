@@ -1,0 +1,17 @@
+[GENERAL]
+DATE=01/01/2026 00:00:00
+CYMDIST_VERSION=4.7
+
+[SI]
+
+[LOADS]
+FORMAT_LOADS=SectionID,DeviceNumber,LoadType,Connection,Location
+S_OK1,D1,SPOT,0,1
+S_OK3,D3,SPOT,0,1
+S_BAD3,DB3,SPOT,0,1
+
+[CUSTOMER LOADS]
+FORMAT_CUSTOMERLOADS=SectionID,DeviceNumber,LoadType,CustomerNumber,CustomerType,Status,LockDuringLoadAllocation,Year,LoadModelID,NormalPriority,EmergencyPriority,ValueType,Phase,Value1,Value2,ConnectedKVA,KWH,NumberOfCustomer,CenterTapPercent
+S_OK1,D1,SPOT,C1,Otro,0,0,2026,,1,1,2,7,400.0,0.95,630.0,1000.0,10,0.0
+S_OK3,D3,SPOT,C3,Otro,0,0,2026,,1,1,2,7,0.0,0.97,250.0,500.0,4,0.0
+S_BAD3,DB3,SPOT,CB3,Otro,0,0,2026,,1,1,1,7,50.0,0.9,100.0,10.0,1,0.0

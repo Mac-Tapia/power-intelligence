@@ -6,15 +6,38 @@
   "country": "ISO-3166 alpha-2",
   "region": "",
   "utility": "",
-  "authorization": {"status": "pending_owner_confirmation", "note": ""},
+  "authorization": {
+    "status": "pending_owner_confirmation",
+    "note": ""
+  },
   "electrical": {
     "frequency_hz": 50.0,
-    "nominal_voltages_kv": {"status": "derive_from_source", "note": ""}
+    "nominal_voltages_kv": {
+      "status": "derive_from_source",
+      "note": ""
+    }
   },
-  "spatial": {"crs": "EPSG:xxxx", "crs_status": "declared_pending_verification", "note": ""},
-  "time": {"timezone": "Area/City", "measurement_interval": "15min"},
-  "economics": {"currency": "ISO-4217", "note": ""},
+  "spatial": {
+    "crs": "EPSG:xxxx",
+    "crs_status": "declared_pending_verification",
+    "note": ""
+  },
+  "time": {
+    "timezone": "Area/City",
+    "measurement_interval": "15min"
+  },
+  "economics": {
+    "currency": "ISO-4217",
+    "note": ""
+  },
   "regulatory_profiles": [],
   "regulatory_notes": [],
-  "source_ids": []
+  "source_ids": [],
+  "import_rules": {
+    "cyme_ascii": {
+      "default_connector_max_m": 0.0,
+      "allow_positive_sequence_approximation": false,
+      "evidence": "estadística de la fuente que justifica cada regla"
+    }
+  }
 }

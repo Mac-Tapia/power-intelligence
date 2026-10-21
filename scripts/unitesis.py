@@ -8,6 +8,8 @@
       --catalog config/catalogs/conductors/aaac6201_nexans_reference.json \
       --basis fixtures/economics/conductor_alternatives_synthetic.json \
       --temperature-c 75 --gmd-m 1.2
+  python scripts/unitesis.py import-cyme --case pe-ica-electrodunas --network RED.txt \
+      --loads CARGA.txt --equipment BD_Equipo.txt --out-dir local-data/networks/eldu
   python scripts/unitesis.py verify-evidence local-data/evidence/base.json
   python scripts/unitesis.py dataset --input fixtures/timeseries/synthetic_feeder_load.csv \
       --output local-data/datasets/s --target p_mw --freq 15min
@@ -85,6 +87,19 @@ def cmd_alternatives(a: argparse.Namespace) -> int:
             "currency": result["economic_basis"]["currency"],
             "evidence": str(Path(a.output).resolve()), "status": result["status"]})
     return EXIT_OK
+
+
+def cmd_import_cyme(a: argparse.Namespace) -> int:
+    from unitesis_application.network_import import import_cyme_export
+    from unitesis_config import load_case
+
+    case = load_case(ROOT / "config/cases" / f"{a.case}.json")
+    report = import_cyme_export(case, a.network, a.loads, a.equipment, a.out_dir,
+                                allow_positive_sequence=a.allow_positive_sequence or None)
+    _print({"case_id": report["case_id"], "summary": report["summary"],
+            "rules": report["rules"], "report": str(Path(a.out_dir).resolve() /
+                                                    "import_report.json")})
+    return EXIT_OK if report["summary"].get("model_validated") else EXIT_INVALID
 
 
 def cmd_verify(a: argparse.Namespace) -> int:
@@ -208,6 +223,16 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--gmd-m", type=float, required=True)
     criteria(s)
     s.set_defaults(func=cmd_alternatives)
+
+    s = sub.add_parser("import-cyme", help="real network CYME ASCII export -> feeder snapshots")
+    s.add_argument("--case", required=True, help="application case id (config/cases)")
+    s.add_argument("--network", type=Path, required=True, help="RED_*.txt")
+    s.add_argument("--loads", type=Path, required=True, help="CARGA_*.txt")
+    s.add_argument("--equipment", type=Path, required=True, help="BD_Equipo*.txt")
+    s.add_argument("--out-dir", type=Path, required=True)
+    s.add_argument("--allow-positive-sequence", action="store_true",
+                   help="import non three-phase feeders as a declared approximation")
+    s.set_defaults(func=cmd_import_cyme)
 
     s = sub.add_parser("verify-evidence", help="re-read evidence and check its digest")
     s.add_argument("evidence", type=Path)

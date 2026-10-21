@@ -25,7 +25,7 @@ def _digest(payload: dict[str, Any]) -> str:
 
 @dataclass(frozen=True, slots=True)
 class SolverSettings:
-    tolerance_pu: float = 1e-10
+    tolerance_pu: float = 1e-8  # MVA mismatch (BASE_MVA = 1); pandapower default
     max_iterations: int = 100
 
     def __post_init__(self) -> None:

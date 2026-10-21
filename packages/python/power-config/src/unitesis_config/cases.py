@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
@@ -39,6 +39,7 @@ class ApplicationCase:
     regulatory_profiles: tuple[str, ...]
     source_ids: tuple[str, ...]
     authorized: bool
+    import_rules: dict[str, dict[str, Any]] = field(default_factory=dict)
 
     @property
     def zone(self) -> ZoneInfo:
@@ -91,13 +92,18 @@ def parse_case(data: dict[str, Any]) -> ApplicationCase:
         raise CaseError("regulatory_profiles and source_ids must be arrays")
     if len(set(sources)) != len(sources):
         raise CaseError("duplicate source_ids")
+    import_rules = data.get("import_rules", {})
+    if not isinstance(import_rules, dict) or not all(
+            isinstance(v, dict) for v in import_rules.values()):
+        raise CaseError("import_rules must map a format name to an object of rules")
     return ApplicationCase(
         case_id=case_id, role=role, country=country, region=data["region"],
         utility=data["utility"], frequency_hz=float(freq), crs=crs,
         crs_verified=_require(data, "spatial.crs_status") == "verified",
         timezone=tz, measurement_interval=_require(data, "time.measurement_interval"),
         currency=currency, regulatory_profiles=tuple(profiles), source_ids=tuple(sources),
-        authorized=_require(data, "authorization.status") == "confirmed")
+        authorized=_require(data, "authorization.status") == "confirmed",
+        import_rules=import_rules)
 
 
 def check_consistency(case: ApplicationCase, profiles_dir: Path,
