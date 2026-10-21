@@ -1,0 +1,8 @@
+# Authorized by user 2026-10-21; pinned optional capabilities.
+mcp==2.3.0
+psycopg[binary]==3.3.6
+uvicorn==0.54.0
+playwright==1.64.0
+openpyxl==3.1.5
+xlrd==2.0.2
+pyxlsb==1.0.10

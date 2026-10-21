@@ -19,6 +19,10 @@ Lo local (país, empresa, CRS, zona horaria, moneda, frecuencia, normas y fuente
 
 Las 40 specs siguen la numeración del plan maestro ([equivalencias con la anterior](docs/traceability/SPEC-ID-MIGRATION.md)).
 
+Las 40 specs siguen la numeración del plan maestro ([equivalencias con la anterior](docs/traceability/SPEC-ID-MIGRATION.md)).
+
+Las 40 specs siguen la numeración del plan maestro ([equivalencias con la anterior](docs/traceability/SPEC-ID-MIGRATION.md)).
+
 Arquitectura y estado por capacidad: [`docs/architecture/ARCHITECTURE-INTEGRAL.md`](docs/architecture/ARCHITECTURE-INTEGRAL.md) · mapa de specs: [`docs/traceability/FEATURE-MAP.md`](docs/traceability/FEATURE-MAP.md) · contratos: [`docs/architecture/CONTRACTS-AND-EVIDENCE.md`](docs/architecture/CONTRACTS-AND-EVIDENCE.md).
 
 ## Uso
@@ -42,7 +46,15 @@ Códigos de salida: 0 correcto · 2 entrada inválida o en cuarentena · 3 motor
 .venv\Scripts\python scripts/verify_structure.py   # estructura, specs, casos, prohibiciones
 .venv\Scripts\python -m pytest -q                  # unit, contract, integration, security, governance
 .venv\Scripts\ruff check .
+.venv\Scripts\python scripts/dev/project_inventory.py --root . --output local-data/diagnostics/inventory.json
 ```
+
+El inventario vincula archivos con módulo y specs existentes, detecta archivos sin dueño
+y enumera consumidores Python. La propiedad documental no acredita implementación:
+los módulos scaffold y las tareas pendientes siguen visibles en el mapa de capacidades.
+El [diseño aprobado](docs/development/READINESS-AND-CLEANUP.md) y su
+[plan de implementación](docs/development/READINESS-IMPLEMENTATION-PLAN.md) describen
+las entregas de preparación integral y sus límites.
 
 ## Estructura por capas
 

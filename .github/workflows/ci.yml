@@ -25,3 +25,5 @@ jobs:
         run: python -m pytest -q
       - name: Agent skills and MCP governance
         run: python scripts/agents/validate_agent_setup.py
+      - name: File ownership and specification inventory
+        run: python scripts/dev/project_inventory.py --root . --output local-data/diagnostics/inventory.json
