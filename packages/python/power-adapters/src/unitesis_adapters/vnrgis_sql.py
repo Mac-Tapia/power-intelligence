@@ -47,7 +47,7 @@ class SqlcmdClient:
     runner: Any = None
 
     def run(self, sql: str, database: str = "master") -> list[list[str]]:
-        args = [self.sqlcmd, "-S", self.instance, "-E", "-C", "-d", database, "-b",
+        args = [self.sqlcmd, "-S", self.instance, "-E", "-C", "-f", "65001", "-d", database, "-b",
                 "-W", "-h", "-1", "-s", SEP, "-Q", "SET NOCOUNT ON; " + sql]
         if self.runner is not None:
             out = self.runner(args)
@@ -61,7 +61,7 @@ class SqlcmdClient:
 
     def run_with_headers(self, sql: str, database: str = "master") -> list[dict[str, str]]:
         """Result sets whose column set depends on the server version, mapped by name."""
-        args = [self.sqlcmd, "-S", self.instance, "-E", "-C", "-d", database, "-b",
+        args = [self.sqlcmd, "-S", self.instance, "-E", "-C", "-f", "65001", "-d", database, "-b",
                 "-W", "-s", SEP, "-Q", "SET NOCOUNT ON; " + sql]
         if self.runner is not None:
             out = self.runner(args)

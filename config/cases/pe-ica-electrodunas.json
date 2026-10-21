@@ -108,6 +108,19 @@
       "frequency": "15min",
       "interval_ending": true,
       "evidence": "Encabezados de la hoja L-6605-6 (FECHA, L6605/L6606 en KVA, KW y KVAR): magnitud y unidad salen del propio encabezado. La primera marca es 00:15 con paso de 15 min: cada marca cierra su intervalo. Zona horaria: la del caso (sin horario de verano en Peru)."
+    },
+    "vnrgis": {
+      "voltage_codes": {
+        "D": 10.0,
+        "G": 22.9
+      },
+      "sed_power_factor": 0.97,
+      "included_states": [
+        "E",
+        "M",
+        "N"
+      ],
+      "evidence": "REA (ADR-0012): CodTenNomi D=10 kV y G=22,9 kV, deducido sin conflictos al emparejar 95 salidas VNR con los alimentadores CYME por codigo (69 y 26 observaciones). VNR no trae factor de potencia: se usa 0,97, el valor uniforme del estudio CYME del mismo caso (modelado, no medido). Estados VNR incluidos: Existente, Modificado, Nuevo (se excluyen Proyectado y Eliminado)."
     }
   },
   "planning_criteria": {
