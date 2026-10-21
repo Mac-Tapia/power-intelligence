@@ -253,7 +253,7 @@ def cmd_serve(a: argparse.Namespace) -> int:
         _serve_stdlib(app, a.host, a.port)
         return EXIT_OK
     print(f"UNITESIS workstation: http://{a.host}:{a.port}/")
-    uvicorn.run(app, host=a.host, port=a.port)
+    uvicorn.run(app, host=a.host, port=a.port, access_log=False)
     return EXIT_OK
 
 
@@ -261,6 +261,49 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="unitesis", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="command", required=True)
+
+    def postgres_worker(a):
+        from unitesis_adapters.postgres_repository import PostgresJobRepository, PostgresRepository
+        from unitesis_application.job_execution import execute_persisted_job
+
+        dsn = os.environ.get(a.dsn_env)
+        if not dsn:
+            raise ValueError("PostgreSQL DSN environment variable is missing")
+        repo = PostgresRepository(dsn, namespace=a.namespace, initialize=a.initialize)
+        jobs = PostgresJobRepository(dsn, namespace=a.namespace)
+        if a.initialize:
+            _print({"schema_initialized": True, "namespace": a.namespace})
+            return EXIT_OK
+        if not a.job_id:
+            raise ValueError("job-id is required to execute a persisted request")
+        result = execute_persisted_job(repo, jobs, a.job_id,
+                                      catalogs=ROOT / "config/catalogs/conductors")
+        _print({"job_id": result["job_id"], "status": result["status"],
+                "comparison": result.get("comparison")})
+        return EXIT_OK if result["status"] == "finished" else EXIT_NOT_CONVERGED
+
+    s = sub.add_parser("postgres-worker", help="initialize sandbox schema or execute a durable job")
+    s.add_argument("--dsn-env", default="UNITESIS_POSTGRES_DSN")
+    s.add_argument("--namespace", default="unitesis")
+    s.add_argument("--initialize", action="store_true")
+    s.add_argument("--job-id")
+    s.set_defaults(func=postgres_worker)
+
+    def promote(a):
+        from unitesis_application.pf_dataset import promote_pf_dataset
+        from unitesis_config import load_case
+
+        case = load_case(ROOT / "config/cases" / f"{a.case}.json")
+        registry = json.loads((ROOT / "config/datasets/sources.v2.json").read_text(
+            encoding="utf-8"))
+        _print(promote_pf_dataset(case, a.dataset_dir, a.output, source_registry=registry))
+        return EXIT_OK
+
+    s = sub.add_parser("promote-pf-dataset", help="verify candidate bytes/splits and attest gold")
+    s.add_argument("--case", required=True)
+    s.add_argument("--dataset-dir", type=Path, required=True)
+    s.add_argument("--output", type=Path, required=True)
+    s.set_defaults(func=promote)
 
     def io(sp: argparse.ArgumentParser) -> None:
         sp.add_argument("--input", type=Path, required=True)
