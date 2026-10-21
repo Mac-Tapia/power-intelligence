@@ -2,6 +2,7 @@
 "use strict";
 
 const API = "/api/v1";
+let accessToken = "";
 const state = { snapshot: null, sha: null, pending: null, basisExample: null };
 const $ = (sel) => document.querySelector(sel);
 const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -9,7 +10,9 @@ const fmt = (v, d = 4) => (v === null || v === undefined ? "—" : Number(v).toF
 
 async function api(path, opts = {}) {
   const res = await fetch(API + path, {
-    headers: { "Content-Type": "application/json" }, ...opts,
+    ...opts,
+    headers: { "Content-Type": "application/json", ...(opts.headers || {}),
+      ...(accessToken ? { "Authorization": "Bearer " + accessToken } : {}) },
     body: opts.body ? JSON.stringify(opts.body) : undefined,
   });
   const data = await res.json().catch(() => ({}));
@@ -135,7 +138,7 @@ function summaryCards(res, job) {
 async function runJob(path, body, out) {
   out.innerHTML = '<p class="muted">Ejecutando…</p>';
   const job = await waitJob(await api(path, { method: "POST", body }));
-  if (job.status === "failed") throw new Error(job.error);
+  if (job.status === "failed") throw new Error(job.error_code || "execution_failed");
   return job;
 }
 
@@ -224,6 +227,10 @@ async function init() {
   try {
     const h = await api("/health");
     $("#health").textContent = `API ${h.version} · solo local`; $("#health").className = "badge ok";
+    if (h.auth === "bearer" && !accessToken) {
+      setMsg($("#access-msg"), "Ingrese una credencial para acceder a los estudios.");
+      return;
+    }
   } catch { $("#health").textContent = "API no disponible"; $("#health").className = "badge bad"; return; }
   const examples = await api("/examples");
   $("#example").innerHTML = examples.map((e) => `<option>${esc(e)}</option>`).join("");
@@ -232,6 +239,8 @@ async function init() {
   state.basisExample = await api("/economic-basis/example");
   $("#alt-basis").value = JSON.stringify(state.basisExample, null, 2);
   await refreshSnapshots();
+  $("#connect-access").disabled = Boolean(accessToken);
+  if (accessToken) setMsg($("#access-msg"), "Sesión autenticada. Cierre la sesión para cambiar de usuario.");
 
   $("#load-example").onclick = async () => {
     state.pending = await api(`/examples/${encodeURIComponent($("#example").value)}`);
@@ -253,4 +262,13 @@ async function init() {
     document.querySelectorAll(".tab").forEach((t) => (t.hidden = t.id !== "tab-" + b.dataset.tab));
   }));
 }
-init();
+$("#connect-access").onclick = () => {
+  accessToken = $("#access-token").value.trim();
+  $("#access-token").value = "";
+  init().catch(() => {
+    accessToken = "";
+    setMsg($("#access-msg"), "No se pudo autenticar la sesión.", "err");
+  });
+};
+$("#disconnect-access").onclick = () => { accessToken = ""; window.location.reload(); };
+init().catch(() => setMsg($("#access-msg"), "No se pudo cargar la sesión.", "err"));

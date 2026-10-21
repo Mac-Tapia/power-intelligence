@@ -21,6 +21,14 @@
 
   <main class="layout">
     <aside class="panel side">
+      <section aria-label="Acceso">
+        <h2>Acceso</h2>
+        <label for="access-token">Credencial (si el servidor la requiere)</label>
+        <input id="access-token" type="password" autocomplete="off">
+        <button id="connect-access" class="secondary">Conectar</button>
+        <button id="disconnect-access" class="secondary">Cerrar sesión</button>
+        <p id="access-msg" class="msg">La credencial solo se conserva en memoria durante esta sesión.</p>
+      </section>
       <section>
         <h2>1 · Red</h2>
         <label for="example">Ejemplo incluido</label>

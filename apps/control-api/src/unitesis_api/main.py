@@ -2,6 +2,7 @@
 
 No electrical computation in handlers: studies are queued as jobs and executed outside the
 request (FastAPI background task for the local profile; a worker queue in production).
+Jobs are persisted in the selected SQLite file; single API process only.
 Authentication/tenant isolation are NOT implemented yet: the app refuses to start unless
 ``UNITESIS_LOCAL_ONLY=1`` is set, so it can never be exposed by accident.
 
@@ -15,19 +16,25 @@ from __future__ import annotations
 import json
 import os
 import uuid
+from contextlib import asynccontextmanager
 from hashlib import sha256
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
-from fastapi import BackgroundTasks, FastAPI, HTTPException
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+from unitesis_adapters.job_repository import SqliteJobRepository
 from unitesis_adapters.neutral_json import IngestionError, build_snapshot, parse_payload
 from unitesis_adapters.sql_repository import SqliteRepository
-from unitesis_application.alternatives import evaluate_conductor_alternatives
-from unitesis_application.study import solve_and_compare, with_new_load
+from unitesis_application.job_execution import execute_persisted_job
 from unitesis_economics import parse_basis
 from unitesis_optimization import SizingCriteria, load_catalog
+from unitesis_ports.protocols import JobRepository
+
+from .telemetry import AuditMiddleware, RequestMetrics
 
 API_VERSION = "0.2.0"
 ROOT = Path(__file__).resolve().parents[4]
@@ -40,13 +47,14 @@ UI_DIR = ROOT / "apps/workstation-web/public"
 class StudyIn(BaseModel):
     snapshot_sha256: str = Field(min_length=64, max_length=64)
     scenario_id: str = Field(default="base", min_length=1, max_length=120)
+    engine: Literal["bfs", "nr"] = "nr"
 
 
 class NewLoadIn(StudyIn):
     load_id: str = Field(min_length=1, max_length=120)
     bus: str = Field(min_length=1)
-    p_mw: float
-    q_mvar: float
+    p_mw: float = Field(allow_inf_nan=False)
+    q_mvar: float = Field(allow_inf_nan=False)
 
 
 class AlternativesIn(StudyIn):
@@ -63,12 +71,54 @@ def _json_files(folder: Path) -> dict[str, Path]:
     return {p.stem: p for p in sorted(folder.glob("*.json"))} if folder.is_dir() else {}
 
 
-def create_app(db_path: str | Path | None = None) -> FastAPI:
+def _create_local_app(db_path: str | Path | None = None) -> FastAPI:
     if os.environ.get("UNITESIS_LOCAL_ONLY") != "1":
         raise RuntimeError("control-api has no auth yet; set UNITESIS_LOCAL_ONLY=1 for local use")
-    repo = SqliteRepository(db_path or os.environ.get("UNITESIS_DB", ":memory:"))
-    jobs: dict[str, dict[str, Any]] = {}
-    app = FastAPI(title="UNITESIS control-api", version=API_VERSION)
+    database = db_path or os.environ.get("UNITESIS_DB", ":memory:")
+    dsn = os.environ.get("UNITESIS_POSTGRES_DSN")
+    if dsn:
+        from unitesis_adapters.postgres_repository import PostgresJobRepository, PostgresRepository
+
+        namespace = os.environ.get("UNITESIS_POSTGRES_NAMESPACE", "unitesis")
+        if os.environ.get("UNITESIS_CREDENTIALS_FILE"):
+            namespace = "tenant_" + sha256(str(Path(database).absolute()).encode()).hexdigest()[:24]
+        repo = PostgresRepository(dsn, namespace=namespace)
+        jobs: JobRepository = PostgresJobRepository(dsn, namespace=namespace)
+    else:
+        repo = SqliteRepository(database)
+        jobs = SqliteJobRepository(database)
+        jobs.recover_interrupted()
+    execution_mode = os.environ.get("UNITESIS_EXECUTION_MODE", "background")
+    if execution_mode not in {"background", "worker"}:
+        repo.close()
+        jobs.close()
+        raise ValueError("invalid execution mode")
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        try:
+            yield
+        finally:
+            jobs.close()
+            repo.close()
+
+    app = FastAPI(title="UNITESIS control-api", version=API_VERSION, lifespan=lifespan)
+    app.state.repository = repo
+    app.state.jobs = jobs
+    metrics = RequestMetrics()
+    app.add_middleware(AuditMiddleware, metrics=metrics)
+
+    @app.get("/api/v1/metrics")
+    def request_metrics() -> dict[str, Any]:
+        return metrics.snapshot()
+
+    @app.exception_handler(RequestValidationError)
+    async def invalid_request(_request: Request, exc: RequestValidationError) -> JSONResponse:
+        # Pydantic error inputs may contain secrets or non-finite values that JSON
+        # cannot encode. Return field locations and stable types, never input/ctx.
+        return JSONResponse(status_code=422, content={"detail": [
+            {"loc": list(error["loc"]), "type": error["type"], "msg": "Invalid request field"}
+            for error in exc.errors()]})
 
     @app.get("/api/v1/health")
     def health() -> dict[str, Any]:
@@ -130,30 +180,6 @@ def create_app(db_path: str | Path | None = None) -> FastAPI:
         return {"snapshot_sha256": snapshot_sha256, "snapshot": snap.canonical(),
                 "results": repo.results_for_snapshot(snapshot_sha256)}
 
-    def _run(job_id: str, snapshot_sha256: str, scenario_id: str,
-             new_load: dict[str, Any] | None,
-             alternatives: dict[str, Any] | None = None) -> None:
-        job = jobs[job_id]
-        job["status"] = "running"
-        try:
-            snap = repo.load_snapshot(snapshot_sha256)
-            if alternatives:
-                report = evaluate_conductor_alternatives(snap, **alternatives)
-                job.update(status="finished", study_status="computed", report=report)
-                return
-            if new_load:
-                snap = with_new_load(snap, **new_load)
-                repo.save_snapshot(snap, {})
-            run = solve_and_compare(snap, scenario_id)
-            ids = [repo.save_result(run["candidate"])]
-            if run["reference"] is not None:
-                ids.append(repo.save_result(run["reference"]))
-            job.update(status="finished", scenario_snapshot_sha256=snap.content_sha256,
-                       result_sha256=ids, study_status=run["candidate"].status,
-                       comparison=run["comparison"]["status"])
-        except Exception as exc:  # job boundary: record cause, never report success
-            job.update(status="failed", error=f"{type(exc).__name__}: {exc}")
-
     def _enqueue(body: StudyIn, tasks: BackgroundTasks,
                  new_load: dict[str, Any] | None = None,
                  alternatives: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -163,11 +189,13 @@ def create_app(db_path: str | Path | None = None) -> FastAPI:
             raise HTTPException(404, "snapshot not found") from exc
         job_id = uuid.uuid4().hex
         kind = "alternatives" if alternatives else "new_load" if new_load else "study"
-        jobs[job_id] = {"job_id": job_id, "status": "queued", "kind": kind,
-                        "request": body.model_dump(exclude={"economic_basis"})}
-        tasks.add_task(_run, job_id, body.snapshot_sha256, body.scenario_id, new_load,
-                       alternatives)
-        return jobs[job_id]
+        request = body.model_dump()
+        if alternatives:
+            request["catalog_sha256"] = alternatives["catalog"].sha256
+        job = jobs.enqueue(job_id, kind, request)
+        if execution_mode == "background":
+            tasks.add_task(execute_persisted_job, repo, jobs, job_id, catalogs=CATALOG_DIR)
+        return job
 
     @app.post("/api/v1/studies", status_code=202)
     def create_study(body: StudyIn, tasks: BackgroundTasks) -> dict[str, Any]:
@@ -196,9 +224,10 @@ def create_app(db_path: str | Path | None = None) -> FastAPI:
 
     @app.get("/api/v1/jobs/{job_id}")
     def get_job(job_id: str) -> dict[str, Any]:
-        if job_id not in jobs:
-            raise HTTPException(404, "job not found")
-        return jobs[job_id]
+        try:
+            return jobs.get(job_id)
+        except KeyError as exc:
+            raise HTTPException(404, "job not found") from exc
 
     @app.get("/api/v1/results/{result_sha256}")
     def get_result(result_sha256: str) -> dict[str, Any]:
@@ -210,6 +239,19 @@ def create_app(db_path: str | Path | None = None) -> FastAPI:
     if UI_DIR.is_dir():
         app.mount("/", StaticFiles(directory=UI_DIR, html=True), name="workstation")
     return app
+
+
+def create_app(db_path: str | Path | None = None) -> FastAPI:
+    if os.environ.get("UNITESIS_LOCAL_ONLY") != "1":
+        raise RuntimeError("set UNITESIS_LOCAL_ONLY=1; external service deployment is disabled")
+    credentials = os.environ.get("UNITESIS_CREDENTIALS_FILE")
+    if credentials:
+        from .security import create_secure_app
+
+        default_db = str(ROOT / "local-data/unitesis.sqlite")
+        database = db_path or os.environ.get("UNITESIS_DB", default_db)
+        return create_secure_app(database, Path(credentials), _create_local_app, UI_DIR)
+    return _create_local_app(db_path)
 
 
 app = create_app() if os.environ.get("UNITESIS_LOCAL_ONLY") == "1" else None
