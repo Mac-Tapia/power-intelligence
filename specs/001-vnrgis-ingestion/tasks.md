@@ -45,3 +45,8 @@
 ## Avance incorporado de la numeración anterior
 
 - [ ] T001-D07: restaurar el VNR-GIS en una base local nueva y ejecutar el adaptador 001 (spec 001). _(antes T029-07)_
+
+## Hallazgos REA aplicables (ADR-0012)
+
+- [ ] T001-R01: leer `CUSTOMER LOADS.Phase` con la máscara recuperada (1=A, 2=B, 4=C) y poner en cuarentena códigos fuera de ella; declarar `LOADS.Connection` como regla pendiente de confirmación.
+- [ ] T001-R02: leer `LINE CONFIGURATION.Overhead` y verificar `HEADNODES` contra `SOURCE`.

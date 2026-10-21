@@ -105,14 +105,14 @@ Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/
 | 020–025 | regulación PIT/PIDE, PMBOK, UI regulatoria, monitor | `power-regulation` | `config/regulations` | registro documental; cálculos no iniciados |
 | 026–027 | PIDE metodológico y auditoría | `power-regulation` | fuentes PIDE | parcial: anualidad ilustrativa y bloqueos |
 | 028 | DER, BESS, EV y renovables | `power-optimization` | — | pendiente |
-| 029 | SciML GNN/PINN | `power-sciml`, `workers/ml-training` | `pf-scenarios-<case_id>` desde redes reales | parcial: dataset candidato, línea base física y GraphSAGE unitario; entrenamiento pendiente de gold |
+| 029 | SciML GNN/PINN | `power-sciml`, `workers/ml-training` | `pf-scenarios-<case_id>` desde redes reales | parcial: dataset candidato, línea base física y destilación maestro → alumno con prior físico (maestro p95 test 0,009 p.u., línea base 0,041); gate AC-029-S02 (≤ 0,005) aún no superado |
 | 030 | MARL y agentes LLM | `power-marl`, `power-agents` | `district-flex-<case_id>`, corpus | pendiente |
 | 031 | seguridad, observabilidad y operación | `apps/control-api`, `scripts/dev` | — | parcial: telemetría y respaldo local |
 | 032 | informes y evidencia | `power-evidence` | — | parcial: sobre de evidencia con publicación atómica |
 | 033–034 | cartera de inversión; generación y transmisión | — | — | pendiente |
 | 035 | federación de datos autorizada | `power-config.cases`, `power-sciml.quality`, `scripts/datasets` | registro de fuentes v2 | parcial: controles operativos; fuentes pendientes de lector o restauración |
 | 036 | catálogo de tarifas y costos | `config/catalogs` | catálogos con fuente | parcial: catálogo de conductores |
-| 037 | interoperabilidad DGS/MDB/SQL | `power-adapters` | — | parcial: CYME ASCII; MDB y SQL pendientes |
+| 037 | interoperabilidad DGS/MDB/SQL | `power-adapters` | — | parcial: CYME ASCII y su estructura recuperada (REA, ADR-0012); MDB y SQL pendientes |
 | 038 | benchmarks y reproducibilidad | `benchmarks/`, `scripts/benchmarks` | fixtures sintéticos | parcial: benchmark de flujo de potencia y línea base SciML |
 | 039 | release y gobierno de producción | — | — | pendiente |
 
@@ -159,6 +159,7 @@ Decisiones de experto incorporadas:
 
 - **Split por alimentador, no aleatorio.** Si un mismo alimentador aparece en train y en test, el modelo memoriza la topología. Los 92 alimentadores se dividen en grupos disjuntos para estimar el error fuera de distribución.
 - **La pérdida física se calcula con la Y-bus del dominio propio**, no con otra implementación paralela. Así el residuo se mide igual que en el solver.
+- **Destilación (ADR-0011):** el solver es el maestro físico; un GraphSAGE grande, el maestro modelo; el alumno pequeño aprende de ambos y del residuo AC, también en escenarios sin etiquetar. Siempre se compara con un alumno del mismo tamaño sin maestro (`distill-pf-surrogate`).
 - **"PINN" en sentido estricto** (resolver EDP con autodiferenciación) no aplica al flujo estacionario. Lo correcto aquí es un *GNN informado por la física* (residuo AC como regularizador) y, para dinámica, PINN de transitorios en una fase posterior. La spec 029 lo distingue para no prometer lo que el método no da.
 - Dependencia de software: `torch` autorizado por el usuario el 21/10/2026 (`requirements/torch-cuda124.txt`).
 
@@ -199,4 +200,6 @@ El ajuste fino (SFT/LoRA) de un modelo local solo se hace sobre las trazas de he
 | Datos de entrenamiento | manifiestos gold de la spec 035 por `case_id` | entrenar con archivos sueltos; mezclar casos o referencias de método |
 | Supuestos locales | `config/cases/` + perfiles por jurisdicción | constantes de país o empresa en el código |
 | Resultado eléctrico | solver propio + contraste + evidencia | resultados de GNN, MADRL o LLM sin confirmación |
+| Entrenamiento de IA | cadena maestro → alumno con procedencia (ADR-0011) | destilar salidas de herramientas propietarias o de maestros sin licencia para entrenar |
+| Formatos y métodos heredados | ingeniería inversa acotada con evidencia (ADR-0012) | descompilar programas propietarios o asumir códigos no deterministas |
 | Estado de capacidades | esta matriz (§3) + `tasks.md` de cada spec | README o planes que contradigan la matriz |

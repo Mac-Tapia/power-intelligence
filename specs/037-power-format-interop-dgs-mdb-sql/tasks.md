@@ -28,3 +28,11 @@
   **Estado:** pendiente · **Evidencia:** CI existe; aceptación humana pendiente · **Responsable:** por asignar
 
 **Política de cierre:** marcar `[x]` únicamente cuando exista evidencia de implementación, pruebas, revisión y aceptación vinculadas a la tarea. Conservar en GitHub el enlace al PR o artefacto verificable.
+
+## Ingeniería inversa (ADR-0012)
+
+- [x] T037-R01: perfilador de formatos con cobertura del lector y versión redactada. Evidencia: `power-adapters/format_profile.py`, CLI `profile-export`, `tests/unit/test_format_profile.py`.
+- [x] T037-R02: estructura CYME ASCII recuperada del export real y códigos inferidos con evidencia. Evidencia: `docs/architecture/formats/CYME-ASCII-RECOVERED.md`, `cyme-ascii-structure.json`.
+- [ ] T037-R03: aplicar el perfilador a MDB (requiere lector Access autorizado) y al esquema VNR-GIS restaurado.
+- [ ] T037-R04: recuperación de métodos de estudios heredados por caja negra (entradas/salidas documentadas) con pruebas de reproducción.
+- [ ] T037-R05: revisión legal de la norma peruana (D. Leg. 822) con texto oficial antes de cualquier análisis que la requiera.

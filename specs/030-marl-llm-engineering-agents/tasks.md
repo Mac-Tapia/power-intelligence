@@ -40,3 +40,10 @@
 - [ ] T030-L03: set de evaluación y arnés (T014-D11). _(antes T008-03)_
 - [ ] T030-L04: selección y medición del modelo local; LoRA solo si mejora AC-030-L03. _(antes T008-04)_
 - [ ] T030-D10: gold `district-flex-pe-ica-electrodunas` desde clientes importantes y medidores reales; pronósticos causales. _(antes T029-10)_
+
+## Destilación para agentes (ADR-0011)
+
+- [ ] T030-K01: corpus de trazas de herramientas (CLI/API) cuyas respuestas numéricas produce el solver, con licencia y procedencia por traza.
+- [ ] T030-K02: destilación paso a paso (explicaciones + llamadas a herramientas) hacia un modelo local pequeño; solo con un maestro cuya licencia permita entrenar con sus salidas, registrada antes del uso.
+- [ ] T030-K03: evaluación frente a RAG + herramientas con la misma batería; se adopta el alumno solo si mejora y nunca responde números sin herramienta.
+- [ ] T030-K04: destilación de políticas MARL (maestro centralizado → políticas descentralizadas pequeñas) con verificación AC por acción.

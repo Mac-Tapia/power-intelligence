@@ -32,3 +32,7 @@
 ## Avance incorporado de la numeración anterior
 
 - [ ] T017-D: cortocircuito IEC 60909. _(antes T004-D)_
+
+## Hallazgos REA aplicables (ADR-0012)
+
+- [ ] T017-R01: impedancia equivalente de fuente desde `SUBSTATION` (R1/R0, KVLL, MVA) del export CYME, con cuarentena si falta.

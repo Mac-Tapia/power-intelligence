@@ -1,0 +1,3448 @@
+{
+ "schema": "unitesis.format-profile/1",
+ "method": "design recovery from owner-supplied files (ADR-0012); no record values copied",
+ "files": [
+  {
+   "role": "equipment",
+   "sections": {
+    "ARC FURNACE": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Frequency": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "MagnitudePercent": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "BREAKER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InterruptingRating": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "StuckProbability": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SwitchTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseLocking": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseTripping": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RemoteControlled": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Automated": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "CONCENTRIC NEUTRAL CABLE": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "R1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "R0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "X1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "X0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "B1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "B0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "WithstandRating": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NumberOfPhases": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PhaseCondID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NeutralCondID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NeutralWires": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InsulationType": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InsulationDielectricConst": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InsulationDiameter": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Dab": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Dbc": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Dac": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "CONDUCTOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Diameter": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "GMR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R25": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R50": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "WithstandRating": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "CTYPE FILTER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "L1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "C1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "L2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "C2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R3": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "L3": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "C3": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "DOUBLE TUNED FILTER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "L1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "C1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "L2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "C2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R3": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TunedFrequency1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TunedFrequency2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FirstTunedQ": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FirstTunedQualityFactor": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FirstTunedV": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondTunedQ": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondTunedQualityFactor": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondTunedV": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "ELECTRONIC CONVERTER GENERATOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ActiveGeneration": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PF": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FaultContribution": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ANSIMotorGroup": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Converter": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimeMover": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Description": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "FUSE": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InterruptingRating": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "StuckProbability": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SwitchTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseLocking": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "GENERAL": {
+     "columns": {},
+     "consumed_by_reader": false,
+     "populated": false
+    },
+    "HIGH PASS FILTER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "L": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "C": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVAR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KV": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "IDEAL CONVERTER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PulseNumber": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KV": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "INDUCTION GENERATOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ActiveGeneration": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PF": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RatedSpeed": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ANSIMotorGroup": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimeMover": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubTransientResistance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubTransientReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Description": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "INDUCTION MOTOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RatedPower": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RatedVoltageKVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Efficiency": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FullLoadPF": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Type": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RatedSpeed": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubTransientResistance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubTransientReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ANSIMotorGroup": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "LockedRotorPF": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NEMA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA_HPRatio": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "LINE": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "PhaseCondID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NeutralCondID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SpacingID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "R0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "X1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "X0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "B1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "B0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "LockImpedance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "LINE UNBALANCED": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CondID_A": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CondID_B": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CondID_C": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CondID_N": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SpacingID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Ra": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Rb": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Rc": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Rm": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Xa": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Xb": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Xc": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Xm": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Ba": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Bb": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Bc": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Bm": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AmpsA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AmpsB": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AmpsC": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AmpsA_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AmpsB_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AmpsC_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "LockImpedance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "LVCB": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InterruptingRating": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "StuckProbability": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SwitchTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseLocking": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseTripping": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RemoteControlled": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Automated": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "MISCELLANEOUS": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Description": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "NON IDEAL CONVERTER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PulseNumber": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KV": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CommutatingReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "RECLOSER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InterruptingRating": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "StuckProbability": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SwitchTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseLocking": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseTripping": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RemoteControlled": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Automated": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "REGULATOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Type": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLN": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "MaxBuck": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "MaxBoost": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Taps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Bandwidth": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CT": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PT": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "RELAY": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InterruptingRating": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "StuckProbability": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SwitchTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseLocking": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseTripping": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RemoteControlled": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Automated": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SECTIONALIZER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "StuckProbability": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SwitchTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseLocking": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RemoteControlled": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Automated": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SERIE CAPACITOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Description": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SERIE REACTOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Description": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SHUNT CAPACITOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVAR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLN": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CostForFixedBank": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CostForSwitchedBank": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SHUNT MULTI FREQUENCY SOURCE": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Frequency": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amp": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Angle": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "InAmp": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FundamentalCurrent": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SHUNT REACTOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVAR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLN": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CostForFixedBank": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CostForSwitchedBank": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SHUNT SINGLE FREQUENCY SOURCE": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Frequency": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amp": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Angle": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SI": {
+     "columns": {},
+     "consumed_by_reader": false,
+     "populated": false
+    },
+    "SINGLE TUNED FILTER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "L": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "C": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TunedFrequency": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVAR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KV": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ConnectionConfiguration": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "QualityFactor": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOnID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOffID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SPACING TABLE FOR LINE": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "GMDPh-Ph": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "GMDPh-N": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AvgPhCondHeight": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "AvgNeutralHeight": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PosOfCond1_X": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PosOfCond1_Y": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PosOfCond2_X": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PosOfCond2_Y": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PosOfCond3_X": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PosOfCond3_Y": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PosOfNeutralCond_X": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PosOfNeutralCond_Y": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SUBSTATION": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "MVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "MVA_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLLdesired": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "X1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "X0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Conn": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PhaseAngle": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryEquivalentType": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubEqVal1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubEqVal2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubEqVal3": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubEqVal4": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubPrimayLLVoltage": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryFaultReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TxfoConnection": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "BranchID_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevID_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevNum_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerID_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerNum_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SubXs_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevID_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevNum_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchStatus_1": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchID_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevID_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevNum_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerID_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerNum_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SubXs_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevID_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevNum_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchStatus_2": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchID_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevID_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevNum_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerID_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerNum_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SubXs_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevID_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevNum_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchStatus_3": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchID_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevID_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevNum_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerID_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerNum_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SubXs_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevID_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevNum_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchStatus_4": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchID_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevID_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "PrimProtDevNum_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerID_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TransformerNum_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SubXs_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevID_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SecProtDevNum_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "BranchStatus_5": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SWITCH": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Amps_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TmpFailRate": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "OutageTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "StuckProbability": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SwitchTime": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolOpenID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolCloseID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SinglePhaseLocking": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RemoteControlled": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Automated": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SYNCHRONOUS GENERATOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ActiveGeneration": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PF": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "MaxKVAR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "MinKVAR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ConnectionConfiguration": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "X1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "R0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "X0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Rg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Xg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TransientResistance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TransientReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubtransientResistance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubtransientReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NumberOfPoles": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimeMover": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Description": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SYNCHRONOUS MOTOR": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RatedVoltageKVLL": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "RatedPower": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Efficiency": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "FullLoadPF": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SynchronousSpeed": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NumberOfPoles": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Connection": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubTransientResistance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SubTransientReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "XdSaturated": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ZeroSequenceResistance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ZeroSequenceReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "GroundingResistance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "GroundingReactance": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "THREE WINDING TRANSFORMER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryRatedCapacity": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryCapacityLimit1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryCapacityLimit2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryVoltage": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryConnection": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryRg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryXg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToSecondaryZ1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToSecondaryZ0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToSecondaryXR1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToSecondaryXR0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToSecondaryPhaseShift": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToTertiaryZ1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToTertiaryZ0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToTertiaryXR1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToTertiaryXR0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PrimaryToTertiaryPhaseShift": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryToTertiaryZ1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryToTertiaryZ0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryToTertiaryXR1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryToTertiaryXR0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryRatedCapacity": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryCapacityLimit1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryCapacityLimit2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryVoltage": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryConnection": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryRg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SecondaryXg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TertiaryRatedCapacity": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TertiaryCapacityLimit1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TertiaryCapacityLimit2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TertiaryVoltage": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TertiaryConnection": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TertiaryRg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "TertiaryXg": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "LTC1_NumberOfTaps": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC1_UpperBandwidth": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC1_LowerBandwidth": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC1_MaximumRegulationRange": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC1_MinimumRegulationRange": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC2_NumberOfTaps": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC2_UpperBandwidth": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC2_LowerBandwidth": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC2_MaximumRegulationRange": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LTC2_MinimumRegulationRange": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "TRANSFORMER": {
+     "columns": {
+      "ID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Type": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLLprim": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "KVLLsec": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Z1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Z0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "XR": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "XR0": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Conn": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Rg_prim": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Xg_prim": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Rg_sec": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Xg_sec": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "IsLTC": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "Taps": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "LowerBandwidth": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "UpperBandwidth": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "MinReg_Range": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "MaxReg_Range": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "Reversible": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SelfCooledKVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SelfCooledKVA_2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NoLoadLosses": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "PhaseShift": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "SymbolID": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    }
+   }
+  },
+  {
+   "role": "loads",
+   "sections": {
+    "CUSTOMER LOADS": {
+     "columns": {
+      "SectionID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "DeviceNumber": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "LoadType": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CustomerNumber": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "CustomerType": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Status": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "LockDuringLoadAllocation": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Year": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "LoadModelID": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "NormalPriority": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EmergencyPriority": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "ValueType": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Phase": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Value1": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Value2": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "ConnectedKVA": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "KWH": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "NumberOfCustomer": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "CenterTapPercent": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "GENERAL": {
+     "columns": {},
+     "consumed_by_reader": false,
+     "populated": false
+    },
+    "LOADS": {
+     "columns": {
+      "SectionID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "DeviceNumber": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "LoadType": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Connection": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Location": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "SI": {
+     "columns": {},
+     "consumed_by_reader": false,
+     "populated": false
+    }
+   }
+  },
+  {
+   "role": "network",
+   "sections": {
+    "GENERAL": {
+     "columns": {},
+     "consumed_by_reader": false,
+     "populated": false
+    },
+    "HEADNODES": {
+     "columns": {
+      "NodeID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NetworkID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": false,
+     "populated": true
+    },
+    "INTERMEDIATE NODES": {
+     "columns": {
+      "SectionID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "SeqNumber": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "CoordX": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "CoordY": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "LINE CONFIGURATION": {
+     "columns": {
+      "SectionID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "LineCableID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Length": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Overhead": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "NODE": {
+     "columns": {
+      "NodeID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "CoordX": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "CoordY": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "TagText": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagProperties": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagDeltaX": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagDeltaY": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagAngle": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagAlignment": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagBorder": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagBackground": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagTextColor": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagBorderColor": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagBackgroundColor": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "SECTION": {
+     "columns": {
+      "SectionID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "FromNodeID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "ToNodeID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Phase": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Mask": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "ZoneID": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "SubNetworkId": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagProperties": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagDisplay": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagLeft": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagBottom": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagRight": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagTop": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      },
+      "TagText": {
+       "type": "empty",
+       "fill_ratio": 0.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "SECTIONALIZER SETTING": {
+     "columns": {
+      "SectionID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Location": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqNumber": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqPhase": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Status": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Locked": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqState": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "SI": {
+     "columns": {},
+     "consumed_by_reader": false,
+     "populated": false
+    },
+    "SOURCE": {
+     "columns": {
+      "SourceID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "DeviceNumber": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "NodeID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "NetworkID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "DesiredVoltage": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    },
+    "SWITCH SETTING": {
+     "columns": {
+      "SectionID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Location": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqType": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqID": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqNumber": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqPhase": {
+       "type": "text",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "Status": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": true
+      },
+      "Locked": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      },
+      "EqState": {
+       "type": "number",
+       "fill_ratio": 1.0,
+       "consumed_by_reader": false
+      }
+     },
+     "consumed_by_reader": true,
+     "populated": true
+    }
+   }
+  }
+ ],
+ "unread_sections": [
+  "equipment:ARC FURNACE",
+  "equipment:BREAKER",
+  "equipment:CONDUCTOR",
+  "equipment:CTYPE FILTER",
+  "equipment:DOUBLE TUNED FILTER",
+  "equipment:ELECTRONIC CONVERTER GENERATOR",
+  "equipment:FUSE",
+  "equipment:HIGH PASS FILTER",
+  "equipment:IDEAL CONVERTER",
+  "equipment:INDUCTION GENERATOR",
+  "equipment:INDUCTION MOTOR",
+  "equipment:LINE UNBALANCED",
+  "equipment:LVCB",
+  "equipment:MISCELLANEOUS",
+  "equipment:NON IDEAL CONVERTER",
+  "equipment:RECLOSER",
+  "equipment:REGULATOR",
+  "equipment:RELAY",
+  "equipment:SECTIONALIZER",
+  "equipment:SERIE CAPACITOR",
+  "equipment:SERIE REACTOR",
+  "equipment:SHUNT CAPACITOR",
+  "equipment:SHUNT MULTI FREQUENCY SOURCE",
+  "equipment:SHUNT REACTOR",
+  "equipment:SHUNT SINGLE FREQUENCY SOURCE",
+  "equipment:SINGLE TUNED FILTER",
+  "equipment:SPACING TABLE FOR LINE",
+  "equipment:SUBSTATION",
+  "equipment:SWITCH",
+  "equipment:SYNCHRONOUS GENERATOR",
+  "equipment:SYNCHRONOUS MOTOR",
+  "equipment:THREE WINDING TRANSFORMER",
+  "equipment:TRANSFORMER",
+  "loads:LOADS",
+  "network:HEADNODES"
+ ]
+}

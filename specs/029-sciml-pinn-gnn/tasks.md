@@ -38,3 +38,12 @@
 - [ ] T029-S05: protocolo. Hecho: split por alimentador (30/6/8), métrica común `surrogate_metrics` y línea base física `pf_baselines` (`benchmarks/sciml/baseline-linear_*`: test p95 0.041 p.u., recall 0.94, no pasa AC-029-S02). Falta: evaluar el GNN (T029-S04) con la misma métrica. _(antes T006-05)_
 - [x] T029-S06: puerto `SurrogateEngine` y uso con confirmación obligatoria por el solver (capacidad remanente, T002-03). La línea base física está conectada; el GNN usará el mismo puerto. El acuerdo sustituto-solver se mide y se publica. _(antes T006-06)_
 - [ ] T029-D09: `pf-scenarios-pe-ica-electrodunas` construido como dataset **candidato** desde la red real TXT (44 alimentadores, 2 173 muestras, manifiesto en `local-data/datasets/`). Pasa a gold cuando se confirme la autorización (T035-D05); MDB y VNR se agregan con T001-T011/T003. _(antes T029-09)_
+
+## Destilación (ADR-0011)
+
+- [x] T029-K01: módulo de destilación (procedencia de maestros, pérdida α/β/γ, escenarios sin etiquetar, evaluación por alimentador con alumno de control). Evidencia: `power-sciml/distillation.py`, `tests/unit/test_distillation.py`.
+- [x] T029-K02: caso de uso y CLI `distill-pf-surrogate` con evidencia verificada y pesos en `local-data`. Evidencia: `power-application/distillation_study.py`.
+- [x] T029-K05: prior físico lineal sobre la misma Y-bus como entrada y punto de partida (aprendizaje residual), residuo AC normalizado por alimentador y entrenamiento por etapas. Primer intento sin prior: divergió (errores de 10-60 p.u.) y quedó registrado. Resultado real (caso piloto, 44 alimentadores, split por alimentador, 60 épocas): maestro GraphSAGE de 33 538 parámetros con p95 test 0,0090 p.u. y recall 1,0 (la línea base lineal da 0,041). Alumno de 6 498 parámetros destilado: p95 valid 0,0098 frente a 0,0206 sin maestro; en test, 0,0203 frente a 0,0211. **Ningún modelo pasa todavía AC-029-S02 (p95 ≤ 0,005).** Evidencia local: `local-data/evidence/distillation-*.json`.
+- [ ] T029-K06: arquitectura que use la impedancia de las aristas, más escenarios y selección de hiperparámetros solo con validación, para cerrar la brecha validación-test y el gate.
+- [ ] T029-K03: destilar sobre el dataset gold temporal cuando exista (hoy: candidato por escenarios de demanda) y fijar el umbral de aceptación del alumno con revisión humana.
+- [ ] T029-K04: destilación con etiquetas en marco de fases (008-C) para alimentadores desbalanceados.

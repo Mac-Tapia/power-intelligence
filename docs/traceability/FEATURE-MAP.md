@@ -33,7 +33,7 @@ Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/
 | 026 | pide methodological reference | `026-pide-methodological-reference` | G4 | 7/19 | parcial |
 | 027 | pide source audit and reference engine | `027-pide-source-audit-and-reference-engine` | G4 | 8/22 | parcial |
 | 028 | der bess ev and renewables | `028-der-bess-ev-and-renewables` | G5 | 0/11 | pendiente |
-| 029 | sciml pinn gnn | `029-sciml-pinn-gnn` | G5 | 5/17 | parcial: dataset candidato y línea base; sin modelo entrenado |
+| 029 | sciml pinn gnn | `029-sciml-pinn-gnn` | G5 | 5/17 | parcial: dataset candidato, línea base y destilación maestro → alumno entrenada (maestro p95 test 0,009 p.u.); gate AC-029-S02 aún no superado |
 | 030 | marl llm engineering agents | `030-marl-llm-engineering-agents` | G5 | 0/19 | pendiente |
 | 031 | security observability operations | `031-security-observability-operations` | G7 | 3/14 | parcial: telemetría y respaldo local |
 | 032 | reporting and evidence | `032-reporting-and-evidence` | G4 | 0/10 | parcial: sobre de evidencia |
@@ -41,7 +41,7 @@ Numeración canónica: las 40 specs del plan maestro (decisión del usuario, 21/
 | 034 | generation transmission integration | `034-generation-transmission-integration` | G5 | 0/10 | pendiente |
 | 035 | authorized data federation | `035-authorized-data-federation` | G6 | 5/15 | parcial: controles de calidad; fuentes pendientes |
 | 036 | tariff and investment cost catalog | `036-tariff-and-investment-cost-catalog` | G4 | 0/10 | parcial: catálogo de conductores |
-| 037 | power format interop dgs mdb sql | `037-power-format-interop-dgs-mdb-sql` | G1 | 1/10 | parcial: CYME ASCII |
+| 037 | power format interop dgs mdb sql | `037-power-format-interop-dgs-mdb-sql` | G1 | 1/10 | parcial: CYME ASCII; estructura recuperada por ingeniería inversa (ADR-0012) |
 | 038 | benchmarks and scientific reproducibility | `038-benchmarks-and-scientific-reproducibility` | G3 | 0/10 | parcial: benchmark de flujo de potencia |
 | 039 | production release and governance | `039-production-release-and-governance` | G7 | 0/10 | pendiente |
 

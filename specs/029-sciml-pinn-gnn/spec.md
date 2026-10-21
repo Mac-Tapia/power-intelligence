@@ -74,3 +74,10 @@ El entrenamiento se hace **con redes reales** de la empresa del caso. Los benchm
 - Entrenar con datos no autorizados.
 - Inferir R/X ausentes con la red neuronal.
 - Controlar equipos.
+
+## Destilación de conocimiento (ADR-0011)
+
+- AC-029-K01: todo sustituto se entrena con la cadena maestro físico (solver propio) → maestro modelo → alumno, con la procedencia de cada maestro (motor, versión, hash). No se aceptan como maestros salidas de herramientas propietarias.
+- AC-029-K02: el alumno se compara, en alimentadores no vistos, con un alumno del mismo tamaño entrenado sin maestro. Se reportan p95, *recall*, fidelidad al maestro, parámetros y latencia; el efecto de la destilación se mide, no se supone.
+- AC-029-K03: la pérdida del alumno incluye el residuo AC sobre la Y-bus del solver; los escenarios sin etiquetar solo se usan con ese término activo.
+- AC-029-K04: pesos fuera de Git, identificados por SHA-256 en la evidencia `unitesis.distillation-evidence/1`; aceptación técnica `False`.

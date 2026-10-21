@@ -155,6 +155,38 @@ def cmd_build_pf_dataset(a: argparse.Namespace) -> int:
     return EXIT_OK if m["totals"]["kept"] and contrast_ok else EXIT_COMPARISON
 
 
+def cmd_profile_export(a: argparse.Namespace) -> int:
+    from unitesis_adapters.format_profile import profile_export, structure_only
+    from unitesis_evidence.store import publish_evidence
+
+    profile = profile_export({"network": a.network, "loads": a.loads,
+                              "equipment": a.equipment})
+    publish_evidence(a.output, profile)
+    if a.structure_output:
+        a.structure_output.write_text(json.dumps(structure_only(profile), indent=1,
+                                                 ensure_ascii=False) + "\n", encoding="utf-8")
+    _print({"unread_sections_with_rows": profile["unread_sections_with_rows"],
+            "evidence": str(Path(a.output).resolve())})
+    return EXIT_OK
+
+
+def cmd_distill_pf(a: argparse.Namespace) -> int:
+    from unitesis_application.distillation_study import run_pf_distillation
+
+    result = run_pf_distillation(a.dataset_dir, a.output, a.models_dir, epochs=a.epochs,
+                                 seed=a.seed)
+    models = result["report"]["models"]
+    _print({name: {"parameters": m["parameters"],
+                   "test_p95_pu": m["test"].get("p95_abs_error_pu"),
+                   "test_gate": m["test"].get("gate_ac_006_02"),
+                   "latency_ms": round(m["latency_ms_per_scenario"], 4)}
+            for name, m in models.items()}
+           | {"distillation_effect_test_p95_pu":
+                  result["report"]["distillation_effect_test_p95_pu"],
+              "evidence": str(Path(a.output).resolve()), "technical_acceptance": False})
+    return EXIT_OK
+
+
 def cmd_eval_pf_baseline(a: argparse.Namespace) -> int:
     from unitesis_application.pf_baselines import evaluate_baseline
 
@@ -389,6 +421,25 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--split", choices=("train", "valid", "test"), default="test")
     s.add_argument("--v-min-pu", type=float, default=0.95)
     s.set_defaults(func=cmd_eval_pf_baseline)
+
+    s = sub.add_parser("profile-export",
+                       help="reverse-engineer an export's structure vs reader coverage (REA)")
+    s.add_argument("--network", type=Path, required=True)
+    s.add_argument("--loads", type=Path, required=True)
+    s.add_argument("--equipment", type=Path, required=True)
+    s.add_argument("--output", type=Path, required=True, help="full profile (local evidence)")
+    s.add_argument("--structure-output", type=Path,
+                   help="redacted structure without values, safe to version")
+    s.set_defaults(func=cmd_profile_export)
+
+    s = sub.add_parser("distill-pf-surrogate",
+                       help="teacher -> student distillation of the PF surrogate (029, ADR-0011)")
+    s.add_argument("--dataset-dir", type=Path, required=True)
+    s.add_argument("--output", type=Path, required=True)
+    s.add_argument("--models-dir", type=Path, required=True, help="outside Git (local-data)")
+    s.add_argument("--epochs", type=int, default=60)
+    s.add_argument("--seed", type=int, default=7)
+    s.set_defaults(func=cmd_distill_pf)
 
     s = sub.add_parser("hosting-capacity", help="remaining capacity per bus (002/006)")
     io(s)

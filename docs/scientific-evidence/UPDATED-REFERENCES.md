@@ -323,3 +323,19 @@ Cada línea conserva exactamente la referencia previa y su etiqueta de verificac
 - **REF-163** [MATPOWER](https://matpower.org/) — `documentacion` · `EN` · `importado_pendiente_auditoria` · [Ficha](sources/REF-163-matpower.md).
 - **REF-186** [IEEE PES Distribution Test Feeders](https://cmte.ieee.org/pes-testfeeders/) — `norma_o_estandar` · `EN` · `importado_pendiente_auditoria` · [Ficha](sources/REF-186-ieee-pes-distribution-test-feeders.md).
 
+
+## Destilación de conocimiento e ingeniería inversa (añadido 21/10/2026)
+
+Verificadas en la página editorial o en el índice oficial durante la consulta; no implican lectura íntegra. Sustentan ADR-0011 y ADR-0012.
+
+| Código | Tipo y año | Referencia | Módulo y aplicación | Estado/advertencia |
+|---|---|---|---|---|
+| K-01 | Preprint · 2015 | [Hinton, Vinyals, Dean — Distilling the Knowledge in a Neural Network, arXiv:1503.02531](https://arxiv.org/abs/1503.02531) | 029/030: maestro → alumno | Formulado para clasificación (objetivos suaves con temperatura); en regresión se usa el error al maestro. |
+| K-02 | Artículo arbitrado · 2023 | [Hsieh et al. — Distilling Step-by-Step!, Findings of ACL 2023, pp. 8003-8017](https://research.google/pubs/distilling-step-by-step-outperforming-larger-language-models-with-less-training-data-and-smaller-model-sizes/) | 030: destilación de LLM con explicaciones | Resultados en benchmarks de PLN; no transferibles sin evaluación propia. |
+| K-03 | Artículo arbitrado · 2025 | [Liu et al. — Automatic network structure discovery of PINNs via knowledge distillation, Nature Communications 16, doi:10.1038/s41467-025-64624-3](https://doi.org/10.1038/s41467-025-64624-3) | 029: destilación por etapas física/parámetros | Probado en EDP (Laplace, Burgers, Poisson), no en flujo de potencia; su aplicación aquí es hipótesis propia. |
+| R-01 | Artículo · 1990 | [Chikofsky, Cross — Reverse Engineering and Design Recovery: A Taxonomy, IEEE Software 7(1)](https://sites.cc.gatech.edu/reverse/bibliography/terminology.html) | 001/037: recuperación de diseño y redocumentación | Verificado mediante citas secundarias; texto íntegro no consultado. |
+| R-02 | Norma · 2009 | [Directiva 2009/24/CE, art. 6 (descompilación para interoperabilidad)](https://www.wipo.int/wipolex/es/text/208091) | 037: límites legales | Marco europeo; el proyecto adopta un criterio más estricto (sin descompilación). |
+| R-03 | Norma · 1993 | [Ley 16/1993 (España), art. 5-6](https://www.wipo.int/wipolex/es/text/126608) | 037: referencia comparada | No aplica directamente al caso peruano. |
+| R-04 | Norma · 1996 | D. Leg. 822, Ley sobre el Derecho de Autor (Perú) | 037: marco del caso piloto | **Pendiente de verificación con texto oficial** (tarea T037-R05). |
+
+Búsqueda sin resultado: no se encontró un trabajo publicado que combine destilación maestro-alumno con GNN informadas por la física para flujo de potencia; la combinación de ADR-0011 es una hipótesis del proyecto que se mide con un alumno de control.

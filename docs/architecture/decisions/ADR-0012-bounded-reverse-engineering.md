@@ -1,0 +1,13 @@
+# ADR-0012 — Ingeniería inversa acotada (REA) de formatos, datos y métodos
+
+- **Estado:** aceptada (mandato del usuario, 21/10/2026). Specs dueñas: 001 y 037 (formatos), 026/027 (métodos regulatorios heredados) y 038 (reproducibilidad).
+- **Contexto:** las fuentes reales llegan como exportaciones sin documentación completa: CYME ASCII, MDB y respaldos VNR-GIS. Los estudios heredados existen como hojas y salidas sin el método escrito. La ingeniería inversa, en la taxonomía de Chikofsky y Cross (1990), analiza un sistema para identificar sus componentes y relaciones y representarlo con otra forma o a mayor abstracción. Incluye la recuperación de diseño y la redocumentación.
+- **Decisión — alcance permitido:**
+  1. **Formatos:** recuperar la estructura (secciones, columnas, tipos, cobertura) de archivos que entrega el propietario de los datos (`format_profile.py`, CLI `profile-export`).
+  2. **Códigos no documentados:** inferir su significado solo cuando es **determinista** frente a un campo documentado del mismo registro (`infer_code_mapping`). Con conflictos o sin soporte suficiente no se asume nada. Si un código tiene un único valor observado, su significado queda como regla declarada pendiente de confirmar con el propietario.
+  3. **Métodos:** recuperar el método de cálculo de estudios heredados por comparación de caja negra entre entradas y salidas documentadas, y reimplementarlo con pruebas que reproduzcan esas salidas.
+  4. **Proyectos donantes propios:** redocumentar y extraer conocimiento con trazabilidad (`contribution-registry.json`).
+- **Prohibido:** descompilar, desensamblar o interceptar programas propietarios. También burlar licencias, protecciones o términos de uso, usar APIs propietarias (ADR-0010) y copiar catálogos o datos más allá de la licencia del propietario.
+- **Base legal:** este criterio es más estricto que la excepción de interoperabilidad europea (Directiva 2009/24/CE, art. 6, y su transposición española, Ley 16/1993, art. 6), porque no recurre a la descompilación. La norma peruana (D. Leg. 822) **no está verificada** con texto oficial: queda como tarea de revisión legal antes de cualquier uso que la necesite.
+- **Evidencia:** cada análisis REA produce un perfil completo en `local-data` (evidencia verificada) y, si se versiona, solo la estructura sin valores. Cada regla recuperada pasa a un lector con pruebas y queda registrada en su manifiesto.
+- **Referencias:** E. J. Chikofsky, J. H. Cross II, *Reverse Engineering and Design Recovery: A Taxonomy*, IEEE Software 7(1), 1990. Directiva 2009/24/CE, art. 6 (texto codificado en WIPO Lex). Ley 16/1993 (España), art. 6.
