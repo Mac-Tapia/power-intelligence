@@ -103,3 +103,9 @@ tr.best td { background: color-mix(in srgb, var(--ok) 12%, transparent); }
 .c-ok { color: var(--ok); } .c-warn { color: var(--warn); } .c-bad { color: var(--bad); }
 .violations { margin: 10px 0; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--bad); color: var(--bad); }
 .clean { margin: 10px 0; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--ok); color: var(--ok); }
+/* GIS view (map.js, spec 003) */
+.gis-section { fill: none; stroke: var(--muted); stroke-width: 1.4; cursor: pointer; }
+.gis-section.ok { stroke: var(--ok); } .gis-section.warn { stroke: var(--warn); } .gis-section.bad { stroke: var(--bad); }
+.gis-node { fill: var(--panel); stroke: var(--muted); stroke-width: 0.8; cursor: pointer; }
+.gis-node.ok { fill: var(--ok); } .gis-node.warn { fill: var(--warn); } .gis-node.bad { fill: var(--bad); }
+.gis-selected { stroke: var(--accent) !important; stroke-width: 3.5 !important; }
