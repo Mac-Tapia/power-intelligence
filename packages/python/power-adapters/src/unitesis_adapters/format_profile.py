@@ -41,11 +41,14 @@ CYME_READER_COVERAGE: dict[tuple[str, str], frozenset[str]] = {
     ("network", "RECLOSER SETTING"): frozenset({"SectionID", "Status"}),
     ("loads", "CUSTOMER LOADS"): frozenset({"SectionID", "DeviceNumber", "ValueType", "Value1",
                                             "Value2", "ConnectedKVA", "KWH",
-                                            "NumberOfCustomer"}),
-    ("equipment", "LINE"): frozenset({"ID", "R1", "X1", "Amps"}),
-    ("equipment", "CABLE"): frozenset({"ID", "R1", "X1", "Amps"}),
-    ("equipment", "CONCENTRIC NEUTRAL CABLE"): frozenset({"ID", "R1", "X1", "Amps"}),
-    ("equipment", "TAPE SHIELDED CABLE"): frozenset({"ID", "R1", "X1", "Amps"}),
+                                            "NumberOfCustomer", "Phase"}),
+    ("loads", "LOADS"): frozenset({"DeviceNumber", "Connection"}),
+    ("equipment", "LINE"): frozenset({"ID", "R1", "X1", "R0", "X0", "B1", "B0", "Amps"}),
+    ("equipment", "CABLE"): frozenset({"ID", "R1", "X1", "R0", "X0", "B1", "B0", "Amps"}),
+    ("equipment", "CONCENTRIC NEUTRAL CABLE"): frozenset({"ID", "R1", "X1", "R0", "X0", "B1",
+                                                          "B0", "Amps"}),
+    ("equipment", "TAPE SHIELDED CABLE"): frozenset({"ID", "R1", "X1", "R0", "X0", "B1",
+                                                     "B0", "Amps"}),
 }
 
 

@@ -29,7 +29,17 @@ def cyme_rules_for(case: ApplicationCase, *, allow_positive_sequence: bool | Non
         allow = allow_positive_sequence
     if not isinstance(allow, bool):
         raise CaseError("allow_positive_sequence_approximation must be a boolean")
-    return ReaderRules(case.frequency_hz, float(rules["default_connector_max_m"]), allow)
+    phase_frame = rules.get("phase_frame_from_sequence", False)
+    if not isinstance(phase_frame, bool):
+        raise CaseError("phase_frame_from_sequence must be a boolean")
+    codes = rules.get("load_connection_codes", {})
+    if not isinstance(codes, dict):
+        raise CaseError("load_connection_codes must map codes to 'wye' or 'delta'")
+    try:
+        return ReaderRules(case.frequency_hz, float(rules["default_connector_max_m"]), allow,
+                           phase_frame, tuple(sorted(codes.items())))
+    except ValueError as exc:
+        raise CaseError(str(exc)) from exc
 
 
 def geometry_feature_collection(imp, case: ApplicationCase) -> dict[str, Any]:

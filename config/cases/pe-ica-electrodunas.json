@@ -64,7 +64,12 @@
     "cyme_ascii": {
       "default_connector_max_m": 10.0,
       "allow_positive_sequence_approximation": false,
-      "evidence": "En la exportación del 03/08/2026 los 22 791 tramos con código DEFAULT miden como máximo 7,18 m (mediana 1,07 m): son tramos de conexión de cargas y seccionadores, que se modelan como conexión ideal."
+      "evidence": "En la exportación del 03/08/2026 los 22 791 tramos con código DEFAULT miden como máximo 7,18 m (mediana 1,07 m): son tramos de conexión de cargas y seccionadores, que se modelan como conexión ideal.",
+      "phase_frame_from_sequence": true,
+      "load_connection_codes": {
+        "0": "wye"
+      },
+      "phase_frame_evidence": "REA del export del 03/08/2026 (ADR-0012): CUSTOMER LOADS.Phase es una mascara A=1, B=2, C=4 (7287 cargas, 0 conflictos frente a la fase del tramo). LOADS.Connection tiene un unico valor (0) y lo usan tambien 218 cargas en tramos monofasicos, donde una conexion delta es imposible: 0 se interpreta como estrella. Pendiente de confirmacion del propietario; los estudios por fase mantienen technical_acceptance=false."
     }
   },
   "planning_criteria": {

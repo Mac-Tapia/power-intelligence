@@ -48,5 +48,5 @@
 
 ## Hallazgos REA aplicables (ADR-0012)
 
-- [ ] T001-R01: leer `CUSTOMER LOADS.Phase` con la máscara recuperada (1=A, 2=B, 4=C) y poner en cuarentena códigos fuera de ella; declarar `LOADS.Connection` como regla pendiente de confirmación.
+- [x] T001-R01: leer `CUSTOMER LOADS.Phase` con la máscara recuperada (1=A, 2=B, 4=C) y poner en cuarentena códigos fuera de ella; declarar `LOADS.Connection` como regla pendiente de confirmación.
 - [ ] T001-R02: leer `LINE CONFIGURATION.Overhead` y verificar `HEADNODES` contra `SOURCE`.

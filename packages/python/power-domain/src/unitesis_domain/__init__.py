@@ -1,6 +1,7 @@
 """Entities, value objects and electrical invariants. Pure Python, no infrastructure."""
 
 from .network import (
+    PHASE_SETS,
     SNAPSHOT_SCHEMA,
     SNAPSHOT_SCHEMA_V3,
     SNAPSHOT_SCHEMA_V4,
@@ -33,6 +34,7 @@ from .study import (
 )
 
 __all__ = [
+    "PHASE_SETS",
     "SNAPSHOT_SCHEMA",
     "SNAPSHOT_SCHEMA_V3",
     "SNAPSHOT_SCHEMA_V4",

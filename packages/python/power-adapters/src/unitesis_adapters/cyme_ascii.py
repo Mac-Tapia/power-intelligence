@@ -21,6 +21,7 @@ from pathlib import Path
 from typing import Any
 
 from unitesis_domain import (
+    PHASE_SETS,
     Bus,
     ElectricalSnapshot,
     Line,
@@ -39,6 +40,24 @@ INTERPRETATIONS = (
     "a load is connected at the ToNode of its section",
     "feeder nominal voltage = SOURCE DesiredVoltage (kV line-to-line); slack at 1.0 pu",
 )
+PHASE_FRAME_INTERPRETATIONS = (
+    "CUSTOMER LOADS Phase is a bitmask A=1, B=2, C=4 (recovered by REA, ADR-0012)",
+    "phase matrices from catalogue sequence values: Zs=(Z0+2Z1)/3, Zm=(Z0-Z1)/3; "
+    "same for B1/B0 in microsiemens/km ([SI] export)",
+    "a load uses the phases of its Phase code; connection from the case-declared code map",
+)
+_BITS = (("A", 1), ("B", 2), ("C", 4))
+
+
+def phases_from_code(code: str | None) -> str | None:
+    """Decode the recovered bitmask; None when it is not a valid A/B/C combination."""
+    try:
+        value = int(code) if code not in (None, "") else -1
+    except ValueError:
+        return None
+    if not 1 <= value <= 7:
+        return None
+    return "".join(ph for ph, bit in _BITS if value & bit)
 _PHASES_3 = "ABC"
 
 
@@ -53,8 +72,14 @@ class ReaderRules:
     frequency_hz: float
     default_connector_max_m: float
     allow_positive_sequence_approximation: bool = False
+    phase_frame_from_sequence: bool = False      # 008-C3: phase matrices for non-ABC feeders
+    load_connection_codes: tuple[tuple[str, str], ...] = ()   # LOADS.Connection -> wye/delta
 
     def __post_init__(self) -> None:
+        object.__setattr__(self, "load_connection_codes",
+                           tuple((str(k), v) for k, v in self.load_connection_codes))
+        if any(v not in ("wye", "delta") for _, v in self.load_connection_codes):
+            raise ValueError("load connection codes map to 'wye' or 'delta'")
         if self.frequency_hz not in (50.0, 60.0):
             raise ValueError("frequency_hz must come from the application case (50 or 60)")
         if not 0 <= self.default_connector_max_m <= 50:
@@ -140,11 +165,13 @@ def read_export(network: Path, loads: Path, equipment: Path,
              "equipment": {"file": equipment.name, "sha256": _file_sha(equipment)}}
 
     catalog: dict[str, tuple[float, float, float | None]] = {}
+    sequence: dict[str, dict[str, float | None]] = {}
     for sec in ("LINE", "CABLE", "CONCENTRIC NEUTRAL CABLE", "TAPE SHIELDED CABLE"):
         for row in eqp.get(sec, []):
             r1, x1, amps = _float(row.get("R1")), _float(row.get("X1")), _float(row.get("Amps"))
             if row.get("ID") and r1 is not None and x1 is not None:
                 catalog[row["ID"]] = (r1, x1, amps if amps and amps > 0 else None)
+                sequence[row["ID"]] = {k: _float(row.get(k)) for k in ("R0", "X0", "B1", "B0")}
     config = {r["SectionID"]: r for r in net["LINE CONFIGURATION"]}
     status: dict[str, str] = {}
     for sec in ("SWITCH SETTING", "SECTIONALIZER SETTING", "FUSE SETTING", "BREAKER SETTING",
@@ -162,6 +189,7 @@ def read_export(network: Path, loads: Path, equipment: Path,
         x, y, k = _float(row.get("CoordX")), _float(row.get("CoordY")), _float(row.get("SeqNumber"))
         if x is not None and y is not None and k is not None:
             vertices[row["SectionID"]].append((int(k), x, y))
+    connection = {r.get("DeviceNumber"): r.get("Connection") for r in lds.get("LOADS", [])}
     loads_by_section: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in lds["CUSTOMER LOADS"]:
         loads_by_section[row["SectionID"]].append(row)
@@ -179,7 +207,8 @@ def read_export(network: Path, loads: Path, equipment: Path,
     results = []
     for network_id in sorted(feeders):
         imp = _build_feeder(network_id, feeders[network_id], sources.get(network_id),
-                            config, catalog, status, loads_by_section, rules, files)
+                            config, catalog, status, loads_by_section, rules, files,
+                            sequence, connection)
         imp.geometry = _geometry(feeders[network_id], coords, vertices)
         results.append(imp)
     return results
@@ -202,8 +231,49 @@ def _geometry(sections, coords, vertices) -> dict[str, Any]:
                                             if n not in coords)}
 
 
+def _phase_line(sid, a, b, length_km, r1, x1, amps, closed, phases, seq):
+    """Line with phase matrices from sequence values, or None if R0/X0 are missing."""
+    if seq.get("R0") is None or seq.get("X0") is None:
+        return None
+    z1, z0 = complex(r1, x1), complex(seq["R0"], seq["X0"])
+    zs, zm = (z0 + 2 * z1) / 3, (z0 - z1) / 3
+    n = len(phases)
+    z = [[[zs.real, zs.imag] if i == j else [zm.real, zm.imag] for j in range(n)]
+         for i in range(n)]
+    bmat = None
+    if seq.get("B1") is not None and seq.get("B0") is not None:
+        bs, bm = (seq["B0"] + 2 * seq["B1"]) / 3, (seq["B0"] - seq["B1"]) / 3
+        bmat = [[bs if i == j else bm for j in range(n)] for i in range(n)]
+    return Line(sid, a, b, length_km, r1, x1, amps, closed, phases=phases,
+                z_phase_ohm_per_km=z, b_phase_us_per_km=bmat)
+
+
+def _phase_load(dev, bus, p_mw, q_mvar, code, section_phase, conn_code, conn_map,
+                quarantine, ref):
+    phases = phases_from_code(code)
+    if phases is None:
+        quarantine.append(QuarantineRecord(dev, "Phase", f"phase code {code!r} outside the "
+                                           "recovered A=1/B=2/C=4 bitmask", ref))
+        return None
+    if not set(phases) <= set(section_phase):
+        quarantine.append(QuarantineRecord(dev, "Phase", f"load phases {phases} not on its "
+                                           f"section ({section_phase})", ref))
+        return None
+    connection = conn_map.get(str(conn_code))
+    if connection is None:
+        quarantine.append(QuarantineRecord(dev, "Connection", f"connection code {conn_code!r} "
+                                           "not declared by the case", ref))
+        return None
+    if connection == "delta" and len(phases) < 2:
+        quarantine.append(QuarantineRecord(dev, "Connection", "delta load on one phase", ref))
+        return None
+    return Load(dev, bus, p_mw, q_mvar, True, phases=phases, connection=connection)
+
+
 def _build_feeder(network_id, sections, source, config, catalog, status, loads_by_section,
-                  rules: ReaderRules, files) -> FeederImport:
+                  rules: ReaderRules, files, sequence=None, connection=None) -> FeederImport:
+    sequence = sequence or {}
+    connection = connection or {}
     ref = f"{files['network']['file']}#{network_id}"
     quarantine: list[QuarantineRecord] = []
     counts: dict[str, int] = defaultdict(int)
@@ -215,7 +285,9 @@ def _build_feeder(network_id, sections, source, config, catalog, status, loads_b
     lines: list[Line] = []
     switches: list[Switch] = []
     nodes: set[str] = set()
-    non_abc = 0
+    non_abc = sum(1 for s in sections if s.get("Phase", "") != _PHASES_3)
+    phase_frame = bool(non_abc) and rules.phase_frame_from_sequence
+    section_phases: dict[str, str] = {}
     for sec in sections:
         sid, a, b = sec["SectionID"], sec["FromNodeID"], sec["ToNodeID"]
         nodes |= {a, b}
@@ -224,8 +296,10 @@ def _build_feeder(network_id, sections, source, config, catalog, status, loads_b
             quarantine.append(QuarantineRecord(sid, "ToNodeID", "self-loop section", ref))
             continue
         phase = sec.get("Phase", "")
-        if phase != _PHASES_3:
-            non_abc += 1
+        section_phases[sid] = phase
+        if phase_frame and phase not in PHASE_SETS:
+            quarantine.append(QuarantineRecord(sid, "Phase", f"phase {phase!r} not A/B/C", ref))
+            continue
         cfg = config.get(sid)
         closed = status.get(sid, "1") != "0"
         if not closed:
@@ -255,10 +329,20 @@ def _build_feeder(network_id, sections, source, config, catalog, status, loads_b
             quarantine.append(QuarantineRecord(sid, "LineCableID", f"code {code} has zero "
                                                "impedance", ref))
             continue
-        lines.append(Line(sid, a, b, length_m / 1000.0, r1, x1,
-                          amps / 1000.0 if amps else None, closed))
+        if phase_frame:
+            line = _phase_line(sid, a, b, length_m / 1000.0, r1, x1,
+                               amps / 1000.0 if amps else None, closed, phase,
+                               sequence.get(code, {}))
+            if line is None:
+                quarantine.append(QuarantineRecord(sid, "LineCableID", f"code {code} has no "
+                                                   "R0/X0 for the phase frame", ref))
+                continue
+            lines.append(line)
+        else:
+            lines.append(Line(sid, a, b, length_m / 1000.0, r1, x1,
+                              amps / 1000.0 if amps else None, closed))
         counts["lines"] += 1
-    if non_abc and not rules.allow_positive_sequence_approximation:
+    if non_abc and not phase_frame and not rules.allow_positive_sequence_approximation:
         quarantine.append(QuarantineRecord(
             network_id, "Phase", f"{non_abc} non three-phase sections need the unbalanced "
             "model (008-C) or an explicit positive-sequence approximation", ref))
@@ -279,7 +363,15 @@ def _build_feeder(network_id, sections, source, config, catalog, status, loads_b
                 quarantine.append(QuarantineRecord(dev, "Value1/Value2", "invalid kW or pf", ref))
                 continue
             q_mvar = kw / 1000.0 * math.tan(math.acos(pf))
-            loads.append(Load(dev, to_node[sid], kw / 1000.0, q_mvar, True))
+            if phase_frame:
+                load = _phase_load(dev, to_node[sid], kw / 1000.0, q_mvar, row.get("Phase"),
+                                   section_phases.get(sid, ""), connection.get(dev),
+                                   dict(rules.load_connection_codes), quarantine, ref)
+                if load is None:
+                    continue
+                loads.append(load)
+            else:
+                loads.append(Load(dev, to_node[sid], kw / 1000.0, q_mvar, True))
             counts["loads_with_kw"] += kw > 0
             attributes[dev] = {"connected_kva": _float(row.get("ConnectedKVA")) or 0.0,
                                "kwh": _float(row.get("KWH")) or 0.0,
@@ -288,17 +380,22 @@ def _build_feeder(network_id, sections, source, config, catalog, status, loads_b
     pfs = {round(a["power_factor"], 4) for a in attributes.values()}
     manifest: dict[str, Any] = {
         "schema": "unitesis.source-manifest/1", "source_id": network_id, "parser": PARSER,
-        "files": files, "interpretations": list(INTERPRETATIONS),
+        "files": files,
+        "interpretations": list(INTERPRETATIONS)
+        + (list(PHASE_FRAME_INTERPRETATIONS) if phase_frame else []),
         "rules": {"frequency_hz": rules.frequency_hz,
                   "default_connector_max_m": rules.default_connector_max_m,
                   "allow_positive_sequence_approximation":
-                      rules.allow_positive_sequence_approximation},
+                      rules.allow_positive_sequence_approximation,
+                  "phase_frame_from_sequence": rules.phase_frame_from_sequence,
+                  "load_connection_codes": dict(rules.load_connection_codes)},
+        "phase_frame": phase_frame,
         "nominal_kv": kv, "record_counts": dict(counts), "non_three_phase_sections": non_abc,
         "quarantined_fields": len(quarantine),
         "parameter_quality": {
             "uniform_power_factor": len(pfs) == 1 and bool(pfs),
             "loads_without_kw": counts["loads"] - counts["loads_with_kw"],
-            "positive_sequence_approximation": bool(non_abc)},
+            "positive_sequence_approximation": bool(non_abc) and not phase_frame},
         "geometry": "not_ingested (node UTM coordinates available for spec 003)",
     }
     if quarantine or kv is None:

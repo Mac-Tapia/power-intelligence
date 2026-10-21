@@ -142,7 +142,7 @@
       "R0": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "X1": {
        "type": "number",
@@ -152,17 +152,17 @@
       "X0": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "B1": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "B0": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "Amps": {
        "type": "number",
@@ -867,7 +867,7 @@
       "R0": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "X1": {
        "type": "number",
@@ -877,17 +877,17 @@
       "X0": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "B1": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "B0": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "Amps": {
        "type": "number",
@@ -2965,7 +2965,7 @@
       "Phase": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "Value1": {
        "type": "number",
@@ -3016,7 +3016,7 @@
       "DeviceNumber": {
        "type": "text",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "LoadType": {
        "type": "text",
@@ -3026,7 +3026,7 @@
       "Connection": {
        "type": "number",
        "fill_ratio": 1.0,
-       "consumed_by_reader": false
+       "consumed_by_reader": true
       },
       "Location": {
        "type": "number",
@@ -3034,7 +3034,7 @@
        "consumed_by_reader": false
       }
      },
-     "consumed_by_reader": false,
+     "consumed_by_reader": true,
      "populated": true
     },
     "SI": {
@@ -3442,7 +3442,6 @@
   "equipment:SYNCHRONOUS MOTOR",
   "equipment:THREE WINDING TRANSFORMER",
   "equipment:TRANSFORMER",
-  "loads:LOADS",
   "network:HEADNODES"
  ]
 }

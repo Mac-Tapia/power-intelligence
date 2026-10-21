@@ -27,8 +27,9 @@ class FormatProfileTest(unittest.TestCase):
         roles = {f["role"]: f for f in self.profile["files"]}
         line = roles["equipment"]["sections"]["LINE"]
         self.assertTrue(line["columns"]["R1"]["consumed_by_reader"])
-        self.assertFalse(line["columns"]["R0"]["consumed_by_reader"])
-        self.assertIn("R0", line["unused_filled_columns"])
+        self.assertTrue(line["columns"]["R0"]["consumed_by_reader"])      # 008-C3
+        self.assertFalse(line["columns"]["LockImpedance"]["consumed_by_reader"])
+        self.assertIn("LockImpedance", line["unused_filled_columns"])
         self.assertEqual(roles["network"]["sections"]["SECTION"]["columns"]["Phase"]["type"],
                          "text")
 
