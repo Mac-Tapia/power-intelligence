@@ -11,6 +11,7 @@ Arrays are per electrical node (closed switches fused), slack node first.
 from __future__ import annotations
 
 import math
+import re
 from dataclasses import replace
 from datetime import UTC, datetime
 from hashlib import sha256
@@ -37,6 +38,126 @@ from unitesis_topology import build_energized_network
 from .study import code_manifest
 
 DATASET_SCHEMA = "unitesis.pf-scenarios/1"
+
+
+def promote_pf_dataset(case: ApplicationCase, dataset_dir: str | Path,
+                       output: str | Path, *,
+                       source_registry: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Publish a separate gold attestation; preserve the immutable candidate manifest."""
+    if not case.authorized:
+        raise ValueError("case authorization is required")
+    destination = Path(output).absolute()
+    if destination.exists() or any(p.is_symlink() or p.is_junction()
+                                   for p in [destination, *destination.parents]):
+        raise ValueError("gold attestation destination must be new and unlinked")
+    folder = Path(dataset_dir).resolve()
+    manifest = read_evidence(folder / "manifest.json")
+    if manifest.get("case_id") != case.case_id or manifest.get("schema") != DATASET_SCHEMA:
+        raise ValueError("dataset case/schema mismatch")
+    temporal = manifest.get("temporal_split")
+    if not isinstance(temporal, dict):
+        raise ValueError("temporal split with dates/gap required by AC-035-D04/AC-029-S01")
+    windows = {}
+    try:
+        interval = float(temporal["interval_seconds"])
+        lag, horizon = temporal["max_lag_steps"], temporal["horizon_steps"]
+        if (not math.isfinite(interval) or interval <= 0 or type(lag) is not int
+                or type(horizon) is not int or lag < 0 or horizon < 1):
+            raise ValueError("invalid temporal sampling metadata")
+        for split in ("train", "valid", "test"):
+            block = temporal["partitions"][split]
+            start, end = (datetime.fromisoformat(block[k]) for k in ("start", "end"))
+            if start.tzinfo is None or end.tzinfo is None or start > end:
+                raise ValueError("invalid temporal dates")
+            windows[split] = (start, end)
+        gap = (lag + horizon) * interval
+        for left, right in (("train", "valid"), ("valid", "test")):
+            if (windows[right][0] - windows[left][1]).total_seconds() < gap:
+                raise ValueError("temporal gap below maximum lag plus horizon")
+    except (KeyError, TypeError, OverflowError) as exc:
+        raise ValueError("incomplete temporal split metadata") from exc
+    if (not isinstance(manifest.get("silver_rules"), list) or not manifest.get("source_files")
+            or not manifest.get("column_origin") or not manifest.get("code_tree_sha256")):
+        raise ValueError("raw/silver/column/code lineage required by AC-035-D04")
+    if not re.fullmatch(r"[0-9a-f]{64}", str(manifest["code_tree_sha256"])):
+        raise ValueError("invalid code tree digest")
+    origins = {"measured", "interpolated", "disaggregated", "imputed", "forecast",
+               "scenario", "reanalysis", "official_statistic"}
+    if (not isinstance(manifest["column_origin"], dict)
+            or not {"p_mw", "q_mvar", "vm_pu", "va_deg"} <= manifest["column_origin"].keys()
+            or any(value not in origins for value in manifest["column_origin"].values())):
+        raise ValueError("invalid column origin")
+    if not isinstance(manifest["source_files"], list):
+        raise ValueError("raw source records required")
+    if not isinstance(source_registry, dict):
+        raise ValueError("registered source metadata required")
+    registered = {row["source_id"]: row for row in source_registry.get("sources", [])}
+    for raw in manifest["source_files"]:
+        if (not isinstance(raw, dict) or raw.get("role") != "application_case"
+                or raw.get("case_id") != case.case_id
+                or raw.get("source_id") not in case.source_ids):
+            raise ValueError("raw source must belong to the authorized application case")
+        entry = registered.get(raw["source_id"], {})
+        if entry.get("role") != "application_case" or entry.get("case_id") != case.case_id:
+            raise ValueError("source registry does not bind raw to application case")
+        relative = Path(raw.get("file", ""))
+        source = folder / relative
+        if (relative.is_absolute() or not source.is_file()
+                or not source.resolve().is_relative_to(folder)
+                or any(p.is_symlink() or p.is_junction() for p in [source, *source.parents]
+                       if p.is_relative_to(folder))):
+            raise ValueError("invalid raw source path")
+        if sha256(source.read_bytes()).hexdigest() != raw.get("sha256"):
+            raise ValueError("raw source hash mismatch")
+    if (manifest["totals"]["contrast_failed"] or manifest["totals"]["contrast_unavailable"]
+            or manifest["totals"]["contrast_passed"] < 1):
+        raise ValueError("independent contrasts are missing or failed")
+    seen, snapshots, splits, samples = set(), set(), set(), 0
+    for feeder in manifest["feeders"]:
+        if feeder["network_id"] in seen or feeder["snapshot_sha256"] in snapshots:
+            raise ValueError("duplicate feeder/snapshot across splits")
+        seen.add(feeder["network_id"])
+        snapshots.add(feeder["snapshot_sha256"])
+        splits.add(feeder["split"])
+        source = folder / feeder["file"]
+        if (source.is_symlink() or not source.resolve().is_relative_to(folder)
+                or any(p.is_symlink() or p.is_junction() for p in source.parents
+                       if p.is_relative_to(folder))):
+            raise ValueError("invalid dataset path")
+        if sha256(source.read_bytes()).hexdigest() != feeder["sha256"]:
+            raise ValueError("dataset file hash mismatch")
+        with np.load(source, allow_pickle=False) as arrays:
+            shape = arrays["vm_pu"].shape
+            if (len(shape) != 2 or min(shape) < 1 or type(feeder["kept"]) is not int
+                    or shape[0] != feeder["kept"]):
+                raise ValueError("dataset sample count mismatch")
+            if "timestamp_utc" not in arrays or arrays["timestamp_utc"].shape != (shape[0],):
+                raise ValueError("temporal sample timestamps missing")
+            start, end = windows[feeder["split"]]
+            for value in arrays["timestamp_utc"]:
+                instant = datetime.fromisoformat(str(value))
+                if instant.tzinfo is None or not start <= instant <= end:
+                    raise ValueError("temporal sample outside declared partition")
+            for key in ("vm_pu", "va_deg", "p_mw", "q_mvar"):
+                if arrays[key].shape != shape or not np.isfinite(arrays[key]).all():
+                    raise ValueError("invalid dataset labels/features")
+            residual = arrays["label_residual_pu"]
+            if (residual.shape != (shape[0],) or not np.isfinite(residual).all()
+                    or (residual > 1e-6).any() or (residual < 0).any()):
+                raise ValueError("label AC residual does not pass")
+            samples += shape[0]
+    if splits != {"train", "valid", "test"} or samples != manifest["totals"]["kept"]:
+        raise ValueError("dataset partitions/counts incomplete")
+    payload = {"schema": "unitesis.pf-gold-attestation/1", "tier": "gold",
+               "case_id": case.case_id, "dataset_id": manifest["dataset_id"],
+               "dataset_manifest_sha256": sha256(canonical(manifest)).hexdigest(),
+               "data_kind": "solver_labelled_demand_scenarios_on_real_topology",
+               "samples": samples, "feeders": len(seen),
+               "independent_contrasts": manifest["totals"]["contrast_passed"],
+               "authorization": "confirmed_for_local_use", "technical_acceptance": False,
+               "temporal_split": temporal,
+               "limitations": manifest["limitations"]}
+    return publish_evidence(output, payload)
 
 
 def _feeder_arrays(snapshot: ElectricalSnapshot, attributes: dict[str, dict[str, float]],
