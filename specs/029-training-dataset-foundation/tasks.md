@@ -11,4 +11,4 @@
 - [ ] T029-09: `pf-scenarios-pe-ica-electrodunas` construido como dataset **candidato** desde la red real TXT (44 alimentadores, 2 173 muestras, manifiesto en `local-data/datasets/`). Pasa a gold cuando se confirme la autorización (T029-05); MDB y VNR se agregan con T001-T011/T003.
 - [ ] T029-10: gold `district-flex-pe-ica-electrodunas` desde clientes importantes y medidores reales; pronósticos causales.
 - [ ] T029-11: corpus normativo PE con licencia por documento; trazas de herramientas; set de evaluación.
-- [ ] T029-12: prueba de no fuga de datos sensibles en Git (AC-029-07).
+- [x] T029-12: `tests/security/test_no_sensitive_data.py` recorre los archivos versionados (sin `local-data/`, ids reales de clientes CYME, RUC, importes facturados ni correos no permitidos).

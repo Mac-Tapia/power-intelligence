@@ -5,4 +5,4 @@
 - [x] T006-03: residuo AC de cada etiqueta verificado con `power_mismatch` (máx. 2.9e-7 p.u., umbral declarado 1e-6; las muestras que lo superan se descartan).
 - [ ] T006-04: autorización para instalar `torch`; modelo GNN base (GraphSAGE/GAT) con pérdida física.
 - [ ] T006-05: protocolo. Hecho: split por alimentador (30/6/8), métrica común `surrogate_metrics` y línea base física `pf_baselines` (`benchmarks/sciml/baseline-linear_*`: test p95 0.041 p.u., recall 0.94, no pasa AC-006-02). Falta: evaluar el GNN (T006-04) con la misma métrica.
-- [ ] T006-06: integración como puerto `SurrogateEngine` con confirmación obligatoria por el solver.
+- [x] T006-06: puerto `SurrogateEngine` y uso con confirmación obligatoria por el solver (capacidad remanente, T002-03). La línea base física está conectada; el GNN usará el mismo puerto. El acuerdo sustituto-solver se mide y se publica.

@@ -7,9 +7,10 @@ from .protocols import (
     PowerFlowEngine,
     SnapshotRepository,
     StudyRepository,
+    SurrogateEngine,
 )
 
 __all__ = [
     "DatasetRepository", "EngineUnavailable", "EvidenceStore", "PowerFlowEngine",
-    "SnapshotRepository", "StudyRepository",
+    "SnapshotRepository", "StudyRepository", "SurrogateEngine",
 ]

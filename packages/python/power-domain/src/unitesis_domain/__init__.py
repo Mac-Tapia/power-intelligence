@@ -1,6 +1,5 @@
 """Entities, value objects and electrical invariants. Pure Python, no infrastructure."""
 
-from .models import Equipment, NetworkSnapshot
 from .network import (
     SNAPSHOT_SCHEMA,
     Bus,
@@ -29,10 +28,8 @@ __all__ = [
     "BusResult",
     "ComparisonTolerances",
     "ElectricalSnapshot",
-    "Equipment",
     "Line",
     "Load",
-    "NetworkSnapshot",
     "QuarantineRecord",
     "Slack",
     "SnapshotError",

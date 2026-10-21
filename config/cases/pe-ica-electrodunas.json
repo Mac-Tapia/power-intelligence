@@ -63,5 +63,12 @@
       "allow_positive_sequence_approximation": false,
       "evidence": "En la exportación del 03/08/2026 los 22 791 tramos con código DEFAULT miden como máximo 7,18 m (mediana 1,07 m): son tramos de conexión de cargas y seccionadores, que se modelan como conexión ideal."
     }
+  },
+  "planning_criteria": {
+    "v_min_pu": 0.95,
+    "v_max_pu": 1.05,
+    "max_loading_percent": 100.0,
+    "source": "NTCSE, D.S. N.° 020-97-EM: tolerancia de tensión de hasta ±5 % de la nominal en puntos de entrega (±7,5 % en redes secundarias urbano-rurales y rurales); cargabilidad ≤ 100 % de la ampacidad del catálogo",
+    "status": "clause_pending_verification_against_official_text"
   }
 }

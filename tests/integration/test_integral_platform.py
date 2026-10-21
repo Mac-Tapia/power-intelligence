@@ -135,6 +135,21 @@ class UnifiedCliTests(unittest.TestCase):
             self.assertEqual(payload["schema"], "unitesis.alternatives-evidence/1")
             self.assertIsNotNone(payload["recommended"])
 
+    @unittest.skipUnless(HAS_PP, "pandapower required")
+    def test_criteria_precedence_flag_over_case(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "nl.json"
+            base = ("new-load", "--input", FEEDER, "--output", out, "--load-id", "NL",
+                    "--bus", "B3", "--p-mw", "0.5", "--q-mvar", "0.1", "--case",
+                    "pe-ica-electrodunas")
+            self.assertEqual(cli(*base).returncode, 0)
+            crit = read_evidence(out)["request"]["criteria"]
+            self.assertTrue(crit["source"].startswith("case:pe-ica-electrodunas"))
+            self.assertEqual(cli(*base, "--v-min-pu", "0.97").returncode, 0)
+            crit = read_evidence(out)["request"]["criteria"]
+            self.assertEqual(crit["v_min_pu"], 0.97)
+            self.assertIn("explicit override", crit["source"])
+
     def test_corrupt_evidence_exit_6(self):
         with tempfile.TemporaryDirectory() as tmp:
             ev = Path(tmp) / "ev.json"

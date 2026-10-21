@@ -38,6 +38,23 @@ class PilotCaseTests(unittest.TestCase):
                             for s in REGISTRY["sources"]))
 
 
+class PlanningCriteriaTests(unittest.TestCase):
+    def test_pilot_criteria_have_source(self):
+        crit = load_case(CASES / "pe-ica-electrodunas.json").planning_criteria
+        self.assertEqual((crit["v_min_pu"], crit["max_loading_percent"]), (0.95, 100.0))
+        self.assertIn("NTCSE", crit["source"])
+
+    def test_invalid_or_unsourced_criteria_rejected(self):
+        for bad in ({"v_min_pu": 1.2, "v_max_pu": 1.05, "max_loading_percent": 100,
+                     "source": "x"},
+                    {"v_min_pu": 0.95, "v_max_pu": 1.05, "max_loading_percent": 100,
+                     "source": ""},
+                    {"v_min_pu": 0.95}):
+            data = copy.deepcopy(PILOT) | {"planning_criteria": bad}
+            with self.subTest(bad=bad), self.assertRaises(CaseError):
+                parse_case(data)
+
+
 class UniversalityTests(unittest.TestCase):
     def other_case(self, **changes):
         data = copy.deepcopy(PILOT)

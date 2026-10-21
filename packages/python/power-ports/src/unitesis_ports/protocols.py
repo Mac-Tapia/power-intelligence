@@ -22,6 +22,18 @@ class PowerFlowEngine(Protocol):
 
 
 @runtime_checkable
+class SurrogateEngine(Protocol):
+    """Fast approximate power flow (spec 006). Screens only; never certifies (ADR-0002)."""
+
+    name: str
+
+    def version(self) -> str: ...
+
+    def predict_vm(self, snapshot: ElectricalSnapshot, p_node: Any, q_node: Any) -> Any:
+        """Voltage magnitudes (scenarios x electrical nodes, slack first) for node loads."""
+
+
+@runtime_checkable
 class SnapshotRepository(Protocol):
     def save_snapshot(self, snapshot: ElectricalSnapshot, manifest: dict[str, Any]) -> str: ...
 

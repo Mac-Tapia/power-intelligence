@@ -40,6 +40,28 @@ EXIT_OK, EXIT_INVALID, EXIT_UNAVAILABLE, EXIT_NOT_CONVERGED = 0, 2, 3, 4
 EXIT_COMPARISON, EXIT_EVIDENCE = 5, 6
 
 
+DEFAULT_CRITERIA = {"v_min_pu": 0.95, "max_loading_percent": 100.0}
+
+
+def resolve_criteria(a: argparse.Namespace) -> dict[str, Any]:
+    """Explicit flag > application case (planning_criteria) > labelled non-regulatory default."""
+    case_criteria: dict[str, Any] = {}
+    source = "default_not_regulatory"
+    if getattr(a, "case", None):
+        from unitesis_config import load_case
+
+        case_criteria = load_case(ROOT / "config/cases" / f"{a.case}.json").planning_criteria
+        if case_criteria:
+            source = f"case:{a.case} ({case_criteria.get('source', '')[:80]})"
+    out: dict[str, Any] = {}
+    for key in ("v_min_pu", "max_loading_percent"):
+        flag = getattr(a, key)
+        out[key] = flag if flag is not None else case_criteria.get(key, DEFAULT_CRITERIA[key])
+    explicit = [k for k in ("v_min_pu", "max_loading_percent") if getattr(a, k) is not None]
+    out["source"] = source + (f"; explicit override: {explicit}" if explicit else "")
+    return out
+
+
 def _print(data: dict[str, Any]) -> None:
     print(json.dumps(data, indent=2, ensure_ascii=False))
 
@@ -63,9 +85,11 @@ def cmd_study(a: argparse.Namespace) -> int:
 def cmd_new_load(a: argparse.Namespace) -> int:
     from unitesis_application.study import engine_by_name, run_new_load_study
 
+    crit = resolve_criteria(a)
     result = run_new_load_study(a.input, a.output, load_id=a.load_id, bus=a.bus, p_mw=a.p_mw,
-                                q_mvar=a.q_mvar, v_min_pu=a.v_min_pu,
-                                max_loading_percent=a.max_loading_percent,
+                                q_mvar=a.q_mvar, v_min_pu=crit["v_min_pu"],
+                                max_loading_percent=crit["max_loading_percent"],
+                                criteria_source=crit["source"],
                                 candidate=engine_by_name(a.engine))
     _print({"screening": result["screening"], "violations": result["violations"],
             "before": result["before"]["summary"], "after": result["after"]["summary"],
@@ -79,8 +103,9 @@ def cmd_alternatives(a: argparse.Namespace) -> int:
 
     result = run_conductor_alternatives(
         a.input, a.output, line_id=a.line, catalog_path=a.catalog, basis_path=a.basis,
-        operating_temperature_c=a.temperature_c, phase_gmd_m=a.gmd_m, v_min_pu=a.v_min_pu,
-        max_loading_percent=a.max_loading_percent)
+        operating_temperature_c=a.temperature_c, phase_gmd_m=a.gmd_m,
+        v_min_pu=resolve_criteria(a)["v_min_pu"],
+        max_loading_percent=resolve_criteria(a)["max_loading_percent"])
     _print({"line_id": result["line_id"], "recommended": result["recommended"],
             "smallest_feasible_section": result["smallest_feasible_section"],
             "ranking": result["ranking"],
@@ -125,6 +150,31 @@ def cmd_eval_pf_baseline(a: argparse.Namespace) -> int:
                           v_min_pu=a.v_min_pu)
     _print({"surrogate": r["surrogate"], "split": r["split"], "feeders": r["feeders"],
             "overall": r["overall"], "evidence": str(Path(a.output).resolve())})
+    return EXIT_OK
+
+
+def cmd_hosting_capacity(a: argparse.Namespace) -> int:
+    from unitesis_adapters.neutral_json import ingest_file
+    from unitesis_application.hosting_capacity import run_hosting_capacity
+    from unitesis_topology import build_energized_network
+
+    ingestion = ingest_file(a.input)
+    snapshot = ingestion.require_snapshot()
+    buses = (list(build_energized_network(snapshot).nodes)[1:] if a.buses == "all"
+             else a.buses.split(","))
+    steps = [round(a.p_step_mw * k, 6) for k in range(1, int(a.p_max_mw / a.p_step_mw) + 1)]
+    crit = resolve_criteria(a)
+    r = run_hosting_capacity(snapshot, a.output, buses=buses, p_levels_mw=steps,
+                             power_factor=a.pf, v_min_pu=crit["v_min_pu"],
+                             max_loading_percent=crit["max_loading_percent"],
+                             margin_pu=a.margin_pu, source_manifest=ingestion.manifest,
+                             criteria_source=crit["source"])
+    limits = [b["confirmed_limit_mw"] for b in r["buses"] if "confirmed_limit_mw" in b]
+    _print({"base_case": r["base_case"], "buses": len(r["buses"]),
+            "solver_calls": r["solver_calls"],
+            "agreement_rate": r["agreement_rate"],
+            "min_limit_mw": min(limits, default=None), "max_limit_mw": max(limits, default=None),
+            "evidence": str(Path(a.output).resolve()), "technical_acceptance": False})
     return EXIT_OK
 
 
@@ -221,8 +271,9 @@ def build_parser() -> argparse.ArgumentParser:
                         help="own engine: nr = Newton-Raphson (radial/meshed), bfs = radial sweep")
 
     def criteria(sp: argparse.ArgumentParser) -> None:
-        sp.add_argument("--v-min-pu", type=float, default=0.95)
-        sp.add_argument("--max-loading-percent", type=float, default=100.0)
+        sp.add_argument("--case", help="take planning criteria from this application case")
+        sp.add_argument("--v-min-pu", type=float, default=None)
+        sp.add_argument("--max-loading-percent", type=float, default=None)
 
     s = sub.add_parser("study", help="power flow + independent comparison + evidence")
     io(s)
@@ -280,6 +331,17 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--split", choices=("train", "valid", "test"), default="test")
     s.add_argument("--v-min-pu", type=float, default=0.95)
     s.set_defaults(func=cmd_eval_pf_baseline)
+
+    s = sub.add_parser("hosting-capacity", help="remaining capacity per bus (002/006)")
+    io(s)
+    s.add_argument("--buses", default="all", help="'all' or comma-separated bus ids")
+    s.add_argument("--p-max-mw", type=float, required=True)
+    s.add_argument("--p-step-mw", type=float, required=True)
+    s.add_argument("--pf", type=float, required=True, help="power factor of the new load")
+    s.add_argument("--margin-pu", type=float, default=0.005,
+                   help="voltage margin applied to the surrogate screening")
+    criteria(s)
+    s.set_defaults(func=cmd_hosting_capacity)
 
     s = sub.add_parser("verify-evidence", help="re-read evidence and check its digest")
     s.add_argument("evidence", type=Path)

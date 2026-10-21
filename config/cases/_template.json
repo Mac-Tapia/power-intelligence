@@ -39,5 +39,12 @@
       "allow_positive_sequence_approximation": false,
       "evidence": "estadística de la fuente que justifica cada regla"
     }
+  },
+  "planning_criteria": {
+    "v_min_pu": 0.0,
+    "v_max_pu": 0.0,
+    "max_loading_percent": 0.0,
+    "source": "norma de calidad de la jurisdicción",
+    "status": "clause_pending_verification_against_official_text"
   }
 }

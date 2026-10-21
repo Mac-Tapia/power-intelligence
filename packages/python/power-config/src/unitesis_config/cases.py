@@ -40,6 +40,7 @@ class ApplicationCase:
     source_ids: tuple[str, ...]
     authorized: bool
     import_rules: dict[str, dict[str, Any]] = field(default_factory=dict)
+    planning_criteria: dict[str, Any] = field(default_factory=dict)
 
     @property
     def zone(self) -> ZoneInfo:
@@ -96,6 +97,17 @@ def parse_case(data: dict[str, Any]) -> ApplicationCase:
     if not isinstance(import_rules, dict) or not all(
             isinstance(v, dict) for v in import_rules.values()):
         raise CaseError("import_rules must map a format name to an object of rules")
+    criteria = data.get("planning_criteria", {})
+    if criteria:
+        try:
+            v_min, v_max = float(criteria["v_min_pu"]), float(criteria["v_max_pu"])
+            loading = float(criteria["max_loading_percent"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise CaseError(f"planning_criteria incomplete: {exc}") from exc
+        if not (0.5 < v_min < 1.0 < v_max < 1.5 and 0 < loading <= 200):
+            raise CaseError("planning_criteria outside physical ranges")
+        if not str(criteria.get("source", "")).strip():
+            raise CaseError("planning_criteria require a documentary source")
     return ApplicationCase(
         case_id=case_id, role=role, country=country, region=data["region"],
         utility=data["utility"], frequency_hz=float(freq), crs=crs,
@@ -103,7 +115,7 @@ def parse_case(data: dict[str, Any]) -> ApplicationCase:
         timezone=tz, measurement_interval=_require(data, "time.measurement_interval"),
         currency=currency, regulatory_profiles=tuple(profiles), source_ids=tuple(sources),
         authorized=_require(data, "authorization.status") == "confirmed",
-        import_rules=import_rules)
+        import_rules=import_rules, planning_criteria=criteria)
 
 
 def check_consistency(case: ApplicationCase, profiles_dir: Path,

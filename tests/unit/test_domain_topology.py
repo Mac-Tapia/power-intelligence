@@ -86,6 +86,9 @@ class SnapshotIdentityTests(unittest.TestCase):
             feeder(slacks=())
         with self.assertRaises(SnapshotError):
             Line("L", "A", "B", 1.0, 0.0, 0.0)
+        for kv in (0, -10.0, 2500.0):
+            with self.assertRaises((SnapshotError, ValueError)):
+                Bus("V", kv)                       # nominal voltage must be physical
 
 
 class TopologyTests(unittest.TestCase):
