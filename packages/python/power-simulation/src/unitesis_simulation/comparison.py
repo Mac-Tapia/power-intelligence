@@ -11,17 +11,15 @@ import math
 from typing import Any, Literal
 
 from unitesis_domain import ComparisonTolerances, ElectricalSnapshot, StudyResult
-from unitesis_topology import build_radial_tree
+from unitesis_topology import build_energized_network
 
 ComparisonStatus = Literal["passed", "failed"]
 _PROXY_MARKERS = ("proxy", "surrogate", "mock", "fake", "stub")
 
 
 def expected_coverage(snapshot: ElectricalSnapshot) -> tuple[set[str], set[str]]:
-    tree = build_radial_tree(snapshot)
-    energized = set(tree.order)
-    lines = {ln.line_id for ln in snapshot.lines if ln.in_service and ln.from_bus in energized}
-    return energized, lines
+    network = build_energized_network(snapshot)  # meshes allowed; scope errors propagate
+    return set(network.energized_buses), {ln.line_id for ln in network.lines}
 
 
 def _angle_diff(a: float, b: float) -> float:

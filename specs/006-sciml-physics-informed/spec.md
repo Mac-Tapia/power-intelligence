@@ -12,14 +12,21 @@ Estimar en milisegundos tensiones, ángulos, corrientes y cargabilidad de alimen
 - **PINN estricto** (EDP con autodiferenciación): solo para dinámica o transitorios, en una fase posterior. Un flujo en régimen estacionario no se presenta como PINN.
 - Una penalización física suave no garantiza que se cumpla la física. Toda predicción que sirva para decidir se verifica.
 
-## Datos (dataset gold `vnr-pf-scenarios-<case_id>`, spec 029)
+## Datos: redes reales del caso (dataset gold `vnr-pf-scenarios-<case_id>`, spec 029)
 
-El método es universal: sirve para cualquier empresa cuyo inventario se ingeste con la spec 001. El caso piloto de entrenamiento y pruebas es `pe-ica-electrodunas` (VNR-GIS Electro Dunas, abr‑2024).
+El entrenamiento se hace **con redes reales** de la empresa del caso. Los benchmarks IEEE y las redes sintéticas solo validan el motor y las pruebas unitarias, nunca entrenan. El método es universal (cualquier empresa ingestada con la spec 001). El piloto es `pe-ica-electrodunas`, con tres fuentes complementarias:
 
-1. Snapshots por alimentador desde VNR-GIS (`mtSalida`, `mtTramo`, `mtEquipo`, `Sed`), con el mapeo `CodNorma` → catálogo de conductores versionado y con fuente. Lo que no se pueda mapear va a cuarentena.
-2. Escenarios: demanda por SED = `MaxDemTotal` × perfil normalizado (forecast gold) × factor de potencia **declarado como supuesto de escenario**; variantes N-1 de interruptores.
-3. Etiquetas: las produce el solver propio. Solo se aceptan muestras convergidas y con contraste por muestreo.
-4. Cada muestra es un grafo (nodos: barras con kV y P/Q; aristas: R, X, longitud y estado) más sus etiquetas, `snapshot_sha256` y `scenario_id`.
+| Fuente | Registro | Aporte | Estado |
+|---|---|---|---|
+| TXT: exportación ASCII CYMDIST (RED, CARGA, BD_Equipo) | `eldu-cyme-ascii-2026-08` | topología de 96 alimentadores (38 681 nodos, 38 657 secciones), 7 287 cargas, R1/X1/ampacidad por código de conductor | estructura auditada; lector T001-T010 |
+| MDB: bases de estudio por alimentador | `eldu-cyme-study-mdb` | modelos por alimentador para contrastar la topología TXT | pendiente de un lector Access autorizado (T001-T011) |
+| VNR-GIS (SQL Server) | `eldu-vnrgis-2024-04` (+ parámetros) | inventario oficial, geometría UTM, `MaxDemTotal` por SED, estado de equipos | pendiente de restaurar (T001-T003) |
+
+1. Los snapshots por alimentador se construyen con los lectores offline de la spec 001. La R/X sale del catálogo real (`BD_Equipo`, mapeado a `CodNorma`); lo no mapeable va a cuarentena y la muestra se descarta, nunca se completa.
+2. Escenarios: demanda por carga o SED escalada con perfiles gold del caso (medidores 2023-2026), con el factor de potencia **declarado como supuesto de escenario** y variantes N-1 de interruptores.
+3. Etiquetas: las produce el solver propio (Newton-Raphson, 004-B1; con transformadores tras 004-B2). Solo se aceptan muestras convergidas y con contraste por muestreo.
+4. Cada muestra es un grafo (nodos: barras con kV y P/Q; aristas: R, X, longitud y estado) con sus etiquetas, `snapshot_sha256`, `scenario_id` y `source_id`.
+5. La fuente de cada alimentador (TXT, MDB o VNR) queda registrada. Si dos fuentes describen el mismo alimentador, las diferencias de topología se reportan antes de entrenar.
 
 ## Criterios de aceptación
 

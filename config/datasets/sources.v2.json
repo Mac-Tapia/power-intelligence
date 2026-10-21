@@ -1,107 +1,445 @@
 {
-  "schema": "unitesis.dataset-sources/2",
-  "note": "Registro universal de fuentes candidatas. Cada fuente declara su case_id (caso de aplicación) y su role. 'application_case' alimenta datasets y evidencias del caso; 'method_reference' solo sirve para desarrollar o probar métodos y nunca se presenta como evidencia de un caso. Registrar una fuente no la autoriza.",
-  "roots": {
-    "archive": "--archive-root (archivo externo, solo lectura)",
-    "local_reference": "power-intelligence/local-data/reference (fuera de Git)"
+ "schema": "unitesis.dataset-sources/2",
+ "note": "Registro universal de fuentes candidatas. Cada fuente declara su case_id (caso de aplicación) y su role. 'application_case' alimenta datasets y evidencias del caso; 'method_reference' solo sirve para desarrollar o probar métodos y nunca se presenta como evidencia de un caso. Registrar una fuente no la autoriza.",
+ "roots": {
+  "archive": "--archive-root (archivo externo, solo lectura)",
+  "local_reference": "power-intelligence/local-data/reference (fuera de Git)"
+ },
+ "sources": [
+  {
+   "source_id": "eldu-vnrgis-2024-04",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "topology",
+    "pinn_gnn",
+    "planning"
+   ],
+   "root": "local_reference",
+   "path": "vnr-gis/DAT_VNR/ELDU_VNR_24_APR.bak",
+   "kind": "sqlserver_backup",
+   "origin": "VNR-GIS Electro Dunas, corte abril 2024",
+   "column_origin": "measured_inventory",
+   "sensitivity": "utility_asset_data",
+   "authorization": "pending_owner_confirmation"
   },
-  "sources": [
-    {"source_id": "eldu-vnrgis-2024-04", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["topology", "pinn_gnn", "planning"], "root": "local_reference", "path": "vnr-gis/DAT_VNR/ELDU_VNR_24_APR.bak",
-     "kind": "sqlserver_backup", "origin": "VNR-GIS Electro Dunas, corte abril 2024", "column_origin": "measured_inventory",
-     "sensitivity": "utility_asset_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-vnrgis-params-2024-04", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["topology", "pinn_gnn"], "root": "local_reference", "path": "vnr-gis/DAT_VNR/paramVNRGISELDU_24_APR.bak",
-     "kind": "sqlserver_backup", "origin": "parámetros VNR-GIS (normas, costos); sin R/X", "column_origin": "catalog",
-     "sensitivity": "utility_asset_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-meter-demand-2023-2026", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast", "pinn_gnn", "madrl"], "root": "archive", "path": "Prodma/datahistorica",
-     "kind": "spreadsheet_folder", "origin": "medidores P/Q cada 15 min por medidor, 2023-2026", "column_origin": "measured",
-     "sensitivity": "utility_operational_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-new-customers", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast", "planning"], "root": "archive", "path": "Prodma/nuevosclientes",
-     "kind": "spreadsheet_folder", "origin": "solicitudes de nuevos clientes", "column_origin": "declared_by_customer",
-     "sensitivity": "confidential_customer_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-line-demand-l6605-l6606", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast"], "root": "archive", "path": "informe/data/raw",
-     "kind": "spreadsheet_folder", "origin": "registro de demanda kVA/kW/kvar 15 min, L-6605/L-6606, ene-2023 a sep-2026", "column_origin": "measured",
-     "sensitivity": "utility_operational_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-feeder-head-measurements", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast", "pinn_gnn"], "root": "archive", "path": "RECYM/data/input/common/medicioncabecera",
-     "kind": "spreadsheet_folder", "origin": "medición en cabecera por sistema (Chincha, Ica, Nasca, Pisco)", "column_origin": "measured",
-     "sensitivity": "utility_operational_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-feeder-meters", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast", "pinn_gnn"], "root": "archive", "path": "RECYM/data/input/common/medidoralimentador",
-     "kind": "spreadsheet_folder", "origin": "relación medidor-alimentador", "column_origin": "reference_mapping",
-     "sensitivity": "utility_operational_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-supply-customers", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["pinn_gnn", "madrl"], "root": "archive", "path": "RECYM/data/input/common/suministrocliente",
-     "kind": "spreadsheet_folder", "origin": "suministros por cliente", "column_origin": "measured_inventory",
-     "sensitivity": "confidential_customer_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-key-customers", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["madrl", "forecast"], "root": "archive", "path": "RECYM/data/input/common/clientesimportantes",
-     "kind": "spreadsheet_folder", "origin": "clientes importantes mensuales 2026", "column_origin": "measured",
-     "sensitivity": "confidential_customer_data", "authorization": "pending_owner_confirmation"},
-    {"source_id": "eldu-exog-temperature-ica", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast", "madrl"], "root": "archive", "path": "Prodma/variables_externas/temperatura/temperatura_15min_ica_centro_2023_2026.csv",
-     "kind": "timeseries_csv", "origin": "Open-Meteo ERA5 horario, interpolado a 15 min", "column_origin": "interpolated_reanalysis",
-     "sensitivity": "public", "authorization": "public_source_license_to_record",
-     "checks": {"positional_time_index": {"date_column": "fecha_hora", "start": "2023-01-01 00:15", "freq": "15min"},
-                "real_coverage": {"column": "temperatura_c"}}},
-    {"source_id": "eldu-exog-calendar-pe", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast", "madrl"], "root": "archive", "path": "Prodma/variables_externas/calendario/feriados_15min_2023_2026.csv",
-     "kind": "timeseries_csv", "origin": "feriados nacionales Perú (biblioteca holidays)", "column_origin": "calendar",
-     "sensitivity": "public", "authorization": "public_source_license_to_record",
-     "checks": {"positional_time_index": {"date_column": "fecha_hora", "start": "2023-01-01 00:15", "freq": "15min"}}},
-    {"source_id": "eldu-exog-gdp-bcrp", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast"], "root": "archive", "path": "Prodma/variables_externas/economia/pbi_mensual_bcrp_2023_2026.csv",
-     "kind": "timeseries_csv", "origin": "BCRPData PN01773AM mensual", "column_origin": "official_statistic",
-     "sensitivity": "public", "authorization": "public_source_license_to_record",
-     "checks": {"real_coverage": {"column": "valor"}}},
-    {"source_id": "eldu-exog-population-ica", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast"], "root": "archive", "path": "Prodma/variables_externas/poblacion/poblacion_ica_2023_2026.csv",
-     "kind": "timeseries_csv", "origin": "INEI: 2 puntos observados + interpolación/extrapolación declarada", "column_origin": "mixed_observed_interpolated",
-     "sensitivity": "public", "authorization": "public_source_license_to_record",
-     "checks": {"real_coverage": {"column": "poblacion"}}},
-    {"source_id": "eldu-exog-nasa-power-pisco", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["forecast", "madrl"], "root": "archive", "path": "informe/data/raw/externas/nasa_power_pisco_2023_2026.csv",
-     "kind": "timeseries_csv", "origin": "NASA POWER MERRA-2 diario, Pisco", "column_origin": "reanalysis",
-     "sensitivity": "public", "authorization": "public_source_license_to_record",
-     "reader": {"header_end_marker": "-END HEADER-", "missing_sentinel": -999},
-     "checks": {"real_coverage": {"column": "T2M"}}},
-    {"source_id": "eldu-dger-investment-studies", "case_id": "pe-ica-electrodunas", "role": "application_case",
-     "purpose": ["llm_corpus", "planning_costs"], "root": "local_reference", "path": "investment-studies/DGER",
-     "kind": "document_folder", "origin": "expedientes técnicos DGER (memoria, metrados, planos)", "column_origin": "document",
-     "sensitivity": "confidential_project_documents", "authorization": "pending_owner_confirmation"},
-
-    {"source_id": "ref-iquitos-citylearn-2023-2025", "case_id": null, "role": "method_reference",
-     "purpose": ["madrl_method_development"], "root": "archive",
-     "path": "MADRLCitytleranflexresdr - copia/CityLearn/data/datasets/citylearn_iquitos_2023_2025",
-     "kind": "citylearn_dataset", "origin": "proyecto previo (Iquitos): facturas mensuales desagregadas + DER de escenario", "column_origin": "disaggregated_and_scenario",
-     "sensitivity": "confidential_customer_data", "authorization": "pending_owner_confirmation",
-     "checks": {"forecast_leakage": [
-       {"file": "weather.csv", "actual": "outdoor_dry_bulb_temperature", "prefix": "outdoor_dry_bulb_temperature_predicted_"},
-       {"file": "weather.csv", "actual": "direct_solar_irradiance", "prefix": "direct_solar_irradiance_predicted_"},
-       {"file": "pricing.csv", "actual": "electricity_pricing", "prefix": "electricity_pricing_predicted_"}]}},
-    {"source_id": "ref-iquitos-building-bills", "case_id": null, "role": "method_reference",
-     "purpose": ["madrl_method_development"], "root": "archive",
-     "path": "MADRLCitytleranflexresdr - copia/CityLearn/data/buildingcsv",
-     "kind": "monthly_meter_bills", "origin": "proyecto previo (Iquitos): origen del dataset CityLearn de referencia", "column_origin": "measured",
-     "sensitivity": "confidential_customer_data", "authorization": "pending_owner_confirmation",
-     "checks": {"monthly_split_consistency": {"glob": "B_*.csv", "sep": ";", "decimal": ",", "encoding": "latin-1",
-                "peak": "EnergiaActivaHoraPunta", "offpeak": "EnergiaActivaFueraPunta", "total": "totalEnergiaActiva"}}},
-    {"source_id": "ref-iquitos-feeders-2013-2025-final", "case_id": null, "role": "method_reference",
-     "purpose": ["forecast_method_development"], "root": "archive",
-     "path": "iquitos_madrl_gridlabd_v1/data/processed/dataset_completo_real_2013_2025_FINAL.csv",
-     "kind": "timeseries_csv", "origin": "proyecto previo (Iquitos)", "column_origin": "measured",
-     "sensitivity": "utility_operational_data", "authorization": "pending_owner_confirmation",
-     "checks": {"real_coverage": {"column": "TOTAL-SAL", "claimed_start": "2013-01-01", "claimed_end": "2025-12-31", "freq": "15min"}}},
-    {"source_id": "ref-iquitos-feeders-2024", "case_id": null, "role": "method_reference",
-     "purpose": ["forecast_method_development"], "root": "archive",
-     "path": "demandaiq/PerfilDeCarga2024/data/processed/dataframe_consolidado.csv",
-     "kind": "timeseries_csv", "origin": "proyecto previo (demandaiq), consolidado 2024", "column_origin": "measured",
-     "sensitivity": "utility_operational_data", "authorization": "pending_owner_confirmation",
-     "checks": {"positional_time_index": {"date_column": "FECHA", "start": "2024-01-01", "freq": "15min", "dayfirst": true},
-                "real_coverage": {"column": "TOTAL  salidas"}}}
-  ]
+  {
+   "source_id": "eldu-vnrgis-params-2024-04",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "topology",
+    "pinn_gnn"
+   ],
+   "root": "local_reference",
+   "path": "vnr-gis/DAT_VNR/paramVNRGISELDU_24_APR.bak",
+   "kind": "sqlserver_backup",
+   "origin": "parámetros VNR-GIS (normas, costos); sin R/X",
+   "column_origin": "catalog",
+   "sensitivity": "utility_asset_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-meter-demand-2023-2026",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast",
+    "pinn_gnn",
+    "madrl"
+   ],
+   "root": "archive",
+   "path": "Prodma/datahistorica",
+   "kind": "spreadsheet_folder",
+   "origin": "medidores P/Q cada 15 min por medidor, 2023-2026",
+   "column_origin": "measured",
+   "sensitivity": "utility_operational_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-new-customers",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast",
+    "planning"
+   ],
+   "root": "archive",
+   "path": "Prodma/nuevosclientes",
+   "kind": "spreadsheet_folder",
+   "origin": "solicitudes de nuevos clientes",
+   "column_origin": "declared_by_customer",
+   "sensitivity": "confidential_customer_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-line-demand-l6605-l6606",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast"
+   ],
+   "root": "archive",
+   "path": "informe/data/raw",
+   "kind": "spreadsheet_folder",
+   "origin": "registro de demanda kVA/kW/kvar 15 min, L-6605/L-6606, ene-2023 a sep-2026",
+   "column_origin": "measured",
+   "sensitivity": "utility_operational_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-feeder-head-measurements",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast",
+    "pinn_gnn"
+   ],
+   "root": "archive",
+   "path": "RECYM/data/input/common/medicioncabecera",
+   "kind": "spreadsheet_folder",
+   "origin": "medición en cabecera por sistema (Chincha, Ica, Nasca, Pisco)",
+   "column_origin": "measured",
+   "sensitivity": "utility_operational_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-feeder-meters",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast",
+    "pinn_gnn"
+   ],
+   "root": "archive",
+   "path": "RECYM/data/input/common/medidoralimentador",
+   "kind": "spreadsheet_folder",
+   "origin": "relación medidor-alimentador",
+   "column_origin": "reference_mapping",
+   "sensitivity": "utility_operational_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-supply-customers",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "pinn_gnn",
+    "madrl"
+   ],
+   "root": "archive",
+   "path": "RECYM/data/input/common/suministrocliente",
+   "kind": "spreadsheet_folder",
+   "origin": "suministros por cliente",
+   "column_origin": "measured_inventory",
+   "sensitivity": "confidential_customer_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-key-customers",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "madrl",
+    "forecast"
+   ],
+   "root": "archive",
+   "path": "RECYM/data/input/common/clientesimportantes",
+   "kind": "spreadsheet_folder",
+   "origin": "clientes importantes mensuales 2026",
+   "column_origin": "measured",
+   "sensitivity": "confidential_customer_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-exog-temperature-ica",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast",
+    "madrl"
+   ],
+   "root": "archive",
+   "path": "Prodma/variables_externas/temperatura/temperatura_15min_ica_centro_2023_2026.csv",
+   "kind": "timeseries_csv",
+   "origin": "Open-Meteo ERA5 horario, interpolado a 15 min",
+   "column_origin": "interpolated_reanalysis",
+   "sensitivity": "public",
+   "authorization": "public_source_license_to_record",
+   "checks": {
+    "positional_time_index": {
+     "date_column": "fecha_hora",
+     "start": "2023-01-01 00:15",
+     "freq": "15min"
+    },
+    "real_coverage": {
+     "column": "temperatura_c"
+    }
+   }
+  },
+  {
+   "source_id": "eldu-exog-calendar-pe",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast",
+    "madrl"
+   ],
+   "root": "archive",
+   "path": "Prodma/variables_externas/calendario/feriados_15min_2023_2026.csv",
+   "kind": "timeseries_csv",
+   "origin": "feriados nacionales Perú (biblioteca holidays)",
+   "column_origin": "calendar",
+   "sensitivity": "public",
+   "authorization": "public_source_license_to_record",
+   "checks": {
+    "positional_time_index": {
+     "date_column": "fecha_hora",
+     "start": "2023-01-01 00:15",
+     "freq": "15min"
+    }
+   }
+  },
+  {
+   "source_id": "eldu-exog-gdp-bcrp",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast"
+   ],
+   "root": "archive",
+   "path": "Prodma/variables_externas/economia/pbi_mensual_bcrp_2023_2026.csv",
+   "kind": "timeseries_csv",
+   "origin": "BCRPData PN01773AM mensual",
+   "column_origin": "official_statistic",
+   "sensitivity": "public",
+   "authorization": "public_source_license_to_record",
+   "checks": {
+    "real_coverage": {
+     "column": "valor"
+    }
+   }
+  },
+  {
+   "source_id": "eldu-exog-population-ica",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast"
+   ],
+   "root": "archive",
+   "path": "Prodma/variables_externas/poblacion/poblacion_ica_2023_2026.csv",
+   "kind": "timeseries_csv",
+   "origin": "INEI: 2 puntos observados + interpolación/extrapolación declarada",
+   "column_origin": "mixed_observed_interpolated",
+   "sensitivity": "public",
+   "authorization": "public_source_license_to_record",
+   "checks": {
+    "real_coverage": {
+     "column": "poblacion"
+    }
+   }
+  },
+  {
+   "source_id": "eldu-exog-nasa-power-pisco",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "forecast",
+    "madrl"
+   ],
+   "root": "archive",
+   "path": "informe/data/raw/externas/nasa_power_pisco_2023_2026.csv",
+   "kind": "timeseries_csv",
+   "origin": "NASA POWER MERRA-2 diario, Pisco",
+   "column_origin": "reanalysis",
+   "sensitivity": "public",
+   "authorization": "public_source_license_to_record",
+   "reader": {
+    "header_end_marker": "-END HEADER-",
+    "missing_sentinel": -999
+   },
+   "checks": {
+    "real_coverage": {
+     "column": "T2M"
+    }
+   }
+  },
+  {
+   "source_id": "eldu-dger-investment-studies",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "llm_corpus",
+    "planning_costs"
+   ],
+   "root": "local_reference",
+   "path": "investment-studies/DGER",
+   "kind": "document_folder",
+   "origin": "expedientes técnicos DGER (memoria, metrados, planos)",
+   "column_origin": "document",
+   "sensitivity": "confidential_project_documents",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "eldu-cyme-ascii-2026-08",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "topology",
+    "pinn_gnn",
+    "planning"
+   ],
+   "root": "archive",
+   "path": "flujos/outputs/jobs/79efed5d-8204-416b-acdb-7ee75da3509d/inputs",
+   "kind": "cyme_ascii_export",
+   "origin": "exportación ASCII CYMDIST 4.7 (03/08/2026) de la red de Electro Dunas: RED (nodos, secciones, fuentes), CARGA (cargas) y BD_Equipo (R1/X1/ampacidad por código de conductor). Se lee offline; no ejecuta CYME (ADR-0010)",
+   "column_origin": "measured_inventory_and_catalog",
+   "sensitivity": "utility_asset_data",
+   "authorization": "pending_owner_confirmation",
+   "checks": {
+    "cyme_ascii_structure": {
+     "RED_030826.txt": [
+      "HEADNODES",
+      "NODE",
+      "SECTION",
+      "SOURCE"
+     ],
+     "CARGA_030826.txt": [
+      "LOADS",
+      "CUSTOMER LOADS"
+     ],
+     "BD_Equipo_V261124 (1).txt": [
+      "LINE",
+      "CABLE"
+     ]
+    }
+   }
+  },
+  {
+   "source_id": "eldu-cyme-study-mdb",
+   "case_id": "pe-ica-electrodunas",
+   "role": "application_case",
+   "purpose": [
+    "topology",
+    "pinn_gnn"
+   ],
+   "root": "archive",
+   "path": "RECYM/data/output/feeders",
+   "kind": "access_mdb_folder",
+   "origin": "bases de estudio MDB por alimentador (incluye copias de auditoría original/narrow/precise/work); se leen offline como tablas Access, sin CYME",
+   "column_origin": "measured_inventory",
+   "sensitivity": "utility_asset_data",
+   "authorization": "pending_owner_confirmation"
+  },
+  {
+   "source_id": "ref-iquitos-citylearn-2023-2025",
+   "case_id": null,
+   "role": "method_reference",
+   "purpose": [
+    "madrl_method_development"
+   ],
+   "root": "archive",
+   "path": "MADRLCitytleranflexresdr - copia/CityLearn/data/datasets/citylearn_iquitos_2023_2025",
+   "kind": "citylearn_dataset",
+   "origin": "proyecto previo (Iquitos): facturas mensuales desagregadas + DER de escenario",
+   "column_origin": "disaggregated_and_scenario",
+   "sensitivity": "confidential_customer_data",
+   "authorization": "pending_owner_confirmation",
+   "checks": {
+    "forecast_leakage": [
+     {
+      "file": "weather.csv",
+      "actual": "outdoor_dry_bulb_temperature",
+      "prefix": "outdoor_dry_bulb_temperature_predicted_"
+     },
+     {
+      "file": "weather.csv",
+      "actual": "direct_solar_irradiance",
+      "prefix": "direct_solar_irradiance_predicted_"
+     },
+     {
+      "file": "pricing.csv",
+      "actual": "electricity_pricing",
+      "prefix": "electricity_pricing_predicted_"
+     }
+    ]
+   }
+  },
+  {
+   "source_id": "ref-iquitos-building-bills",
+   "case_id": null,
+   "role": "method_reference",
+   "purpose": [
+    "madrl_method_development"
+   ],
+   "root": "archive",
+   "path": "MADRLCitytleranflexresdr - copia/CityLearn/data/buildingcsv",
+   "kind": "monthly_meter_bills",
+   "origin": "proyecto previo (Iquitos): origen del dataset CityLearn de referencia",
+   "column_origin": "measured",
+   "sensitivity": "confidential_customer_data",
+   "authorization": "pending_owner_confirmation",
+   "checks": {
+    "monthly_split_consistency": {
+     "glob": "B_*.csv",
+     "sep": ";",
+     "decimal": ",",
+     "encoding": "latin-1",
+     "peak": "EnergiaActivaHoraPunta",
+     "offpeak": "EnergiaActivaFueraPunta",
+     "total": "totalEnergiaActiva"
+    }
+   }
+  },
+  {
+   "source_id": "ref-iquitos-feeders-2013-2025-final",
+   "case_id": null,
+   "role": "method_reference",
+   "purpose": [
+    "forecast_method_development"
+   ],
+   "root": "archive",
+   "path": "iquitos_madrl_gridlabd_v1/data/processed/dataset_completo_real_2013_2025_FINAL.csv",
+   "kind": "timeseries_csv",
+   "origin": "proyecto previo (Iquitos)",
+   "column_origin": "measured",
+   "sensitivity": "utility_operational_data",
+   "authorization": "pending_owner_confirmation",
+   "checks": {
+    "real_coverage": {
+     "column": "TOTAL-SAL",
+     "claimed_start": "2013-01-01",
+     "claimed_end": "2025-12-31",
+     "freq": "15min"
+    }
+   }
+  },
+  {
+   "source_id": "ref-iquitos-feeders-2024",
+   "case_id": null,
+   "role": "method_reference",
+   "purpose": [
+    "forecast_method_development"
+   ],
+   "root": "archive",
+   "path": "demandaiq/PerfilDeCarga2024/data/processed/dataframe_consolidado.csv",
+   "kind": "timeseries_csv",
+   "origin": "proyecto previo (demandaiq), consolidado 2024",
+   "column_origin": "measured",
+   "sensitivity": "utility_operational_data",
+   "authorization": "pending_owner_confirmation",
+   "checks": {
+    "positional_time_index": {
+     "date_column": "FECHA",
+     "start": "2024-01-01",
+     "freq": "15min",
+     "dayfirst": true
+    },
+    "real_coverage": {
+     "column": "TOTAL  salidas"
+    }
+   }
+  }
+ ]
 }

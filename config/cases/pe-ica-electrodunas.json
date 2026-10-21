@@ -41,6 +41,8 @@
   "source_ids": [
     "eldu-vnrgis-2024-04",
     "eldu-vnrgis-params-2024-04",
+    "eldu-cyme-study-mdb",
+    "eldu-cyme-ascii-2026-08",
     "eldu-meter-demand-2023-2026",
     "eldu-new-customers",
     "eldu-line-demand-l6605-l6606",

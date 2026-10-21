@@ -25,6 +25,8 @@ Evidencia: `datasets/quality/source_audit_pe-ica-electrodunas.json`.
 | Fuente | Contenido | Estado |
 |---|---|---|
 | `eldu-vnrgis-2024-04` (+ parámetros) | VNR-GIS abr‑2024, backup SQL Server 819 MB | `pending_restore` |
+| `eldu-cyme-ascii-2026-08` | red real en TXT ASCII CYMDIST: 96 alimentadores, 38 681 nodos, 7 287 cargas, catálogo de conductores con R/X | **pasa el control estructural** |
+| `eldu-cyme-study-mdb` | 1 164 bases MDB por alimentador (3,45 GB) | `pending_reader` (lector Access) |
 | `eldu-meter-demand-2023-2026` | P/Q cada 15 min por medidor (4 xlsx, 577 MB) | `pending_reader` |
 | `eldu-line-demand-l6605-l6606` | kVA/kW/kvar 15 min, ene‑2023 a sep‑2026 | `pending_reader` |
 | `eldu-feeder-head-measurements` | cabecera por sistema Chincha/Ica/Nasca/Pisco (1 GB xls) | `pending_reader` |
@@ -54,7 +56,7 @@ Antes de usarlas incluso como referencia de método hay que corregirlas.
 | Propósito | Dataset gold | Fuentes del piloto | Bloqueo |
 |---|---|---|---|
 | Forecast | `feeder-load-15min-pe-ica-electrodunas` | medidores, líneas, cabeceras y exógenas | lector xlsx/xls/xlsb (autorizar `openpyxl`, `xlrd`, `pyxlsb`) |
-| GNN/PINN (006) | `vnr-pf-scenarios-pe-ica-electrodunas` | VNR-GIS + catálogo + perfiles gold + solver | restaurar el VNR; adaptador 001; motor 004‑B |
+| GNN/PINN (006) | `vnr-pf-scenarios-pe-ica-electrodunas` | redes reales TXT + MDB + VNR-GIS, catálogo BD_Equipo, perfiles gold, solver propio | lector TXT (T001-T010); lector MDB y VNR restaurado; transformadores (004‑B2) |
 | MADRL (007) | `district-flex-pe-ica-electrodunas` | clientes importantes, medidores, exógenas y DER de escenario | no existe dataset CityLearn de Ica: construirlo desde mediciones reales del caso |
 | LLM (008) | `corpus-<jurisdicción>` + `tool-use-traces` + `eval-electrical-qa` | normas PE registradas, expedientes DGER autorizados, ejecuciones de la CLI | licencias y textos completos |
 

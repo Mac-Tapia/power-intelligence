@@ -104,6 +104,39 @@ def audit_timeseries(path: Path, checks: dict, reader: dict) -> list[dict]:
     return out
 
 
+def cyme_ascii_sections(path: Path) -> dict[str, int]:
+    """Data rows per ``[SECTION]`` of a CYME ASCII export (offline text parsing only)."""
+    counts: dict[str, int] = {}
+    current = None
+    with path.open(encoding="latin-1") as stream:
+        for raw in stream:
+            line = raw.strip()
+            if line.startswith("[") and line.endswith("]"):
+                current = line[1:-1]
+                counts.setdefault(current, 0)
+            elif current and line and not line.startswith("FORMAT_") and "=" not in line[:20]:
+                counts[current] += 1
+    return counts
+
+
+def audit_cyme_ascii(path: Path, spec: dict) -> list[dict]:
+    out = []
+    for name, required in spec.items():
+        f = path / name
+        if not f.is_file():
+            out.append({"check": "cyme_ascii_structure", "file": name, "status": "rejected",
+                        "detail": "file missing"})
+            continue
+        counts = cyme_ascii_sections(f)
+        present = {sec for sec, n in counts.items() if n > 0}
+        missing = [r for r in required if not any(r in sec for sec in present)]
+        out.append({"check": "cyme_ascii_structure", "file": name, "sha256": sha256_file(f),
+                    "status": "consistent" if not missing else "rejected",
+                    "missing_sections": missing,
+                    "rows_per_section": {k: v for k, v in sorted(counts.items()) if v}})
+    return out
+
+
 def inventory_folder(path: Path) -> dict:
     files = [p for p in sorted(path.rglob("*")) if p.is_file() and not p.name.startswith("~$")]
     return {"files": len(files), "bytes": sum(p.stat().st_size for p in files),
@@ -124,6 +157,13 @@ def audit_source(src: dict, roots: dict[str, Path]) -> dict:
         return entry | {"status": "pending_restore", "checks": [],
                         "sha256": sha256_file(path), "bytes": path.stat().st_size,
                         "next_step": "restore into a new local database, then run the 001 adapter"}
+    if kind == "access_mdb_folder":
+        inv = inventory_folder(path)
+        reader_ok = importlib.util.find_spec("pyodbc") is not None
+        return entry | {"status": "inventoried" if reader_ok else "pending_reader", "checks": [],
+                        "inventory": inv,
+                        "next_step": "authorize an Access reader (pyodbc + Access ODBC driver, "
+                                     "or mdbtools) for offline table export"}
     if kind in ("spreadsheet_folder", "document_folder"):
         inv = inventory_folder(path)
         if kind == "document_folder":
@@ -136,6 +176,8 @@ def audit_source(src: dict, roots: dict[str, Path]) -> dict:
                         if status == "pending_reader" else "define bronze parser"}
     if kind == "citylearn_dataset":
         checks = audit_citylearn(path, src["checks"])
+    elif kind == "cyme_ascii_export":
+        checks = audit_cyme_ascii(path, src["checks"]["cyme_ascii_structure"])
     elif kind == "monthly_meter_bills":
         checks = audit_monthly(path, src["checks"]["monthly_split_consistency"])
     else:

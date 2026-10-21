@@ -109,11 +109,14 @@ def parse_payload(raw: bytes) -> dict[str, Any]:
         raise IngestionError(f"unsupported schema {payload.get('schema')!r}")
     if payload.get("units") != UNITS:
         raise IngestionError(f"units must be declared exactly as {UNITS}")
-    allowed = {"schema", "source_id", "units", "network", "crs", "authorization"}
+    allowed = {"schema", "source_id", "units", "network", "crs", "authorization", "provenance"}
     if extra := set(payload) - allowed:
         raise IngestionError(f"unknown top-level fields: {sorted(extra)}")
     if not isinstance(payload.get("source_id"), str) or not payload["source_id"].strip():
         raise IngestionError("source_id required")
+    if "provenance" in payload and (not isinstance(payload["provenance"], str)
+                                    or not payload["provenance"].strip()):
+        raise IngestionError("provenance must be a non-empty string when present")
     if not isinstance(payload.get("network"), dict):
         raise IngestionError("network object required")
     return payload
@@ -161,6 +164,7 @@ def build_snapshot(payload: dict[str, Any], source_ref: str) -> IngestionResult:
         "crs": payload.get("crs"),
         "geometry": "not_ingested",
         "authorization": payload.get("authorization", "not_declared"),
+        "provenance": payload.get("provenance"),
         "record_counts": counts,
         "quarantined_fields": len(quarantine),
         "parameter_quality": "explicit_source_values_unverified",

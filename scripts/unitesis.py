@@ -43,9 +43,10 @@ def _print(data: dict[str, Any]) -> None:
 
 
 def cmd_study(a: argparse.Namespace) -> int:
-    from unitesis_application.study import run_study
+    from unitesis_application.study import engine_by_name, run_study
 
-    result = run_study(a.input, a.output, scenario_id=a.scenario)
+    result = run_study(a.input, a.output, scenario_id=a.scenario,
+                       candidate=engine_by_name(a.engine))
     comparison = result["comparison"]
     _print({"status": result["status"], "snapshot_sha256": result["snapshot_sha256"],
             "comparison": comparison.get("status"),
@@ -58,11 +59,12 @@ def cmd_study(a: argparse.Namespace) -> int:
 
 
 def cmd_new_load(a: argparse.Namespace) -> int:
-    from unitesis_application.study import run_new_load_study
+    from unitesis_application.study import engine_by_name, run_new_load_study
 
     result = run_new_load_study(a.input, a.output, load_id=a.load_id, bus=a.bus, p_mw=a.p_mw,
                                 q_mvar=a.q_mvar, v_min_pu=a.v_min_pu,
-                                max_loading_percent=a.max_loading_percent)
+                                max_loading_percent=a.max_loading_percent,
+                                candidate=engine_by_name(a.engine))
     _print({"screening": result["screening"], "violations": result["violations"],
             "before": result["before"]["summary"], "after": result["after"]["summary"],
             "comparison_after": result["after"]["comparison"]["status"],
@@ -173,6 +175,10 @@ def build_parser() -> argparse.ArgumentParser:
         sp.add_argument("--input", type=Path, required=True)
         sp.add_argument("--output", type=Path, required=True)
 
+    def engine(sp: argparse.ArgumentParser) -> None:
+        sp.add_argument("--engine", choices=("nr", "bfs"), default="nr",
+                        help="own engine: nr = Newton-Raphson (radial/meshed), bfs = radial sweep")
+
     def criteria(sp: argparse.ArgumentParser) -> None:
         sp.add_argument("--v-min-pu", type=float, default=0.95)
         sp.add_argument("--max-loading-percent", type=float, default=100.0)
@@ -180,6 +186,7 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("study", help="power flow + independent comparison + evidence")
     io(s)
     s.add_argument("--scenario", default="base")
+    engine(s)
     s.set_defaults(func=cmd_study)
 
     s = sub.add_parser("new-load", help="new customer connection on a cloned scenario")
@@ -188,6 +195,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--bus", required=True)
     s.add_argument("--p-mw", type=float, required=True)
     s.add_argument("--q-mvar", type=float, required=True)
+    engine(s)
     criteria(s)
     s.set_defaults(func=cmd_new_load)
 

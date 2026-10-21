@@ -8,7 +8,7 @@ Sincronizado con `docs/architecture/ARCHITECTURE-INTEGRAL.md` (20/10/2026). Cada
 | 001 | Ingesta VNR-GIS multiempresa | `001-vnrgis-ingestion` | sin inventar atributos, calidad de datos y linaje | pendiente (esquema relevado) |
 | 002 | Nueva carga y estudios | `002-new-load-impact` | comparación reproducible con solver | parcial (equilibrado) |
 | 003 | GIS ↔ unifilar | `003-gis-unifilar` | sincronía por UUID con conectividad preservada | parcial (unifilar) |
-| 004 | Motores de simulación | `004-simulation-engines` | estudios multifase/cortocircuito dentro de cobertura y tolerancia | 004-A operativo |
+| 004 | Motores de simulación | `004-simulation-engines` | estudios multifase/cortocircuito dentro de cobertura y tolerancia | 004-A y 004-B1 operativos |
 | 005 | Expansión/SED/BESS/DER/EV | `005-expansion-planning` | alternativas factibles + Pareto | parcial (conductores) |
 | 006 | SciML GNN/PINN | `006-sciml-physics-informed` | modelo propio entrenado con VNR-GIS y validado fuera de muestra | sin código |
 | 007 | MARL multiagente seguro | `007-safe-madrl` | recompensas, versiones, riesgo y validación | sin código |

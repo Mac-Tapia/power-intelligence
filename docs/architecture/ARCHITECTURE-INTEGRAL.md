@@ -88,9 +88,9 @@ Estados: **operativo** (código, pruebas y uso por CLI/API), **parcial**, **scaf
 | 001 | ingesta VNR-GIS multiempresa | `power-adapters` (`vnrgis_sql.py`, pendiente) | piloto: `.bak` VNR Electro Dunas abr‑2024 + parámetros | **pendiente**; esquema relevado (§4.1) |
 | 002 | nueva carga | `power-application` | snapshot | parcial: cribado equilibrado operativo; versión por fase depende de 004‑B |
 | 003 | GIS ↔ unifilar | `power-topology`, `apps/workstation-web` | coordenadas UTM VNR | parcial: unifilar desde snapshot; GIS pendiente |
-| **004** | motores de simulación | `power-simulation` | snapshots | A operativo (radial equilibrado); B (desbalanceado/trafos/cortocircuito) pendiente — **spec creada** |
+| **004** | motores de simulación | `power-simulation` | snapshots | A (BFS) y B1 (Newton-Raphson, radial/mallado) operativos; B2 trafos, C desbalanceado, D cortocircuito pendientes |
 | **005** | expansión, SED, BESS, DER, EV | `power-optimization`, `power-economics` | catálogos, base económica | parcial: alternativas de conductor + VPN — **spec creada** |
-| **006** | SciML GNN/PINN sustituto | `power-sciml`, `workers/ml-training` | gold `vnr-pf-scenarios-<case_id>` (029) | **sin código**; bloqueado por 001 — **spec creada** |
+| **006** | SciML GNN/PINN sustituto | `power-sciml`, `workers/ml-training` | gold `vnr-pf-scenarios-<case_id>` desde redes reales TXT/MDB/VNR (029) | **sin código**; Y-bus y residuo listos (004-B1); faltan lectores 001 |
 | **007** | MADRL seguro | `power-marl`, `workers/ml-training` | gold `district-flex-<case_id>` (029) | **sin código**; datos del piloto pendientes de lector — **spec creada** |
 | **008** | LLM local + RAG + herramientas | `power-agents`, `power-graphrag` | corpus y trazas (029) | **sin código**; corpus inexistente — **spec creada** |
 | **009** | industrialización | `infra/`, `apps/control-api` | — | no iniciado: sin auth, jobs en memoria — **spec creada** |
@@ -123,7 +123,8 @@ Regla: el mapeo `CodNorma` → conductor del catálogo y la geometría (DMG) se 
 Objetivo: un **aproximador rápido** del flujo de potencia y del estado de la red (tensiones y cargabilidad) para cribar miles de escenarios: planificación, MADRL y nueva carga. Nunca reemplaza al solver propio (ADR-0002).
 
 ```text
-VNR-GIS (001) ──► snapshots por alimentador (topología real, R/X del catálogo mapeado)
+redes reales TXT (CYME ASCII) + MDB + VNR-GIS (001) ──► snapshots por alimentador
+     (topología real; R/X del catálogo real BD_Equipo mapeado a CodNorma; IEEE solo valida el motor)
      │
      ├─► generador de escenarios (029): demanda por SED = MaxDemTotal × perfil (forecast gold)
      │     × factor de potencia declarado como supuesto de escenario; cambios de topología N-1
@@ -165,13 +166,12 @@ El ajuste fino (SFT/LoRA) de un modelo local solo se hace sobre las trazas de he
 
 ## 5. Ruta crítica (orden obligatorio)
 
-1. **029 autorización y datos gold** (T029-04/05/06) ⟶ desbloquea forecast, MADRL y LLM.
-2. **001 adaptador VNR-GIS** (restaurar el `.bak` en la instancia local; mapeo de normas a catálogo; cuarentena) ⟶ snapshots reales.
-3. **004-A sobre alimentadores reales**: añadir transformadores y ramas MT/BT, que hoy no están en el alcance del BFS ⟶ etiquetas para 006.
-4. **006 GNN informado por la física** ⟶ cribado rápido.
-5. **007 MADRL acoplado a red** y **005 expansión** usan 006 para cribar y el solver para confirmar.
-6. **008 LLM** orquesta todo lo anterior con citas y revisión humana.
-7. **009 industrialización** (auth, jobs persistentes, Postgres) antes de cualquier uso compartido.
+1. **004-B1 Newton-Raphson y Y-bus compartida**: hecho (benchmark IEEE 33 radial y mallado).
+2. **001 lectores de redes reales**: TXT CYME ASCII (fuente ya auditada: 96 alimentadores), luego MDB (requiere lector Access autorizado) y VNR-GIS (restaurar el `.bak`). Incluye el mapeo `BD_Equipo` ↔ `CodNorma` para la R/X real.
+3. **004-B2 transformadores**, necesarios para alimentadores reales MT/BT.
+4. **029 autorización y datos gold** (medidores, perfiles, pronósticos causales).
+5. **006 GNN informado por la física** entrenado con las redes reales del caso; **007 MADRL** acoplado a red; **005 expansión**: el sustituto criba y el solver confirma.
+6. **008 LLM** con citas y herramientas; **009 industrialización** antes de cualquier uso compartido.
 
 ## 6. Reglas de sincronización (una fuente de verdad por concepto)
 

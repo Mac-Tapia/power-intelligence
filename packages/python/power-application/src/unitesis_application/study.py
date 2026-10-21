@@ -17,7 +17,12 @@ from unitesis_adapters.neutral_json import IngestionResult, ingest_file
 from unitesis_domain import ElectricalSnapshot, Load, SolverSettings, StudyRequest, StudyResult
 from unitesis_evidence.store import canonical, publish_evidence
 from unitesis_ports import EngineUnavailable, PowerFlowEngine
-from unitesis_simulation import PandapowerEngine, RadialBFSEngine, compare_results
+from unitesis_simulation import (
+    NewtonRaphsonEngine,
+    PandapowerEngine,
+    RadialBFSEngine,
+    compare_results,
+)
 
 LIMITATIONS = [
     "balanced radial positive-sequence scope: one slack, PQ loads, series lines, ideal switches",
@@ -85,12 +90,23 @@ def _payload(snapshot: ElectricalSnapshot, manifest: dict[str, Any], run: dict[s
     }
 
 
+ENGINES = {"bfs": RadialBFSEngine, "nr": NewtonRaphsonEngine}
+
+
+def engine_by_name(name: str) -> PowerFlowEngine:
+    """Own engines selectable by short name; unknown names fail instead of falling back."""
+    if name not in ENGINES:
+        raise ValueError(f"unknown engine {name!r}; choose one of {sorted(ENGINES)}")
+    return ENGINES[name]()
+
+
 def run_study(source: str | Path, output: str | Path, *, scenario_id: str = "base",
+              candidate: PowerFlowEngine | None = None,
               reference: PowerFlowEngine | None = None) -> dict[str, Any]:
     """Full vertical; raises ``IngestionError`` when the source is quarantined."""
     ingestion: IngestionResult = ingest_file(source)
     snapshot = ingestion.require_snapshot()
-    run = solve_and_compare(snapshot, scenario_id, reference=reference)
+    run = solve_and_compare(snapshot, scenario_id, candidate=candidate, reference=reference)
     return publish_evidence(output, _payload(snapshot, ingestion.manifest, run, scenario_id))
 
 
@@ -106,12 +122,14 @@ def with_new_load(snapshot: ElectricalSnapshot, load_id: str, bus: str,
 def run_new_load_study(source: str | Path, output: str | Path, *, load_id: str, bus: str,
                        p_mw: float, q_mvar: float,
                        v_min_pu: float = 0.95, max_loading_percent: float = 100.0,
+                       candidate: PowerFlowEngine | None = None,
                        reference: PowerFlowEngine | None = None) -> dict[str, Any]:
     ingestion = ingest_file(source)
     before_snap = ingestion.require_snapshot()
     after_snap = with_new_load(before_snap, load_id, bus, p_mw, q_mvar)
-    before = solve_and_compare(before_snap, "before", reference=reference)
-    after = solve_and_compare(after_snap, f"after:{load_id}", reference=reference)
+    before = solve_and_compare(before_snap, "before", candidate=candidate, reference=reference)
+    after = solve_and_compare(after_snap, f"after:{load_id}", candidate=candidate,
+                              reference=reference)
 
     def summary(res: StudyResult) -> dict[str, Any]:
         if res.status != "computed":

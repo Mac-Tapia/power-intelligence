@@ -8,10 +8,10 @@ Lo local (país, empresa, CRS, zona horaria, moneda, frecuencia, normas y fuente
 
 | Capa | Estado |
 |---|---|
-| Núcleo eléctrico (dominio, topología, BFS propio, contraste pandapower, evidencia) | operativo; G3 cumplida para el alcance radial equilibrado (spec 004‑A) |
+| Núcleo eléctrico (dominio, topología, BFS y Newton-Raphson propios, contraste pandapower, evidencia) | operativo para redes equilibradas radiales y malladas (specs 004‑A y 004‑B1; benchmark IEEE 33) |
 | Nueva carga y alternativas de conductor con VPN | operativos (specs 002 y 005) |
 | CLI, API local y workstation web | operativos, solo local (sin autenticación; spec 009) |
-| Ingesta VNR-GIS | pendiente (spec 001); esquema relevado |
+| Ingesta de redes reales (TXT CYME ASCII, MDB, VNR-GIS) | pendiente (spec 001); fuentes del caso auditadas |
 | Datasets por caso y controles de calidad | controles operativos; datasets gold pendientes (spec 029) |
 | GNN/PINN, MADRL, LLM | specs 006/007/008 listas; sin código |
 
